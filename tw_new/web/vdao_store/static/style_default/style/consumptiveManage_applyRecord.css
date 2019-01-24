@@ -1,0 +1,61 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*表格模块*/
+.tableModule{width: 1190px; background: white; padding: 20px 0 0 25px; margin-top: 22px;}
+.tableBox{width: 1140px;}
+.tableBox .thead{ background: #f5f7fd; height: 56px; line-height: 56px; }
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: center;}
+.tableBox .thead span{font-size: 14px; color: #333333; font-weight: bold;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 2px;}
+.tableBox .row{border-bottom: 1px solid #f4f4f4; background: white;}
+.tableBox span{display: inline-block; vertical-align: middle;}
+.tableBox span:nth-child(1){ width: 260px;}
+.tableBox span:nth-child(2){ width: 140px;}
+.tableBox span:nth-child(3){ width: 140px;}
+.tableBox span:nth-child(4){ width: 100px;}
+.tableBox span:nth-child(5){ width: 240px;}
+.tableBox span:nth-child(6){ width: 110px;}
+.tableBox span:nth-child(7){ width: 150px;}
+.tableBox span img{vertical-align: middle;}
+.tableBox a.edit{ display: inline-block; width: 15px; height: 15px; background: url(../images/pro_28.png); vertical-align: middle;}
+.tableBox .row span i{ display: block; font-style: normal; font-size: 12px; color: #333333; padding: 15px 2px; vertical-align: middle; }
+.tableBox span.material i{ border-left: 1px solid #f4f4f4; border-right: 1px solid #f4f4f4; vertical-align: middle;}
+.tableBox span.number i{ border-right: 1px solid #f4f4f4; padding: 16px 2px; vertical-align: middle; }
+/*.tableBox span.material i:nth-child(odd),.tableBox span.number i:nth-child(odd){ background: #f6f9fa;}*/
+.tableBox span.material,.tableBox span.number{ padding: 0 0px;}
+.tableBox span.control a{ color: #5a2e17;}
+.tableBox span.control a.cancel{ margin-right: 8px;}
+.tableBox .refLook,.tableBox .refApply{ display: block;}
+.tableBox .refApply{ margin-top: 3px;}
+.tableBox .thead .state{ position: relative;}
+.tableBox .thead .state a{ color: #333333; vertical-align: middle;}
+.tableBox .thead .state .staTitle s{ text-decoration: none; font-size: 14px; color: #333333; font-weight: bold;}
+.tableBox .thead .state .staTitle i{ display: inline-block; width: 12px; height: 6px; background: url(../images/heisan_06.png); margin-left: 3px; vertical-align: middle;}
+.tableBox .thead .state .stateSelect{ position: absolute; left: 0; top: 50px; z-index: 99; background: white; box-shadow: 0 0 10px #dfdfdf; padding-bottom: 5px; display: none;}
+.tableBox .thead .state .stateSelect li{ line-height: 30px; width: 110px; text-align: left; text-indent: 20px; }
+.tableBox .thead .state .stateSelect a{ font-size: 14px; color: #333333; display: block; }
+.tableBox .thead .state .stateSelect a:hover{ color: #5a2e17;}
+.tableBox .thead .down { background: white; box-shadow: 0 0 10px #dfdfdf;}
+.tableBox .thead .down .staTitle i{ background: url(../images/heisan_03.png);}
+.tableBox .thead .zhe{ width: 108px; height: 6px; background: white; position: absolute; left: 1px; top: 45px; z-index: 100; display: none;}
+/*分页*/
+.page{ float:right; margin-top:30px; margin-right:20px; margin-bottom: 40px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+/*查看提示框*/
+.delePart{ width: 380px; height: 170px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -85px; padding: 15px 20px; box-shadow: 0 0 20px #dedede;  z-index: 10;}
+.refuseBomb{ display: none;}
+.passBomb{ display: none;}
+.cancelBomb{ display: none;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 30px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px; margin-left: 30px;}
+
+.deleSingle{ /*display: none;*/}
+.deleSingle p:nth-child(1){ margin-top: 15px;}
+.deleSingle a.think{ width: 42px; height: 20px;}

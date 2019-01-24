@@ -1,0 +1,166 @@
+body {
+    position: relative;
+    background: #FFFFFF;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: "Microsoft yahei", "\5b8b\4f53", serif, sans-serif, arial;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none
+}
+
+li {
+    list-style: none;
+}
+
+.jiajie-common_full {
+    width: 100%;
+    max-width: 100%;
+    min-width: 1200px;
+}
+
+.jiajie-common_inner {
+    width: 1200px;
+    overflow: hidden;
+    height: 100%;
+    min-width: 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.jiajie-common_header {
+    height: 70px;
+    line-height: 70px;
+    background-color: #fff;
+}
+
+/*公共脚步*/
+.jiajie-common_footer {
+    margin-top: 92px;
+    padding: 72px 0;
+    background: #f4f4f4;
+    color: #626262;
+    font-size: 14px;
+    text-align: center;
+}
+
+.jiajie-common_footer p {
+    margin-top: 16px;
+}
+
+.jiajie-common_footer p:first-child {
+    margin-top: 0;
+}
+
+/*左边logo区*/
+.jiajie-common_header .jiajie-header-logo {
+    display: inline-block;
+    padding-left: 91px;
+    background: url("../img/new_logo.png") no-repeat left center;
+    background-position-x: 32px;
+    font-size: 28px;
+}
+
+.jiajie-common_header .jiajie-header-logo a {
+    color: #18b4ed;
+}
+
+/*右边导航栏*/
+.jiajie-common_header ul {
+    float: right;
+    height: inherit;
+}
+
+.jiajie-common_header ul li {
+    float: left;
+    list-style: none;
+}
+
+.jiajie-common_header ul li a {
+    color: #000000;
+    font-size: 18px;
+    line-height: 70px;
+    padding: 0 55px;
+    display: block;
+}
+
+.jiajie-common_header ul li a.active {
+    color: #18b4ed;
+}
+
+/*banner*/
+.jiajie-common_banner {
+    position: relative;
+    height: 700px;
+    width: 100%;
+    background: #18b4ed;
+}
+
+/*footer*/
+.jiajie-common_footer_nav {
+    height: 69px;
+    margin-bottom: 51px;
+}
+.jiajie-common_footer_nav dl {
+    float: left;
+    overflow: hidden;
+    margin-left: 146px;
+}
+.jiajie-common_footer_nav dl:first-child {
+    margin-left: 179px;
+}
+.jiajie-common_footer_nav dt {
+    width: 61px;
+    height: 69px;
+    line-height: 69px;
+    background: url("../../assets/img/ljx_03.png") no-repeat center center;
+    font-size: 24px;
+    color: #18b4ed;
+    float: left;
+}
+.jiajie-common_footer_nav dd {
+    float: left;
+    line-height: 69px;
+    font-size: 24px;
+    color: #333333;
+    margin-left: 20px;
+}
+/*qrcode*/
+.jiajie-qrcode {
+    position: fixed;
+    bottom: 60px;
+    left: 10px;
+    z-index: 99999;
+    width: 170px;
+    height: 239px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px rgba(24, 180, 237, 0.5);
+    -webkit-transition: border linear .2s, -webkit-box-shadow linear .5s;
+    -webkit-box-shadow: 0 0 10px rgba(24, 180, 237, 0.5);
+}
+.jiajie-qrcode .jiajie-qicode-inner {
+    padding: 22px 20px;
+    text-align: center;
+}
+
+.jiajie-qrcode .jiajie-qicode-inner img:first-child {
+    margin-bottom: 23px;
+}
+.jiajie-qrcode .jiajie-qicode-inner img {
+    width: 133px;
+    height: 133px;
+}
+.jiajie-qrcode .jiajie-qicode-inner p {
+    font-size: 16px;
+    color: #18b4ed;
+    margin-top: 10px;
+}

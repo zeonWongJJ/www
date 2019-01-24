@@ -1,0 +1,254 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .state{
+	margin-top: 0.266666rem;
+	background: white;
+}
+.state .p1{
+	font-size: 0.506666rem;
+	color: #333333;
+	text-align: center;
+	margin-top: 0.733333rem;
+}
+.state .p2{
+	font-size: 0.373333rem;
+	color: #333333;
+	text-align: center;
+	margin-top: 0.2rem;
+}
+.state .p2 i{
+	font-style: normal;
+	color: #fc8c4c;
+}
+.state .p3{
+	text-align: center;
+	margin-top: 0.4rem;
+	margin-bottom: 0.506666rem;
+}
+.state .p3 a{
+	display: inline-block;
+	width: 2.066666rem;
+	height: 0.666666rem;
+	text-align: center;
+	line-height: 0.666666rem;
+	box-sizing: border-box;
+	font-size: 0.373333rem;
+	color: #333333;
+	border: 1px solid #d7d7d7;
+	border-radius: 0.333333rem;
+	margin: 0 auto;
+}
+.main .name{
+	margin-top: 0.266666rem;
+	background: white;
+}
+.name li{
+	/*height: 0.933333rem;
+	line-height: 0.933333rem;*/
+	padding: 0.24rem 0.533333rem;
+}
+.name li .pic{
+	width: 0.373333rem;
+	height: 0.333333rem;
+	vertical-align: middle;
+}
+.name li .span1{
+	font-size: 0.346666rem;
+	color: #333333;
+	vertical-align: middle;
+	margin-left: 0.2rem;
+	display: inline-block;
+	width: 7.866666rem;
+}
+.name li .pic2{
+	width: 0.213333rem;
+	height: 0.373333rem;
+	vertical-align: middle;
+	float: right;
+	margin-top: 0.053333rem
+}
+.name li.tit{
+	border-bottom: 2px solid #efefef;
+}
+.name li.roomLi .rLeft{
+	float: left;
+	width: 6.6rem;
+	width: 5.866666rem;
+}
+.name li.roomLi .rRight{
+	float: right;
+	width: 2.533333rem;
+	text-align: right;
+}
+.name li .pName{
+	font-size: 0.373333rem;
+	color: #000000;
+}
+.name li .pDes{
+	font-size: 0.293333rem;
+	color: #666666;
+}
+.name li .rRight{
+	font-size: 0.373333rem;
+	color: #000000;
+	float: right;
+}
+.main .details{
+	margin-top: 0.266666rem;
+}
+.details li{
+	padding: 0.24rem 0.533333rem;
+	border-bottom: 1px solid #EFEFEF;
+	background: white;
+}
+.details li:last-child{
+	border-bottom: none;
+}
+.details li .spanL{
+	width: 25%;
+	font-size: 0.373333rem;
+	color: #666666;
+	text-align: left;
+	float: left;
+}
+.details li .spanR{
+	width: 75%;
+	font-size: 0.32rem;
+	color: #333333;
+	text-align: right;
+	float: right;
+	margin-top: 0.026666rem;
+}
+.details li .spanR i{
+	font-style: normal;
+}
+.details li .spanR .i2{
+	margin: 0 0.066666rem;
+}
+.details li .spanR .copy{
+	color: #0078ff;
+}
+/*---已入店的CSS---*/
+.state .p3 .overOffic{
+	background: #ffd703;
+	border: none;
+	color: white;
+}
+
+
+/*遮罩层*/
+.shade{
+	display: none;
+}
+/*取消订单弹框*/
+.qqBomb{
+	width: 6.533333rem;
+	height: 3rem;
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -3.266666rem;
+	top: 50%;
+	margin-top: -1.5rem;
+	border-radius: 0.266666rem;
+}
+.qqBomb .p1{
+	font-size: 0.426666rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.4rem;
+}
+.qqBomb .p2{
+	font-size: 0.32rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.053333rem;
+}
+.qqBomb .btnBox{
+	height: 1.066666rem;
+	border-top: 1px solid #efefef;
+	margin-top: 0.4rem;
+}
+.qqBomb .btnBox a{
+	font-size: 0.426666rem;
+	color: #005eff;
+	display: inline-block;
+	width: 3.2rem;
+	text-align: center;
+	line-height: 1.066666rem;
+	box-sizing: border-box;
+}
+.qqBomb .btnBox a.cancel{
+	border-right: 1px solid #efefef;
+	border-bottom-left-radius: 0.266666rem;
+}
+.qqBomb .btnBox a.remove{
+	border-bottom-right-radius: 0.266666rem;
+}
+.cancelBomb{
+	display: none;
+}
+.cancelBomb .p1{
+	font-size: 0.426666rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.666666rem;
+}
+.cancelBomb .btnBox{
+	height: 1.066666rem;
+	border-top: 1px solid #efefef;
+	margin-top: 0.64rem;
+}
+.overBomb{
+	display: none;
+}
+/*取消订单成功提示*/
+.cancelTip,
+.overTip{
+	margin-left: -2rem;
+	display: none;
+}
+
+
+/*支付弹框*/
+.payment{ width:100%; position:fixed; bottom:0; z-index:2; background:white; display: none; }
+.surplusTime{ height:1.22rem; line-height:1.22rem; position:relative; text-align:center; border-bottom:0.01rem solid #ddd; }
+.surplusTime>span{ font-size:0.37rem; }
+.surplusTime>span>em{ font-style:normal; color:#ff6633; }
+.closeSurplus{ width:0.32rem; position:absolute; top:0.45rem; right:0.48rem; }
+.payment>dl>dd{ height:1.22rem; line-height:1.22rem; position:relative; padding-left:0.53rem; border-bottom:0.01rem solid #ddd; }
+.payment>dl>dd:last-child{ border-bottom:none; }
+.payment>dl>dd>img,.payment>dl>dd>span{ vertical-align:middle; }
+.payment>dl>dd>img{ width:0.82rem; margin-right:0.34rem; }
+.payment>dl>dd>span{ font-size:0.34rem; }
+.surePay{ text-align:center; background:#ff6633; }
+.surePay>a>span{ font-size:0.42rem; color:white; }
+.surePay>a>span>em{ font-style:normal; }
+.surePay>a>span>em>i{ font-style: normal;}
+.checkPay{ position:absolute; top:0.1rem; right:0.89rem; }
+.checkPay>img{ width:0.46rem; }

@@ -1,0 +1,42 @@
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.order_details{ margin-top:20px; margin-left:22px; }
+.order_details>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.content{ margin-top:20px; padding:40px; background:white; }
+/*订单详情弹框*/
+.detailBomb{ width:446px; display:inline-block; vertical-align:top; background: white;  }
+.detailBomb .messageBox{ width: 445px; height: 375px; margin: 30px 0 0 28px; overflow: auto; border-bottom: 1px solid #eeeeee;}
+.messageBox .numberBox{ position: relative;}
+.numberBox .dingdan{ font-size: 14px; color: #000000;}
+.numberBox .dingdan i{ display: inline-block; width: 10px; height: 10px; background: white; border-radius: 50%; border: 3px solid #009944; vertical-align: middle; margin-right: 12px;}
+.numberBox .cont{ border-left: 1px solid #F2F2F2; min-height: 50px; margin-left: 7px; margin-top: 4px;}
+.numberBox .cont p{ font-size: 14px; color: #666666; margin-left: 17px;}
+.numberBox span{ display: inline-block; width: 3px; height: 3px; background: #c2c0c1; border-radius: 50%; position: absolute;}
+.numberBox .shang{ left: 6px; top: 21px;}
+.numberBox .xia{left: 6px; bottom: 0px !important;}
+.timeBox .dingdan i{ border: 3px solid #ff9500;}
+.takeBox .dingdan i{ border: 3px solid #dc1c5d;}
+.proBox .dingdan i{ border: 3px solid #1fb5ad;}
+.takeBox .cont{ min-height: 65px;}
+.proBox .cont{ border-left: none;}
+.proBox .cont li{ margin-left: 18px; }
+.proBox .cont li i{ font-style: normal; font-size: 14px; color: #666666; display: inline-block; vertical-align: middle;}
+.proBox .cont li i.wen1{width:295px;}
+.proBox .cont li i.wen2{width: 32px; text-align: right;}
+.proBox .cont li i.wen3{width: 62px; word-break: break-all; text-align: right;}
+.proBox .cont .redPaper{ width: 388px; height: 30px; margin-top: 5px;}
+/* 物流信息 */
+.log{ width:466px; display:inline-block; vertical-align:top; margin-left:80px; margin-top:36px; }
+.log>ul>li{ padding:8px 0; font-size:14px; }
+.log>ul>li>span,.log>ul>li>em{ font-weight:bold; }
+.logDetail,.wuliuInfo{ display:inline-block; vertical-align:top; }
+.wuliuInfo>li{  font-size:14px; }
+.wuliuInfo>ul>li>span,.wuliuInfo>ul>li>em{ color:#666666; }
+
+.proBox .cont .red{float: left; display: inline-block; width: 60px; height: 20px; background: #dc1c5d; font-size: 12px; color: white; text-align: center; line-height: 20px; font-style: normal;}
+.proBox .cont .money{ float: right; font-style: normal;}
+.detailBomb .payBox{ height: 50px; margin-left: 51px; width: 390px; margin-top: 3px;}
+.payBox .payType{ width: 110px; float: left; font-size: 16px; color: #666666; padding-top: 8px;}
+.payBox .allMon{ width: 150px; float: right; font-size: 24px; color: #DC1C5D; text-align: right;}
+.closeBox a{ display: block; width: 105px; height: 35px; background: #43cb83; font-size: 12px; color: white; text-align: center; line-height: 35px; border-radius: 4px; margin-left: 132px;}
+

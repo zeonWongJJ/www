@@ -1,0 +1,168 @@
+<template>
+	<div class="system">
+		<div class="setContainer">
+			<div class="setName">
+				<van-popup v-model="showName" position="top" >
+				  	<van-cell-group>
+					  <van-field
+					    v-model="realName"
+					    center
+					    clearable
+					    label="姓名"
+					    placeholder="请输入真实姓名"
+					  >
+					   <van-button slot="button" @click="nextStepA" size="small" type="primary">下一步</van-button>
+					  </van-field>
+					</van-cell-group>
+					</van-popup>
+			</div>
+			<div class="setMenu">
+				<van-popup v-model="showSet" position="right" >
+				  	<div class="weekMenu">
+				  		<van-nav-bar
+						  title="用餐情况"
+						  left-arrow
+  						  @click-left="beforName"
+						/>
+						
+						<div style="padding:0.2rem">
+							<div >
+								<van-checkbox v-model="weekRadio">其他天相同</van-checkbox>
+							</div>
+							
+							<van-checkbox-group  style="display: flex; align-content: center; font-size:0.14rem" v-model="result"  v-for="(week,index) in weekList">
+								 <div >周{{week.week}}</div>
+								 <van-checkbox
+								 	style="margin-left:0.2rem; margin-bottom: 0.05rem;"
+								   	v-for="(meal,index) in week.meal"
+								    :key="index"
+								    :name="meal"
+								  >
+								    {{meal.eat}}
+								 </van-checkbox>
+							</van-checkbox-group>
+							<van-button size="large" @click="nextStepB">设置喜欢菜式</van-button>
+						</div>
+				  	</div>
+				</van-popup>
+				<van-popup v-model="showCuisine" position="right" >
+				  	<div class="curMenu">
+				  		<van-nav-bar
+						  title="选择喜欢的菜式"
+						  left-arrow
+  						  @click-left="beforWeek"
+						/>
+						
+						<div style="padding:0.2rem">
+							<div >
+								<van-checkbox v-model="weekRadio">全选</van-checkbox>
+							</div>
+							
+							<van-checkbox-group  style="display: flex; align-content: center; font-size:0.14rem" v-model="resCur"  >
+								<van-checkbox
+									style="margin-right:0.2rem; margin-bottom: 0.05rem;"
+								    v-for="(item, index) in curList"
+								    :key="index"
+								    :name="item"
+								>
+									{{item.cur}}
+								</van-checkbox>
+							</van-checkbox-group>
+							<van-button size="large" @click="nextStepC">完成</van-button>
+						</div>
+				  	</div>
+				</van-popup>
+			</div>
+		</div>
+		
+	</div>
+</template>
+
+<script>
+export default{
+	data(){
+		return{
+			showName:true,
+			showSet:false,
+			showCuisine:false,
+			weekRadio:true,
+			realName:'',//真实姓名
+			columns: [
+		        { text: '杭州'	},
+		        { text: '宁波' },
+		        { text: '温州' }
+	      	],
+	      	weekList:[
+	      		{ 
+	      			week:"一",
+	      			meal:[
+	      				{eat:"午餐"},
+	      				{eat:"晚餐"},
+	      			]
+	      		},
+	      		{ 
+	      			week:"二",
+	      			meal:[
+	      				{eat:"午餐"},
+	      				{eat:"晚餐"},
+	      			]
+	      		},
+	      		{ 
+	      			week:"三",
+	      			meal:[
+	      				{eat:"午餐"},
+	      				{eat:"晚餐"},
+	      			]
+	      		},
+	      		
+	      	],
+	      	result: [],
+	      	curList:[
+	      		{ cur:"鱼香茄子" },
+	      		{ cur:"日本豆腐" },
+	      		{ cur:"烧鸡" },
+	      	],
+	      	resCur:[],
+		}
+	},
+	methods:{
+		nextStepA(){
+			if( this.realName != '' ){
+				this.showName=false;
+				this.showSet=true;
+			}
+		},
+		nextStepB(){
+			this.showSet=false;
+			this.showCuisine=true;
+		},
+		nextStepC(){
+			this.showSet=false;
+			this.showCuisine=false;
+		},
+		beforName(){
+			this.showName=true;
+			this.showSet=false;
+		},
+		beforWeek(){
+			this.showSet=true;
+			this.showCuisine=false;
+		},
+		dd(i){
+			console.log(i)
+		}
+	}
+}
+</script>
+
+<style scoped>
+	.setMenu .van-popup--right,.setMenu .van-popup--left{
+		width:100%;
+		height:100%;
+		background:white;
+	}
+	.curMenu .van-checkbox{
+
+	}
+
+</style>

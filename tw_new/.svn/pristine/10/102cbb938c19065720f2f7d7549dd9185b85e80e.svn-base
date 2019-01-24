@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <include layout="@layout/layout_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/add_action_layout"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="动作类型"
+                    />
+                <TextView
+                    android:id="@+id/action_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:hint="请选择你需要发布的动作类型"
+                    />
+                <ImageView
+                    android:id="@+id/arrow_right_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_arrow_right"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/comment_desc"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                style="@style/publish_task_black_style"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:textColorHint="@color/gray"
+                android:hint="请输入对于此项任务您想要记录的内容"
+                android:gravity="left"
+                />
+
+            <include layout="@layout/line"/>
+            <include layout="@layout/layout_common_pic_file"/>
+
+
+
+            <TextView
+                android:id="@+id/sure_publish"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/shape_blue_big_radius"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:text="确认发布"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

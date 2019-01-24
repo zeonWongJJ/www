@@ -1,0 +1,736 @@
+<?php
+
+defined('BASEPATH') or exit('禁止访问！');
+
+class Share_ctrl extends TW_Controller {
+
+	public function __construct() {
+		parent :: __construct();
+		$this->load->model('audit_model');
+		$this->load->model('myshare_model');
+		$this->load->model('share_model');
+		$this->load->model('allow_model');
+		$index = ($this->router->get_index());
+		if($index !="share"){
+			$this->allow_model->is_login();
+		}
+		
+	}
+
+/************************************** 订单列表 **************************************/
+
+	public function share_order() {
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+		    // 接收参数
+            $type = $this->router->get(1);
+            if (empty($type)) {
+                $type = 'all';
+            }
+			// 获取数据
+			$user_id = $_SESSION['user_id'];
+			$a_data['order'] = $this->share_model->get_share_order($user_id, $type, 1);
+			if (!empty($a_data['order'])) {
+				foreach ($a_data['order'] as $key => $value) {
+					// 获取订单的一条产品信息
+					$a_goods = $this->share_model->get_goods_one($value['order_id']);
+					$value['product_name'] = $a_goods['product_name'];
+					$value['pro_img'] = $a_goods['pro_img'];
+					$new_data[] = $value;
+				}
+				$a_data['order'] = $new_data;
+			}
+			$a_data['type'] = $type;
+			$this->view->display('share_order2', $a_data);
+		}
+	}
+
+	public function share() {
+			$user_agent = $_SERVER['HTTP_USER_AGENT'];
+			$a_data['user_id'] = $this->general->get('userid');
+			$this->view->display('share',$a_data);
+		
+	}
+
+/************************************** 更多订单 **************************************/
+
+	public function share_ordermore() {
+		$page = trim($this->general->post('page'));
+		$type = trim($this->general->post('type'));
+		$user_id = $_SESSION['user_id'];
+		$a_data = $this->share_model->get_share_order($user_id, $type, $page);
+		if (!empty($a_data)) {
+			foreach ($a_data as $key => $value) {
+				// 获取订单的一条产品信息
+				$a_goods = $this->share_model->get_goods_one($value['order_id']);
+				$value['product_name'] = $a_goods['product_name'];
+				$value['pro_img'] = $a_goods['pro_img'];
+				$value['time_create'] = date('Y-m-d H:i', $value['time_create']);
+				$new_data[] = $value;
+			}
+			echo json_encode(array('code'=>200, 'msg'=>'获取成功','data'=>$new_data));
+		} else {
+			echo json_encode(array('code'=>400, 'msg'=>'没有更多数据啦','data'=>''));
+		}
+	}
+
+/************************************** 取消订单 **************************************/
+
+	public function share_ordercancel() {
+		// 接收订单id
+		$order_id = trim($this->general->post('order_id'));
+		$reason   = trim($this->general->post('reason'));
+		// 获取一条订单信息
+		$a_order = $this->share_model->get_order_one($order_id);
+		// 验证订单是否支付
+		$isrefund = true;
+		if (in_array($a_order['order_state'], [20,25])) {
+			// 执行退款业务
+			$isrefund = false;
+			// 判断支付方式
+			if ($a_order['payment_code'] == 'alipay') {
+				$this->load->library('alipay_wap');
+				$a_data = [
+					// 商户订单号，商户网站订单系统中唯一订单号，必填
+					'out_trade_no'   => $a_order['pay_sn'],
+					// 请求退款金额，必填
+					'refund_amount'  => $a_order['actual_pay'],
+					'refund_reason'  => '订单退款',
+					// 退款交易号，同一笔交易多次退款需要保证唯一，如需部分退款，则此参数必传。
+					'out_request_no' => $a_order['order_number'],
+					'is_page'        => false
+				];
+				$result = $this->alipay_wap->refund($a_data);
+				if ($result['code'] == 10000) {
+					$isrefund = true;
+				}
+			} else if ($a_order['payment_code'] == 'offline') {
+				$a_data = [
+					// 商户订单号和微信订单号必须二选一，同时设置时，优先使用微信订单号
+					'out_trade_no' => $a_order['pay_sn'],
+					// 微信订单号
+					'transaction_id' => '',
+					// 商户退款单号（自定义的，单号唯一，用来识别退款记录的）
+					'out_refund_no' => $a_order['order_number'],
+					// 订单金额，不是退款金额，以分为单位,
+					'total_fee' => $a_order['actual_pay']*100,
+					// 退款金额，以分为单位,
+					'refund_fee' => $a_order['actual_pay']*100,
+					// 通知地址，请参考支付实例完成退款的通知处理
+					'notify_url' => $this->router->url('wxrefund_notify')
+				];
+				$this->load->library('wxpay_h5', '', [$a_data]);
+				$a_result = $this->wxpay_h5->refund();
+				if ($a_result['return_code'] == 'SUCCESS') {
+					$isrefund = true;
+				}
+			} else if ($a_order['payment_code'] == 'unionpay') {
+				$this->load->library('unionpay_geteway');
+				$a_param = [
+					// 订单号
+					'id_order' => $a_appointment['appointment_number']
+				];
+				$a_result = $this->unionpay_geteway->query($a_param);
+				if ($this->unionpay_geteway->verify($a_result)) {
+					if ($a_result['origRespCode'] == '00') {
+						$a_param = [
+							// 订单号
+							'id_order' => 'T'.$a_appointment['appointment_number'],
+							// 原消费的queryId，可以从查询接口或者通知接口中获取
+							'id_query' => $a_result['queryId'],
+							// （选填）交易金额，退货总金额需要小于或等于原消费
+							'amount' => $a_order['actual_pay']*100,
+						];
+						$a_result = $this->unionpay_geteway->refund($a_param);
+						if ($this->unionpay_geteway->verify($a_result)) {
+							if ($a_result['respCode'] == '00') {
+								$isrefund = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		// 若退款成功则改变订单状态
+		if ($isrefund == true) {
+			// 将订单状态改为已取消
+			$a_where = [
+				'order_id' => $order_id,
+			];
+			$a_data = [
+				'order_state' => 0,
+			];
+			$i_result = $this->share_model->update_order($a_where, $a_data);
+			if ($i_result) {
+				// 插入一条订单日志
+				$a_data_log = [
+					'order_id'       => $order_id,
+					'log_msg'        => '商家取消了订单',
+					'log_time'       => $_SERVER['REQUEST_TIME'],
+					'log_role'       => '商家',
+					'log_user'       => $_SESSION['user_name'],
+					'log_orderstate' => 0,
+				];
+				$this->share_model->insert_order_log($a_data_log);
+				echo json_encode(array('code'=>200, 'msg'=>'取消订单成功'));
+			} else {
+				echo json_encode(array('code'=>400, 'msg'=>'取消订单失败'));
+			}
+		} else {
+			echo json_encode(array('code'=>400, 'msg'=>'取消订单失败'));
+		}
+	}
+
+/************************************** 确定接单 **************************************/
+
+	public function share_orderacct() {
+		$order_id = trim($this->general->post('order_id'));
+		// 将订单状态改为已接单
+		$a_where = [
+			'order_id' => $order_id,
+		];
+		$a_data = [
+			'order_state' => 25,
+		];
+		$i_result = $this->share_model->update_order($a_where, $a_data);
+		if ($i_result) {
+			// 插入一条订单日志
+			$a_data_log = [
+				'order_id'       => $order_id,
+				'log_msg'        => '商家接单',
+				'log_time'       => $_SERVER['REQUEST_TIME'],
+				'log_role'       => '商家',
+				'log_user'       => $_SESSION['user_name'],
+				'log_orderstate' => 25,
+			];
+			$this->share_model->insert_order_log($a_data_log);
+			$product_number = $this->share_model->product_number($order_id);
+			echo json_encode(array('code'=>200, 'msg'=>'接单成功'));
+		} else {
+			echo json_encode(array('code'=>400, 'msg'=>'接单失败'));
+		}
+	}
+
+/************************************** 查看物流 **************************************/
+
+	public function share_logistics() {
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+			// 接收参数
+			$order_id = $this->router->get(1);
+			// 获取一条订单信息
+			$a_data['order'] = $this->share_model->get_order_one($order_id);
+			$a_data['goods'] = $this->share_model->get_goods_one($a_data['order']['order_id']);
+			// 通过快递公司和单号查询
+			$express_company = $a_data['order']['express_company'];
+			$express_number = $a_data['order']['express_number'];
+			if (!empty($express_company) && !empty($express_number)) {
+				$this->load->library('express_kdniao');
+				$a_data['express'] = $this->express_kdniao->query($express_company, $express_number);
+				if (!empty($a_data['express']['Traces'])) {
+					$j = count($a_data['express']['Traces']);
+					for ($i=0; $i < count($a_data['express']['Traces']); $i++) {
+						foreach ($a_data['express']['Traces'] as $key => $value) {
+							if ($key == $j) {
+								$new_data[] = $value;
+							}
+						}
+						$j--;
+					}
+					$a_data['express']['Traces'] = $new_data;
+				} else {
+					$a_data['express']['Traces'] = array();
+				}
+			} else {
+				$a_data['express']['Traces'] = array();
+			}
+			$this->view->display('share_logistics', $a_data);
+		}
+	}
+
+/************************************** 发货信息 **************************************/
+
+	public function share_delivery() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// 接收数据
+			$order_id = trim($this->general->post('order_id'));
+			$express_number = trim($this->general->post('express_number'));
+			$express_company = trim($this->general->post('express_company'));
+			// 验证数据
+			$a_parameter = [
+				'msg'      => '这是提示信息',
+				'url'      => 'share_order',
+				'log'      => false,
+				'wait'     => 2,
+			];
+			// 验证是否为空
+			if (empty($order_id) || empty($express_number) || empty($express_company)) {
+				$a_parameter['msg'] = '必填项不能为空';
+				$this->error->show_error($a_parameter);
+			}
+			// 将数据保存到数据库
+			$a_where = [
+				'order_id' => $order_id
+			];
+			$a_data = [
+				'express_number'  => $express_number,
+				'express_company' => $express_company,
+				'order_state'     => 30,
+			];
+			$i_result = $this->share_model->update_order($a_where, $a_data);
+			if ($i_result) {
+				// 插入一条订单日志
+				$a_data_log = [
+					'order_id'       => $order_id,
+					'log_msg'        => '商家已发货',
+					'log_time'       => $_SERVER['REQUEST_TIME'],
+					'log_role'       => '商家',
+					'log_user'       => $_SESSION['user_name'],
+					'log_orderstate' => 30,
+				];
+				$this->share_model->insert_order_log($a_data_log);
+				// 将用户的分享收益加上
+				$a_user = $this->share_model->get_user_one($_SESSION['user_id']);
+				$a_order = $this->share_model->get_order_one($order_id);
+				$a_whereu = [
+					'user_id' => $_SESSION['user_id'],
+				];
+				$a_datau = [
+					'share_income' => $a_user['share_income'] + $a_order['order_price'],
+				];
+				$this->share_model->update_user($a_whereu, $a_datau);
+/*
+| ---------------------------------------------------------------------------------------------
+| 配送成功后更新相关数据
+| ---------------------------------------------------------------------------------------------
+*/
+
+		// 获取设置信息
+		$user_score_ratio      = $this->share_model->get_set_one('user_score_ratio');
+		$user_consume_ratio    = $this->share_model->get_set_one('user_consume_ratio');
+		$shopman_score_retio   = $this->share_model->get_set_one('shopman_score_retio');
+		$shopman_referee_ratio = $this->share_model->get_set_one('shopman_referee_ratio');
+		// 获取一条订单信息
+		$a_this_order = $this->share_model->get_order_one($order_id);
+		// 获取下单人的用户信息
+		$a_this_user = $this->share_model->get_user_one($a_this_order['user_id']);
+		// 判断用户是否有推荐人
+		if ($a_this_user['user_referee']) {
+/*---------------------------------------------------------------------------------------------*/
+			// 判断用户的推荐人是否是移动店主且移动店主状态是否开启
+			$a_referee_row = $this->share_model->get_user_one($a_this_user['user_referee']);
+			if ($a_referee_row['is_shopman'] == 1 && $a_referee_row['shopman_state'] == 1) {
+				$order_commission = round(($shopman_referee_ratio/100)*$a_this_order['goods_amount'],2);
+			} else {
+				$order_commission = round(($user_consume_ratio/100)*$a_this_order['goods_amount'],2);
+			}
+			$a_order_where = [
+				'order_id' => $order_id,
+			];
+			$a_order_update = [
+				'order_referee'    => $a_this_user['user_referee'],
+				'order_commission' => $order_commission,
+			];
+			// 更新订单信息
+			$this->share_model->update_order($a_order_where, $a_order_update);
+/*---------------------------------------------------------------------------------------------*/
+			// 更新推荐人的积分和推荐人的推荐人消费总额
+			$a_referee_where = [
+				'user_id' => $a_this_user['user_referee']
+			];
+			if (empty($a_referee_row['referee_orders'])) {
+				$referee_orders = $order_id;
+			} else {
+				$referee_orders = $a_referee_row['referee_orders'] . ',' . $order_id;
+			}
+			$a_referee_update = [
+				'user_score'         => $a_referee_row['user_score'] + $order_commission,
+				'referee_consume'    => $a_referee_row['referee_consume'] + $a_this_order['goods_amount'],
+				'referee_orders'     => $referee_orders,
+				'referee_ordercount' => $a_referee_row['referee_ordercount'] + 1,
+				'referee_products'   => $a_referee_row['referee_products'] + $a_this_order['order_count'],
+				'shopman_income'     => $a_referee_row['shopman_income'] + $order_commission,
+			];
+			$i_result = $this->share_model->update_user($a_referee_where, $a_referee_update);
+/*---------------------------------------------------------------------------------------------*/
+			// 若更新成功则插入一条积分变动信息到wf_points_log表
+			if ($i_result && $order_commission > 0) {
+				$a_points_log = [
+					'user_id'        => $a_this_user['user_referee'],
+					'user_name'      => $a_referee_row['user_name'],
+					'pl_type'        => 1,
+					'pl_variation'   => $order_commission,
+					'pl_score'       => $a_referee_row['user_score'] + $order_commission,
+					'pl_item'        => '推荐的人消费返积分',
+					'pl_description' => '用户'.$a_this_user['user_name'].'消费'.$a_this_order['goods_amount'].'元',
+					'pl_time'        => $_SERVER['REQUEST_TIME'],
+					'pl_code'        => 6,
+				];
+				$this->share_model->insert_points_log($a_points_log);
+			}
+		}
+/*---------------------------------------------------------------------------------------------*/
+		// 判断用户自己是否是移动店主
+		if ($a_this_user['is_shopman'] == 1  && $a_this_user['shopman_state'] == 1) {
+			$add_user_score = round(($shopman_score_retio/100)*$a_this_order['goods_amount'],2);
+		} else {
+			$add_user_score = round(($user_score_ratio/100)*$a_this_order['goods_amount'],2);
+		}
+		// 更新自己的积分及消费金额
+		$a_where_thisuser = [
+			'user_id' => $a_this_order['user_id']
+		];
+		if (empty($a_this_user['user_orders'])) {
+			$user_orders = $order_id;
+		} else {
+			$user_orders = $a_this_user['user_orders'] . ',' . $order_id;
+		}
+		// 如果有推荐人则顺便更新给自己的推荐人的总提成字段 没有则直接更新消费金额和积分
+		if ($a_this_user['user_referee']) {
+			$a_thisuser_update = [
+				'user_consume'    => $a_this_user['user_consume'] + $a_this_order['goods_amount'],
+				'user_score'      => $a_this_user['user_score'] + $add_user_score,
+				'user_commission' => $a_this_user['user_commission'] + $order_commission,
+				'user_orders'     => $user_orders,
+				'user_ordercount' => $a_this_user['user_ordercount'] + 1,
+				'user_products'   => $a_this_user['user_products'] + $a_this_order['order_count'],
+			];
+		} else {
+			$a_thisuser_update = [
+				'user_consume'    => $a_this_user['user_consume'] + $a_this_order['goods_amount'],
+				'user_score'      => $a_this_user['user_score'] + $add_user_score,
+				'user_orders'     => $user_orders,
+				'user_ordercount' => $a_this_user['user_ordercount'] + 1,
+				'user_products'   => $a_this_user['user_products'] + $a_this_order['order_count'],
+			];
+		}
+		$i_res = $this->share_model->update_user($a_where_thisuser, $a_thisuser_update);
+/*---------------------------------------------------------------------------------------------*/
+		// 如果更新成功则插入一条积分变动信息
+		if ($i_res && $add_user_score > 0) {
+			$a_points_log = [
+				'user_id'        => $a_this_user['user_id'],
+				'user_name'      => $a_this_user['user_name'],
+				'pl_type'        => 1,
+				'pl_variation'   => $add_user_score,
+				'pl_score'       => $a_this_user['user_score'] + $add_user_score,
+				'pl_item'        => '消费返积分',
+				'pl_description' => '订单'.$a_this_order['order_number'].'消费返积分',
+				'pl_time'        => $_SERVER['REQUEST_TIME'],
+				'pl_code'        => 5,
+			];
+			$this->share_model->insert_points_log($a_points_log);
+		}
+/*---------------------------------------------------------------------------------------------*/
+		// 当前月的起始时间戳
+		$beginThismonth = mktime(0, 0, 0, date('m'), 1, date('Y'));
+		// 将自己的消费信息统计到用户消费统计表
+		$a_statistic_row = $this->share_model->get_statistic_one($a_this_order['user_id'], $beginThismonth);
+		// 有数据则修改 无数据则插入数据
+		if ($a_statistic_row) {
+			$a_where_sta = [
+				'sta_id' => $a_statistic_row['sta_id']
+			];
+			// 判断字段是否为空
+			if (empty($a_statistic_row['user_selforder'])) {
+				$user_selforder_s = $a_this_order['order_id'];
+			} else {
+				$user_selforder_s = $a_statistic_row['user_selforder'] . ',' . $a_this_order['order_id'];
+			}
+			$a_sta_update = [
+				'user_self'      => $a_statistic_row['user_self'] + $a_this_order['goods_amount'],
+				'user_selfcount' => $a_statistic_row['user_selfcount'] + $a_this_order['order_count'],
+				'user_selforder' => $user_selforder_s,
+				'user_selfsum'   => $a_statistic_row['user_selfsum'] + 1,
+			];
+			$this->share_model->update_statistic($a_where_sta, $a_sta_update);
+		} else {
+			$a_sta_insert = [
+				'user_id'        => $a_this_order['user_id'],
+				'sta_time'       => $beginThismonth,
+				'user_self'      => $a_this_order['goods_amount'],
+				'user_selfcount' => $a_this_order['order_count'],
+				'user_selforder' => $a_this_order['order_id'],
+				'user_selfsum'   => 1
+			];
+			$this->share_model->insert_statistic($a_sta_insert);
+		}
+/*---------------------------------------------------------------------------------------------*/
+		// 判断用户是否有推荐人 如果有则判断推荐人本月是否有统计数据 有则更新 无则创建
+		if ($a_this_user['user_referee']) {
+			// 获取推荐人本月的消费统计表
+			$a_sta_referee = $this->share_model->get_statistic_one($a_this_user['user_referee'], $beginThismonth);
+			// 有统计数据则更新 没有则创建
+			if ($a_sta_referee) {
+				$a_stareferee_where = [
+					'sta_id' => $a_sta_referee['sta_id']
+				];
+				// 判断字段是否为空
+				if (empty($a_sta_referee['user_otherorder'])) {
+					$user_otherorder_s = $a_this_order['order_id'];
+				} else {
+					$user_otherorder_s = $a_sta_referee['user_otherorder'] . ',' . $a_this_order['order_id'];
+				}
+				$a_stareferee_data = [
+					'user_other'      => $a_sta_referee['user_other'] + $a_this_order['goods_amount'],
+					'user_othercount' => $a_sta_referee['user_othercount'] + $a_this_order['order_count'],
+					'user_otherorder' => $user_otherorder_s,
+					'user_othersum'   => $a_sta_referee['user_othersum'] + 1
+				];
+				$this->share_model->update_statistic($a_stareferee_where, $a_stareferee_data);
+			} else {
+				$a_stareferee_insertdata = [
+					'user_id'         => $a_this_user['user_referee'],
+					'sta_time'        => $beginThismonth,
+					'user_other'      => $a_this_order['goods_amount'],
+					'user_othercount' => $a_this_order['order_count'],
+					'user_otherorder' => $a_this_order['order_id'],
+					'user_othersum'   => 1,
+				];
+				$this->share_model->insert_statistic($a_stareferee_insertdata);
+			}
+		}
+
+/*
+| ---------------------------------------------------------------------------------------------
+| 更新数据结束
+| ---------------------------------------------------------------------------------------------
+*/
+
+				$a_parameter['msg'] = '发货成功';
+				$this->error->show_success($a_parameter);
+			} else {
+				$a_parameter['msg'] = '保存失败';
+				$this->error->show_error($a_parameter);
+			}
+		} else {
+			// 接收订单id
+			$order_id = $this->router->get(1);
+			// 获取一条订单信息
+			$a_data['order'] = $this->share_model->get_order_one($order_id);
+			$a_data['goods'] = $this->share_model->get_goods_one($a_data['order']['order_id']);
+			// 获取所有快递公司
+			$this->load->library('express_kdniao');
+			$a_data['express'] = $this->express_kdniao->company_data();
+			$this->view->display('share_delivery', $a_data);
+		}
+	}
+
+/************************************** 订单详情 **************************************/
+
+	public function share_orderdetail() {
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+			// 接收订单id
+			$order_id = $this->router->get(1);
+			// 获取一条订单信息
+			$a_data['order'] = $this->share_model->get_order_one($order_id);
+			$a_data['goods'] = $this->share_model->get_goods_order($a_data['order']['order_id']);
+			// 获取一条用户信息
+			$a_data['user'] = $this->share_model->get_user_one($a_data['order']['user_id']);
+			// 获取订单日志
+			$a_data['log'] = $this->share_model->get_log_one($order_id, $a_data['order']['order_state']);
+			$this->view->display('share_orderdetail', $a_data);
+		}
+	}
+
+/**************************************************************************************/
+
+	// 我要分享
+	public function myshare() {
+		$user = $_SESSION['user_id'];
+		$a_data['qual'] = $this->db->get_row('qualifi', ['user_id' => $user]);
+		$i_time = $this->router->get(1);
+		// [旧内容] $a_data['orde'] = $this->myshare_model->myshare($user, $i_time);
+		// 获取当前分享者最近七天已完成的订单
+		$a_order = $this->share_model->get_share_seven($_SESSION['user_id']);
+		$today_income    = 0;
+		$yestoday_income = 0;
+		$seven_income    = 0;
+		$today_count     = 0;
+		$yestoday_count  = 0;
+		$seven_count     = count($a_order);
+		$today_per       = 0;
+		$yestoday_per    = 0;
+		$seven_per       = 0;
+		$start = mktime(0,0,0,date('m'),date('d'),date('Y'));
+		$beginYesterday = mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+		if (!empty($a_order)) {
+			foreach ($a_order as $key => $value) {
+				// 统计七天内
+				$seven_income = $seven_income + $value['order_price'];
+				// 统计今日
+				if ($value['time_finnshed'] > $start) {
+					$today_income = $today_income + $value['order_price'];
+					$today_count = $today_count + 1;
+				}
+				// 统计昨日
+				if ($value['time_finnshed'] > $beginYesterday && $value['time_finnshed'] < $start) {
+					$yestoday_income = $yestoday_income + $value['order_price'];
+					$yestoday_count = $yestoday_count + 1;
+				}
+			}
+		}
+		// 单笔平均
+		if ($today_income > 0) {
+			$today_per = round($today_income/$today_count,2);
+		}
+		if ($yestoday_income > 0) {
+			$yestoday_per = round($yestoday_income/$yestoday_count,2);
+		}
+		if ($seven_income > 0) {
+			$seven_per = round($seven_income/$seven_count, 2);
+		}
+		// 获取用户分享的所有产品
+		$a_product = $this->share_model->get_qualifi_goods($_SESSION['user_id']);
+		$product_arr = array();
+		if (!empty($a_product)) {
+			foreach ($a_product as $key => $value) {
+				$product_arr[] = $value['product_id'];
+			}
+		}
+		// 获取评价
+		$a_comment = $this->share_model->get_share_comment($product_arr);
+		$today_comment    = 0;
+		$yestoday_comment = 0;
+		$seven_comment    = count($a_comment);
+		if (!empty($a_comment)) {
+			foreach ($a_comment as $key => $value) {
+				// 统计今日
+				if ($value['comment_time'] > $start) {
+					$today_comment = $today_comment + 1;
+				}
+				// 统计昨日
+				if ($value['comment_time'] > $beginYesterday && $value['comment_time'] < $start) {
+					$yestoday_comment = $yestoday_comment + 1;
+				}
+			}
+		}
+		// 组装数据
+		$a_data['today_income']     = $today_income;
+		$a_data['today_count']      = $today_count;
+		$a_data['today_per']        = $today_per;
+		$a_data['today_comment']    = $today_comment;
+
+		$a_data['yestoday_income']  = $yestoday_income;
+		$a_data['yestoday_count']   = $yestoday_count;
+		$a_data['yestoday_per']     = $yestoday_per;
+		$a_data['yestoday_comment'] = $yestoday_comment;
+
+		$a_data['seven_income']     = $seven_income;
+		$a_data['seven_count']      = $seven_count;
+		$a_data['seven_per']        = $seven_per;
+		$a_data['seven_comment']    = $seven_comment;
+
+		$this->view->display('myshare', $a_data);
+	}
+
+	// 分享一级
+	public function classification() {
+		$a_data = $this->audit_model->classification_share();
+		$this->view->display('classification', $a_data);
+	}
+
+	// 分享二三级
+	public function classification_share() {
+		$a_data = $this->audit_model->classification_share();
+		$this->view->display('classification_share', $a_data);
+	}
+
+	// 分享产品
+	public function share_goods() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$i_result = $this->audit_model->share_goods();
+		} else {
+			$a_data = $this->db->get_row('qualifi', ['user_id' => $_SESSION['user_id'], 'audit' => 2]);
+			if (empty($a_data)) {
+				$this->error->show_error('请先资质申请，再来分享产品！', 'qualifi', false, 2);
+			} else {
+				$this->view->display('share_goods');
+			}
+		}
+	}
+
+	// 分享产品修改
+	public function share_goods_up() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$i_result = $this->audit_model->share_goods_up();
+		} else {
+			$i_id   = $this->router->get(1);
+			$a_data = $this->db->from('qualifi_goods as a')
+								->join('product as b', ['a.product_id' => 'b.product_id'])
+								->join('price as c', ['a.product_id' => 'c.product_id'])
+								->get_row('', ['user_id' => $_SESSION['user_id'], 'goo_id' => $i_id]);
+			if (empty($a_data)) {
+				$this->error->show_error('操作失误，请重试！', 'share_goods_list', false, 2);
+			} else {
+				$this->view->display('share_goods_up', $a_data);
+			}
+		}
+	}
+
+	// 分享产品列表
+	public function share_goods_list() {
+		// 获取数据
+		$user_id = $_SESSION['user_id'];
+		$i_stuer = $this->router->get(1);
+		$a_data  = [
+			'i_stuer' => $i_stuer,
+		];
+		$a_data['goods'] = $this->share_model->get_goods_list($user_id, $i_stuer, 1);
+		// echo $this->db->get_sql();
+		// print_r($a_data['goods']);
+		$this->view->display('share_goods_list', $a_data);
+	}
+
+	//获取更多分享产品列表
+	public function get_goods_list() {
+		// 获取数据
+		$user_id = $_SESSION['user_id'];
+		$i_stuer = $this->general->post('stuer');
+		$page    = $this->general->post('page');
+		$a_data['goods'] = $this->share_model->get_goods_list($user_id, $i_stuer, $page);
+
+		if (empty($a_data['goods'])) {
+			echo json_encode(array('code'=>400, 'msg'=>'没有更多数据了', 'data' => ''));
+		} else {
+			foreach ($a_data['goods'] as $key => $value) {
+				$value['apply_time'] = date('Y.m.d',$value['apply_time']);
+				$goods[] = $value;
+			}
+			echo json_encode(array('code'=>200, 'msg'=>'获取成功', 'data' => $goods));
+		}
+	}
+
+	//删除产品
+	public function share_goods_del() {
+		$i_id   = $this->general->post('id');
+		$a_dele = $this->db->get_row('qualifi_goods', ['goo_id' => $i_id, 'user_id' => $_SESSION['user_id']]);
+		if (empty($a_dele)) {
+			echo json_encode(array('code'=>400, 'msg'=>'删除失败'));
+			die;
+		} else {
+			$this->db->delete('qualifi_goods', ['goo_id' => $i_id, 'user_id' => $_SESSION['user_id']]);
+			$this->db->delete('product', ['product_id' => $a_dele['product_id']]);
+			$this->db->delete('price', ['product_id' => $a_dele['product_id']]);
+			echo json_encode(array('code'=>200, 'msg'=>'删除成功', 'data' => $i_id));
+		}
+	}
+
+	// 产品上下架
+	public function share_goods_ster() {
+		$i_id   = $this->general->post('id');
+		$i_ster = $this->general->post('ster');
+		$a_dele = $this->db->get_row('qualifi_goods', ['goo_id' => $i_id, 'user_id' => $_SESSION['user_id']]);
+		if (empty($a_dele)) {
+			echo json_encode(array('code'=>400, 'msg'=>'修改失败'));
+			die;
+		} else {
+			if ($i_ster == 1 ) {
+				$product = $this->db->update('product', ['pro_show' => 1], ['product_id' => $a_dele['product_id']]);
+			} else {
+				$product = $this->db->update('product', ['pro_show' => 2], ['product_id' => $a_dele['product_id']]);
+			}
+			echo json_encode(array('code'=>200, 'msg'=>'修改成功', 'data' => $i_id));
+		}
+	}
+}
+
+?>

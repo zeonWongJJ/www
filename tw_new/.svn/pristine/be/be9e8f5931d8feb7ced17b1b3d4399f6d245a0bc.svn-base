@@ -1,0 +1,22 @@
+/* ��¼ҳ�� */
+html,body{ height:100%; width:100%; margin:0; padding:0; }
+body{ width:100%; height:100%; background:url(/static/style_default/images/ggg.png)no-repeat;  background-size:100% 100%; position:absolute; }
+
+.login{ width:352px; height:533px; top:153px; background:url(/static/style_default/images/storeBg_aa.png)no-repeat;  background-size:100% 100%; }
+.ganzi{ width:34px; position:absolute; top:0; z-index:2; }
+.logoBox{ text-align:center; margin-top:104px; }
+.logoBox>p{ margin-top:12px; font-size:16px; }
+.login>form{ width:270px; text-align:center; margin:0 auto; }
+.login>form>dl>dd{ text-align:center; margin-top:28px; }
+.login>form>dl>dd>p{ text-align:left; margin-left:20px; margin-bottom:5px; font-size:14px; color:#6986a0; }
+.login>form>dl>dd>input{ width:220px; padding:5px; border:1px solid #ddd; }
+#sub{ width:218px; height:30px; line-height:30px; margin-top:24px; font-size:16px; background:#ffed6d; border-radius:4px; cursor:pointer; }
+/* �ײ����� */
+.bottomText{ width:100%; text-align:center; position:fixed; bottom:0;  }
+.bottomText>span{ font-weight:bold; font-size:16px; margin:0 10px;  }
+
+/* ��¼��ʾ */
+.loginTips{ left:45%; margin:0 auto; background-color:rgba(0,0,0,0.6)!important; background-color:#fff;filter:Alpha(opacity=50); border-radius:8px; }
+.loginTips>p{ display:inline-block; padding:10px 30px; color:white;  }
+
+

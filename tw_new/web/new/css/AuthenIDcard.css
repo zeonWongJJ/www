@@ -1,0 +1,10 @@
+/* 手持身份证拍照 页面 */
+.authenIDcard>p             { width:80%; text-align:center; margin:0 auto; margin-top:1rem; border-bottom:1px solid #dddddd;  }
+.authenIDcard>p>span        { display:inline-block; font-size:0.5rem; font-weight:500; padding:0.3rem 0; }
+.authenIDcard>ul            { width:80%; margin:0 auto; padding-top:0.8rem; font-size:0.4rem; }
+
+/* 关闭的图标 */
+.close              { text-align:center; margin-top:120px; }
+.close img          { width:0.8rem; }
+
+

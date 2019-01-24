@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/searchPwd.css"/>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/searchPwd.js"></script>
+    <title></title>
+</head>
+<body>
+    <!--  密码找回 -->
+    <div class="searchPwd">
+        <header class="head">
+            <em>&lt;</em>
+            <span>密码找回</span>
+        </header>
+    </div>
+    <!--  密码找回 -->
+
+    <!-- 验证 -->
+    <div class="validate">
+        <form action="">
+            <ul>
+                <li class="userPhone">
+                    <span>手机</span>
+                    <em>188****3632</em>
+                </li>
+                <li class="userCode">
+                    <span>验证码</span>
+                    <input id="code" type="text" placeholder="请输入验证码"/>
+                    <em class="codeTime">60s</em>
+                </li>
+                <li class="userpwd">
+                    <span>登录密码</span>
+                    <input id="pwd" type="password" placeholder="请输入密码"/>
+                    <i></i>
+                </li>
+                <li class="userpwd">
+                    <span>重复输入</span>
+                    <input id="repwd" type="password" placeholder="请重复密码"/>
+                    <i></i>
+                </li>
+            </ul>
+            <div class="sub">
+                <button type="submit" >确定</button>
+            </div>
+
+        </form>
+    </div>
+    <!-- 验证 -->
+</body>
+</html>

@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101181674","appkey":"bcbb490b6fef525ae6714bebe63c1fd7","callback":"http://user.7dugo.com/qq_callback","scope":"get_user_info,get_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

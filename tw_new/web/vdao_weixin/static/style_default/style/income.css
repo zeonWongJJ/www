@@ -1,0 +1,35 @@
+/* 月度收支明细 */
+body{ background:white; }
+.incomeInfo{ padding:0.24rem 0.42rem; background:#f6f6f6; border-bottom:0.02rem solid #d7d7d7;  }
+.incomeInfo>dl{ display:inline-block; }
+.incomeInfo>dl>dt{ font-size:0.34rem; font-weight:bold; }
+.incomeInfo>dl>dd{ display:inline-block; font-size:0.34rem; }
+.incomeInfo>dl>dd>span,.incomeInfo>dl>dd>em{ font-style:normal; color:#999; }
+.incomeInfo>a{ float:right; margin-top:0.22rem; }
+.incomeInfo>a>span{ font-size:0.37rem; color:#999; }
+.incomeInfo>a>img{ width:0.24rem; margin-left:0.26rem; }
+.incomeInfo>a>span,.incomeInfo>a>img{ vertical-align:middle; }
+/* 收支列表 */
+.incomeList{ background:white; }
+.incomeList>dl>dd{ padding:0.33rem 0; margin-left:0.42rem; border-bottom:0.02rem solid #d7d7d7;  }
+.incomeList>dl>dd:last-child{ border-bottom:none; }
+.incomeList>dl>dd>a>img{ width:0.93rem; height:0.93rem; border-radius:50%; }
+.incomeList>dl>dd>a>em{ display:inline-block; margin-left:0.32rem; }
+.incomeList>dl>dd>a>em>span{ display:block; margin-bottom:0.2rem; font-style:normal; font-size:0.37rem; font-weight:bold; }
+.incomeList>dl>dd>a>em>em{ font-style:normal; font-size:0.32rem; color:#666; }
+.incomeList>dl>dd>a>img,.incomeList>dl>dd>a>em{ vertical-align:middle; }
+.incomeList>dl>dd>a>dfn{ float:right; margin-right:0.5rem; }
+.incomeList>dl>dd>a>dfn>span{ display:block; margin-bottom:0.2rem; font-size:0.37rem; font-style:normal; font-weight:bold; }
+.incomeList>dl>dd>a>dfn>em{ float:right; font-style:normal; font-size:0.32rem; color:#666; }
+
+
+
+
+
+
+
+
+
+
+
+

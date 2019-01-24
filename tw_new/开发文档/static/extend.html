@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">扩展类库</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+当框架提供的类库功能不够用的时候，我们可以对框架的类库进行继承来扩展
+</div>
+<div class="desc">
+	扩展类库的前缀，在配置文件config_system.php中
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 扩展类前缀
+'subclass_prefix' => 'MY_',
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+扩展core目录下的类库，则需要把文件放置在项目的core目录下，扩展libraries目录下的类库，则需要把文件放到项目的libraries目录下
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+扩展举例
+</div>
+<div class="desc">
+	在项目文件夹下的libraries目录新建MY_Pages.php文件
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+class MY_Pages extends TW_Pages {
+	public function get() {
+		// ...
+	}
+}
+</code>
+</pre>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?php
+defined('BASEPATH') OR exit('禁止访问！');
+class Goods_ctrl extends TW_Controller {
+
+	public function __construct() {
+		parent :: __construct();
+
+		//实例化模型
+		$this->load->model('login_model');
+		$this->prefix = $this->db->get_prefix();
+		$this->load->model('express_model');
+		$this->load->model('Express_kd100_model');
+
+	}
+	//订单信息
+	public function order_form(){
+		//判断是否登录
+		$this->login_model->login();
+		$a_where = ['buyer_id' => $_SESSION['user_id']];
+		$a_select = ['order_id', 'buyer_name', 'order_amount', 'order_state', 'store_name', 'time_create', 'order_sn', 'store_id', 'shipping_fee'];
+		// 加载分页类
+		require_once PROJECTPATH . '/libraries/Pages.php';
+		$this->pages = new TW_Pages();
+		//页面数据显示和条件
+		$i_canshu = $this->router->get(1) ? $this->router->get(1) : '1';
+		// 获取数据总行数，以产品为例
+		$i_total = $this->db->get_total('order', $a_where, $a_select);
+   		// 调用分页运算函数
+		$a_pdata = $this->pages->get($i_total, $i_canshu, 7);
+		// 开始获取产品数据
+		$this->db->limit($a_pdata['start'], $a_pdata['last']);
+		//数据
+		$a_data['order'] = $this->db->order_by(['order_id' => 'desc'])->get('order', $a_where, $a_select);
+
+		//显示页
+		$a_data['page'] = $this->pages->link_style_goods($this->router->url("order_form-", [], false, false), 2);
+		//产品的副信息
+		$a_data['ord'] = $this->db
+								->from('order as a')
+								->join('order_goods', ['a.order_id' => $this->prefix.'order_goods.order_id'])
+								->select(['a.order_id', 'a.store_id', 'goods_name', 'goods_price', 'goods_image', 'goods_pay_price', 'goods_id', 'goods_num'])
+								->limit(0, 100000)
+								->get('', ['a.buyer_id' => $_SESSION['user_id']]);
+
+		$this->view->display('member/order_form', $a_data);
+	}
+
+	//订单状态
+	public function order_confirm() {
+		//订单的确定
+		$i_id = $this->general->post('affirm');
+		if(isset($i_id)){
+			 $a_name = [
+            	'order_id' => $i_id,
+            	'log_msg' => '签收了货物',
+            	'log_time' => $_SERVER['REQUEST_TIME'],
+            	'log_role' => '买家',
+            	'log_user' => $_SESSION['user_name'],
+            	'log_orderstate' => 40
+            ];
+            $this->db->insert('order_log', $a_name);
+			$a_confirm = $this->db->update('order', ['order_state' => 40], ['order_id' => $i_id]);
+			if ( ! empty($a_confirm)) {
+				echo 123;
+				die;
+			}
+		}
+		//未付款的取消
+		$i_non = $this->general->post('abolish');
+		if(isset($i_non)){
+		$a_name = [
+            	'order_id' => $i_non,
+            	'log_msg' => '取消了订单',
+            	'log_time' => $_SERVER['REQUEST_TIME'],
+            	'log_role' => '买家',
+            	'log_user' => $_SESSION['user_name'],
+            	'log_orderstate' => 0
+            ];
+            $this->db->insert('order_log', $a_name);
+	   		$a_non = $this->db->update('order', ['order_state' => 0], ['order_id' => $i_non]);
+			if ( ! empty($a_non)) {
+				echo 88;
+				die;
+			}
+		}
+	}
+
+	//物流信息
+	public function order_delivery() {
+		$order_id = $this->router->get(1);
+		$username_id = $this->db->from('order_common as a')
+								->join('order', ['a.order_id' => $this->prefix.'order.order_id'])
+								->get('', ['a.order_id' => $order_id], ['buyer_id']);
+
+		if($username_id[0]['buyer_id'] != $_SESSION['user_id']){
+			$this->error->show_error("请不要越权访问。");
+			DIE;
+		}
+	    //物流公司信息
+		$this->load->model("Order_details_model");
+		$a_data['state'] = $this->Order_details_model->get_state($order_id, $a_data['address']['evalseller_state']);
+		$this->view->display('member/order_delivery', $a_data);
+	}
+}

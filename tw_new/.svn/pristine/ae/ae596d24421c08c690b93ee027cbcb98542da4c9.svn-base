@@ -1,0 +1,63 @@
+<?php
+class Image_model extends TW_Model {
+	public function __construct() {
+        parent :: __construct();
+    }
+
+    /**
+     * [设置属性上传]
+     * @param  [url]  [上传的位置]
+     * @return [name_id]   [post 上传的名]
+     * @return [size]   [文件大小]
+     * @return [mold]   [类型]
+     * @return [named]   [设置是否随机重命名文件， false不随机, true随机]
+     */
+    public function image_add($url,$name_id) {
+    	//包含一个文件上传类中的上传类
+	    require_once(PROJECTPATH."/libraries/fileupload.php");	  
+	  	$up = new fileupload;
+	    //设置属性(上传的位置， 大小， 类型， 名是是否要随机生成)
+	    $up -> set("path", $url);
+	    $up -> set("maxsize", 9000000);
+	    $up -> set("allowtype", array("gif", "png", "jpg","jpeg"));
+	    $up -> set("israndname", true);
+	  
+	    //使用对象中的upload方法， 就可以上传文件， 方法需要传一个上传表单的名子 pic, 如果成功返回true, 失败返回false
+	    if($up -> upload($name_id)) {
+	        //获取上传后文件名子
+	        $name = $up->getFileName();
+	  		return $name;
+	    } else {
+	       
+	        //获取上传失败以后的错误提示
+	        $name = $up->getErrorMsg();
+	        return $name;
+	    }
+    }
+
+    /**
+	 * 删除目录及目录下所有文件或删除指定文件
+	 * @param str $path   待删除目录路径
+	 * @param str $id     数据图片id
+	 * @param str $img    数据图片名
+	 * @return 返回删除状态
+	 */
+	function del($path, $id, $img) {
+		if (file_exists($path)) {
+			// $a_data = $this->db->get_row('product', ['product_id' => $id]);
+   //  		$imge = explode(",", $a_data['pro_image']);
+   //  		foreach ($imge as $image) {
+   //  			if ($image != $img) {
+			// 	 	$imag .= $image.',';
+   //  			}
+   //  		}
+   //  		$imag = rtrim($imag, ",");
+			// $this->db->update('product', ['pro_image' => $imag], ['product_id' => $id]);
+			unlink ($path);
+			return 22;
+		} else {
+			return 33;
+		}
+	}
+}
+?>

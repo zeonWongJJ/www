@@ -1,0 +1,57 @@
+body{ background:#efefef; }
+/* 评价列表 */
+/* 被评价人 */
+#evaluate{ height:65px; line-height:65px; padding:0 10px; margin:10px 0; background:white; }
+#evaluate>i>img{ width:55px; vertical-align:top; border-radius:50%; }
+#evaluate>span{ font-size:15px; font-weight:bold; }
+#evaluate>b>img{ width:25px; vertical-align:middle; }
+#evaluate>em{ color:#6687f0; font-weight:bold; font-size:14px; }
+/* 评价 */
+/* 评价的类别 */
+.evaluateCate{ font-size:0; background:white; padding:15px 0; border-bottom:1px solid #ddd; }
+.evaluateCate>span{ width:50%; text-align:center; display:inline-block; font-size:15px; }
+.evaluateCate>span>em{ font-weight:bold; padding:15px 0;}
+.evaluateCate>span:first-child>em{ padding:15px 0; border-bottom:1px solid red; }
+/*  评价内容 */
+.evaluateContent>ul>li{ position:relative; background:white; margin-bottom:10px; }
+.evaluateContent>ul>li>i{ position:absolute; top:20px; left:20px; }
+.evaluateContent>ul>li>i>img{ width:65px; border-radius:50%; }
+.evaInfo{ margin-left:95px; padding-top:10px; padding-right:20px; }
+.evaInfo>.p1{ height:40px; line-height:40px; }
+.evaInfo>.p1>span{ font-size:15px; font-weight:bold; }
+.evaInfo>.p1>img{ width:25px; vertical-align:middle; }
+.evaInfo>.p1>em{ float:right; font-size:14px; color:#999999; margin-right:10px; }
+.evaInfo>.p2{ color:red; font-weight:bold; font-size:15px; margin-bottom:10px; }
+.evaInfo>.p3{ padding-right:15px; font-weight:bold; font-size:15px; }
+/* 评价人信息 */
+.evaluatedPerson{ position:relative; margin:15px 0; background:#efefef; }
+.evaluatedPerson>i>img{ width:58px; position:absolute; top:10px; left:10px; border-radius:50%;  }
+.evaluatedPerson>p{ margin-left:75px; }
+.evaluatedPerson>p>span{ display:inline-block; margin-top:15px; font-weight:bold; }
+.evaluatedPerson>p>i>img{ width:20px; vertical-align:bottom; }
+.evaluatedPerson>span{ display:inline-block; font-size:14px; color:#82b2f4; margin-left:75px; margin-bottom:12px; margin-top:5px; padding:1px 5px; border:1px solid #fed532; border-radius:20px;  }
+.evaluatedPerson>b{ position:absolute; top:-4px; left:-4px;}
+.evaluatedPerson>b>img{ width:55px;  }
+/* 状态信息及追评  */
+.stateInfo>dl{ height:28px; line-height:28px; display:inline-block; margin-bottom:15px; }
+.stateInfo>dl>dd{ display:inline-block; font-size:12px; color:#999999; }
+.stateInfo>span{ float:right; font-size:14px; border:1px solid #ddd; padding:5px 15px; border-radius:20px; }
+/* 回复 */
+.reply{ position:relative; padding-bottom:10px; border-top:1px solid #ddd; }
+.reply>i{ position:absolute; top:10px; }
+.reply>i>img{ width:50px; position:absolute; }
+.reply>p{ margin-left:68px; margin-top:10px; font-weight:bold; font-size:13px;  }
+.reply>span{ display:inline-block; margin-top:4px; padding:1px 3px; margin-left:68px; font-size:12px; color:#82b2f4; border:1px solid #fed532; border-radius:20px;  }
+.reply>em{ display:block; margin-left:68px; margin-top:5px; font-size:13px; }
+.reply>b{ display:block; margin-left:68px; margin-top:5px; font-size:13px;}
+.reply>b>span{ color:#403ec7; }
+.reply>b>em{ color:#403ec7; }
+
+@media screen and (max-width: 350px) {
+    .evaluatedPerson>i>img{ width:55px; }
+    .evaluatedPerson>p>span{ font-size:14px; }
+    .evaluatedPerson>span{ margin-left:70px; }
+    .evaluatedPerson>p{ margin-left:70px; }
+    .evaluatedPerson>i>img{ left:4px; }
+    .stateInfo>span{ font-size:12px; padding:5px 5px; }
+}

@@ -1,0 +1,13 @@
+/*  修改密码 */
+.revisePwd ul                 { margin:0 0.5rem; }
+.revisePwd ul>li              { padding:0.4rem 0; font-size:0.4rem; border-bottom:0.01rem solid #ddd; }
+.revisePwd ul>li>span         { width:2.5rem; display:inline-block;  }
+.revisePwd ul>li>span,.revisePwd ul>li>input{ color:#999; }
+.revisePwd ul>li>input        { margin-left:0.3rem; font-size:0.4rem; }
+.revisePwd ul>li>img          { width:0.55rem; float:right; margin-top:0.2rem; margin-right:0.3rem; }
+/* 忘记密码 */
+.forgetPwd{ display:block; text-align:right; font-size:0.4rem; color:#999; margin-top:0.3rem; margin-right:0.5rem; }
+/* 提交 */
+.sub{ text-align:center;  }
+.sub>input{ width:3.5rem; height:1.2rem; line-height:1.2rem; margin-top:0.3rem; font-size:0.45rem; color:#fff; border-radius:1rem; background:linear-gradient(120deg,#6671f3,#66b2ea);}
+

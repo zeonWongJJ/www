@@ -1,0 +1,13 @@
+.authNameSucc>i{ display:block; text-align:center; padding:30px 0;}
+.authNameSucc>i>img{ width:300px; }
+.authInfo{ text-align:center; }
+.authInfo>h4{ margin-top:5px; }
+.authNameSucc>ul{ width:78%; margin:0 auto; font-size:16px; color:#333333; padding:20px 0; }
+.authNameSucc>ul>li{ padding:2px 0; }
+.authFun>a{ display:block; text-align:center; margin-top:15px; }
+.authFun>a:first-child>span{ width:180px; height:45px; line-height:45px; display:inline-block; color:white; border-radius:22px;  background:linear-gradient(120deg,#6671f3,#66b2ea); }
+.authFun>a:last-child>i{ position:relative; }
+.authFun>a:last-child>i>img{ width:180px; height:45px; }
+.authFun>a:last-child>i>span{ position:absolute; top:-18px; left:45px; font-style:normal; color:#5856d6; }
+
+

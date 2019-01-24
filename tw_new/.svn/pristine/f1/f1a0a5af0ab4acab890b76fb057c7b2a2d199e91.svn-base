@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.appcompatV7
+    implementation deps.cardviewV7
+    implementation deps.recyclerviewV7
+    implementation deps.glide
+    annotationProcessor deps.annotationProcessor
+    api files('libs/cordova.jar')
+    api files('libs/libammsdk.jar')
+    /*api files('libs/AMap_Location_V3.6.1_20171012.jar')
+    api files('libs/AMap_Search_V5.3.1_20170817.jar')
+    api files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')*/
+
+    //api project(':ModuleLib:pickerview')
+    implementation project(':commonutilLib')
+    implementation project(':ModuleLib:RVHelper')
+    implementation project(':ModuleLib:picture_library')
+    implementation deps.supportV4
+    //RxAndroid
+    implementation deps.rxandroid
+    //RxJava
+    implementation deps.rxjava
+    implementation deps.adapterRxjava
+    implementation deps.googlegson
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.amitshekhar.android:rx2-android-networking:1.0.0'
+
+}

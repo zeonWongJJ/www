@@ -1,0 +1,53 @@
+/*  耗材列表 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.releaseList{ margin-top:20px; margin-left:22px; }
+.releaseList>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+/* 发布耗材 */
+.newSupplies{ margin-top:20px; }
+.suppliesTitle{ background:#fbfbfb; border-bottom:1px solid #ddd; }
+.suppliesTitle>span{ display:inline-block; padding:15px 22px; font-size:16px; border:1px solid #ddd; border-top:2px solid #ffb900; border-bottom:none; background:white; }
+.newSuppliesContent{ background:white; }
+.newSuppliesContent ul{ padding-top:33px; padding-left:32px; }
+.newSuppliesContent ul>li:first-child{ margin-top:0; }
+.newSuppliesContent ul>li{ margin-top:15px; }
+.newSuppliesContent ul>li>em{ width:90px; display:inline-block; text-align:right; vertical-align:middle; margin-right:12px; font-weight:bold;  font-size:14px; }
+.newSuppliesContent ul>li>em>s{ font-size:12px; text-decoration:none; color:red; }
+.newSuppliesContent ul>li>span{ font-size:14px; color:#bfbfbf; }
+.newSuppliesContent ul>li>input{ height:30px; vertical-align:middle; padding:0 10px; border:1px solid #ddd; }
+.newSuppliesContent ul>li>s{ text-decoration:none; }
+.newSuppliesContent ul>li>s>em{ font-size:14px; color:#999; }
+.newSuppliesContent ul>li>s>img{ margin:0 10px; }
+.newSuppliesContent ul>li>s>em,.newSuppliesContent ul>li>s>img{ vertical-align:middle; }
+
+.suppliesName>input,.suppliesCate>input{ width:135px; }
+.suppliesName>span>img{ width:18px; margin-left:10px; vertical-align:middle; }
+.suppliesName>span>em{ vertical-align:middle; }
+.cateDisplay>em{ font-size:14px; }
+.sure,.deny{ vertical-align:middle; margin-left:14px; }
+.sure>img,.deny>img{ vertical-align:sub; }
+#supplies_cate_A,.supplies_cate_B,.supplies_cate_C{ vertical-align:middle; appearance:none; -moz-appearance:none; -webkit-appearance:none;  padding:5px 62px 5px 10px; border:1px solid #ddd; margin-right:10px; }
+#supplies_cate_A::-ms-expand { display: none; }
+.supplies_cate_B::-ms-expand { display: none; }
+.containerCate{ width:290px; top:4px; left:105px; margin-left:100px; font-size:15px; }
+.tag{ display:inline-block; margin-top:10px; padding:5px 0 5px 5px; margin-left:5px; background:#f2f2f2; }
+.tag:hover{ background:#484848; color:white; }
+.tag>img{ width:10px; padding:0 5px; }
+.suppliesCate>select{ font-size:13px; color:#999; }
+.suppliesPrice>input{ width:50px; }
+.mainFigure>input{ border:none; }
+#product_pic{ display:inline-block; vertical-align:top; }
+.uploadImg{ float:left; }
+.uploadImg>img{ width:100%; }
+.suppliesDescribe{ position:relative; }
+.suppliesDescribe>em{ vertical-align:top; }
+.suppliesDescribe>span{ position:absolute; right:383px; bottom:7px; }
+.suppliesDescribe>textarea{ width:680px; padding:10px 10px; border:1px solid #ddd; }
+#describe{ vertical-align:top; }
+#supplist_unit{ width:150px; }
+#supplist_stock,#supplist_warning{ width:70px; }
+
+#suppliesSub{ margin-left:133px; margin-top:17px; margin-bottom:17px; padding:5px 10px; font-size:14px; color:#a33300; border:1px solid #e69c14; background:#ffce1c; cursor:pointer; }
+
+
+
+

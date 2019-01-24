@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">支付宝支付接口</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载手机版支付接口类
+	$this->load->library('alipay_wap');
+	// 使用$this->alipay_wap->方法名进行访问操作
+	
+	
+	// 加载电脑版支付接口类
+	$this->load->library('alipay_pc');
+	// 使用$this->alipay_pc->方法名进行访问操作
+	
+	// 后面的举例，都是以手机版接口类示范
+</code>
+</pre>
+</div>
+<div class="desc">
+	在框架的libraries\pay\alipay_wap目录下有个config_alipay.php的配置文件，
+	里面用来配置商户的密钥和通知地址等，请复制此文件放到项目的config目录下，
+	并且根据项目实际情况进行配置，如果项目的config目录下不存在config_alipay.php文件，将会默认调用libraries\pay\alipay_wap\config_alipay.php。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 接口请求参数大全，根据不同的需求，传入相应的参数即可
+[
+	// 商户订单号，商户网站订单系统中唯一订单号，订单支付时必填；查询、退款、取消关闭等操作与“trade_no”参数二选一
+	'out_trade_no' => '',
+	// 支付宝交易号，订单支付时不使用此参数；查询、退款、取消、关闭操作时与“out_trade_no”参数二选一
+	'trade_no' => '',
+	
+	/******* 订单支付参数 开始 *****************/
+	// 订单名称，必填
+	'subject' => '',
+	// 付款金额，必填
+	'total_amount' => '',
+	// 商品描述，可空
+	'body' => '',
+	/** 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，
+		1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 
+		该参数数值不接受小数点， 如 1.5h，可转换为 90m。
+	*/
+	'timeout_express' => '24h',
+	/******* 订单支付参数 结束 *****************/
+	
+	/******* 退款参数 开始 *********************/
+	// 请求退款金额，必填
+	'refund_amount' => 0,
+	// 请求退款原因，选填
+	'refund_reason' => '',
+	// 退款交易号，同一笔交易多次退款需要保证唯一，如需部分退款，则此参数必传。
+	'out_request_no' => '',
+	// 商户的操作员编号，选填
+	'operator_id' => '',
+	// 商户的门店编号
+	'store_id' => '',
+	// 商户的终端编号
+	'terminal_id' => '',
+	/******* 退款参数 结束 *********************/
+	
+	/******* 转账参数 开始 *********************/
+	// 商户转账唯一订单号
+	'out_biz_no' => '',
+	/** 收款方账户类型。可取值： 
+		1、ALIPAY_USERID：支付宝账号对应的支付宝唯一用户号。以2088开头的16位纯数字组成。 
+		2、ALIPAY_LOGONID：支付宝登录号，支持邮箱和手机号格式。
+	*/
+	'payee_type' => 'ALIPAY_LOGONID',
+	// 收款方账户。付款方和收款方不能是同一个账户。
+	'payee_account' => '',
+	// 转账金额，单位：元。 只支持2位小数。
+	'amount' => '0.00',
+	// 付款方姓名，可选
+	'payer_show_name' => '',
+	// 收款方真实姓名，可选
+	'payee_real_name' => '',
+	// 转账备注（支持200个英文/100个汉字），可选。 
+	'remark' => '',
+	/******* 转账参数 结束 *********************/
+	
+	// 异步通知地址，当设置此参数时，将忽略配置文件中的通知地址
+	'notify_url' => '',
+	// 同步通知地址，当设置此参数时，将忽略配置文件中的通知地址
+	'return_url' => '',
+	// 自定义配置文件名，当有多个配置或通知路径等需求时，可以设置不同配置文件来解决
+	'config_file' => 'config_alipay'
+	
+	// true表示返回html，直接显示支付宝页面，flase返回执行结果的数组，像订单查询等操作无论传入true或false都返回Json结果
+	'is_page' => true
+];
+</code>
+</pre>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->alipay_wap->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	交易支付功能
+</div>
+<code class="language-php">
+	$this->alipay_wap->pay($a_data);
+</code>
+<div class="desc">
+	返回值参考is_page参数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+$a_data = [
+	// 商户订单号，商户网站订单系统中唯一订单号，必填
+	'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),
+	// 订单名称，必填
+	'subject' => '7度支付测试',
+	// 付款金额，必填
+	'total_amount' => '0.01',
+	// 商品描述，可空
+	'body' => '测试',
+	/** 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，
+		1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 
+		该参数数值不接受小数点， 如 1.5h，可转换为 90m。
+	*/
+	'timeout_express' => '24h'
+];
+// 显示支付页面
+echo $this->alipay_wap->pay($a_data);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->alipay_wap->query(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	订单查询
+</div>
+<code class="language-php">
+	$this->alipay_wap->query($a_data);
+</code>
+<div class="desc">
+	返回值参考is_page参数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+$a_data = [
+	// 商户订单号，商户网站订单系统中唯一订单号，必填
+	'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),
+	// 支付宝交易号，和上面的参数二选一
+	'trade_no' => ''
+];
+// 显示返回的查询结果
+print_r($this->alipay_wap->query($a_data));
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->alipay_wap->refund(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	退款功能
+</div>
+<code class="language-php">
+	$this->alipay_wap->refund($a_data);
+</code>
+<div class="desc">
+	返回值参考is_page参数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+$a_data = [
+	// 商户订单号，商户网站订单系统中唯一订单号，必填
+	'out_trade_no' => '201781113588902',
+	// 请求退款金额，必填
+	'refund_amount' => '0.01',
+	'refund_reason' => '退款测试',
+	// 退款交易号，同一笔交易多次退款需要保证唯一，如需部分退款，则此参数必传。
+	'out_request_no' => 'TK20170814000001'
+];
+print_r($this->alipay_wap->refund($a_data));
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->alipay_wap->close(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	关闭订单。用于交易创建后，用户在一定时间内未进行支付，可调用该接口直接将未付款的交易进行关闭。
+</div>
+<code class="language-php">
+	$this->alipay_wap->close($a_data);
+</code>
+<div class="desc">
+	返回一个对象(注意is_page参数)。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+$a_data = [
+	// 商户订单号，商户网站订单系统中唯一订单号
+	'out_trade_no' => '201781113588902'
+];
+print_r($this->alipay_wap->close($a_data));
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->alipay_wap->cancel(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	交易取消。支付交易返回失败或支付系统超时，调用该接口撤销交易。
+	如果此订单用户支付失败，支付宝系统会将此订单关闭；如果用户支付成功，支付宝系统会将此订单资金退还给用户。
+	注意：只有发生支付系统超时或者支付结果未知时可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。
+	提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。
+</div>
+<code class="language-php">
+	$this->alipay_wap->cancel($a_data);
+</code>
+<div class="desc">
+	返回值参考is_page参数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+$a_data = [
+	// 商户订单号，商户网站订单系统中唯一订单号
+	'out_trade_no' => '201781113588902'
+];
+print_r($this->alipay_wap->cancel($a_data));
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->alipay_wap->verify(支付宝返回参数数组<span>(数组)</span>, 同步/异步通知<span>(字符：return/notify)</span>);
+</code>
+</div>
+<div class="desc">
+	同步通知和异步通知需要验证签名的正确性，确保安全，第二个参数默认为同步通知验证。同步返回数据用$this->general->get()获取，异步通知用$this->general->post()获取。
+</div>
+<code class="language-php">
+	$this->alipay_wap->verify($this->general->get());
+</code>
+<div class="desc">
+	返回一个布尔值，验证成功返回true，否则返回false。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+// 验证同步通知
+echo $this->alipay_wap->verify($this->general->get()) ? '验证成功' : '验证失败';
+// 验证异步通知
+echo $this->alipay_wap->verify($this->general->post(), 'notify') ? '验证成功' : '验证失败';
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	完整的支付示例
+</code>
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+class Home_ctrl extends TW_Controller {
+	
+	public function __construct() {
+		parent :: __construct();
+	}
+
+	public function index()	{
+		$this->load->library('alipay_wap');
+		$a_data = [
+			// 商户订单号，商户网站订单系统中唯一订单号，必填
+			'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),// '201781113588902',
+			// 订单名称，必填
+			'subject' => '7度支付测试',
+			// 付款金额，必填
+			'total_amount' => '0.01',
+			// 商品描述，可空
+			'body' => '测试',
+			/** 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，
+				1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 
+				该参数数值不接受小数点， 如 1.5h，可转换为 90m。
+			*/
+			'timeout_express' => '24h'
+		];
+		
+		echo $a = $this->alipay_wap->pay($a_data);
+	}
+	
+	// 同步通知
+	public function ret() {
+		$this->load->library('alipay_wap');
+		
+		// 安全验证，确认是不是支付宝返回的正确数据
+		if ($this->alipay_wap->verify($_GET)) {
+			// 验证成功，证实是支付宝返回的正确数据
+			
+			// 支付宝新调整，同步通知不返回是否支付成功的信息，需要通过查询函数来获取支付是否成功
+
+			// 进行交易相关的业务逻辑处理
+
+		} else {
+			// 没有通过验证，肯定数据有问题，不做任何处理
+		}
+	}
+	
+	// 异步通知
+	public function not() {
+		$this->load->library('alipay_wap');
+		
+		// 安全验证，确认是不是支付宝返回的正确数据，并且支付状态是成功的
+		if ($this->alipay_wap->verify($_POST, 'notify') && ($_POST['trade_status'] == 'TRADE_SUCCESS' || $_POST['trade_status'] == 'TRADE_FINISHED')) {
+			// 验证成功，证实是支付宝返回的正确数据，并且支付成功
+			// 把订单的状态改为已经付款成功，这里在更新数据库的时候， 需要添加更新条件（数据库更新操作的时候，加上条件语句对以下字段的校对），验证：
+			1、商户需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号。
+			2、判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额）。
+			3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）。
+			4、验证app_id是否为该商户本身。上述1、2、3、4有任何一个验证不通过，则表明本次通知是异常通知，务必忽略。
+			在上述验证通过后商户必须根据支付宝不同类型的业务通知，正确的进行不同的业务处理，并且过滤重复的通知结果数据。在支付宝的业务通知中，只有交易通知状态为TRADE_SUCCESS或TRADE_FINISHED时，支付宝才会认定为买家付款成功。
+			// 进行交易相关的业务逻辑处理
+			// 程序执行完后必须打印输出“success”（不包含引号）。如果商户反馈给支付宝的字符不是success这7个字符，支付宝服务器会不断重发通知，直到超过24小时22分钟。一般情况下，25小时以内完成8次通知（通知的间隔频率一般是：4m,10m,10m,1h,2h,6h,15h）；
+			echo 'success';
+		} else {
+			// 没有通过验证，肯定数据有问题，不做任何处理
+		}
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->alipay_wap->transfer(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	危险操作，请勿随便使用！！！向指定的支付宝账号打钱，比如提现。
+</div>
+<code class="language-php">
+	$this->alipay_wap->transfer($a_data);
+</code>
+<div class="desc">
+	返回值参考is_page参数
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_wap');
+$a_data = [
+	'out_biz_no' => date('Ymdhis', time()) . rand(100, 999),
+	'payee_account' => '******@qq.com',
+	'amount' => '0.01',
+	'payee_real_name' => '收款人姓名',
+	'remark' => '测试转账',
+	// 设置是跳转到支付宝页面，还是返回执行结果，默认为前者，这里我们要设置为获取执行结果
+	'is_page' => false
+];
+$s_result = $this->alipay_wap->transfer($a_data);
+// 返回的结果，可以使用json_decode函数进行解码成数组，例：
+print_r($s_result);
+</code>
+</pre>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+body{
+	background: white;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a.back{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .head a.clean{
+	position: absolute;
+	right: 0.533333rem;
+	top: 0.866666rem;
+	color: #000;
+	font-size: 0.426666rem;
+}
+.main .content{
+	background: white;
+}
+.content li{
+	padding: 0.2rem 0.24rem;
+	font-size: 0;
+	border-bottom: 1px solid #d7d7d7;
+}
+.content .picBox{
+	display: inline-block;
+	vertical-align: top;
+	width: 1.133333rem;
+	height: 1.133333rem;
+	border-radius: 0.16rem;
+	overflow: hidden;
+	margin-top: 0.146666rem;
+}
+.content .describeBox{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 0.24rem;
+	width: 66%;
+}
+.content .describeBox .name{
+	font-size: 0.373333rem;
+	color: #000000;
+	margin-top: ;
+}
+.content .describeBox .finger{
+	display: block;
+	width: 0.373333rem;
+	height: 0.36rem;
+	background:url(../images/message_07.png) no-repeat;
+	background-size: 100%;
+	margin-top: 0.08rem;
+}
+.content .describeBox .time{
+	font-size: 0.32rem;
+	color: #666666;
+	margin-top: 0.08rem;
+}
+.content .rightBox1{
+	width: 1.466666rem;
+	height: 1.466666rem;
+	border: 1px solid #f2f2f2;
+	float: right;
+	text-align: center;
+}
+.content .rightBox2{
+	float: right;
+	width: 1.466666rem;
+	height: 1.466666rem;
+	background: #d4d4d7;
+	font-size: 0.346666rem;
+	color: #000000;
+	display: -webkit-box !important; 
+	overflow: hidden; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp: 3;
+	padding-top: 0.053333rem;
+}
+/*清除消息弹框*/
+.qqBomb{
+	width: 6.533333rem;
+	height: 3rem;
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -3.266666rem;
+	top: 50%;
+	margin-top: -1.5rem;
+	border-radius: 0.266666rem;
+}
+.qqBomb .p1{
+	font-size: 0.426666rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.4rem;
+}
+.qqBomb .p2{
+	font-size: 0.32rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.053333rem;
+}
+.qqBomb .btnBox{
+	height: 1.066666rem;
+	border-top: 1px solid #efefef;
+	margin-top: 0.4rem;
+}
+.qqBomb .btnBox a{
+	font-size: 0.426666rem;
+	color: #005eff;
+	display: inline-block;
+	width: 3.2rem;
+	text-align: center;
+	line-height: 1.066666rem;
+	box-sizing: border-box;
+}
+.qqBomb .btnBox a.cancel{
+	border-right: 1px solid #efefef;	
+	border-bottom-left-radius: 0.266666rem;
+}
+.qqBomb .btnBox a.remove{
+	border-bottom-right-radius: 0.266666rem;
+}
+.shade{
+	display: none;
+}
+.cleanBomb{
+	display: none;
+}
+.cleanTips{
+	margin-left: -1.8rem;
+	display: none;
+}
+
+
+

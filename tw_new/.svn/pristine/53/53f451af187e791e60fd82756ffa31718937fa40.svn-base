@@ -1,0 +1,2 @@
+include ':odpApp', ':commonutilLib', ':baseAppcommonLib', ':resLib', 'ModuleLib:RVHelper',
+        'ModuleLib:FlycoTabLayout_Lib','ModuleLib:picture_library','ModuleLib:ucrop','ModuleLib:fileselector'

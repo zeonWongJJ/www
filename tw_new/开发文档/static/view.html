@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">视图模板</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+	模板文件名全部以“.php”文件扩展名，文件名全部小写，多个单词使用"_"分隔
+</div>
+<div class="desc">
+	PHP文件会被WEB服务器软件解析，防止被直接查看代码，此框架本身的后端目录是不可访问的，所以相对安全很多。
+</div>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->view->display(模板路径及文件名<span>(字符串)</span>, 传递给模板的数据<span>[数组]</span>, bool<span>[true/false]</span>, 生成路径<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	模板文件名不需要加".php"，传递给模板的数据，在模板中以 $a_view_data 获取，第三个参数控制是否生成静态页面，默认false不生成，第四个参数控制生成的路径，未设置时将生成到当前的URL路径
+</div>
+<code class="language-php">
+	$this->view->display('login', $a_data);
+</code>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->display(模板路径及文件名<span>(字符串)</span>, 传递给模板的数据<span>[数组]</span>, bool<span>[true/false]</span>, 生成路径<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	在模板文件中引入其他的模板，比如头尾文件，少了中间的 "->view"
+</div>
+<code class="language-php">
+	$this->view->display('header');
+</code>
+</div>
+
+
+</body>
+</html>

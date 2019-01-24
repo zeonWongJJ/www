@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">计划执行程序</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span> 在CI中，被称之为“钩子”或者“挂钩点”，我们认为叫“计划”更为贴切。用途是在程序特定的位置，执行一段预期的程序，来实现一些特殊的功能。比如每个页面都要显示的公共内容，如后台几乎所有页面都是需要先登录才能查看的，之前只能在所有的控制器中加入一段判断是否登录的代码，这样管理和维护都是相当不方便的（当然也可以使用扩展控制器类的方法），那现在这个“计划”功能，就是为了解决这类问题而来的。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span> 使用一个配置文件，即可实现。总共把一次请求所运行的程序执行过程，分成了3个阶段，可以在这3个阶段中执行计划程序。
+</div>
+<div class="desc">
+	在项目的config目录下，增加一个config_plan.php的文件，文件的使用方法见代码注释。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 在系统最开始的时候执行，控制器尚未执行
+$a_config_plan['pre_system'] = [
+	function() {
+		// 访问系统类库的方法，注意和“pre_controller”不同，因为这个时候，还没有进入控制器
+		// 3个阶段都可以使用这种方式，只是相对麻烦一点
+		$o_mysql =& load_class('mysql', 'core');
+		// 访问数据库
+		$o_mysql->get('table');
+		// 访问常用类
+		$o_general =& load_class('general', 'core');
+		$o_general->get_ip();
+		// 其他方法类似
+	},
+];
+
+
+/**
+ 在控制器实例化之后立即执行，控制器的任何方法都还尚未调用（除构造函数）
+ 这种情况用的比较多，像登录判断就可以在这个阶段执行计划程序
+*/
+$a_config_plan['pre_controller'] = [
+	function() {
+		// 访问系统类库的方法，$o_tw 就相当于平常在控制器中用的 $this
+		$o_tw =& get_instance();
+		// 访问数据库
+		$o_tw->db->get('table');
+		// 其他的类库也可以这样使用
+	},
+	[
+		// 类名
+		'class' => 'auth',
+		// 函数名
+		'method' => 'auth_check',
+		// 文件名，免.php后缀
+		'filename' => 'pre_system',
+		// 文件所在项目下的路径，
+		'filepath' => 'libraries',
+		/**
+		 实例化时的初始参数
+		 'param_class' => 1   会以 $class->$function(1)的形式传入，其中1可以是任何顾类型的变量，包括数组
+		 'param_class' => [1, 2]   会以$class->$function(1, 2)形式传入，其中1和2可以是任何顾类型的变量，包括数组
+		*/
+		'param_class' => ['aa', 'bb'],
+		// 调用函数时传入的参数，参数使用同上
+		'param_method' => ['cc', 'dd', 'ee'],
+	],
+	function() {
+		echo '第3函数<br />';
+	},
+];
+
+
+/**
+ 在最终的页面发送到浏览器之后、在系统的最后期被调用，所有程序执行完了之后执行，参数语法请参考“pre_controller”
+ 关于系统类库的调用，请参考“pre_system”，注意和“pre_controller”不同
+*/
+$a_config_plan['post_system'] = [];
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span> 关于上面举例的"auth"类的写法举例
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 纯粹举例，请根据实际情况编写代码
+// 关于参数的用法，请参考“控制器”->“加载类库”
+class Auth {
+	public function __construct($aa, $bb) {
+		// 打印传进来的参数
+		echo $aa. $bb;
+    }
+	
+	public function auth_check(...$a_param) {
+		// 打印传进来的参数
+		if (is_array($a_param)) {
+			foreach ($a_param as $u_val) {
+				print_r($u_val);
+			}
+		}
+		
+		// 访问数据方式
+		$o_mysql =& load_class('mysql', 'core');
+		$a_data = $o_mysql->get('goods');
+		print_r($a_data);
+	}
+}
+</code>
+</pre>
+</div>
+
+</body>
+</html>

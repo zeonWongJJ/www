@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">高德地图</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<code class="language-php">
+	$this->load->library('map_gaode');
+</code>
+</div>
+<div class="desc">
+	加载类库。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->map_gaode->address_to_degree(地址<span>(字符)</span>, 其他参数<span>[数组]</span>);
+</code>
+</div>
+<div class="desc">
+	把地址转换成经纬度。其他参数为可选参数，参数命名及参数使用和高德地图的接口文档一致 http://lbs.amap.com/api/webservice/guide/api/georegeo
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('map_gaode');
+$a_result =$this->map_gaode->address_to_degree('广州市番禺区长华创意谷16号');
+print_r($a_result);
+
+// 返回数据格式：
+Array
+(
+    [status] => 1
+    [info] => OK
+    [infocode] => 10000
+    [count] => 1
+    [geocodes] => Array
+        (
+            [0] => Array
+                (
+                    [formatted_address] => 广东省广州市番禺区长华创意谷
+                    [province] => 广东省
+                    [citycode] => 020
+                    [city] => 广州市
+                    [district] => 番禺区
+                    [township] => Array
+                        (
+                        )
+
+                    [neighborhood] => Array
+                        (
+                            [name] => Array
+                                (
+                                )
+
+                            [type] => Array
+                                (
+                                )
+
+                        )
+
+                    [building] => Array
+                        (
+                            [name] => Array
+                                (
+                                )
+
+                            [type] => Array
+                                (
+                                )
+
+                        )
+
+                    [adcode] => 440113
+                    [street] => Array
+                        (
+                        )
+
+                    [number] => Array
+                        (
+                        )
+
+                    [location] => 113.320906,22.967019
+                    [level] => 兴趣点
+                )
+
+        )
+
+    [formatted_address] => 广东省广州市番禺区长华创意谷
+    [province] => 广东省
+    [citycode] => 020
+    [city] => 广州市
+    [district] => 番禺区
+    [longitude] => 113.320906
+    [latitude] => 22.967019
+)
+// longitude 是取的geocodes列表下第一个数组中的经度
+// latitude 是取的geocodes列表下第一个数组中的纬度
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->map_gaode->degree_to_address(中间用英文逗号分隔的经纬度<span>(字符)</span>, 其他参数<span>[数组]</span>);
+</code>
+</div>
+<div class="desc">
+	把经纬度转换成地址。其他参数为可选参数，参数命名及参数使用和高德地图的接口文档一致 http://lbs.amap.com/api/webservice/guide/api/georegeo
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('map_gaode');
+$a_result =$this->map_gaode->degree_to_address('113.320906,22.967019');
+print_r($a_result);
+
+// 返回的数据格式：
+Array
+(
+    [status] => 1
+    [info] => OK
+    [infocode] => 10000
+    [regeocode] => Array
+        (
+            [formatted_address] => 广东省广州市番禺区钟村街道长华创意谷
+            [addressComponent] => Array
+                (
+                    [country] => 中国
+                    [province] => 广东省
+                    [city] => 广州市
+                    [citycode] => 020
+                    [district] => 番禺区
+                    [adcode] => 440113
+                    [township] => 钟村街道
+                    [towncode] => 440113015000
+                    [neighborhood] => Array
+                        (
+                            [name] => Array
+                                (
+                                )
+
+                            [type] => Array
+                                (
+                                )
+
+                        )
+
+                    [building] => Array
+                        (
+                            [name] => Array
+                                (
+                                )
+
+                            [type] => Array
+                                (
+                                )
+
+                        )
+
+                    [streetNumber] => Array
+                        (
+                            [street] => 白山路
+                            [number] => 23号
+                            [location] => 113.320861,22.9666956
+                            [direction] => 南
+                            [distance] => 36.2487
+                        )
+
+                    [businessAreas] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [location] => 113.33130382478625,22.968579952991444
+                                    [name] => 祈福
+                                    [id] => 440113
+                                )
+
+                            [1] => Array
+                                (
+                                    [location] => 113.31319990339708,22.974105083864117
+                                    [name] => 钟村
+                                    [id] => 440113
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [address] => 广东省广州市番禺区钟村街道长华创意谷
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->map_gaode->ip_to_address(IP地址<span>[字符]</span>);
+</code>
+</div>
+<div class="desc">
+	把IP地址转换成地址区域，以及经纬度范围。参数IP地址可以不传，如果不传默认使用当前请求地址的ip。接口文档 http://lbs.amap.com/api/webservice/guide/api/ipconfig
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('map_gaode');
+// 可以使用此函数获取当前ip地址 $this->general->get_ip();
+$a_result =$this->map_gaode->ip_to_address('61.144.106.154');
+print_r($a_result);
+
+// 返回的数据格式：
+Array
+(
+    [status] => 1
+    [info] => OK
+    [infocode] => 10000
+    [province] => 广东省
+    [city] => 广州市
+    [adcode] => 440100
+    [rectangle] => 113.1017375,22.93212254;113.6770499,23.3809537
+    [longitude_lower_left] => 113.1017375
+    [latitude_lower_left] => 22.93212254
+    [longitude_upper_right] => 113.6770499
+    [latitude_upper_right] => 23.3809537
+    [longitude_center] => 113.3893937
+    [latitude_center] => 23.15653812
+)
+// 下面四个参数为rectangle字段分解出来的数据
+longitude_lower_left // 左下角的经度
+latitude_lower_left // 左下角的纬度
+longitude_upper_right // 右上角的经度
+latitude_upper_right // 右上角的纬度
+longitude_center // 根据范围取折中值作为精准定位的经度
+latitude_center // 根据范围取折中值作为精准定位的纬度
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->map_gaode->weather(城市代码<span>[字符]</span>);
+</code>
+</div>
+<div class="desc">
+	获取天气信息。城市代码为通过ip_to_address函数转换得到的adcode字段值。参数命名及参数使用和高德地图的接口文档一致 http://lbs.amap.com/api/webservice/guide/api/weatherinfo
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('map_gaode');
+// 440100的来源，请参考ip_to_address函数
+$a_result =$this->map_gaode->weather('440100');
+print_r($a_result);
+
+// 返回的数据格式：
+Array
+(
+    [status] => 1
+    [count] => 1
+    [info] => OK
+    [infocode] => 10000
+    [lives] => Array
+        (
+            [0] => Array
+                (
+                    [province] => 广东
+                    [city] => 广州市
+                    [adcode] => 440100
+                    [weather] => 晴
+                    [temperature] => 17
+                    [winddirection] => 东南
+                    [windpower] => 6
+                    [humidity] => 27
+                    [reporttime] => 2018-01-13 14:00:00
+                )
+
+        )
+
+)
+// weather 天气描述
+// temperature 气温
+// winddirection 风向
+// windpower 风力
+// humidity 湿度
+// reporttime 天气报告更新时间
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->map_gaode->map(静态地图参数<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	调用此函数，将直接输出图片到屏幕，无需打印操作，缺点是高德地图的参数相当不好使用，参数使用方法参考高德文档： http://lbs.amap.com/api/webservice/guide/api/staticmaps#staticmap
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('map_gaode');
+$a_param['markers'] = '-1,http://ico.ooopic.com/ajax/iconpng/?id=158688.png,0:113.6770499,23.3809537';
+$this->map_gaode->map($a_param);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->map_gaode->location(经度<span>(数点数)</span>, 纬度<span>(数点数)</span>);
+</code>
+</div>
+<div class="desc">
+	调用此函数，将返回包含显示地图用的Html代码数组，返回数组参数map_code_head 为地图代码，需要放到模板html代码的head位置，返回数组参数map_code_body 为地图代码，需要放到模板html代码的body位置。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_data = [
+	// 定位经度
+	'location_longitude' => '113.33343',
+	// 定位纬度
+	'location_latitude' => '22.96336',
+	// 可选，地图中心点经度，默认以骑手位置为中心点
+	'center_longitude' => '113.33343',
+	// 可选，地图中心点纬度，默认以骑手位置为中心点
+	'center_latitude' => '22.96336',
+	// 可选，骑手图标，图片链接
+	'img' => 'http://lbs.amap.com/web/public/dist/avatar_default.01b559.png',
+	// 可选，图片宽度
+	'img_width' => 50,
+	// 可选，图片高度
+	'img_height' => 50
+];
+$this->load->library('map_gaode');
+print_r($this->map_gaode->location($a_data));
+</code>
+</pre>
+</div>
+
+</body>
+</html>

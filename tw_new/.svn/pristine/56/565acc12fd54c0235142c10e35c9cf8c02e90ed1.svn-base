@@ -1,0 +1,139 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*右下半部分*/
+.rightDown{width: 1190px; margin-top: 20px; background: white;}
+.rightDown .rightNav{height: 50px; background: #fbfbfb;}
+.rightNav li{float: left;}
+.rightNav li a{display: block; font-size: 16px; color: #666666; width: 110px; text-align: center; line-height: 48px;}
+.rightNav li.current a{border-top: 2px solid #ffb900; border-right: 1px solid #e8e8e8; color: #000000; background: #ffffff;}
+.rightDown .wrapBox{width: 1190px;}
+	/*基本设置*/
+.wrapBox .basicBox{ width: 1190px; display: none; display: block;}
+.basicBox .bLeft{ float: left; width: 840PX; padding: 15px 0 150px 12px;}
+.bLeft li{ height: 50px;  margin-top: 2px;}
+.bLeft li .smallTitle{width: 95px; float: left; text-align: right; font-size: 14px; color: #000000; line-height: 50px;}
+.bLeft li .smallTitle .xing{ display: inline-block; width: 7px; height: 6px; background: url(../images/xing_03.png); margin-right: 2px;}
+.bLeft li .fill{float: left; font-size: 12px; color: #333333; margin-left: 10px; line-height: 50px;}
+.bLeft li .fillBox{ float: left; margin-left: 10px; line-height: 50px;}
+.bLeft li .fillBox .int{ display: inline-block; width: 175px; height: 30px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 25px 0 5px;}
+		/*多级筛选的图片*/
+.bLeft li .fillBox .intRea{ position: relative;}
+.bLeft li .fillBox .selPic{ width: 25px; height: 30px; position: absolute; right: 0; top: 5px; cursor: pointer; }
+.bLeft li .fillBox .selPic i{ display: inline-block; width: 24px; height: 18px; background:url(../images/selete_03.png) no-repeat center center; border-left: 1px solid #dadada;} 
+.bLeft li .fillBox .position{ font-size: 12px; color: #5a2e17; margin-left: 5px;}
+.bLeft li .tipsBox{ float: left; line-height: 50px; margin-left: 10px; font-size: 12px; color: #333333;}
+.bLeft li .tipsBox .red{ display: none; }/*按确定申请出现的红色提示*/
+.bLeft li .tipsBox .red i{ display: inline-block; width: 18px; height: 18px; background: url(../images/f_03.png); vertical-align: middle; margin-right: 8px;}
+		/*关键字搜索*/
+.bLeft li .fillBox #content{ width: 175px; border: 1px solid #cfcfcf; position: absolute; left: 0; top: 31px; background: white; padding-bottom: 5px; display: none;}
+.bLeft li .fillBox #content b{ font-size: 12px; color: #000000; padding: 0 8px; display: inline-block; background: white; cursor: pointer;}
+.bLeft li .fillBox #content b:hover{ color: #ee2222;}
+
+.bLeft li.phone .fillBox .int{ width: 170px;}
+.bLeft li.traffic .fillBox .txt{ width: 410px; height: 90px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 5px;}
+.bLeft li.traffic{ margin-top: 14px; height: 100px;}
+.bLeft li.traffic .smallTitle{ line-height: 0; padding-top: 9px;}
+.bLeft li.traffic .tipsBox{ line-height: 90px;}
+.bLeft li.traffic .fillBox{position: relative;}
+.bLeft li.traffic .fillBox .num{ font-size: 12px; color: #999999; position: absolute; right: 13px; bottom: 5px;}
+.bLeft li.introduce .txt{ width: 685px !important; height: 155px !important;}
+.bLeft li.introduce{ height: 160px;}
+.bLeft li.pic{ height: 90px;}
+.bLeft li.pic .fillBox .upLoad{ display:inline-block; font-size: 12px; color: #FFFFFF; width: 88px; height: 30px; background: #26c0fe; text-align: center; line-height: 30px; border: 1px solid #2494cb;}
+.bLeft li.pic .fillBox .wen{ font-size: 12px; color: #999999; display: inline-block; line-height: 22px; width: 440px; vertical-align: middle; margin-left: 10px;}
+
+	/*产品筛选*/
+.bLeft li.chooseLi{ height: 600px; height: auto !important;}
+.bLeft li.chooseLi .chooseBox a{ font-size: 12px; color: #333333; display: inline-block; width: 90px; height: 30px; background: #e5e5e5; text-align: center; line-height: 30px;}
+li.chooseLi .chooseBox a.product{ margin-right: 5px;}
+li.chooseLi .productBox1{ display: none;}
+li.chooseLi .materialBox{ display: none;}
+li.chooseLi .productBox .lack{ width: 565px; font-size: 12px; color: #333333; line-height:normal !important; height: auto !important; padding: 15px 0; margin-top: -8px;}
+.productBox .listBox{ border: 1px solid #603703; padding-left: 20px; padding-top: 15px; width: 686px;}
+.productBox .listBox .nameDiv{ height: 45px;}
+.nameDiv .biaoL{ float: left; color: #333333; font-size: 12px; line-height: 30px; width: 70px; text-align: right; }
+.nameDiv .inputL{ float: left; line-height: 30px; margin-left: 8px;}
+.nameDiv .inputL .int{  width: 275px; height: 30px; display: inline-block; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px;}
+.nameDiv .chooseL{ float: left;}
+.nameDiv .chooseL { line-height: 30px;}
+.chooseL .selectBox{ margin-left: 10px; position: relative;}
+.chooseL .selectBox .tit{ width: 105px; height: 30px; font-size: 12px; color: #333333; display: inline-block; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset;}
+.chooseL .selectBox .tit i{ display: inline-block; width: 13px; height: 7px; background: url(../images/sanjiao_03.png); vertical-align: middle; line-height: 30px; margin-left: 10px;}
+.chooseL .selectBox .tit span{ display: inline-block; width: 75px; padding-left: 10px; line-height: 30px;}
+.chooseL .selectBox .down i{ background: url(../images/sanjiao_06.png);}
+.chooseL .selectBox .select{ width: 107px; background: white; padding-bottom: 5px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; border-top: none; position: absolute; top: 30px; padding-top: 2px; left: 0; z-index: 999; display: none;}
+.chooseL .selectBox .select a{ display: block; padding: 0 11px; line-height: 24px; font-size: 12px; color: #333333;}
+.chooseL .selectBox .select a:hover{ color: #ee2222;}
+.chooseL .selectBox .beixing{font-size: 12px; color: #333333; margin-left: 5px; display: none;}
+.chooseL .selectBox .beixing i{ font-style: normal; color: #ee2222;}
+
+ /*改*/
+.chooseL .moreBox{ margin-left: -2px;}
+.chooseL .moreBox .selectBox{ float: left;}
+.chooseL .moreBox .selectBox .tit{ width: 133px;}
+.chooseL .moreBox .selectBox .tit span{ width: 103px;}
+.chooseL .moreBox .selectBox .select{ width: 135px;}
+.cupSelect{display: none;}
+.moreBox{ display: none;}
+.chooseL .moreBox .oneLev .select{ display: block;}
+.basicBox .makings{ position: relative;}
+.basicBox .makings .tipsBox{ position: absolute; top: 0; left: 296px;}
+.productAdd li s{ text-decoration: none;}
+
+.listBox .numDiv{ display: none;}/*耗材填写框隐藏*/
+.listBox .numDiv .sigleNum{ height: 45px;}
+.sigleNum .sNum{ float: left; width: 70px; line-height: 30px; font-size: 12px; color: #333333; text-align: right;}
+.sigleNum .sNum s{ text-decoration: none; display: inline-block; line-height: 16px; }
+.sigleNum .intL{ margin-left:8px; float: left; font-size: 12px; color: #333333; line-height: 30px;}
+.sigleNum .sInt{ float: left; width: 70px; height: 30px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px;}
+.sigleNum .sTips,.sigleNum .sTips2,.sigleNum .sTips3{ float: left; font-size: 12px; color: #333333; line-height: 30px; margin-left: 10px; display: none; }
+.sigleNum .sTips i,.sigleNum .sTips2 i,.sigleNum .sTips3 i{ font-style: normal; color: #ee2222;}
+.sigleNum .sTips s,.sigleNum .sTips2 s,.sigleNum .sTips3 s{ text-decoration: none; color: #ee2222;}
+
+.listBox .controlBox{ text-align: center; line-height: 30px; margin-bottom: 15px; padding-left: 260px;}
+.listBox .controlBox a{ display:block; float: left; font-size: 12px; color: #a33300; width: 45px; height: 20px; text-align: center; line-height: 20px; border: 1px solid #e69c14; background: #ffce1c;}
+.listBox .controlBox a.cancel,.listBox .controlBox a.cancel1{ background: #fcfcfc; color: #494949; border: 1px solid #dddddd; margin-left: 30px;}
+.listBox .controlBox a.saveEdit{ display: none;}
+.listBox .controlBox a.saveEdit1{ display: none;}
+	/*确定按钮*/
+.bLeft .saveBox{ margin-left: 105px; margin-top: 20px;}
+.bLeft .saveBox #cateSub{ display: block; width: 120px; height: 40px; background:#ffce1c; font-size: 16px; color: #A33300; text-align: center; line-height: 40px; border: 1px solid #e69c14; cursor: pointer;}
+
+/*右边内容*/
+.basicBox .bRight{ float: right; width: 290PX; height: 830px; border: 1px solid #dddddd; margin:0 15px 15px 0; padding-left: 10px;}
+.bRight .rTitle{ font-size: 14PX; color: #000000; margin-top: 15px; padding-left: 10px;}
+.bRight .addBox{ width: 270PX; height: 775px; overflow: auto;}
+.bRight .addBox::-webkit-scrollbar {width: 8px; width: 6px; border-left: 2px solid #ffffff; border-right: 2px solid #ffffff; background-color: #eeeeee;}
+.bRight .addBox::-webkit-scrollbar-thumb {width: 10px; height: 50px; background-color: #f3c727;}
+.addBox .singleAdd{ border-bottom: 1px dashed #dddddd; padding-top: 15px; padding:15px 0 5px 0;}
+.singleAdd li{ padding: 5px 0; overflow: hidden; font-size: 12px; color: #000000; font-size: 0;}
+.singleAdd li.first .addName{ padding-left: 11px; color: #666666;}
+.singleAdd li.first .addName i{ font-style: normal;}
+.singleAdd li span{ display: inline-block; vertical-align: middle;  }
+.singleAdd li span.addName{ width: 145px; padding-left: 40px; font-size: 12px; color: #000000;}
+.singleAdd li span.addNum{ width: 45px; font-size: 12px; color: #000000; text-align: center; margin-left: 2px;}
+.singleAdd li span.addCon{ width: 50px; font-size: 12px; color: #000000; margin-left: 10px;}
+.singleAdd li span.addCon a{ display: inline-block; width: 12px; height: 15px; background: url(../images/pro_26.png);}
+.singleAdd li span.addCon a.edit{ width: 15px; height: 15px; background: url(../images/pro_28.png); margin-left: 13px;}
+.materialAdd .matTitle{ padding-left: 11px; color: #666666; font-size: 12px; margin-top: 20px; margin: 20px 0 5px 0;}
+.materialAdd .singleAdd{ padding-top: 0;}
+
+/*提示弹框*/
+.delePart{ width: 380px; height: 170px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -85px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; z-index: 10;}
+.batchDel{ display: none;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 30px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.deleSingle{ z-index: 10;}
+.deleSingle p:nth-child(1){ margin-top: 15px;}
+.deleSingle a.think{ width: 42px; height: 20px;}
+
+.renovateBomb{ display: none;}
+.deleBomb{ display: none;}
+
+
+

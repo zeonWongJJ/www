@@ -1,0 +1,22 @@
+/* 头部 */
+.head                         { width:100%; padding:10px 0; background:white;  border-bottom:1px solid #E8E8E8;}
+.head>em                      { padding:0 20px; margin-right:10px; border-right:1px solid #E8E8E8;}
+/* 头部 */
+/*  积分列表 */
+.recordList>span                   { display:block; padding:10px 5px; font-size:16px; color:#ABABAB;}
+.recordList ul                     { padding-left:15px;  background:#fff; color:#ABABAB;}
+.recordList ul>li                  { width:100%; background:#fff; padding:10px 0; border-bottom:1px solid #E8E8E8; }
+.recordList>ul>li div              { width:100%;}
+.recordList>ul>li>p:first-child   { margin-bottom:5px;}
+.recordList>ul>li em               { float:right; margin-right:15px;}
+.recordList>ul>li em:last-child   { clear:both; }
+.addP                               { color:red;}
+/* 积分列表 */
+
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_m_view_app_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_m_view_app_dialog"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_app_radius"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/ll_m_view_app_dialog_p_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_m_view_app_dialog_p_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
+
+                    <TextView
+                        android:id="@+id/tv_m_view_app_dialog_p_title"
+                        style="@style/app_title_level_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="" />
+
+                </LinearLayout>
+
+
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/light_gray" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <!--android:isIndicator  RatingBar是否是一个指示器（用户无法进行更改）
+
+android:numStars  显示的星型数量，必须是一个整形值，像“100”。
+
+android:rating   默认的评分，必须是浮点类型，像“1.2”。
+
+android:stepSize 评分的步长，必须是浮点类型，像“1.2”。-->
+                <RatingBar
+                    android:id="@+id/plan_order_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:stepSize="1.0"
+                    android:isIndicator="false"
+                    style="@style/fiveRatingBar"/>
+                <TextView
+                    android:id="@+id/num_order_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray"
+                    android:text=""
+                    android:padding="@dimen/default_padding"
+                    android:textSize="@dimen/text_size_normal"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--<View
+                    android:id="@+id/view_m_view_app_dialog_p_divider_vertical"
+                    android:layout_width="0.4dp"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    android:background="@color/line" />-->
+
+                <TextView
+                    android:id="@+id/tv_m_view_app_dialog_p_positive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_blue_big_radius"
+                    android:gravity="center"
+                    android:text="提交"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/tv_m_view_app_dialog_p_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_cancel_dialog"
+            android:layout_gravity="top|right"
+            android:gravity="center" />
+    </FrameLayout>
+
+
+</FrameLayout>

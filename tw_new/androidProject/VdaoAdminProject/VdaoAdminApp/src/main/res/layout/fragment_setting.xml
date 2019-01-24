@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <include layout="@layout/layout_common_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@color/white"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="推送通知"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="包含订单状态优惠促销等重要信息的推送"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/text_color_gray"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/toggle"
+            android:layout_width="wrap_content"
+            android:background="@drawable/icon_toggle_off"
+            android:layout_height="wrap_content" />
+        <!--<Switch
+            android:layout_width="wrap_content"
+            android:textOn="开"
+            android:textOff="关"
+            android:thumb="@drawable/icon_toggle_off"
+            android:track="@drawable/icon_toggle_on"
+            android:layout_height="wrap_content" />-->
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/btn_clear_cache"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="清除缓存"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/cache_show"
+            android:layout_width="wrap_content"
+            android:text="0.00M"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_about_us"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/default_padding"
+        android:layout_height="45dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="关于V稻"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:background="@drawable/icon_arrow_right"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/login_out"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="@dimen/text_size_normal"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_login"
+        android:text="退出登录"
+        />
+</LinearLayout>

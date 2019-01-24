@@ -1,0 +1,43 @@
+<?php
+
+class Position_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /***************************************** 获取一条 *****************************************/
+
+    /**
+     * [get_store_one 根据id获取一条门店信息]
+     * @param  [int]   $store_id [传入的门店id]
+     * @return [array]           [返回查询到的数据]
+     */
+    public function get_store_one($store_id)
+    {
+        $a_where = [
+            'store_id' => $store_id,
+        ];
+        $a_data  = $this->db->get_row('store', $a_where);
+        return $a_data;
+    }
+
+    /***************************************** 修改门店 *****************************************/
+
+    /**
+     * [update_position 修改门店]
+     * @param  [array] $a_where [修改的条件]
+     * @param  [array] $a_data  [修改的数据]
+     * @return [int]            [受影响的行数]
+     */
+    public function update_position($a_where, $a_data)
+    {
+        $i_result = $this->db->update('store', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /*******************************************************************************************/
+
+}

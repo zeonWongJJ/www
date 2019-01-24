@@ -1,0 +1,57 @@
+/*  首页 */
+.index{ width:1440px; margin:0 auto; font-size:0; }
+
+
+/* 信息列表 */
+.infoList{ margin-top:20px; margin-left:20px; font-size:0; }
+.infoList>a{ display:inline-block; margin-left:33px; }
+.infoList>a:first-child{ margin:0; }
+.infoList>a>.listL{ width:104px; height:90px; line-height:90px; display:inline-block; text-align:center; vertical-align:middle; }
+.infoList>a>.listL>img{ width:38px; vertical-align:middle; }
+.infoList>a>.listR{ width:168px;  display:inline-block; vertical-align:middle; padding:21px 0; background:white; }
+.infoList>a>.listR>span{ display:inline-block; margin-bottom:8px; margin-left:10px; font-size:16px; font-weight:bold; color:black; }
+.infoList>a>.listR>dfn{ display:inline-block; margin-left:10px; font-size:16px; color:#aaaaaa; }
+
+.newOrders>.listL{ background:#ff7977; border:none;  }
+.newUser>.listL{ background:#ffd75c; }
+.newStore>.listL{ background:#5adc9c; }
+.newShopkeeper>.listL{ background:#72beff; }
+
+/*  经营概况 */
+.operate{ margin-top:20px; margin-left:20px; }
+.operate>h3{ height:52px; line-height:52px;  padding-left:22px; font-size:16px; background:#fbfbfb; border-bottom:1px solid #e8e8e8; }
+.operateContent{ background:white; }
+.operateLeft{ width:288px; display:inline-block; margin-top:35px; margin-left:25px; padding-bottom:35px; }
+.operateLeft>p{ height:91px; line-height:91px; padding-left:30px; font-size:16px; color:white; }
+.operateLeft>p:first-child{ border-bottom:1px solid #8ec6eb; }
+.operateLeft>p:last-child{ border-top:1px solid #a8d3f0; }
+.operateLeft>p>span{ float:right;  margin-right:38px; font-size:16px; font-weight:bold; color:white; }
+.volume{ background:#5faee3; }
+.dailyOrders{ background:#6eb5e5; }
+.totalVolume{ background:#7cbde8; }
+.totalOrders{ background:#99cbed; }
+
+/*  柱状图 */
+.operateRight{ float:right; display:inline-block; margin-top:38px; margin-right:30px; }
+
+/* 最新动态 */
+.newDynamic{ width:576px; display:inline-block; margin-top:20px; margin-left:20px;  }
+.newDynamic>h3{ height:52px; line-height:52px; padding-left:20px; font-size:16px; background:#fbfbfb; border-bottom:1px solid #e8e8e8; }
+.dynamicContent>li{  padding:12px 0; padding-left:25px; }
+.dynamicContent>li:nth-child(odd){ background:white; }
+.dynamicContent>li:nth-child(even){ background:#f6f7f9; }
+.dynamicContent>li>img{ width:42px; vertical-align:middle; margin-right:12px; }
+.dynamicInfo{ display:inline-block; vertical-align:middle; }
+.dynamicInfo>span{ font-size:14px; }
+.dynamicInfo>p{ font-size:12px; color:#b6b6b6; }
+.viewMore{ height:40px; line-height:40px; text-align:right; padding:0 15px; background:white; }
+.viewMore>a{ display:block; font-size:16px; color:#b6b6b6; vertical-align:middle; border-top:2px solid #d2d2d2; }
+.viewMore>a>img{ width:22px; vertical-align:middle; margin-left:14px; }
+
+/*  月新增百分比 */
+.percentage{ display:inline-block; }
+
+
+@media screen and (max-width:1100px) {
+    .index{ width:1100px;}
+}

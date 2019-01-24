@@ -1,0 +1,18 @@
+/* 余额提现 */
+.balanceTitle{ text-align:center; padding-top:0.85rem;  background:white; border-bottom:1px solid #d7d7d7; }
+.balanceTitle>img{ width:0.3rem; margin-top:0.4rem; margin-left:0.53rem; float:left; }
+.balanceTitle>span{ display:inline-block; padding:0.32rem 0; font-size:0.42rem; }
+.balanceImg{ display:block; text-align:center; padding:1.24rem 0; }
+.balanceImg>img{ width:3rem; }
+
+/* 余额信息 */
+#cashGive{ font-size:0.37rem; }
+#cashGive>ul{ background:white; }
+#cashGive>ul>li{ padding:0.34rem 0.26rem; border-bottom:0.02rem solid #ddd; }
+#cashGive>ul>li:last-child{ border-bottom:none; }
+#cashGive>ul>li>span{ color:#888; }
+#cashGive>ul>li>em{ float:right; font-style:normal; }
+#cashGive>ul>li>em>em{ font-style:normal; }
+#balanceSub{ width:9rem; display:block; margin:0.73rem auto; padding:0.37rem 0; font-size:0.45rem; background:#e10030; color:white; border-radius:0.16rem; }
+
+

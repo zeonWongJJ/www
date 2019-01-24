@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+
+    <color name="home_bar_text_normal">#6a6c6f</color>
+    <color name="home_bar_text_push">#ff5959</color>
+    <color name="textnormal">#000</color>
+</resources>

@@ -1,0 +1,1 @@
+﻿{"versionCode":10,"versionName":"v1.0.0","description":"亲,新版本来啦","apkUrl":"http://vdao-cashier.7dugo.com/vdao_cashier.apk"}

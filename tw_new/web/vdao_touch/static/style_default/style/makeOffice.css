@@ -1,0 +1,66 @@
+/* ԤԼ�칫�� */
+html,body{ overflow:inherit; }
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; }
+.pjoTitle{ position:relative; border-bottom:none; background:#ff7f00; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>span{ color:white; }
+.pjoTitle>a>img{ width:0.85rem; }
+.storeName{ padding:0.53rem 0.48rem; margin:0.26rem 0; font-size:0.34rem; background:white; }
+.storeName>img,.storeName>em{ vertical-align:middle; }
+.storeName>img{ width:1.46rem; border-radius:0.2rem; }
+.storeName>em{ display:inline-block; margin-left:0.26rem; font-style:normal; }
+.storeName>em>h1{ margin-bottom:0.16rem; font-size:0.42rem; }
+.storeName>em>span{ font-size:0.34rem; color:#666666; }
+/* ѡ����λ */
+.seat{ background:white; }
+.seat>ul{ padding:0.16rem 0.73rem; }
+.seat>ul>li{ height:0.66rem; line-height:0.66rem; font-size:0.34rem; }
+.seat>ul>li em{ font-style:normal; }
+.seatTime>span,.seatTime>em{ width:4.2rem; display:inline-block; color:#999; }
+.seatTime>em{ text-align:right; }
+.choiceTimeA,.choiceTimeB{ width:4.1rem; display:inline-block; color:#999; }
+.choiceTimeB{ text-align:right; }
+.seatNum{ border-top:0.01rem solid #ddd; }
+.seatNum>span{ font-size:0.34rem; }
+.seatNum>a,.seatNum>span{ vertical-align:middle; }
+.seatNum>a{ width:7.4rem; display:inline-block; text-align:right; }
+.seatNum>a>span,.seatNum>a>img{ vertical-align:middle; }
+.seatNum>a>span{ font-size:0.34rem; color:#999; }
+.seatNum>a>img{ width:0.18rem; margin-left:0.29rem; }
+/* ��ϵ�� */
+.contact{ margin:0.26rem 0; background:white; }
+.contact>ul{ padding:0.16rem 0.73rem; }
+.contact>ul>li>span{ width:1.73rem; display:inline-block; font-size:0.34rem; color:#999; }
+.contact>ul>li>input{ width:3rem; float:right; text-align:left; margin-top:0.3rem; font-size:0.34rem; }
+.contact>ul>li{ height:1.04rem; line-height:1.04rem; border-bottom:0.01rem solid #ddd;  }
+.contact>ul>li:last-child{ border-bottom:none; }
+.contact>ul>li.contactCode>input{ width:2.3rem; }
+.contactCode>em{ width:2rem; display:inline-block; text-align:right; float:left; }
+.removeBtn{ background:none; padding:0.2rem 0.2rem; font-size:0.32rem; font-style:normal; border:0.02rem solid #ff7f00; border-radius:0.2rem; color:#ff7f00; }
+.makeOffice>form>p{ margin-left:0.4rem; font-size:0.32rem; color:#999999; }
+#contact_code{ width:1.4rem; }
+/* �ײ� */
+#makeSub{ width:100%; height:1.3rem; line-height:1.3rem; position:fixed; bottom:0; font-size:0.37rem; color:white; background:#ff7f00; }
+
+
+/* ѡ����λʱ�� */
+.choiceSeatTime{ width:100%; position:fixed; bottom:0; background:#f1f1f1; z-index:2; }
+.choiceSeatTime>p{ height:1.22rem; line-height:1.22rem; position:relative; text-align:center; font-size:0.37rem; background:white; border-bottom:0.01rem solid #ddd; }
+.choiceSeatTime>p>a,.choiceSeatTime>p>input{ position:absolute; }
+.choiceSeatTime>p>a{ left:0.4rem; color:#999999; }
+.choiceSeatTime>p>span{ color:#666; }
+.choiceSeatTime>p>input{ background:none; color:#f23030; right:0.4rem; top:0.38rem; }
+.timeBox{ font-size:0; }
+.timeBox>a,.timeBox>ul{ display:inline-block; vertical-align:top; }
+.timeBox>a{ width:30%; height:1.2rem; line-height:1.2rem; text-align:center; color:#f23030; font-size:0.32rem; background:white; }
+.timeBox>ul{ width:70%; height:5rem; overflow:scroll; padding:0 0.5rem; background:white; }
+.timeBox>ul>li{ height:1rem; line-height:1rem; margin-top:0.26rem; padding-left:0.48rem; font-size:0.32rem; border-radius:0.1rem; }
+.seatedCur,.leaveSeatCur{ background:#feeaea; color:#f23030; }
+
+.payWay{ padding:0.16rem 0.73rem; font-size:0.34rem; background:white; }
+.payWay>h2{ font-size:0.34rem; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:black; opacity:0.5; z-index:1; }
+/* ��ʾ�� */
+.tips{ width:8rem; position:absolute; top:50%; left:1rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }
+

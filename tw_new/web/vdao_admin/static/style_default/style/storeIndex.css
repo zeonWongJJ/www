@@ -1,0 +1,45 @@
+/* 门店首页 */
+body,html{ height:100%; }
+/* 头部 */
+.storeIndex{ width:1440px; height:100%; margin:0 auto; font-size:0; }
+.header{ height:60px; background:white; }
+.headLeft{ display:inline-block; }
+.headLeft>img{ width:58px; vertical-align:middle; margin-left:38px; margin-right:24px; }
+.headLeft>span{ font-size:18px; vertical-align:middle; padding-left:24px; color:#999; border-left:1px solid #999; }
+.headRight{ float:right; margin-top:15px; }
+.headRight>a{ display:inline-block; }
+.headRight>a>img{ width:26px; vertical-align:middle; }
+.store_news,.store_info{ position:relative; margin:0 15px; }
+.store_news>i,.store_info>i{ width:30px; height:22px; line-height:22px; position:absolute;   text-align:center; color:white; border-radius:10px; font-size:12px; }
+.offPage{ padding:0 15px; border-left:1px solid #999; }
+.store_news>i{ top:-10px; right:-14px; background:#fcb322; }
+.store_info>i{ top:-14px; right:-10px; background:#f86b4f; }
+/* 导航 */
+nav{ width:218px; height:100%; display:inline-block; background:#2d313a; }
+.sculpture{ text-align:center; margin-top:42px; }
+.sculpture>img{ width:86px; border:2px solid white; border-radius:50%;  }
+.sculpture>h3{ margin-top:10px; font-size:16px; font-weight:bold; color:white; }
+.sculpture>span{ font-size:13px; color:#abacad; }
+/* 导航列表 */
+.navList{ margin-top:36px; }
+.navList>ul>li{ padding:15px 0; }
+.navList>ul>li>a>img{ width:20px; vertical-align:middle; margin-left:42px; margin-right:10px; }
+.navList>ul>li>a>span{ font-size:16px; color:white; vertical-align:middle; }
+.navCur{ background:#282c34; }
+.navList>ul>li>ul>li>a>span{ display:inline-block; margin-left:73px; margin-top:10px; font-size:16px;color:#a8aeba; }
+/* 右侧内容  */
+article{ width:1222px; display:inline-block; vertical-align:top; }
+/* 信息列表 */
+.infoList{ margin-left:15px; margin-top:15px; }
+.infoList>a{ display:inline-block; margin-right:32px; }
+.listL{ width:260px; height:110px; display:inline-block; vertical-align:middle;  }
+.listL>p{ margin-left:30px; margin-top:30px; font-size:18px; color:white; font-weight:bold; }
+.listL>span{ margin-left:30px; font-size:28px; font-weight:bold; color:white; }
+.listR{ width:110px; height:110px; display:inline-block; vertical-align:middle; text-align:center; }
+.listR>img{ margin-top:30px; }
+.sales>.listL{ background:#fec006; }
+.sales>.listR{ background:#f1b606; }
+.orders>.listL{ background:#e81d62; }
+.orders>.listR{ background:#dc1c5d; }
+.roomOrders>.listL{ background:#8ac249; }
+.roomOrders>.listR{ background:#83b845; }

@@ -1,0 +1,159 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.bread{ height: 50px; width: 1190px; background: white;}
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px; float: left;}
+.breadNav a{color: #333333; font-size: 16px;}
+.tagManage { float: right; margin: 7px 15px 0 0;}
+.tagManage a{display: block; width: 110px; height: 37px; background: url(../images/biao_03.png); line-height: 37px; text-align: center; font-size: 14px; color: #a09f9f;}
+.tagManage a i{font-style: normal; margin-right: 8px;}
+/*评价类型模块*/
+.appraiseBox{ width: 1190px; margin-top: 15px;}
+.appraiseBox .appL{ width: 555px; height: 175px; float: left; background:white;}
+.appL .aLeft{ width: 155px; height: 175px; float: left; border-right: 1px dashed #f1f1f1; padding: 20px 0 0 0; position: relative;}
+.appL .aLeft .tou{ width: 88px; height: 88px; border-radius: 50%; overflow: hidden; border: 3px solid #b0b0b0; margin: 0 auto;}
+.appL .aLeft .tou img{ width: 100%; height: 100%;}
+.appL p{ width: 155px; font-size: 12px; text-align: center;}
+.aLeft .p1{ color: #333333; margin-top: 10px;}
+.aLeft .p2{ color: #999999; margin-top: 2px;}
+.aLeft .yuan1{ display: inline-block; width: 12px; height: 12px; background: #f1f1f1; border-radius: 50%; position: absolute; left: 149px; top: -7px;}
+.aLeft .yuan2{ display: inline-block; width: 12px; height: 12px; background: #f1f1f1; border-radius: 50%; position: absolute; left: 149px; top: 169px;}
+.appL .aRight{ width: 400px; float: left;}
+.aRight .rTop{ height: 90px;}
+.rTop .dian{ width: 270px; float: left; padding: 32px 0 0 30px;}
+.rTop .dian .h3{ font-size: 16px; color: #000000;}
+.rTop .dian .chang{ font-size: 12px; color: #999999; margin-top: 6px;}
+.rTop .lei{ width: 130px; float: left; color: #333333; padding-top: 25px; }
+.rTop .lei .shou{ font-size: 12px; text-align: left;}
+.rTop .lei .bei{ font-size: 18px; text-align: left;}
+.rTop .lei .bei i{ font-size: 32px; font-style: normal; margin-right: 8px;}
+.aRight .rBottom{ padding: 5px 0 0 15px;}
+.aRight .rBottom .bai{ font-size: 22px; color: #333333; padding-right: 35px;}
+.rBottom li{ width: 125px; height: 52px; float: left; border-right: 1px solid #d8d8da; }
+.rBottom li:last-child{ border-right: none;}
+.rBottom .lv{ font-size: 12px; color: #999999;  padding-right: 35px;}
+
+/*小表格*/
+.appraiseBox .appR{ width: 620px; height: 175px; background: white; float:right; padding: 11px 0 0 12px;}
+.smallTab{ width: 595px;}
+.smallTab .sThead{ background: #f2f2f2; }
+.smallTab .sThead span{ padding: 7px 2px;}
+.smallTab li{font-size: 0;}
+.smallTab li span{ text-align: center; display: inline-block; vertical-align: middle; font-size: 12px; color: #333333; padding: 8px 2px;}
+.smallTab li span img{ vertical-align: middle;}
+.smallTab .sRow{ background: white;}
+.smallTab span:nth-child(1){ width: 90px;}
+.smallTab span:nth-child(2){ width: 85px;}
+.smallTab span:nth-child(3){ width: 85px;}
+.smallTab span:nth-child(4){ width: 85px;}
+.smallTab span:nth-child(5){ width: 85px;}
+.smallTab span:nth-child(6){ width: 85px;}
+.smallTab span:nth-child(7){ width: 80px;}
+
+/*表格模块*/
+.tableModule{width: 1190px; background: white; margin-top: 15px;}
+	/*切换导航*/ 
+.tabNav{ overflow: hidden; border-bottom: 1px solid #e8e8e8;}
+.tabNav li{ float: left;}
+.tabNav li a{ display: block; width: 140px; height: 52px; text-align: center; line-height: 52px; color: #666666; font-size: 16px;}
+.tabNav li.current a{ border-right: 1px solid #e8e8e8; border-top: 3px solid #ffb900; color: #000000;}
+	/*表格*/
+.tableBox{width: 1160px; margin: 15px 0 0 15px;}
+.tableBox .thead{ background: #f4f4f4; height: 56px; line-height: 56px; }
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: left; }
+.tableBox .thead span{font-size: 12px; color: #000000;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 5px; padding: 15px 20px 15px 0;}
+.tableBox .row{border-bottom: 1px solid #dfdfdf; background: white;}
+.tableBox .row:last-child{ border-bottom: none;}
+.tableBox span{display: inline-block; vertical-align: top;}
+.tableBox span:nth-child(1){ width: 125px; text-align: center;}
+.tableBox span:nth-child(2){ width: 175px; padding-left: 10px;}
+.tableBox span:nth-child(3){ width: 355px;}
+.tableBox span:nth-child(4){ width: 120px;}
+.tableBox span:nth-child(5){ width: 155px;}
+.tableBox span:nth-child(6){ width: 100px;}
+.tableBox span:nth-child(7){ width: 130px; text-align: center;}
+.tableBox span img{vertical-align: middle;}
+.tableBox .thead .state{ position: relative; width: 110px; display: inline-block; vertical-align: middle; background: height: 56px; text-align: center; line-height: 56px;}
+.tableBox .thead .state a{ color: #333333; vertical-align: middle;}
+.tableBox .thead .state .staTitle{ width: 110px; display: inline-block; vertical-align: middle; text-align: center;}
+.tableBox .thead .state .staTitle s{ text-decoration: none; font-size: 12px; color: #000000;}
+.tableBox .thead .state .staTitle i{ display: inline-block; width: 12px; height: 6px; background: url(../images/heisan_06.png); margin-left: 8px; vertical-align: middle;}
+.tableBox .thead .state .stateSelect{ position: absolute; left: 0; top: 50px; z-index: 99; background: white; box-shadow: 0 0 10px #dfdfdf; padding-bottom: 5px; display: none;}
+.tableBox .thead .state .stateSelect li{ line-height: 30px; width: 110px; text-align: left; text-indent: 20px; }
+.tableBox .thead .state .stateSelect a{ font-size: 12px; color: #333333; display: block; }
+.tableBox .thead .state .stateSelect a:hover{ color: #5a2e17;}
+.tableBox .thead .down { width: 110px; background: white; box-shadow: 0 0 10px #dfdfdf; vertical-align: middle;}
+.tableBox .thead .down .staTitle i{ background: url(../images/heisan_03.png);}
+.tableBox .thead .zhe{ width: 108px; height: 6px; background: white; position: absolute; left: 1px; top: 45px; z-index: 100; display: none;}
+.tableBox .row .tag a{ display: inline-block; font-size: 12px; color: #ff0036; border: 1px solid #ffdce2; padding:4px 10px; border-radius: 4px; margin-right: 6px; margin-bottom: 5px;}
+.tableBox .row .comment .time{ font-size: 12px; color: #999999;}
+.tableBox .row .comment .picBox{ margin-top: 2px;}
+.tableBox .row .comment .picBox li{ float: left; width: 70px; height: 70px; border-radius: 10px; overflow: hidden; margin-right: 6px; margin-bottom: 4px;}
+.tableBox .row .comment .picBox li:last-child{ margin-right: 0;}
+.tableBox .row .handle a{ display:block;}
+.tableBox .row .handle a.shen{ width: 65px; height: 25px; background: #5b3019; text-align: center; line-height: 25px; border-radius: 4px; color: white; margin-left: 38px; margin-bottom: 4px;}
+.tableBox .row .handle a.shan{ color: #666666; margin-left: 35px; }
+
+/*分页*/
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+/*未设置提现银行卡弹框*/
+.delePart{ width: 380px; height: 170px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -85px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; z-index: 10;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 30px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.examineBomb{ display: none;}
+.deleteBomb{ display: none;}
+
+/*删除标签提示*/
+.delePart{ width: 380px; height: 170px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -85px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; z-index: 10;}
+.batchDel{ display: none;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 30px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.deleSingle{ z-index: 10;}
+.deleSingle p:nth-child(1){ margin-top: 15px;}
+.deleSingle a.think{ width: 42px; height: 20px;}
+.deleTag1{ display: none;}
+.deleTag2{ display: none;}
+.deleTag2 p:nth-child(2){ margin-top: 10px;}
+
+/*标签管理弹框*/
+.tagBomb{width: 415px; height: 510px; background: white; position: fixed; left: 50%; margin-left: -207.5px; top: 50%; margin-top: -255px; box-shadow: 0 0 20px #dedede; display: none;}
+.tagBomb .h2{height: 50px; background: #fbfbfb; border-bottom: 1px solid #E8E8E8; padding: 18px 18px 0 18px;}
+.tagBomb .h2 span{ font-size: 14px; color: #48a5ea;}
+.tagBomb .h2 a.close{ width: 17px; height: 17px; background: url(../images/pro_19.png); float: right;}
+.tagBomb .navBox{ width: 415px; height: 50px;}
+.navBox .navL{ width: 135px; float: left; font-size: 0; margin: 14px 0 0 148px;}
+.navL a{ display: inline-block; width: 60px; height: 30px; background: white; font-size: 14px; color: #5A2E17; border: 1px solid #5d3719; text-align: center; line-height: 30px;}
+.navL a.nCoffee{ border-right: none; border-radius: 10px 0 0 10px;}
+.navL a.nRoom{ border-left: none; border-radius: 0 10px 10px 0;}
+.navL a.aCur{ background: #5d3719; color: white;}
+.navBox .addR{ width: 110px; float: right; margin: 12px 17px 0 0;}
+.addR .addA{ display: inline-block; width: 110PX; height: 37PX; background: url(../images/biao_03.png); text-align: center; line-height: 37px; font-size: 14px; color: #a09f9f;}
+.addR .addA i{ margin-right: 10px;}
+.tagBomb .commentBox .coffeeCom{ padding-left: 25px;}
+.coffeeCom .cofWrap{ height: 340px; width: 390px; overflow: auto;}
+.coffeeCom .cofWrap::-webkit-scrollbar {width: 8px; width: 6px; border-left: 2px solid #ffffff; border-right: 2px solid #ffffff; background-color: #eeeeee;}
+.coffeeCom .cofWrap::-webkit-scrollbar-thumb {width: 10px; height: 50px; background-color: #f3c727;}
+.coffeeCom .good .tit{ font-size: 12px; color: #000000; margin: 10px 0;}
+.good .comList li{ font-size: 12px; color: #333333; padding: 8px 12px; background: #f9f9f9; float: left; margin: 0 10px 5px 0; position: relative;}
+.good .comList li .shanchu{ display: inline-block; width: 14px; height: 14px; background: url(../images/xiaoX_03.png) no-repeat center center; vertical-align: middle; position: absolute; top: 0; right: 0;}
+.good .comList li.intLi{ padding: 0; position:relative;}
+.good .comList li.intLi input{ display: inline-block; width: 85px; height: 30px; background: #f8f8f8; border: 1px solid #dadada; padding: 0 4px;}
+.good .comList li.intLi a{ display: inline-block; width: 12px; height: 12px; border: 1px solid #aaaaaa; border-radius: 50%; text-align: center; line-height: 12px; background: white; color: #aaaaaa;}
+.good .comList li.intLi a:hover{ color: #ff0036; border: 1px solid #ff0036;}
+.good .comList li.intLi .right{ position: absolute; right: -6px; bottom: -6px; }
+.good .comList li.intLi .wrong{ position: absolute; right: -6px; top: -6px;}
+.tagBomb .commentBox .roomCom{ display: none;}
+
+.coffeeCom .sureBox{ text-align: center; margin-top: 15px;}
+.coffeeCom .sureBox a{ display: inline-block; width: 85px; height: 28px; background: #ffce1c; text-align: center; line-height: 28px; font-size: 14px; color: #A33300; border: 1px solid #E69C14;}
+

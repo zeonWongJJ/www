@@ -1,0 +1,23 @@
+/* 二三级分类 */
+.pjoTitle{ position:relative; border-bottom:0.01rem solid #f5f5f5; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.2rem; }
+.pjoTitle>a>img{ width:0.32rem; }
+/* 分类列表 */
+.cateContainer{ background:white; }
+.cateContainer>dl{ padding-top:0.34rem; padding-left:0.34rem; }
+.cateA{ font-size:0.32rem; color:#666; }
+.cateB{ padding:0.4rem 0; border-bottom:0.01rem solid #ddd; }
+.productBox{ display:block; }
+.productBox>em{ display:inline-block; margin-left:0.16rem; font-style:normal; }
+.productBox>em>h1{ font-size:0.4rem; }
+.productBox>img{ width:1.2rem; }
+.productBox>em>img,.cateB>em>span{ vertical-align:middle; }
+.productBox>em>img{ width:0.4rem; }
+.productBox>em>span{ width:4.13rem; display:inline-block; overflow:hidden; white-space: nowrap; text-overflow:ellipsis; font-size:0.32rem; color:#666666; }
+.productBox>i{ float:right; margin-top:0.4rem; margin-right:0.32rem; }
+.productBox>i>img{ width:0.21rem; }
+
+
+
+
+

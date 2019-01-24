@@ -1,0 +1,2 @@
+include ':vdao', ':mvpBaseLib', ':commonutilLib', ':baseAppcommonLib', ':resLib', 'ModuleLib:RVHelper',
+        'ModuleLib:pickerview'

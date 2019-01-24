@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="static/style_default/style/common.css"/>
+    <link rel="stylesheet" href="static/style_default/style/orderDetails.css"/>
+    <script src="static/style_default/plugin/jquery-1.8.2.min.js"></script>
+    <script src="static/style_default/script/flexible.js"></script>
+    <script src="static/style_default/script/orderDetails.js"></script>
+    <title>订单详情</title>
+</head>
+<body>
+    <!-- 拉框开始 -->
+    <?php echo $this->display('head'); ?>
+    <!-- 拉框结束 -->
+    <div class="orderDetails">
+        <p class="pjoTitle">
+            <a href="share_order"><img src="static/style_default/images/kefu_03.png" /></a>
+            <span>订单详情</span>
+        </p>
+        <div class="orderStatus">
+            <p>
+            <?php if ($a_view_data['order']['order_state'] == 40) {
+                echo '待付款';
+            } else if ($a_view_data['order']['order_state'] == 20) {
+                echo '待接单';
+            } else if ($a_view_data['order']['order_state'] == 25) {
+                echo '待发货';
+            } else if ($a_view_data['order']['order_state'] == 30) {
+                echo '已发货';
+            } else if ($a_view_data['order']['order_state'] == 0) {
+                echo '已取消';
+            } else {
+                echo '已完成';
+            } ?>
+            </p>
+            <span>
+            <?php if ($a_view_data['order']['order_state'] == 40) {
+                echo '买家在'.date('Y-m-d H:i:s', $a_view_data['order']['time_create']+7200) . '前未支付订单将自动关闭';
+            } else if ($a_view_data['order']['order_state'] == 20) {
+                echo '买家已付款，等待你接单';
+            } else if ($a_view_data['order']['order_state'] == 25) {
+                echo '建议尽快发货，避免让买家久等哟';
+            } else if ($a_view_data['order']['order_state'] == 30) {
+                echo date('Y-m-d H:i:s', $a_view_data['log']['log_time']+3600*24*10).'自动确认收货';
+            } else if ($a_view_data['order']['order_state'] == 0) {
+                echo '于'.date('Y-m-d H:i:s', $a_view_data['log']['log_time']).'取消了订单';
+            } else {
+                echo '已完成';
+            } ?>
+            </span>
+        </div>
+        <!-- 详情 -->
+        <div class="detailContainer">
+            <ul>
+                <li class="user">
+                    <?php if (empty($a_view_data['user']['user_pic'])) {
+                        echo '<img src="static/style_default/images/tou_03.png" />';
+                    } else {
+                        echo '<img src="'.$a_view_data['user']['user_pic'].'">';
+                    } ?>
+                    <span><?php echo $a_view_data['user']['user_name']; ?></span>
+                </li>
+                <li class="addContainer">
+                    <ol>
+                        <li class="receipt">
+                            <span>收货人：</span>
+                            <em><?php echo $a_view_data['order']['reciver_name']; ?></em>
+                            <dfn><?php echo $a_view_data['order']['mob_phone']; ?></dfn>
+                        </li>
+                        <li class="address">
+                            <span>收货地址：</span>
+                            <em><?php echo $a_view_data['order']['addres']; ?></em>
+                        </li>
+                        <li class="message">
+                            <span>买家留言：</span>
+                            <em><?php echo $a_view_data['order']['order_message']; ?></em>
+                        </li>
+                    </ol>
+                </li>
+
+                <li class="productContainer">
+                    <ol>
+                        <?php foreach ($a_view_data['goods'] as $key => $value): ?>
+                        <li class="productList">
+                            <a>
+                                <?php if (empty($value['pro_img'])) {
+                                    echo '<img src="static/style_default/images/bffg.png" />';
+                                } else {
+                                    echo '<img src="'.$value['pro_img'].'">';
+                                } ?>
+                                <span><?php echo $value['product_name']; ?></span>
+                                <dfn>¥<span><?php echo $value['goods_pay_price']; ?></span></dfn>
+                            </a>
+                        </li>
+                        <?php endforeach ?>
+                    </ol>
+                </li>
+
+                <li class="productCost">
+                    <ol>
+                        <li class="totalPrice">
+                            <span>商品总额</span>
+                            <em>¥<span><?php echo $a_view_data['order']['goods_amount']; ?></span></em>
+                        </li>
+                        <li class="freight">
+                            <span>运费</span>
+                            <em>+¥<span><?php echo $a_view_data['order']['shipping_fee']; ?></span></em>
+                        </li>
+                        <li class="pointDeductible">
+                            <span>积分抵扣</span>
+                            <em>-¥<span><?php echo $a_view_data['order']['use_points']; ?></span></em>
+                        </li>
+                    </ol>
+                </li>
+                <li class="totalPay">
+                    <span>订单总价</span>
+                    <em>¥<span><?php echo $a_view_data['order']['order_price']; ?></span></em>
+                </li>
+            </ul>
+        </div>
+        <!-- 详情 -->
+
+        <!-- 订单信息 -->
+        <div class="orderInfo">
+            <ul>
+                <li class="orderInfoList">
+                    <span>订单编号</span>
+                    <em id="myordernumber"><?php echo $a_view_data['order']['order_number']; ?></em>
+                    <dfn class="copy" onclick="copyUrl2()">复制</dfn>
+                </li>
+                <li class="orderInfoList">
+                    <span>支付方式</span>
+                    <em>
+                    <?php if ($a_view_data['order']['payment_code'] == 'offline') {
+                        echo '微信支付';
+                    } else if ($a_view_data['order']['payment_code'] == 'alipay') {
+                        echo '支付宝支付';
+                    } else if ($a_view_data['order']['payment_code'] == 'unionpay') {
+                        echo '银行卡支付';
+                    } ?>
+                    </em>
+                </li>
+                <li class="orderInfoList">
+                    <span>下单时间 </span>
+                    <em><?php echo date('Y-m-d H:i:s', $a_view_data['order']['time_create']); ?></em>
+                </li>
+                <li class="orderInfoList">
+                    <span>支付时间</span>
+                    <em><?php echo date('Y-m-d H:i:s', $a_view_data['order']['order_time']); ?></em>
+                </li>
+            </ul>
+        </div>
+        <!-- 订单信息 -->
+        <!-- 订单按钮 -->
+        <div class="orderBtn">
+            <?php if ($a_view_data['order']['order_state'] == 40) { ?>
+                <a class="cancel" onclick="order_cancel(<?php echo $a_view_data['order']['order_id']; ?>)">取消订单</a>
+            <?php } elseif ($a_view_data['order']['order_state'] == 20) { ?>
+                <a class="cancel" onclick="order_cancel(<?php echo $a_view_data['order']['order_id']; ?>)">取消订单</a>
+                <a class="catch" onclick="share_orderacct(<?php echo $a_view_data['order']['order_id']; ?>)">接单</a>
+            <?php } elseif ($a_view_data['order']['order_state'] == 25) { ?>
+                <a class="cancel" onclick="order_cancel(<?php echo $a_view_data['order']['order_id']; ?>)">取消订单</a>
+                <a class="catch" href="share_delivery-<?php echo $a_view_data['order']['order_id']; ?>">我已寄出</a>
+            <?php } else {  ?>
+                <a class="cancel" href="share_logistics-<?php echo $a_view_data['order']['order_id']; ?>">查看物流</a>
+            <?php }  ?>
+        </div>
+        <!-- 订单按钮 -->
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="lay"></div>
+    <!-- 遮罩层 -->
+
+    <!-- 提示 -->
+    <div class="tips">
+        <p>提示</p>
+        <span>通过资质认证后，才能使用此功能</span>
+        <div class="tipsBtn">
+            <a class="sure">确定</a>
+            <a class="cancel">取消</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<?php if (strpos($_SERVER['HTTP_USER_AGENT'], 'Android')) { ?>
+    <script type="text/javascript" src="http://cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://qiduvdaolink.js"></script>
+<?php } ?>
+
+<script>
+
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+// 取消订单
+function order_cancel(order_id) {
+    if (isAndroid || isiOS) {
+        var callbackSuccess=function(json){
+            // 发送ajax请求
+            $.ajax({
+                url: 'share_ordercancel',
+                type: 'POST',
+                dataType: 'json',
+                data: {reason: json, order_id: order_id},
+                success: function(res) {
+                    console.log(res);
+                    if (res.code == 200) {
+                        $(".orderBtn").html('<a class="cancel" href="share_logistics-'+order_id+'">查看物流</a>');
+                        $(".orderStatus p").html('已取消');
+                        var thisdate = "<?php echo date('Y-m-d H:i:s', time()); ?>";
+                        $(".orderStatus span").html('您于'+thisdate+'取消了订单');
+                    }
+                }
+            })
+        }
+        var obj={"title":"请选择取消订单原因","list":["跟用户协商","用户拍错","信息填写错误","其它原因"]}
+    }
+    if (isAndroid) {
+        //title 标题,list 原因动态列表
+        showWheelViewReasonList(callbackSuccess,obj);
+    } else if (isiOS) {
+        obj = JSON.stringify(obj);
+        window.webkit.messageHandlers.vdao.postMessage({
+            body: obj,
+            callback: callbackSuccess+'',
+            command:'showWheelViewReasonList'
+        });
+    }
+}
+
+
+// 确定接单
+function share_orderacct(order_id) {
+    $(".lay").show();
+    $(".tips").show();
+    $(".sure").click(function(event) {
+        // 发送ajax请求
+        $.ajax({
+            url: 'share_orderacct',
+            type: 'POST',
+            dataType: 'json',
+            data: {order_id: order_id},
+            success: function(res) {
+                console.log(res);
+                if (res.code == 200) {
+                    if (res.code == 200) {
+                        $(".orderBtn").html('<a class="cancel" onclick="order_cancel('+order_id+')">取消订单</a><a class="catch" href="share_delivery-'+order_id+'">我已寄出</a>');
+                        $(".orderStatus p").html('待发货');
+                        $(".orderStatus span").html('建议尽快发货，避免让买家久等哟');
+                    }
+                }
+                $(".lay").hide();
+                $(".tips").hide();
+            }
+        })
+    });
+}
+
+
+function copyUrl2(){
+    var Url2=document.getElementById("myordernumber").innerText;
+    var oInput = document.createElement('input');
+    oInput.value = Url2;
+    document.body.appendChild(oInput);
+    oInput.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    oInput.className = 'oInput';
+    oInput.style.display='none';
+}
+
+</script>

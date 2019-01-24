@@ -1,0 +1,11 @@
+.waitInfo             { margin-top:70px;  }
+.waitInfo>p           { text-align:center; font-size:20px; margin-top:10px; }
+.authNameWait>ul          { width:78%; margin:0 auto; font-size:16px; color:#333333; padding:100px 0; }
+.authName>ul>li       { padding:2px 0; }
+/* 返回个人中心 */
+.backToCenter         { text-align:center; }
+.backToCenter>a>span { width:180px; height:45px; line-height:45px; display:inline-block; color:white; border-radius:22px;  background:linear-gradient(120deg,#6671f3,#66b2ea); }
+
+
+
+

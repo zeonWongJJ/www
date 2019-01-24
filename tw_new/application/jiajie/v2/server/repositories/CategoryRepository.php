@@ -1,0 +1,117 @@
+<?php
+/**
+ * 栏目数据仓库
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace repositories;
+
+use model\CategoryModel;
+use model\TokenModel;
+use utils\BaseRepository;
+use utils\Factory;
+use utils\ide\Db;
+
+/**
+ * Class CategoryRepository
+ * @package repositories
+ */
+class CategoryRepository extends BaseRepository
+{
+    /**
+     * @return String
+     */
+    public function getDbTable()
+    {
+        return get_table('category');
+    }
+
+    /**
+     * @param Db $query
+     * @return Db
+     */
+    public function beforeGetList($query)
+    {
+        $this->condition['cate_is_show'] = 1;
+        return $query->order_by(['is_self_support' => 'DESC', 'cate_sort' => 'desc']);
+    }
+
+    /**
+     * @param $rows
+     * @return mixed
+     */
+    public function afterGetTree($rows)
+    {
+        /** @var CategoryModel $category_model */
+        $category_model = Factory::getFactory('category');
+        return $category_model->formatRows($rows);
+    }
+
+    /**
+     * 新增前调用
+     * @param array $insert 新增的数据
+     * @return array
+     */
+    public function beforeInsertHook(array $insert): array
+    {
+        // 计算层级
+        if ($insert['parent_id'] == 0) {
+            $insert['level'] = 1;
+            $insert['top_id'] = 0;
+        } else {
+            $row = $this->db->get_row($this->table, ['id' => $insert['parent_id']], 'level, pay_type, top_id');
+            if ($row) {
+                $insert['level'] = $row['level'] + 1;
+
+                if ($insert['level'] == 2) {
+                    $insert['top_id'] = $insert['parent_id'];
+                } else {
+                    $insert['top_id'] = $row['top_id'];
+                    $insert['pay_type'] = $row['pay_type'];
+                }
+//                $insert['pay_type'] = $insert['level'] == 2 ? $insert['pay_type'] : $row['pay_type']; // 层级为2时不跟随上级收费方式
+//                $insert['top_id'] = $row['top_id'];
+            } else {
+                throw new \RuntimeException('上级分类不存在');
+            }
+        }
+
+        return $insert;
+    }
+
+    /**
+     * 更新前的处理
+     * @param $update
+     * @param $id
+     * @param $row
+     * @return mixed
+     */
+    public function beforeUpdateHook($update, $id, $row)
+    {
+        if ($update['parent_id'] == 0) {
+            $update['level'] = 0;
+        } else if ($update['parent_id'] == $id) {
+            throw new \RuntimeException('不能以自己为上级');
+        } else {
+            $p_row = $this->db->get_row($this->table, ['id' => $update['parent_id']], 'level, pay_type');
+            if (!$p_row) {
+                throw new \RuntimeException('上级分类不存在');
+            }
+            $update['level'] = $p_row['level'] + 1;
+
+            if ($update['level'] == 2) {
+                $update['top_id'] = $update['parent_id'];
+            } else {
+                $update['top_id'] = $p_row['top_id'];
+                $update['pay_type'] = $p_row['pay_type'];
+            }
+//            $update['pay_type'] = $update['level'] == 2 ?: $p_row['pay_type']; // 层级为2时不跟随上级收费方式
+        }
+
+//        if (!\in_array((int)$update['pay_type'], [1, 2], true)) {
+//            throw new \RuntimeException('收费方式未定义');
+//        }
+
+        return $update;
+    }
+}

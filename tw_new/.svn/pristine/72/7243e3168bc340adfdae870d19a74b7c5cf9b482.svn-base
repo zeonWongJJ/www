@@ -1,0 +1,123 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .fillBox{
+	margin: 0.266666rem 0 0.466666rem 0;
+}
+.main .fillBox li{
+	padding-left: 0.2rem;
+	background: white;
+}
+.fillBox li input{
+	display: block;
+	width: 100%;
+	height: 1.066666rem;
+	background: white;
+	font-size: 0.373333rem;
+	color: #333333;
+	line-height: 1.066666rem;
+	border-bottom: 1px solid #d7d7d7;
+	box-sizing: border-box;
+	line-height:normal;
+}
+.fillBox li:last-child input{
+	border-bottom: none;
+}
+.fillBox li.testCode{
+	position: relative;
+}
+.fillBox li.testCode i{
+	display: block;
+	width: 2.133333rem;
+	height: 0.6rem;
+	background: #6492e3;
+	font-size: 0.293333rem;
+	text-align: center;
+	line-height: 0.6rem;
+	color: white;
+	border-radius: 0.08rem;
+	font-style: normal;
+	position: absolute;
+	right: 0.266666rem;
+	top: 0.266666rem;
+}
+.fillBox li.testCode i.sendAgain{
+	display: none;
+}
+.fillBox li.testCode i.time{
+	display: none;
+}
+.fillBox li.testCode i.time s{
+	text-decoration: none;
+}
+.fillBox li.password{
+	position: relative;
+}
+.fillBox li.password i{
+	display: inline-block;
+	width: 0.933333rem;/*70*/
+	height: 0.6rem;/*45*/
+	text-align: center;
+	line-height: 0.6rem;
+	position: absolute;
+	top: 0.266666rem;
+	right: 0.133333rem;
+}
+.fillBox li.password i.openEye{
+	display: inline-block;
+	display: none;
+}
+.fillBox li.password i.closeEye{
+	/*display: none;*/
+}
+.fillBox li.password i.openEye img{
+	width: 0.506666rem;
+	height: 0.253333rem;
+}
+.fillBox li.password i.closeEye img{
+	width: 0.506666rem;
+	height: 0.186666rem;
+}
+.main .submitBox a{
+	display: block;
+	width: 8.866666rem;
+	height: 1.2rem;
+	background: #e10030;
+	border-radius: 0.266666rem;
+	margin: 0 auto;
+	font-size: 0.453333rem;
+	color: white;
+	text-align: center;
+	line-height: 1.2rem;
+	box-shadow:0 0.066666rem 0.066666rem #ffb9c8;
+	margin-bottom: 0.133333rem;
+}
+
+
+
+
+

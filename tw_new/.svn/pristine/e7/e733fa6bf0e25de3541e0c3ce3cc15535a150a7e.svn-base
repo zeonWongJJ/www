@@ -1,0 +1,53 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*表格模块*/
+.tableModule{width: 1190px; background: white; padding: 20px 0 0 25px; margin-top: 22px;}
+.addSearch{height: 50px;}
+.addSearch .addBox{float: left;}
+.addBox a{display: block; width: 125px; height: 37px; background: url(../images/au_search_03.png); line-height: 37px; text-align: center; font-size: 14px; color: #a09f9f;}
+.addBox a i{font-style: normal; margin-right: 10px;}
+.addSearch .searchBox{float: left; width: 600px; margin-left: 15px;}
+.searchBox .int{float: left; width: 161px; height: 37px; background: url(../images/au_search_05.png); text-indent: 10px;}
+.searchBox .btn{float: left; width: 33px; height: 37px; background: url(../images/search_06.png); cursor: pointer;}
+.lookOver{padding: 13px 30px 0 0;}
+.lookOver a{ font-size: 14px; color: #5a2e17; float: right;}
+.tableBox{width: 1140px;}
+.tableBox .thead{ background: #f5f7fd; height: 56px; line-height: 56px; }
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: center;}
+.tableBox .thead span{font-size: 14px; color: #333333; font-weight: bold;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 2px;}
+.tableBox .row{border-bottom: 1px solid #f4f4f4; background: white;}
+.tableBox span{display: inline-block; vertical-align: middle;}
+.tableBox span:nth-child(1){ width: 150px;}
+.tableBox span:nth-child(2){ width: 180px;}
+.tableBox span:nth-child(3){ width: 180px;}
+.tableBox span:nth-child(4){ width: 150px;}
+.tableBox span:nth-child(5){ width: 150px;}
+.tableBox span img{vertical-align: middle;}
+.tableBox a.edit{ display: inline-block; width: 15px; height: 15px; background: url(../images/pro_28.png); vertical-align: middle;}
+/*.tableBox a.gapCheck{display: inline-block; width: 23px; height: 23px; background: url(../images/pro_07.png) no-repeat center center; vertical-align: middle;}
+.tableBox a.grayCheck{display: inline-block; width: 23px; height: 23px; background: url(../images/pro_46.png) no-repeat center center; vertical-align: middle;}
+.tableBox a.greenCheck{display: inline-block; width: 23px; height: 23px; background: url(../images/pro_23.png) no-repeat center center; vertical-align: middle;}
+.tableBox a.open{display: inline-block; width: 39px; height: 15px; background:url(../images/pro_10.png) center center; vertical-align: middle;}
+.tableBox a.close{display: inline-block; width: 39px; height: 15px; background:url(../images/pro_33.png) center center; vertical-align: middle;}*/
+
+/*分页*/
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+/*修改预警值弹框*/
+.seatName{width: 440px; height: 240px; background:white; position: fixed; left: 50%; margin-left:-220px; top: 50%; margin-top: -120px; box-shadow: 0 0 20px #dedede; display: none;}
+.seatName .title{height: 50px; border-bottom: 1px solid #e8e8e8; padding: 0 15px 0 30px;}
+.seatName .title .h3{ color: #4ba6ea; font-size: 14px; display: inline-block; line-height: 50px;}
+.seatName .title .close{display: block; width: 17px; height: 17px; background: url(../images/pro_19.png); float: right; margin-top: 17px;}
+.seatName .inputBox{padding: 25px 0 0 40px; height: 50px;}
+.seatName .inputBox .oldNum{ font-size: 12px; color: #666666; float: left; line-height: 30px; margin-left: 8px;}
+.seatName .inputBox .biao{ float: left; font-size: 12px; color: #9c9fa5; line-height: 30px; width: 75px; text-align: right;}
+.seatName .inputBox .int{ float: left; font-size:12px; width: 140px; height: 30px; border: 1px solid #d0cfce; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 10px; margin-left: 8px;}
+.seatName .inputBox .red{ float:left; font-size: 12px; color: #676767; margin-left: 10px; line-height: 30px; display: none;}
+.seatName .inputBox .red i{display: inline-block; width: 18px; height: 18px; background: url(../images/f_03.png); vertical-align: middle; margin-right: 8px;}
+.seatName .sureBox a{ background:green; width: 85px; height: 28px; font-size: 14px; display: inline-block; background: #ffce1c; color: #a33300; text-align: center; line-height: 28px; border: 1px solid #e69c14; margin-left: 123px; margin-top: 25px;}

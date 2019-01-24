@@ -1,0 +1,39 @@
+/* �û����� */
+/* �û���Ϣ */
+.userContent{ background:#e10030; }
+.userTool{ text-align:right; padding-top:0.2rem; padding-right:0.46rem; }
+.userTool>a>img{ width:0.6rem; margin-left:0.3rem; vertical-align:middle; }
+.userPic{ text-align:center; }
+.userPic>img{ width:1.6rem; height:1.6rem; border-radius:50%;  }
+.userPic>span{ display:block; margin-top:0.32rem; font-size:0.42rem; color:white; }
+.userNav{ margin-top:0.7rem; padding-bottom:0.4rem; }
+.userNav>a{ width:3.2rem; display:inline-block; text-align:center; }
+.userNav>a>img{ width:0.6rem; }
+.userNav>a>p{ font-size:0.42rem; color:white; }
+.userNav>a>span{ font-size:0.34rem; color:white; }
+.userOrders{ background:white; }
+.userOrders>a{ width:3.2rem; display:inline-block; text-align:center; padding:0.57rem 0; }
+.userOrders>a:last-child>span{ border-right:none;  }
+.userOrders>a>span{ display:block; font-size:0.34rem; border-right:1px solid #ddd; }
+.cur{ background:#ffc002; }
+
+/* ���� */
+.nav{ margin-top:0.253rem; padding-bottom:0.5rem; background:white; }
+.nav>ul{  }
+.nav>ul>li{ display:inline-block; margin-left:0.72rem; margin-top:0.5rem; }
+.nav>ul>li>a>i{ width:1.54rem; height:1.54rem; line-height:1.54rem; display:inline-block; text-align:center; border:1px solid #d4d4d4; border-radius:8px;  }
+.nav>ul>li>a>i>img{ width:0.58rem; vertical-align:middle; }
+.nav>ul>li>a>span{ display:block; text-align:center; margin-top:0.24rem; font-size:0.37rem; }
+
+
+/* ��ʾ */
+.tips{ width:6.53rem; position:absolute; text-align:center; top:7rem; left:1.8rem; background:white; border-radius:0.2rem;  z-index:2; }
+.tips>p{ margin-top:0.48rem; font-size:0.42rem; font-weight:bold; }
+.tips>span{ display:inline-block; margin-bottom:0.48rem; font-size:0.32rem; }
+.tipsChoice{ font-size:0; }
+.tipsChoice>a{ width:3.2rem; height:1.06rem; line-height:1.06rem; display:inline-block; font-size:0.4rem; color:#005eff; border-top:0.02rem solid #ddd; }
+.tipsChoice>a:first-child{ border-right:0.02rem solid #ddd; }
+
+.tipsBox{ width:8rem; position:absolute; top:50%; left:1rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:black; opacity:0.5; z-index:1; }

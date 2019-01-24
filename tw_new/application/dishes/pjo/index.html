@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html style="height: 100%;" lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,width=device-width"/>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>帮家洁</title>
+  <script src="https://webapi.amap.com/maps?v=1.4.2&key=0c4feb71c7ebae0c7f02e339f7b470ff"></script>
+  <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+  <script src="https://webapi.amap.com/ui/1.0/main.js"></script>
+  <script>function wxAuthorizationLoginSuccess(result){result=JSON.parse(JSON.stringify(result));document.getElementById('wechat_nickname').value=result.nickname;document.getElementById('wechat_openid').value=result.openid}</script>
+</head>
+<body style="height: 100%;">
+<div id="app"></div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="style/common.css"/>
+    <link rel="stylesheet" href="style/swiper.css"/>
+    <link rel="stylesheet" href="style/index.css"/>
+    <title></title>
+    <script src="plugin/jquery-1.8.2.min.js"></script>
+    <script src="plugin/swiper.js"></script>
+    <script src="script/flexible.js"></script>
+    <script src="script/index.js">
+    </script>
+</head>
+<body>
+    <!-- 首页 -->
+    <div class="index">
+        <!-- 头部 -->
+        <header>
+            <!-- 地区 -->
+            <div class="area">
+                <span>广州</span>
+                <img src="images/i_06.png" alt=""/>
+            </div>
+            <!-- 地区 -->
+            <!-- 名称 -->
+            <div class="storeName">
+                <span>爽爽挝啡</span>
+            </div>
+            <!-- 名称 -->
+            <!-- 信息 -->
+            <img src="images/i_03.png" alt="" class="headInfo"/>
+            <!-- 信息 -->
+        </header>
+        <!-- 头部 -->
+        <!-- 内容 -->
+        <article>
+            <!-- 广告宣传 -->
+            <div class="advert">
+                <!-- 上 -->
+                <div class="advert_top">
+                    <a href="" class="advert_top_L" ><img src="images/bgv_02.png" alt="" /></a>
+                    <a href="" class="advert_top_M" ><img src="images/bgv_03.png" alt="" /></a>
+                    <a href="" class="advert_top_R"><img src="images/bgv_04.png" alt="" /></a>
+                </div>
+                <!-- 上 -->
+                <!-- 中 -->
+                <div class="advert_middle">
+                    <div class="advert_middle_L">
+                        <a href=""><img src="images/bg_03.png" alt="" /></a>
+                        <a href=""><img src="images/bg_06.png" alt="" /></a>
+                        <a href=""><img src="images/bgv_06.png" alt="" /></a>
+                    </div>
+                    <div class="advert_middle_M">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="#"><img src="images/i_15.png" alt=""/></a></div>
+                                <div class="swiper-slide"><a href="#"><img src="images/i_15.png" alt=""/></a></div>
+                                <div class="swiper-slide"><a href="#"><img src="images/i_15.png" alt=""/></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="advert_middle_R">
+                        <a href=""><img src="images/bg_05.png" alt="" /></a>
+                        <a href=""><img src="images/bg_07.png" alt="" /></a>
+                        <a href=""><img src="images/bgc_04.png" alt="" /></a>
+                    </div>
+                </div>
+                <!-- 中 -->
+                <!-- 下 -->
+                <div class="advert_bottom">
+                    <a href="" class="advert_bottom_L" ><img src="images/bgv_11.png" alt="" /></a>
+                    <a href="" class="advert_bottom_M" ><img src="images/bgv_09.png" alt="" /></a>
+                    <a href="" class="advert_bottom_R"><img src="images/bgv_10.png" alt="" /></a>
+                </div>
+                <!-- 下 -->
+            </div>
+            <!-- 广告宣传 -->
+        </article>
+        <!-- 内容 -->
+
+        <!-- 底部导航 -->
+        <footer>
+            <a href=""><img src="images/i_27.png" alt=""/></a>
+            <a href=""><img src="images/i_29.png" alt=""/></a>
+            <a href=""><img src="images/i_31.png" alt=""/></a>
+            <a href=""><img src="images/i_34.png" alt="" style="width:0.6rem"/></a>
+        </footer>
+        <!-- 底部导航 -->
+    </div>
+    <!-- 首页 -->
+</body>
+</html>

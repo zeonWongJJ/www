@@ -1,0 +1,337 @@
+<?php
+/**
+ * 助手函数提供
+ *
+ * @copyright 柒度信息科技
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+use utils\Utils;
+
+if (!function_exists('list_to_tree')) {
+    /**
+     * 数据转换成树形格式
+     * @param $data
+     * @param string $id
+     * @param string $pid
+     * @param string $children
+     * @return array
+     */
+    function list_to_tree($data, $id = 'id', $pid = 'parent_id', $children = 'children')
+    {
+        $tree = array();
+        //第一步，将分类id作为数组key,并创建children单元
+        foreach ($data as $category) {
+            $tree[$category[$id]]            = $category;
+            $tree[$category[$id]][$children] = array();
+        }
+        //第二步，利用引用，将每个分类添加到父类children数组中，这样一次遍历即可形成树形结构。
+        foreach ($tree as $key => $item) {
+            if ($item[$pid] != 0) {
+                $tree[$item[$pid]][$children][] = &$tree[$key];//注意：此处必须传引用否则结果不对
+                if (!$tree[$key][$children]) {
+                    unset($tree[$key][$children]); //如果children为空，则删除该children元素（可选）
+                }
+            }
+        }
+        //第三步，删除无用的非根节点数据
+        foreach ($tree as $key => $category) {
+            if ($category[$pid] != 0) {
+                unset($tree[$key]);
+            }
+        }
+
+        return $tree;
+    }
+}
+
+if (!function_exists('cache')) {
+    /**
+     * 缓存设置助手函数
+     *
+     * @param $key
+     * @param $value
+     * @param string $type
+     * @param int $lifetime
+     * @param string $group
+     * @param array $config
+     * @return bool|mixed
+     */
+    function cache($key, $value = '', $type = 'redis', $lifetime = 3600, $group = 'qidu_', array $config = [])
+    {
+        $type        = ucfirst($type);
+        $cacheHandle = \utils\Cache::getInstance($type, $config);
+
+        return $cacheHandle->operate($key, $value, $lifetime, $group);
+    }
+}
+
+if (!function_exists('response')) {
+    /**
+     * 响应输出助手函数
+     *
+     * @param string $msg
+     * @param int $code
+     * @param array $rows
+     * @param int $count
+     * @param array $append
+     * @param string $type
+     */
+    function response($msg = '暂无数据', $code = 1, array $rows = [], $count = 0, array $append = [], $type = 'json')
+    {
+        $response = app('response');
+        exit($response->send($msg, $code, $rows, $count, $append, $type));
+    }
+}
+
+if (!function_exists('success')) {
+    /**
+     * 助手函数，设置成功响应
+     * @param array|mixed $rows
+     * @param int $count
+     * @param array $append
+     * @param string $msg
+     * @param string $type
+     * @return mixed
+     */
+    function success($rows = [], $count = 1, $append = [], $msg = 'OK', $type = 'json')
+    {
+        /** @var \utils\Response $response */
+        $response = app('response');
+        $msg      = \is_array($rows) && !$rows ? '暂无数据' : $msg;
+        if (false === $rows) {
+            $rows = [];
+        }
+        exit($response->send($msg, 0, $rows, $count, $append, $type));
+    }
+}
+
+if (!function_exists('error')) {
+    /**
+     * 助手函数，设置失败响应
+     * @param string $msg
+     * @param int $code
+     * @param array $rows
+     * @param array $append
+     * @param string $type
+     * @return mixed
+     */
+    function error($msg = 'isp-error', $code = 1, array $rows = [], array $append = [], $type = 'json')
+    {
+        /** @var \utils\Response $response */
+        $response = app('response');
+        exit($response->send($msg, $code, $rows, 0, $append, $type));
+    }
+}
+
+if (!function_exists('validate')) {
+    /**
+     * 验证数据助手函数
+     *
+     * @param $data
+     * @param $rules
+     * @param $fields
+     * @return mixed
+     */
+    function validate($data, $rules, $fields)
+    {
+        return Utils::factory('validate')->setField($fields)->check($data, $rules);
+    }
+}
+
+if (!function_exists('app')) {
+    /**
+     * @param $alias
+     * @param null $class
+     * @return mixed
+     */
+    function app($alias, $class = null)
+    {
+        if (!$class) {
+            return \utils\Container::getApp($alias);
+        }
+        return \utils\Container::register($alias, $class);
+    }
+}
+
+if (!function_exists('filter')) {
+    /**
+     * 格式化数组
+     * @param $rows
+     * @return array
+     */
+    function filter(&$rows)
+    {
+        if (!$rows) {
+            return [];
+        }
+        if (count($rows) === count($rows, 1)) {
+            foreach ($rows as $key => $row) {
+                if (is_numeric($key)) {
+                    unset($rows[$key]);
+                }
+            }
+        } else {
+            foreach ($rows as &$row) {
+                $row = filter($row);
+            }
+        }
+        return $rows;
+    }
+}
+
+if (!function_exists('is_https')) {
+    function is_https()
+    {
+        if (!empty($_SERVER['HTTPS']) && olower($_SERVER['HTTPS']) !== 'off') {
+            return true;
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            return true;
+        } elseif (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && olower($_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off') {
+            return true;
+        }
+        return false;
+    }
+}
+
+if (!function_exists('get_client_ip')) {
+    /**
+     * 获取设备ip地址，微信H5支付的时候需要获取终端IP
+     * @return string
+     */
+    function get_client_ip()
+    {
+        if (getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
+
+            $ip = getenv('HTTP_CLIENT_IP');
+
+        } elseif (getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
+
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+
+        } elseif (getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
+
+            $ip = getenv('REMOTE_ADDR');
+
+        } elseif (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+        }
+
+        return preg_match('/[\d\.]{7,15}/', $ip, $matches) ? $matches [0] : '';
+    }
+}
+
+if (!function_exists('format_money')) {
+    /**
+     * 格式化金额 0.00
+     * @param $amount
+     * @return string
+     */
+    function format_money($amount)
+    {
+        return number_format($amount / 100, 2, '.', '');
+    }
+}
+
+if (!function_exists('hump_to_line')) {
+    function hump_to_line($str)
+    {
+        $str = preg_replace_callback('/([A-Z]{1})/', function ($matches) {
+            return '_' . strtolower($matches[0]);
+        }, $str);
+        return $str;
+    }
+}
+
+if (!function_exists('convert_underline')) {
+    function convert_underline($str)
+    {
+        $str = preg_replace_callback('/([-_]+([a-z]{1}))/i', function ($matches) {
+            return strtoupper($matches[2]);
+        }, $str);
+        return $str;
+    }
+}
+
+if (!function_exists('get_table')) {
+    /**
+     * 获取真实表名
+     * @param $tableName
+     * @return string
+     */
+    function get_table($tableName)
+    {
+        return get_config_item('db_sys_prefix') . $tableName;
+    }
+}
+
+if (!function_exists('is_weixin')) {
+    /**
+     * 判断是否微信浏览器请求过来的
+     * @return bool
+     */
+    function is_weixin()
+    {
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+            return true;
+        }
+        return false;
+    }
+}
+
+if (!function_exists('get_distance')) {
+    /**
+     * 计算两点之间的距离
+     * @param $lat1
+     * @param $lng1
+     * @param $lat2
+     * @param $lng2
+     * @param int $len_type
+     * @param int $decimal
+     * @return float
+     */
+    function get_distance($lat1, $lng1, $lat2, $lng2, $len_type = 1, $decimal = 2)
+    {
+        $lat1 = (float)$lat1;
+        $lng1 = (float)$lng1;
+
+        $lat2 = (float)$lat2;
+        $lng2 = (float)$lng2;
+
+        $radLat1 = $lat1 * PI() / 180.0;   //PI()圆周率
+        $radLat2 = $lat2 * PI() / 180.0;
+        $a       = (float)$radLat1 - (float)$radLat2;
+        $b       = ($lng1 * PI() / 180.0) - ($lng2 * PI() / 180.0);
+        $s       = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
+        $s       = $s * 6378.137;
+        $s       = round((float)$s * 1000);
+        if ($len_type-- > 1) {
+            $s /= 1000;
+        }
+        return round($s, $decimal);
+    }
+}
+
+if (!function_exists('array_sort_by_key')) {
+    /**
+     * @param array $array :需要排序的数组
+     * @param string $keys :需要根据某个key排序
+     * @param string $sort :倒叙还是顺序
+     * @return array
+     */
+    function array_sort_by_key($array, $keys, $sort = 'asc')
+    {
+        $newArr = $valArr = array();
+        foreach ($array as $key => $value) {
+            $valArr[$key] = $value[$keys];
+        }
+        ($sort == 'asc') ? asort($valArr) : arsort($valArr);//先利用keys对数组排序，目的是把目标数组的key排好序
+        reset($valArr); //指针指向数组第一个值
+        foreach ($valArr as $key => $value) {
+            $newArr[$key] = $array[$key];
+        }
+        return $newArr;
+    }
+}

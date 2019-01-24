@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/user_header"
+            android:layout_width="40dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/icon_user_circle_default"
+            android:layout_gravity="left"
+            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/nick_name"
+                android:layout_width="match_parent"
+                android:text="昵称"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_item_title"
+                android:layout_width="match_parent"
+                android:text=""
+                android:maxLines="3"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/iv_details"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/blue"
+                android:text="全文"
+                android:visibility="gone"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--<TextView
+            android:id="@id/comment_iv"
+            android:layout_width="wrap_content"
+            android:background="@drawable/icon_message"
+            android:layout_height="wrap_content" />-->
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_forward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_task_list_radius"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/default_padding">
+        <TextView
+            android:id="@+id/comment_from"
+            android:layout_width="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/comment_from_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <com.app.base.widget.NineGridImageLayout
+        android:id="@+id/layout_nine_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="@dimen/default_padding"
+        app:sapcing="4dp" />
+    <!--点赞 转发-->
+    <LinearLayout
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="@dimen/default_padding"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/comment_add_time"
+            android:layout_width="wrap_content"
+            android:text="2018年5月10号 11:12"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/gray"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/delete_comment"
+            android:layout_width="wrap_content"
+            android:text="删除"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/blue"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/like_comment"
+                android:layout_width="wrap_content"
+                android:text="123"
+                android:gravity="center"
+                android:drawableRight="@drawable/like_unselect"
+                android:drawablePadding="3dp"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/gray"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/link_comment"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:drawableRight="@drawable/icon_comment"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/gray"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/forward_comment"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/gray"
+                android:drawableRight="@drawable/icon_forward"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/comment_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_task_list_radius"
+        android:padding="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="@dimen/default_padding"
+        android:layout_marginBottom="@dimen/default_padding"
+        />
+
+    <include layout="@layout/line"/>
+
+</LinearLayout>

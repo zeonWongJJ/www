@@ -1,0 +1,42 @@
+/* 头部*/
+.head                         { width:100%; padding:10px 0; background:white;  border-bottom:1px solid #E8E8E8;}
+.head>em                      { padding:0 20px; margin-right:10px; border-right:1px solid #E8E8E8;}
+/* 头部 */
+
+/* 我的积分 */
+.userPoints                    { background:white; padding-top:15px;}
+.userPoints>h4,.userPoints>p  { font-size:14px; text-align:center;}
+.userPoints>p                  { color:#36327C;}
+.userPoints>p>span             { font-size:45px; }
+.pointsInfo>p                  { font-size:14px; text-align:center;}
+.pointsInfo>p>em               { font-size:18px; color:#36327C;}
+/*  积分分类 */
+.pointsCate                         { font-size:0; border-top:1px solid #E8E8E8; margin-top:20px;}
+.pointsCate>div:nth-child(odd)     { border-right:1px solid #E8E8E8;}
+.pointsCate>div>a                   { display:block; text-align:center; line-height:27px; }
+.pointsCate>div>a>i                 { display:inline-block;}
+.pointsCate>div>a>i>img             { width:40px;}
+.cbox                                { display:inline-block; text-align:left; }
+.reward,.record                     { width:49.8%; display:inline-block; padding:15px 0; font-size:14px;}
+.reward em,.record em               { display:block; font-weight:bold; color:#4C4C4C;}
+.reward span,.record span           { font-size:12px; color:#4C4C4C;}
+/*  积分分类 */
+/* 我的积分 */
+.exchange                      { width:100%; float:left; margin:10px 0; background:white;}
+.exTit                         { padding:10px 0;}
+.exTit>span                    { margin-left:10px; padding-left:20px; border-left:3px solid #74CCF4; font-weight:bold; font-size:16px; }
+.wares li                      { width:50%; float:left; text-align:center;}
+.wares li>a                    { display:block; padding:8% 14%;}
+.wares li>a:nth-child(odd)    { border-left:1px solid #E8E8E8;  border-top:1px solid #E8E8E8;}
+.wares li>a>i                  { height:90px; line-height:110px;  display:block;  }
+.wares li>a>i>img              { width:120px;}
+.exBox                          { text-align:left; }
+.exBox>p                        { font-size:14px; color:#5A5A5A;}
+.exBox>p>span                   { color:red;}
+
+.bottom                         { clear:both; text-align:center; margin-bottom:10px; color:#dddddd;}
+.bottom p                       { width:100px; display:inline-block; height:2px;  border:none;border-top:2px solid #dddddd;}
+
+@media screen and (min-width:420px) and (max-width:1200px){
+
+}

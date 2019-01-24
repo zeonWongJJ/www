@@ -1,0 +1,28 @@
+.servantChoice                                { clear:both; position:relative; z-index:98; padding:0 0.4rem; border-top:1px solid #ddd; background:white; }
+.servantChoice>ul                            { font-size:0.4rem; }
+.servantChoice>ul>li                         { padding:0.4rem 0; border-bottom:1px solid #ddd; }
+.servantChoice>ul>li>span                    { font-weight:bold; }
+.companySwitch img                            { width:55px; float:right; }
+.servantRank>ul                               { width:98%; text-align:center; margin:0 auto; }
+.servantRank>ul>li                            { display:inline-block; margin-top:0.4rem; font-size:0px; }
+.servantRank>ul>li>a>span                     { height:0.8rem; line-height:0.8rem; padding:0 0.2rem; display:inline-block; font-size:0.4rem; border:1px solid #ddd; border-bottom-left-radius:1rem; border-top-left-radius:1rem; }
+.servantRank>ul>li>a>em                       { height:0.8rem; line-height:0.8rem; padding:0 0.2rem; font-size:0.4rem; display:inline-block; border:1px solid #ddd; border-bottom-right-radius:1rem; border-top-right-radius:1rem; }
+.servantRank>ul>li:nth-child(2)>a>span        { color:white; background:#666df4; }
+/* 信誉 */
+.credit>span                        { display:block; margin-bottom:0.4rem; }
+.credit>a                           { padding:0.15rem 0.2rem; color:#454545; border:1px solid #ddd; border-radius:1rem; }
+.credit>hr                          { width:0.15rem; height:1px; border:0; background:black; display:inline-block; vertical-align:bottom;}
+.credit>a:nth-child(2)             { margin-left:0.4rem; }
+/* 保障金与保修时间 */
+.ketubbah input[type="range"]                         { width:90%; height:0.05rem; background:-webkit-linear-gradient(left,#666ff3,#66bae9); background: -o-linear-gradient(right,#666ff3,#66bae9); background: -moz-linear-gradient(right,#666ff3,#66bae9);  background: linear-gradient(to right,#666ff3,#66bae9); border-radius:1rem; -webkit-appearance: none;}
+
+.ketubbah input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none;  cursor: default; height:0.6rem; width:0.6rem; background-image:url(../img/range_07.png); background-repeat:no-repeat; background-size:0.6rem; border-radius:50%; }
+
+.rangeBox                                { width:90%; text-align:center; margin:0.4rem auto; }
+.rangeBox>p                              { width:100%; float:left; }
+.rangeBox>p>span                         { float:left; font-weight:bold; margin-bottom:0.2rem; }
+.rangeBox>p>em                           { float:right; font-weight:bold;  margin-bottom:0.2rem; }
+/*  重置 */
+.ketubbah>em                             { display:inline-block; margin-top:0.25rem; }
+/* 确定 */
+.ketubbahSure                            { width:3.2rem; text-align:center; float:right; font-size:0.45rem; padding:0.2rem 0; border-radius:1rem; color:white; background:-webkit-linear-gradient(left,#666ff3,#66bae9); background: -o-linear-gradient(right,#666ff3,#66bae9); background: -moz-linear-gradient(right,#666ff3,#66bae9);  background: linear-gradient(to right,#666ff3,#66bae9);  }

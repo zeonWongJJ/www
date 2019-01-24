@@ -1,0 +1,23 @@
+/* �ҵ���� */
+.pjoTitle{ border-bottom:none; }
+.pjoTitle>a.back{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+.pjoTitle>span{ font-weight:normal; }
+.pjoTitle,.userAmount{ background:#ffd703; }
+.userAmount{ padding:0 0.42rem; }
+.userAmount>p{ padding-top:0.65rem; font-size:0.42rem; }
+.userAmount>span{ display:inline-block; margin-top:0.74rem; padding-bottom:0.6rem; font-size:1.09rem; }
+.userAmount>a{ width:2.53rem; height:1.06rem; line-height:1.06rem; float:right; text-align:center; margin-top:0.8rem;  font-size:0.4rem; background:white; border-radius:0.1rem;  }
+/* ֧���б� */
+.payList{ margin-top:0.26rem; background:white; }
+.payList>dl>dt,.payList>dl>dd{ padding:0.37rem 0; margin-left:0.46rem; border-bottom:0.01rem solid #ddd;  }
+.payList>dl>dt>p{ padding-left:0.33rem; margin-left:-0.5rem; font-size:0.42rem; border-left:0.13rem solid #ffd703; }
+.payList>dl>dd>a>em{ display:inline-block; }
+.payList>dl>dd>a>em>span{ display:block; font-size:0.37rem; font-style:normal; }
+.payList>dl>dd>a>em>em{ font-size:0.32rem; font-style:normal; color:#666; }
+.payList>dl>dd>a>dfn{ float:right; text-align:right; margin-right:0.42rem; }
+.payList>dl>dd>a>dfn>span{ display:block; font-size:0.37rem; font-style:normal; color:#e10030; }
+.payList>dl>dd>a>dfn>em{ font-size:0.32rem; font-style:normal; color:#666; }
+
+
+

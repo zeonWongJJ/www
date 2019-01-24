@@ -1,0 +1,26 @@
+body{ background:#efefef; }
+/*  服务介绍  */
+.serviceIntroduce            { position:relative; margin:0.25rem; }
+.inputBox>textarea           { width:8.9rem; height:8rem; padding:0.3rem; font-size:0.45rem; }
+.serviceIntroduce>p          { position:absolute; bottom:0.3rem; right:0.2rem; font-size:0.45rem; color:#999; }
+.serviceIntroduce>p>img      { width:0.6rem; vertical-align:bottom; }
+/* 语音输入 */
+.yuyin                       { display:block; text-align:center; margin-top:3rem; }
+.yuyin>a                     { width:5rem; height:1.4rem; line-height:1.4rem; display:inline-block; font-size:0.45rem ;color:white; border-radius:10px;  background:linear-gradient(120deg,#6671f3,#66b2ea); }
+.yuyin>a>img                 { width:0.5rem; vertical-align: middle; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

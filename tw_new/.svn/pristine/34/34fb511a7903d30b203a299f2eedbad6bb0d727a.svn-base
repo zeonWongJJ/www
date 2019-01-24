@@ -1,0 +1,34 @@
+body{ background:#efefef; }
+/*  保修进度 */
+/* 保修单 */
+.warrOrders        { font-size:0.4rem; background:white; }
+.warrOrders>p      { padding:0.3rem 0.3rem; }
+.warrOrdersInfo    { padding:0 0.3rem 0.2rem 0.3rem; }
+.d1,.d2,.d3        { display:inline-block; }
+.d1>i>img          { width:2rem; }
+.d2,.d3            { vertical-align:top; }
+.d2                { width:5.5rem; margin-left:0.1rem; }
+.d2>p              { font-weight:bold; }
+.d2>span           { display:inline-block; padding:0 0.35rem; margin-top:0.2rem; font-size:0.35rem; border:0.01rem solid red; color:red; border-radius:0.1rem; }
+.d3                { width:1.5rem; text-align:right; }
+.d3>p              { font-weight:bold; }
+.d3>em             { color:#ddd; }
+
+/*  进度 */
+.progress            { margin-top:0.25rem; background:white; }
+.proTitle            { height:1rem; line-height:1rem; margin:0 0.4rem; font-size:0.4rem; border-bottom:0.01rem solid #ddd; }
+.proTitle>em         { float:right; }
+.proTitle>em>img     { width:0.7rem; vertical-align:middle; }
+.proTitle>em>span    { color:#666DF4; vertical-align:sub; }
+/* 进度信息 */
+.progressInfo              { position:relative; }
+.verticalLine              { width:0.02rem;  position:absolute; top:0.5rem; left:0.5rem; display:inline-block; background:#999; border:none; }
+.progressInfo>ul           { padding-top:0.5rem; padding-bottom:4rem;  }
+.progressInfo>ul>li        { position:relative; margin-left:1rem; margin-bottom:0.5rem; padding-bottom:0.5rem; font-size:0.45rem; border-bottom:0.01rem solid #ddd; }
+.progressInfo>ul>li:last-child{ border:none; }
+.progressInfo>ul>li>span   { width:0.25rem; height:0.25rem; position:absolute; left:-0.6rem;
+    top:0.1rem; display:inline-block; border-radius:50%; background:#999; }
+.progressInfo>ul>li>em     { font-size:0.4rem; color:#999; }
+
+
+

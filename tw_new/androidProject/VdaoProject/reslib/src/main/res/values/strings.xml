@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">resLib</string>
+
+    <string name="startlocation">开始定位</string>
+    <string name="stoplocation">停止定位</string>
+
+
+    <string name="hint_early_time">最早服务时间</string>
+    <string name="hint_last_time">最晚服务时间</string>
+    <string name="hint_default_time">请选择服务时间</string>
+
+    <string name="registration_failed_without_permission">Registration failed, without permission!</string>
+    <string name="Registration_failed">Registration failed</string>
+</resources>

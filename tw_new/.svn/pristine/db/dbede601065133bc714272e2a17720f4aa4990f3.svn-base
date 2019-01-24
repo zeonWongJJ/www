@@ -1,0 +1,63 @@
+
+.balance{ width:100%; height:500px; background:url("../images/gga_02.png") 100% 100%;  }
+.article{ width:1200px; margin:0 auto; }
+
+/* 消息 */
+.message{ position:relative; padding:33px; margin-top:30px; background:white; }
+.message>span{ position:absolute; display:inline-block; left:-13px; padding:8px 28px; background:#ff8d00; font-size:20px; color:white; }
+.message>i{ position:absolute; top:77px; left:-13px; border-left: 13px solid transparent;  border-top: 6px solid #ff8d00; }
+.messageList{ margin-top:80px; }
+.messageList>dl{ margin-bottom:15px; border-bottom:1px solid #ddd; }
+.messageList>dl>dt>a{ cursor:pointer; }
+.messageList>dl>dt>a>i{ width:8px; height:8px; display:inline-block; vertical-align:middle; margin-left:10px; background:#ff8d00; border-radius:50%; }
+.messageList>dl>dt>a>span{ vertical-align:middle; margin-left:10px; font-size:16px; color:#ff8d00; font-weight:bold; }
+.messageList>dl>dt>span{ float:right; font-size:14px; color:#666666; }
+.messageList>dl>dd{ width:850px; height:18px; position:relative; overflow:hidden; margin:10px 0; padding-left:32px; font-size:14px; color:#666666; }
+.messageList>dl>dd:after{ content:"..."; position:absolute; bottom:0; right:0; padding:0 20px 1px 45px; background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;   }
+.message>a{ display:block; text-align:right; margin-top:20px; }
+.message>a>span{ font-size:16px; color:#ff8d00; }
+.message>a>img{ width:8px; }
+.message>a>span,.message>a>img{ vertical-align:middle; }
+
+.page{ text-align:right; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+.page>a[href="#"]{ background:#6e5c58; color:white; }
+
+.popMess{
+    width:640px;
+    position:absolute;
+    left:700px;
+    background:white;
+    z-index:2;
+}
+.popMess>p,.popNotice>p{
+    height:33px;
+    line-height:33px;
+    text-align:right;
+    margin-right:24px;
+    font-size:12px;
+    cursor:pointer;
+}
+.popMess>dl,.popNotice>dl{
+    height:285px;
+    overflow-y:scroll;
+    padding:0 62px;
+}
+.popMess>dl>dt{
+    font-size:14px;
+    font-weight:bold;
+}
+.popMess>dl>dd{
+    margin-top:14px;
+    font-size:12px;
+}
+
+.lay{
+    position:absolute;
+    width:100%;
+    top:0;
+    background:black;
+    opacity:0.5;
+    z-index:1;
+}

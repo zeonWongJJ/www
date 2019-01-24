@@ -1,0 +1,142 @@
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[71]------ =====签名报文开始====== 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[39]------ 读取签名证书…… 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[43]------ ./key_private.pfxfile_get_contents fail。 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[39]------ 读取签名证书…… 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[43]------ ./key_private.pfxfile_get_contents fail。 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[84]------ 签名key=val&...串 >accessType=0&backUrl=http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php&bizType=000201&certId=&channelType=07&currencyCode=156&encoding=utf-8&frontUrl=http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php&merId=802440054990521&orderId=20171225100452&payTimeout=20171225114503&signMethod=01&txnAmt=1000&txnSubType=01&txnTime=20171225100503&txnType=01&version=5.1.0 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[101]------ 摘要sha256x16 >ef0bef79cdaef9c505b6c33d01ac2e407a381a9a235ef8ceccc9fedb4fef088d 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[109]------ >>>>>签名失败<<<<<<< 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[119]------ =====签名报文结束====== 
+2017-12-25 10:05:03, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[364]------ 自动跳转html><html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://gateway.95516.com/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.1.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="merId" id="merId" value="802440054990521" />
+    <input type="hidden" name="orderId" id="orderId" value="20171225100452" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20171225100503" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1000" />
+    <input type="hidden" name="payTimeout" id="payTimeout" value="20171225114503" />
+    <input type="hidden" name="certId" id="certId" value="" />
+   <!-- <input type="submit" type="hidden">-->
+    </form>
+</body>
+</html> 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[71]------ =====签名报文开始====== 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[39]------ 读取签名证书…… 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[43]------ ./key_private.pfxfile_get_contents fail。 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[39]------ 读取签名证书…… 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[43]------ ./key_private.pfxfile_get_contents fail。 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[84]------ 签名key=val&...串 >accessType=0&backUrl=http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php&bizType=000201&certId=&channelType=07&currencyCode=156&encoding=utf-8&frontUrl=http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php&merId=802440054990521&orderId=20171225100452&payTimeout=20171225114549&signMethod=01&txnAmt=1000&txnSubType=01&txnTime=20171225100549&txnType=01&version=5.1.0 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[101]------ 摘要sha256x16 >e8a4b11540105ee82d3074103184a8694035622d708be9711d50be7e5d518481 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[109]------ >>>>>签名失败<<<<<<< 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[119]------ =====签名报文结束====== 
+2017-12-25 10:05:49, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[364]------ 自动跳转html><html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://gateway.95516.com/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.1.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="merId" id="merId" value="802440054990521" />
+    <input type="hidden" name="orderId" id="orderId" value="20171225100452" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20171225100549" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1000" />
+    <input type="hidden" name="payTimeout" id="payTimeout" value="20171225114549" />
+    <input type="hidden" name="certId" id="certId" value="" />
+   <!-- <input type="submit" type="hidden">-->
+    </form>
+</body>
+</html> 
+2017-12-25 10:06:17, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[71]------ =====签名报文开始====== 
+2017-12-25 10:06:17, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[39]------ 读取签名证书…… 
+2017-12-25 10:06:17, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[71]------ 签名证书读取成功，序列号：73840879929 
+2017-12-25 10:06:17, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[84]------ 签名key=val&...串 >accessType=0&backUrl=http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php&bizType=000201&certId=73840879929&channelType=07&currencyCode=156&encoding=utf-8&frontUrl=http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php&merId=802440054990521&orderId=20171225100452&payTimeout=20171225114617&signMethod=01&txnAmt=1000&txnSubType=01&txnTime=20171225100617&txnType=01&version=5.1.0 
+2017-12-25 10:06:17, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[101]------ 摘要sha256x16 >fec9e24a78213bbc4d9b5c62655d99413086d6c89fd3e850fecf5e6ffa9cefca 
+2017-12-25 10:06:18, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[106]------ 签名串为 >QxxWUB5jNlHBWoIAxRv5H3ByTCVhySo0aK9ClIa33kamb1TlYTwiiQ3Gr1JPQbzhdeVCMPeT579WdvXUkrf/Gl2lxWQZ5WjP0x7h2fyojWRdXnNp0WJyNU1Rc49J+gubCCoi2ixkCo0iHmQ+9ZGimSNKqEkzwoqCTI+jmxqoP+hpUd4IoEcvaPf61NvuJRUK5a9QBekDswY1aDuU5NeA2oregI+z79KC0asPX9pwOh4BckFXctGCaJgfAf2LVX6Os3ZDKTARFJzTe6hsVr6vozdoPcVxUk5MBSNBSsq1vMNa/9/ynqOE8n0fIYwYcpvGyEIY5zYV4cf9ao/SSCfrxQ== 
+2017-12-25 10:06:18, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[119]------ =====签名报文结束====== 
+2017-12-25 10:06:18, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[364]------ 自动跳转html><html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://gateway.95516.com/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.1.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="merId" id="merId" value="802440054990521" />
+    <input type="hidden" name="orderId" id="orderId" value="20171225100452" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20171225100617" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1000" />
+    <input type="hidden" name="payTimeout" id="payTimeout" value="20171225114617" />
+    <input type="hidden" name="certId" id="certId" value="73840879929" />
+    <input type="hidden" name="signature" id="signature" value="QxxWUB5jNlHBWoIAxRv5H3ByTCVhySo0aK9ClIa33kamb1TlYTwiiQ3Gr1JPQbzhdeVCMPeT579WdvXUkrf/Gl2lxWQZ5WjP0x7h2fyojWRdXnNp0WJyNU1Rc49J+gubCCoi2ixkCo0iHmQ+9ZGimSNKqEkzwoqCTI+jmxqoP+hpUd4IoEcvaPf61NvuJRUK5a9QBekDswY1aDuU5NeA2oregI+z79KC0asPX9pwOh4BckFXctGCaJgfAf2LVX6Os3ZDKTARFJzTe6hsVr6vozdoPcVxUk5MBSNBSsq1vMNa/9/ynqOE8n0fIYwYcpvGyEIY5zYV4cf9ao/SSCfrxQ==" />
+   <!-- <input type="submit" type="hidden">-->
+    </form>
+</body>
+</html> 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[71]------ =====签名报文开始====== 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[39]------ 读取签名证书…… 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\cert_util.php ], Line[71]------ 签名证书读取成功，序列号：73840879929 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[84]------ 签名key=val&...串 >accessType=0&backUrl=http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php&bizType=000201&certId=73840879929&channelType=07&currencyCode=156&encoding=utf-8&frontUrl=http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php&merId=802440054990521&orderId=20171225100452&payTimeout=20171225114628&signMethod=01&txnAmt=1000&txnSubType=01&txnTime=20171225100628&txnType=01&version=5.1.0 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[101]------ 摘要sha256x16 >598d204badcf388fe8798a173af62851ae8c2b2390eea70a970d72d075df3119 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[106]------ 签名串为 >Fdul12t9+Hda3QydFQPmIS72/U0uR9Gj9Yqteqyg1AZNkWFpCfUZE+Weh+7WJU9cTeP4+UCBIb3j6cU3Qqi9D+rReq5Sl+/+UXwmSgxK7cVav+7BZ3QT+c8OPGXZbwS16FKW+YxlpsILq8TbrUfLdO6YwMyUHhFfzQ0PwnVTa8oDPzo+NmFWbai+UtFwtdPPO69zQfPyoTvBhmeb/TvD6B8uqIZ3cqritDpLb2zi7UxaMN01ECylHE7G4AKwFFdZBAqPmOxyGRD44WZ29UxlGXBcqOsxuZKwNFty36e5KvKJ44Tw6bkSby1l4fvAClxiP7DL3Du8iUb30P4Sw18Bxg== 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[119]------ =====签名报文结束====== 
+2017-12-25 10:06:28, INFO, 127.0.0.1, File[ E:\www\tw\web\7dugo_pc\b2c\sdk\acp_service.php ], Line[364]------ 自动跳转html><html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://gateway.95516.com/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.1.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://localhost:8086/upacp_demo_b2c/demo/api_01_gateway/FrontReceive.php" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://222.222.222.222:8080/upacp_demo_b2c/demo/api_01_gateway/BackReceive.php" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="merId" id="merId" value="802440054990521" />
+    <input type="hidden" name="orderId" id="orderId" value="20171225100452" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20171225100628" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1000" />
+    <input type="hidden" name="payTimeout" id="payTimeout" value="20171225114628" />
+    <input type="hidden" name="certId" id="certId" value="73840879929" />
+    <input type="hidden" name="signature" id="signature" value="Fdul12t9+Hda3QydFQPmIS72/U0uR9Gj9Yqteqyg1AZNkWFpCfUZE+Weh+7WJU9cTeP4+UCBIb3j6cU3Qqi9D+rReq5Sl+/+UXwmSgxK7cVav+7BZ3QT+c8OPGXZbwS16FKW+YxlpsILq8TbrUfLdO6YwMyUHhFfzQ0PwnVTa8oDPzo+NmFWbai+UtFwtdPPO69zQfPyoTvBhmeb/TvD6B8uqIZ3cqritDpLb2zi7UxaMN01ECylHE7G4AKwFFdZBAqPmOxyGRD44WZ29UxlGXBcqOsxuZKwNFty36e5KvKJ44Tw6bkSby1l4fvAClxiP7DL3Du8iUb30P4Sw18Bxg==" />
+   <!-- <input type="submit" type="hidden">-->
+    </form>
+</body>
+</html> 

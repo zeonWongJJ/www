@@ -1,0 +1,287 @@
+<?php
+/**
+ * @copyright 广州柒度信息科技有限公司
+ * @version 0.1-dev
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace model;
+
+use utils\BaseModel;
+
+class ToolModel extends BaseModel
+{
+    /**
+     * 判断时间是否在指定的时间段内
+     * @param string $start 开始时分,精确到分 10:30
+     * @param string $end 结束时分,精确到分 10:30
+     * @param integer $timestamp 要判断的时间戳
+     * @return bool
+     */
+    public static function checkIsBetweenTime($start, $end, $timestamp): bool
+    {
+        $date          = date('H:i', $timestamp);
+        $cur_time      = strtotime($date);
+        $assign_time_1 = strtotime($start);
+        $assign_time_2 = strtotime($end);
+        return $cur_time > $assign_time_1 && $cur_time < $assign_time_2;
+    }
+
+    /**
+     * 转化js格式的日期格式为时间戳
+     * Sat Nov 17 2018 13:00:00 GMT+0800 (中国标准时间)
+     * @param $time_str
+     * @return false|int
+     */
+    public static function strtotime($time_str)
+    {
+        $time_str = str_replace(['(中国标准时间)', 'native Date '], '', $time_str);
+        return strtotime(trim($time_str));
+    }
+
+    /**
+     * 生成订单号，测试1000个并发下可能会出现4 - 10个重复
+     * @return string 订单号
+     */
+    public static function orderNumber(): string
+    {
+        static $order_sn = [];
+        $ors = date('ymd') . substr(time(), -5) . substr(microtime(), 2, 5); //生成16位数字基本号
+        if (isset($order_sn[$ors])) {
+            $order_sn[$ors]++;
+        } else {
+            $order_sn[$ors] = 1;
+        }
+        cache('order.sn.g' . $ors, $order_sn[$ors], 'redis', 5184000);
+        return $ors . str_pad($order_sn[$ors], 7, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * 生成GUID
+     * @return string
+     */
+    public static function guid()
+    {
+        if (\function_exists('com_create_guid')) {
+            return com_create_guid();
+        }
+
+        mt_srand((double)microtime() * 10000);//optional for php 4.2.0 and up.
+        $charid = strtoupper(md5(uniqid(mt_rand(), true)));
+        $hyphen = \chr(45);// "-"
+        $uuid   = \chr(123)// "{"
+            . substr($charid, 0, 8) . $hyphen
+            . substr($charid, 8, 4) . $hyphen
+            . substr($charid, 12, 4) . $hyphen
+            . substr($charid, 16, 4) . $hyphen
+            . substr($charid, 20, 12)
+            . \chr(125);// "}"
+        return $uuid;
+    }
+
+    /**
+     * XML转JSON
+     * @param $source
+     * @return false|string
+     */
+    public static function XML2Json($source)
+    {
+        if (is_file($source)) { //传的是文件，还是xml的string的判断
+            $xml_array = simplexml_load_string(file_get_contents($source));
+        } else {
+            $xml_array = simplexml_load_string($source);
+        }
+        return json_encode($xml_array);
+    }
+
+    /**
+     * 逆地理编码
+     * @param string|array $location 经纬度坐标;最多支持20个坐标点;多个点之间用"|"分割。
+     * @param string|array string $poitype 支持传入POI TYPECODE及名称；支持传入多个POI类型，多值间用“|”分隔
+     * @param int $radius 查询POI的半径范围。取值范围：0~3000,单位：米
+     * @param string $extensions 返回结果控制 {base|all}
+     * @param bool $batah batch=true为批量查询。batch=false为单点查询
+     * @return mixed
+     * {
+     * "status" : "1",
+     * "info" : "OK",
+     * "infocode" : "10000",
+     * "regeocode" :
+     * {
+     * "formatted_address" : "北京市朝阳区望京街道方恒国际中心B座方恒国际中心",
+     * "addressComponent" : { … },
+     * "pois" : [ … ],
+     * "roads" : [ … ],
+     * "roadinters" : [ … ],
+     * "aois" : [ … ]
+     * }
+     * }
+     */
+    public static function geocode($location, $poitype = '', $radius = 1000, $extensions = 'all', $batah = false)
+    {
+        $url = 'https://restapi.amap.com/v3/geocode/regeo?key=a531717a1987f222874df9a515a8a9ee&location=';
+        if (\is_array($location)) {
+            foreach ($location as $local) {
+                $url .= $local . '|';
+            }
+        } else {
+            $url .= $location;
+        }
+        $url = rtrim($url, '|');
+        if ($poitype) {
+            $url .= '&poitype=';
+            if (\is_array($poitype)) {
+                foreach ($poitype as $poi) {
+                    $url .= $poi . '|';
+                }
+            } else {
+                $url .= $poitype;
+            }
+            $url = rtrim($url, '|');
+        }
+        $url    .= "&radius={$radius}&extensions={$extensions}&batch={$batah}&roadlevel=0";
+        $result = file_get_contents($url);
+        $result = trim($result, "\xEF\xBB\xBF"); // 去除BOM头
+        $rs     = json_decode($result, true);
+        if ($rs['status'] == 1 && $rs['info'] == 'OK') {
+            return $rs['regeocode'];
+        }
+        return false;
+    }
+
+    /**
+     * @remark 获取当天开始与结束时间戳
+     * @return array
+     */
+    public static function getTodayBeginAndEnd(): array
+    {
+        $t     = $_SERVER['REQUEST_TIME'];
+        $start = mktime(0, 0, 0, date('m', $t), date('d', $t), date('Y', $t));
+        $end   = mktime(23, 59, 59, date('m', $t), date('d', $t), date('Y', $t));
+
+        return [$start, $end];
+    }
+
+    /**
+     * PHP计算两个时间段是否有交集（边界重叠不算）
+     * @param string $beginTime1
+     * @param string $endTime1
+     * @param string $beginTime2
+     * @param string $endTime2
+     * @return bool
+     */
+    public static function isTimeCross($beginTime1 = '', $endTime1 = '', $beginTime2 = '', $endTime2 = '')
+    {
+        $status = $beginTime2 - $beginTime1;
+        if ($status > 0) {
+            $status2 = $beginTime2 - $endTime1;
+            return !($status2 >= 0);
+        }
+
+        $status2 = $endTime2 - $beginTime1;
+        return $status2 > 0;
+    }
+
+    /**
+     * 404响应
+     */
+    public static function show404()
+    {
+        header('HTTP/1.1 404 Not Found');
+        header('Status: 404 Not Found');
+        exit(404);
+    }
+
+    public static function exif_imagetype($filename)
+    {
+        if (!\function_exists('exif_imagetype')) {
+            if ((list($width, $height, $type, $attr) = getimagesize($filename)) !== false) {
+                return $type;
+            }
+            return false;
+        }
+
+        return exif_imagetype($filename);
+    }
+
+    public static function queryField($table_name)
+    {
+        $self = new static();
+        $sql  = <<<EOF
+select COLUMN_NAME,column_comment from INFORMATION_SCHEMA.Columns where table_name= '{$self->db->get_prefix(get_table($table_name))}';
+EOF;
+        /** @var \PDOStatement $pdo_state */
+        $pdo_state = $self->db->query($sql);
+        $fields    = $pdo_state ? $pdo_state->fetchAll(\PDO::FETCH_ASSOC) : [];
+        $res       = [];
+        foreach ($fields as $field) {
+            $res[] = $field['COLUMN_NAME'];
+        }
+        return $res;
+    }
+
+    public static function add_crontab_job($m, $h, $dom, $mon, $dow, $command)
+    {
+        self::edit_crontab_job($m, $h, $dom, $mon, $dow, $command);
+    }
+
+    public static function edit_crontab_job($m, $h, $dom, $mon, $dow, $command)
+    {
+        $cron_command = self::_construct_crontab_job_command($m, $h, $dom, $mon, $dow, $command);
+        $f            = popen('crontab -e', 'w');
+        self::_delete_crontab_job($f, $command);
+        self::_add_crontab_job($f, $cron_command);
+        self::_save_and_exit_from_vim($f);
+        pclose($f);
+
+    }
+
+    private static function _construct_crontab_job_command($m, $h, $dom, $mon, $dow, $command)
+    {
+        return "$m\t$h\t$dom\t$mon\t$dow\t$command";
+    }
+
+    private static function _delete_crontab_job($f, $pattern)
+    {
+        $pattern = str_replace('/', '\/', $pattern);    //escape the '/' char
+        fputs($f, ':g/' . $pattern . '/d');  //delete the matched line
+        fputs($f, "\n");
+    }
+
+    private static function _add_crontab_job($f, $command)
+    {
+        fputs($f, 'G');      //jump to the last line
+        fputs($f, 'o');      //make a new line and enter the edit mode
+        fputs($f, $command);
+    }
+
+    private static function _save_and_exit_from_vim($f)
+    {
+        fputs($f, \chr(27));  //jump out the edit mode
+        fputs($f, \chr(27));  //vim's command_mode and visual_mode need double tab click
+        fputs($f, ":wq\r");  //save and exit
+    }
+
+    public static function delete_crontab_job($command)
+    {
+        $f = popen('crontab -e', 'w');
+        self::_delete_crontab_job($f, $command);
+        self::_save_and_exit_from_vim($f);
+        pclose($f);
+    }
+
+    /**
+     * @param $url
+     * @param bool $is_replace
+     */
+    public static function location($url, $is_replace = false)
+    {
+        if (!$is_replace) {
+            header('location:' . $url);
+        }
+        echo <<<EOF
+<script type="text/javascript">window.location.replace({$url});</script>
+EOF;
+        exit(0);
+    }
+}

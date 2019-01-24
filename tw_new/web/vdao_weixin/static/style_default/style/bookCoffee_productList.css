@@ -1,0 +1,76 @@
+body{
+	background: white;
+}
+html,body{
+	overflow:inherit;
+}
+.main{
+	width: 100%;
+	height: 100%;
+}
+.main .title{
+	width: 1.8rem;
+	height: 1.066666rem;
+	background: #ff6633;
+	margin-top: 1.226666rem;
+	margin-left: 7%;
+	position: relative;
+}
+.title p{
+	font-size: 0.48rem;
+	color: #000000;
+	font-weight: 600;
+	position: absolute;
+	left: 0.466666rem;
+	top: 0.2rem;
+	width: 3.333333rem;
+	letter-spacing: 0.04rem;
+}
+.main .nav{
+	margin-left: 7%;
+	margin-top: 0.306666rem;
+}
+.nav>ul>li{
+	float: left;
+	margin-right: 0.56rem;
+	font-size: 0;
+}
+.nav>ul>li a{
+	display: block;
+	font-size: 0.346666rem;
+	color: #000000;
+	padding: 0.053333rem 0;
+}
+.nav>ul>li.current a{
+	color: #FF6633;
+	border-bottom: 2px solid #FF6633;	
+}
+.main .proList{
+	margin-left: 7%;
+	width: 93%;
+	margin-top: 0.373333rem;	
+}
+.proList li a{
+	display: block;
+	position: relative;
+}
+.proList li a img{
+	width: 100%;
+}
+.proList li a .p1{
+	position: absolute;
+	font-size: 0.666666rem;
+	color: #000000;
+	font-weight: 400;
+	top: 0.466666rem;
+	left: -0.266666rem;
+}
+.proList li a .p2{
+	position: absolute;
+	font-size: 0.346666rem;
+	color: #666666;
+	top: 1.4rem;
+	left: 0.466666rem;
+}
+
+

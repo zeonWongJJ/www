@@ -1,0 +1,163 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'io.fabric'
+
+repositories {
+    //maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo' }
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.hugo'
+//apply plugin: 'com.github.triplet.play'
+
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        //maven { url 'https://maven.fabric.io/public' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$rootProject.ext.kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$rootProject.ext.kotlinVersion"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
+        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+        classpath 'io.realm:realm-gradle-plugin:2.3.1'
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        //classpath 'com.google.gms:google-services:3.0.0'
+        //classpath 'com.github.triplet.gradle:play-publisher:1.1.5'
+        //classpath 'io.fabric.tools:gradle:1.+'
+    }
+
+    // Exclude the version that the android plugin depends on.
+    configurations.classpath.exclude group: 'com.android.tools.external.lombok'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        //avoiding okio error: https://github.com/square/okhttp/issues/896
+        lintConfig file("lint.xml")
+    }
+
+    sourceSets {
+        /*debug {
+            manifest.srcFile 'src/debug/AndroidManifest.xml'
+        }
+
+        release {
+            manifest.srcFile 'src/release/AndroidManifest.xml'
+        }*/
+        main.java.srcDirs += 'src/main/kotlin'
+        main {
+            renderscript.srcDirs = ['src']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+        //test.java.srcDirs += 'src/test/kotlin'
+        //debug.setRoot('build-types/debug')//指定debug模式的路径
+
+    }
+}
+
+/*play {
+    jsonFile = file('rocket-chat.json')
+    track = "${track}"
+}*/
+
+ext {
+    playLibVersion = '11.0.4'
+    stethoVersion = '1.5.0'
+    stethoOkhttp3Version = '1.5.0'
+    stethoRealmVersion = '2.1.0'
+    rxbindingVersion = '2.0.0'
+    rxlifecycleVersion = '2.1.0'
+    icepickVersion = '3.2.0'
+    permissionsdispatcherVersion = '2.4.0'
+}
+
+dependencies {
+    compile project(':ShortcutBadger')
+    compile project(':commonLib')
+
+    compile project(':android-ddp')
+    compile project(':rocket-chat-android-widgets')
+    compile project(':persistence-realm')
+    compile extraDependencies.okHTTP
+    compile extraDependencies.rxJava
+    compile extraDependencies.boltTask
+    compile supportDependencies.designSupportLibrary
+    compile supportDependencies.annotation
+    compile supportDependencies.kotlin;
+    compile rxbindingDependencies.rxBinding
+    compile rxbindingDependencies.rxBindingSupport
+    compile rxbindingDependencies.rxBindingAppcompact
+    compile "com.google.firebase:firebase-core:$playLibVersion"
+    compile "com.google.firebase:firebase-crash:$playLibVersion"
+    //compile "com.google.android.gms:play-services-gcm:$playLibVersion"
+    debugCompile "com.facebook.stetho:stetho:$stethoVersion"
+    debugCompile "com.facebook.stetho:stetho-okhttp3:$stethoOkhttp3Version"
+    debugCompile "com.uphyca:stetho_realm:$stethoRealmVersion"
+    compile "com.trello.rxlifecycle2:rxlifecycle:$rxlifecycleVersion"
+    compile "com.trello.rxlifecycle2:rxlifecycle-android:$rxlifecycleVersion"
+    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycleVersion"
+    compile "frankiesardo:icepick:$icepickVersion"
+    provided "frankiesardo:icepick-processor:$icepickVersion"
+    compile "com.github.hotchemi:permissionsdispatcher:$permissionsdispatcherVersion"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$permissionsdispatcherVersion"
+    /*compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }*/
+    compile('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.6@aar') {
+        transitive = true
+    }
+    //compile 'com.github.chrisbanes:PhotoView:2.0.0'
+    //provided 'io.reactivex:rxjava:1.3.0'
+    //provided "com.github.akarnokd:rxjava2-interop:0.10.2"
+    testCompile "org.jetbrains.kotlin:kotlin-test:$rootProject.ext.kotlinVersion"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$rootProject.ext.kotlinVersion"
+    //compile 'com.android.support:multidex:1.0.1'
+    compile 'nl.littlerobots.rxlint:rxlint:1.2'
+    compile 'com.aurelhubert:ahbottomnavigation:2.0.6'
+    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1@aar'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.github.matrixxun:MaterialBadgeTextView:c5a27e8243'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.7.19'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    debugCompile 'com.tspoon.traceur:traceur:1.0.1'
+    provided 'com.hadisatrio:Optional:v1.0.1'
+}
+
+//apply plugin: 'com.google.gms.google-services'

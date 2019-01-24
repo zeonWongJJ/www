@@ -1,0 +1,311 @@
+.main{
+	width: 1024px;
+	margin: 0 auto;
+}
+/*中间订单模块*/
+.middle{
+	width: 340px;
+	/*height: 700px;*/
+	height: 695px;
+	float: left;
+}
+.middle .bTitle{
+	height: 54px;
+	text-align: center;
+	line-height: 54px;
+	color: white;
+	background: #25D7D5;
+	font-size: 18px;
+}
+.middle .sTitle{
+	font-size: 14px;
+	color: #25D7D5;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	background: #d3fffe;
+}
+.sTitle i{
+	font-style: normal;
+	color: #ff0000;
+	margin: 0 20px;	
+}
+	/*订单列表*/
+.middle .orderList{
+	padding: 0 10px;
+	height: 470px;
+	overflow: auto;
+	border-bottom: 1px solid #E8E8E8;
+}
+.orderList li{
+	padding: 15px 0;
+	border-bottom: 1px solid #e8e8e8;
+	font-size: 0;
+}
+.orderList li:last-child{
+	border-bottom: none;
+}
+.orderList li span{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	color: #333333;	
+}
+.orderList li .span1{	
+	width: 168px;
+	padding-left: 5px;	
+}
+.orderList li .span1 i{
+	font-style: normal;
+	font-size: 10px;
+}
+.orderList li .span2{
+	width: 50px;
+	text-align: center;
+}
+.orderList li .span3{
+	width: 80px;
+	text-align: right;
+}
+	/*金额*/
+.middle .money{
+	padding-top: 20px;
+}
+.money .p1{
+	padding-left: 180px;
+	font-size: 14px;
+	color: #333333;
+	margin-top: 6px;
+}
+.money .p2{
+	font-size: 24px;
+	padding-left: 110px;
+	margin-top: 30px;
+}
+.money .p2 i{
+	color: #ff2222;
+	font-style: normal;
+}
+/*右边支付模块*/
+.right{
+	width: 625px;
+	/*height: 700px;*/
+	height: 695px;
+	float: right;
+}
+.right .vip{
+	padding:10px 30px;
+	background: #f3566b;
+	font-size: 0;
+}
+.vip .vLeft{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 18px;
+	color: white;
+}
+.vip .vRight{
+	width: 255px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	margin-left: 14px;
+}
+.vip .vRight .int{
+	display: inline-block;
+	width: 255px;
+	height: 35px;
+	border: 1px solid #a8a8a8;
+	border-radius: 6px;
+	padding: 0 45px 0 20px;
+	font-size: 17px;
+	color: #a8a8a8;
+}
+.vip .vRight .tu{
+	position: absolute;
+	right: 15px;
+	top: 6px;
+}
+	/*现金支付*/
+.right .cashPay{
+	height: 220px;
+	background: #fff6eb;
+	margin-top: 10px;
+	padding:10px 0 0 30px;
+}
+.cashPay .cTit{
+	font-size: 20px;
+	color: #666666;
+	
+}
+.cashPay .payBox{
+	padding-left: 110px;
+}
+.cashPay .payBox .shouldP{
+	font-size: 0;
+}
+.cashPay .payBox .shouldP span{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 16px;
+	color: #666666;
+}
+.cashPay .payBox .shouldP a{
+	display: inline-block;
+	vertical-align: middle;
+	width: 255px;
+	height: 45px;
+	border: 1px solid #a8a8a8;
+	border-radius: 6px;
+	box-sizing: border-box;
+	margin-left: 25px;
+	font-size: 20px;
+	color: #333333;
+	text-align: center;
+	line-height: 45px;
+}
+.cashPay .payBox .realityP a,
+.cashPay .payBox .backP a{
+	display: inline-block;
+	border: 1px solid #F3566B;
+	color: #F3566B;
+	margin-top: 10px;
+}
+.cashPay .payBox .realityP #money_receive{
+	display: inline-block;
+	vertical-align: middle;
+	width: 255px;
+	height: 45px;
+	border: 1px solid #F3566B;
+	border-radius: 6px;
+	box-sizing: border-box;
+	margin-left: 25px;
+	font-size: 20px;
+	color: #F3566B;
+	text-align: center;
+	line-height: 45px;
+	margin-top: 10px;
+	background: #FFF6EB;
+}
+	/*支付宝*/
+.right .alipay{
+	height: 135px;
+	/*height: 170px;*/
+	background: #fff6eb;
+	margin-top: 10px;
+	padding:10px 0 0 30px;
+}
+.alipay .aTit{
+	font-size: 20px;
+	color: #666666;
+}
+.alipay .aliBox{
+	font-size: 0;
+	margin: 14px 0 0 20px;
+}
+.alipay .aliBox .aImg{
+	display: inline-block;
+	vertical-align: middle;
+	width: 54px;
+	height: 54px;
+	border-radius: 6px;
+	text-align: center;
+	line-height: 54px;
+	overflow: hidden;
+}
+.alipay .aliBox .aScan{
+	display: inline-block;
+	vertical-align: middle;
+	width: 255px;
+	height: 50px;
+	position: relative;
+	margin-left: 94px;	
+}
+.alipay .aliBox .aScan .aInt{
+	display: inline-block;
+	width: 255px;
+	height: 50px;
+	border: 1px solid #a8a8a8;
+	border-radius: 6px;
+	padding: 0 45px 0 20px;
+	font-size: 17px;
+	color: #a8a8a8;
+}
+.alipay .aliBox .aScan .aTu{
+	position: absolute;
+	right: 15px;
+	top: 12px;
+}
+	/*微信支付*/
+.weixinPay .aImg{
+	width: 56px !important;
+}
+.finishBtn a{
+	display: block;
+	width: 190px;
+	height: 45px;
+	color: white;
+	font-size: 18px;
+	background: #f3566b;
+	border-radius: 6px;
+	text-align: center;
+	line-height: 45px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	margin-top: 8px;
+}
+/*遮罩层*/
+.shade{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: yellowgreen;
+	background: rgba(0,0,0,0.5);
+	display: none;
+	
+}
+/*支付成功弹框*/
+.successBomb{
+	width: 460px;
+	height: 334px;
+	background: white;
+	border-radius: 10px;
+	position: absolute;
+	left: 50%;
+	margin-left: -230px;
+	top: 40%;
+	margin-top: -167px;
+	display: none;
+}
+.successBomb .sClose{
+	width: 62px;
+	height: 62px;
+	border-radius: 50%;
+	margin: 0 auto;
+	margin-top: 33px;
+}
+.successBomb .sZhi{
+	font-size: 40px;
+	color: #25d77d;
+	text-align: center;
+	margin-top: 40px;
+}
+.successBomb .sSure{
+	display: block;
+	width: 98px;
+	height: 36px;
+	background: #ffffff;
+	text-align: center;
+	line-height: 36px;
+	border: 1px solid #e8e8e8;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #666666;
+	box-shadow: 0 0 10px #dbdbdb inset;
+	box-sizing: border-box;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+.btnBox{ text-align:center; margin-top:20px; }
+.btnBox>div{ display:inline-block; margin-right:26px; }
+.btnBox>div:last-child>a{ background:#25D7D5; }

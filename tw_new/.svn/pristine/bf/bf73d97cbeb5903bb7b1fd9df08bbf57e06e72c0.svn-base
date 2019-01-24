@@ -1,0 +1,50 @@
+<template>
+	<div class="cai">
+		<van-nav-bar title="添加菜式" left-arrow @click-left="onClickLeft">
+		</van-nav-bar>
+		<div class="box">
+			<van-cell-group>
+			<van-field placeholder="输入菜式" label="添加菜式" left-icon="points" />
+		</van-cell-group>
+		<div class="bottons">
+			<van-button size="large" round type="primary">确认添加</van-button>
+		</div>
+		
+		</div>
+		
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		mounted() {
+
+		},
+		methods: {
+			onClickLeft() {
+				this.$router.push({
+					path:'/dishes_memder'
+				})
+			}
+		},
+	}
+</script>
+
+<style scoped lang="less">
+.cai{
+	.box{
+		padding: 0 0.12rem;
+		margin-top: .1rem;
+		
+		.bottons{
+			margin-top: .2rem;
+		}
+	}
+}
+
+</style>

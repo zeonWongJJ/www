@@ -1,0 +1,175 @@
+<?php
+/**
+ * 数据仓库
+ * @notice 命令行自动构建 by rusice <liruizhao970302@outlook.com>
+ *
+ * @copyright 柒度信息科技有限公司
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+namespace repositories;
+
+use utils\BaseRepository;
+
+/**
+ * Class SlideRepository
+ * @package repositories
+ */
+class SlideRepository extends BaseRepository
+{
+    public $base_controller = \utils\BaseController::class;
+
+    /**
+     * 指定查询数据表名，不需要带前缀
+     * @return String
+     */
+    public function getDbTable()
+    {
+        return get_table('slide');
+    }
+
+    /**
+     * 自定义列表查询方法
+     * 当需要join等非单表查询时可以调用此方法
+     * @param array $build_query 查询构建数组，前端传入的排序、字段等
+     * @param string $data_set 返回数据集类型
+     */
+//    public function customizeListGetter(array $build_query, $data_set)
+//    {
+//
+//    }
+
+    /**查询之前的方法
+     * @param $query
+     * @param $id
+     * @return mixed
+     */
+    public function beforeGetOne($query, $id)
+    {
+        $query->where(['id' => $id]);
+        return $query;
+    }
+
+    /**
+     * 自定义单条查询方法
+     * 当需要join等非单表查询时可以调用此方法
+     * @param int $id 单条获取的id
+     * @param array $build_query 查询构建数组，前端传入的排序、字段等
+     * @param string $cache_key cache的key
+     */
+//    public function customizeGetter($id, $build_query, $cache_key)
+//    {
+//
+//    }
+
+    /**
+     * @param $rows 查询后的方法
+     */
+    public function afterGetList($rows)
+    {
+        array_multisort(array_column($rows,'slide_sort'),SORT_ASC,$rows);
+
+        $filter = $_POST['filter'] ?? '';
+
+        if ($filter === '1') {
+            //如果是前端app请求list，过滤list
+
+            foreach ($rows as $key => $value) {
+                if ($value['slide_show'] == 0) unset($rows[$key]);
+                if ($value['slide_show_start_time'] > $_SERVER['REQUEST_TIME']) unset($rows[$key]);
+                if ($_SERVER['REQUEST_TIME'] > $value['slide_show_end_time'] && $value['slide_show_end_time'] != 0) unset($rows[$key]);
+            }
+        }
+
+        return $rows;
+    }
+
+    /**GetOne后置操作
+     * @param $row
+     * @return mixed
+     */
+
+    public function afterGetOne($row)
+    {
+        $row['slide_show_start_time'] && $row['slide_show_start_time'] = date('Y-m-d H:i:s', $row['slide_show_start_time']);
+        $row['slide_show_end_time'] && $row['slide_show_end_time'] = date('Y-m-d H:i:s', $row['slide_show_end_time']);
+
+        return $row;
+    }
+
+    /**
+     * 新增前调用
+     * @param array $insert 新增的数据
+     * @return array
+     */
+    public function beforeInsertHook(array $insert) :array
+    {
+        if (!empty($insert['slide_show_start_time'])) {
+            $insert['slide_show_start_time'] = strtotime($insert['slide_show_start_time']);
+        } else {
+            $insert['slide_show_start_time'] = $_SERVER['REQUEST_TIME'];
+        }
+
+        if(!empty($insert['slide_show_end_time'])) {
+            $insert['slide_show_end_time'] = strtotime($insert['slide_show_end_time']);
+        }
+
+        return $insert;
+    }
+
+    /**
+     * 新增后调用
+     * @param array $insert 新增的数据
+     */
+//    public function afterInsertHook(array $insert)
+//    {
+//
+//    }
+
+    /**
+     * 更新前调用
+     * @param array $update 传入的更新数据
+     * @param int $id 要更新的id
+     * @return array
+     */
+    public function beforeUpdateHook(array $update, $id): array
+    {
+        if (!empty($update['slide_show_start_time'])) {
+            $update['slide_show_start_time'] = strtotime($update['slide_show_start_time']);
+        } else {
+            $insert['slide_show_start_time'] = $_SERVER['REQUEST_TIME'];
+        }
+
+        if(!empty($update['slide_show_end_time'])) {
+            $update['slide_show_end_time'] = strtotime($update['slide_show_end_time']);
+        }
+
+        return $update;
+    }
+
+    /**
+     * 更新后调用
+     * @param int $id 要更新的id
+     */
+//    public function afterUpdateHook($id)
+//    {
+//
+//    }
+
+    /**
+     * 删除前调用
+     * @param int $id 删除的id
+     */
+//    public function beforeDeleteHook($id)
+//    {
+//
+//    }
+
+    /**
+     * 删除后调用
+     * @param int $id 要删除的id
+     */
+//    public function afterDeleteHook($id)
+//    {
+//
+//    }
+}

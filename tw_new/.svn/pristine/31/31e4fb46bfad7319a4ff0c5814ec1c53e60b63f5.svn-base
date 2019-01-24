@@ -1,0 +1,137 @@
+body             { height:100%; background:#efefef; }
+html{ height:100%;}
+/*  竞标详情 */
+.competitiveDetails{ overflow:hidden; }
+/*  订单信息 */
+.orderInfo{ position:relative; z-index:10; background:white;  }
+.orderInfo>p{ height:50px; line-height:50px; border-bottom:1px solid #dddddd; padding:0 10px; }
+.orderInfo>p>i{ margin-right:5px; }
+.orderInfo>p>i>img{ width:24px; vertical-align:middle;  }
+.orderInfo>p>span{ color:#fc9153; }
+.orderInfo>dl{ padding:10px 0; border-bottom:1px solid #dddddd; font-size:15px; }
+.orderInfo>dl>dd{  padding:5px 10px; }
+.orderInfo>dl>dd>i{ margin-right:6px; }
+.orderInfo>dl>dd>i>img{ width:22px; vertical-align:middle; }
+/*按钮组 */
+.orderBtnBox{ width:100%; float:right; padding:10px 0; background:white; border-bottom:1px solid #dddddd; box-shadow:0 2px 10px #dddddd; }
+.orderBtnBox>div{ float:right; padding:5px 10px; }
+.orderBtnBox>div>a{  padding:6px 10px; font-size:14px; border:1px solid #ddd; border-radius:20px;  }
+.orderBtnBox>div>a:nth-child(3){ background:#58d178; color:white; }
+/*投标的服务者*/
+.competitiveServant{ clear:both; padding-top:15px; }
+.competitiveServant>p{ position:absolute; z-index:99; padding-left:10px; }
+.competitiveSelect{ width:100%; float:left; position:relative; z-index:10; padding:15px 0;   background:white; margin-top:24px; }
+.competitiveSelect>div{ width:24.8%; position:relative; float:left; text-align:center;  font-size:14px; background:white; border-right:1px solid #dddddd; }
+.competitiveSelect>div>i>img{ width:10px; }
+.competitiveSelect>div>ul{ width:100%; position:absolute; top:33px; background:white; display:none; border:none; z-index:2; }
+.competitiveSelect>div>ul>li{ padding:5px 0; }
+/* 服务者 */
+.competitiveList{ float:left; clear:both; padding:15px 10px; position:relative; }
+.competitiveList>b{ position:absolute; left:5px; top:10px; }
+/* 第一行 */
+.list1{ width:100%; float:left; border-bottom:1px solid #dddddd; }
+.competitiveList>ul{ width:100%; float:left; }
+.competitiveList>ul>li{ width:100%; float:left; position:relative; background:white; margin-top:10px; border-radius:10px;  }
+.competitiveList>ul>li:first-child{ margin-top:0; }
+.competitiveList>ul>li>b{ position:absolute; left:-5px; top:-5px; }
+.competitiveList>ul>li>b>img{ width:65px; }
+.listImg,.listInfo{ float:left; margin-left:10px;}
+.listInfo{ margin-top:16px; }
+.listInfo>div:nth-child(2){ margin-top:10px; }
+.listInfo>div:nth-child(2)>span{ font-size:15px; }
+.listInfo>div:nth-child(2)>em{ font-size:13px; }
+.listInfo>div:nth-child(2)>span{ color:#6699ed; padding:2px 6px; border:1px solid #ffde59; border-radius:12px; }
+.listInfo>div:nth-child(2)>em{ color:#00a0e9; padding:2px 6px; border:1px solid #00a0e9; border-radius:8px; }
+.listImg>i>img{ width:80px; border-radius:50%;  }
+.listInfo>div:first-child>img{ width:18px; }
+.listInfo>em,.listInfo>span{ position:absolute; font-size:14px; right:0;}
+.listInfo>em{ top:16px; right:8px; color:#dddddd; }
+.listInfo>span{ top:45px; right:8px; font-weight:bold; }
+.listInfo>span>em{ font-size:20px; font-weight:bold; }
+/* 第二行 */
+.list2{ width:100%; float:left; clear:both; border-bottom:1px solid #dddddd; }
+.list2>dl{ width:100%; float:left; padding:15px 0; }
+.list2>dl>dd{ width:26%; height:45px; float:left; border-right:1px solid #ddd; text-align:right; padding-right:10px;}
+.list2>dl>dd>div>i>img{ width:20px; vertical-align:bottom; }
+.list2>dl>dd>div>span{ font-size:15px; color:#666666; }
+.list2>dl>dd>p{ font-size:18px; font-weight:bold; color:#666666; }
+/* 第三行 */
+.list3{ width:100%; height:60px; clear:both; float:left;}
+.contactBtn{ float:right; }
+.contactBtn>a{ position:relative; }
+.contactBtn>a>i>img{ width:80px; margin-top:10px; margin-right:10px; }
+.contactBtn>a>span{ position:absolute; color:#666666; }
+.contactBtn>a:first-child>span{ top:-14px; right:32px; }
+.contactBtn>a:nth-child(2)>span{ top:-14px; right:16px; }
+/* 底部提示 */
+.botTips{ width:80%; position:relative; margin:0 auto; margin-bottom:10px; clear:both;  }
+.botTips>hr{ width:28%; position:absolute; float:left; }
+.botTips>hr:first-child{ left:0; top:3px; }
+.botTips>hr:nth-child(3){right:0; top:3px; }
+.botTips>p{  text-align:center; }
+/* 遮罩层 */
+.zhezhao{ width:100%; position:absolute; overflow:hidden; top:0; left:0; background:#000; opacity:0.5; }
+.zhezhaoBox{ width:100%;  position:absolute; overflow:hidden; top:0; left:0; background:#efefef; z-index:2}
+/* 服务者选择 */
+.servantChoice{ clear:both; position:relative; z-index:98; padding:0 20px; border-top:1px solid #ddd; background:white; }
+.servantChoice>ul>li{ padding:20px 0; border-bottom:1px solid #ddd; }
+.servantChoice>ul>li>span{ font-weight:bold; }
+.companySwitch img{ width:55px; float:right; }
+.servantRank>ul{ width:98%; text-align:center; margin:0 auto; }
+.servantRank>ul>li{ display:inline-block; margin-top:20px; font-size:0px; }
+.servantRank>ul>li>a>span{ height:35px; line-height:35px; padding:0 8px; display:inline-block; font-size:14px; border:1px solid #ddd; border-bottom-left-radius:20px; border-top-left-radius:20px; }
+.servantRank>ul>li>a>em{ height:35px; line-height:35px; padding:0 8px; font-size:14px; display:inline-block; border:1px solid #ddd; border-bottom-right-radius:20px; border-top-right-radius:20px; }
+.servantRank>ul>li:nth-child(2)>a>span{ color:white; background:#666df4; }
+/* 信誉 */
+.credit>span{ display:block; margin-bottom:20px; }
+.credit>a{ padding:6px 10px; color:#454545; border:1px solid #ddd; border-radius:20px; }
+.credit>hr{ width:5px; height:1px; border:0; background:black; display:inline-block; vertical-align:bottom;}
+.credit>a:nth-child(2){ margin-left:20px; }
+/* 保障金与保修时间 */
+.ketubbah input[type="range"]{ width:90%; height:3px; background:-webkit-linear-gradient(left,#666ff3,#66bae9); background: -o-linear-gradient(right,#666ff3,#66bae9); background: -moz-linear-gradient(right,#666ff3,#66bae9);  background: linear-gradient(to right,#666ff3,#66bae9); border-radius:22px; -webkit-appearance: none;}
+.ketubbah input[type="range"]::-webkit-slider-thumb {  -webkit-appearance: none;  cursor: default; height:30px; width:30px; background-image:url(../img/range_07.png); background-repeat:no-repeat; background-size:30px; border-radius:50%; }
+.rangeBox{ width:90%; text-align:center; margin:20px auto; }
+.rangeBox>p{ width:100%; float:left; }
+.rangeBox>p>span{ float:left; font-weight:bold; margin-bottom:10px; }
+.rangeBox>p>em{ float:right; font-weight:bold;  margin-bottom:10px; }
+/*  重置 */
+.ketubbah>em{ display:inline-block; margin-top:15px; }
+/* 确定 */
+.ketubbahSure{ width:130px; text-align:center; float:right; font-size:17px; padding:10px 0; border-radius:20px; color:white; background:-webkit-linear-gradient(left,#666ff3,#66bae9); background: -o-linear-gradient(right,#666ff3,#66bae9); background: -moz-linear-gradient(right,#666ff3,#66bae9);  background: linear-gradient(to right,#666ff3,#66bae9);  }
+/* 弹出框 */
+.tips{ width:100%; top:0; left:0; opacity:0.5; position:absolute; background:black; overflow:hidden; }
+.pop{ width:70%; position:absolute; top:40%; left:13%; z-index:12; background:white; padding:40px 15px 90px 15px; border-radius:10px; }
+.pop>p:first-child{ font-weight:bold; }
+.pop>p:nth-child(2){ margin-top:15px; }
+.pop>a>span{ width:50%; height:50px; line-height:50px; color:white; position:absolute; bottom:0; left:0; background:#666df4; text-align:center; }
+.pop>a>em{ width:50%; height:50px; line-height:50px; position:absolute; bottom:0; right:0; text-align:center; color:#dddddd; border-bottom-right-radius:5px; border-top-right-radius:5px; box-shadow:0 0 13px #888888; }
+
+
+
+@media screen and (max-width: 350px) {
+    .competitiveSelect>div{ width:24.7%; }
+    .competitiveList>ul>li>b>img{ width:55px; }
+    .nearSertvan>span{ font-size:12px; }
+    /*.list2>dl>dd{ width:29%;}*/
+}
+@media screen and (max-width:500px) {
+    .competitiveSelect>div{ width:24.7%;}
+    .nearSertvan>span{ font-size:12px; }
+    .list2>dl>dd{ padding:5px; }
+    .list2>dl>dd>span{ font-size:15px; }
+}
+@media screen and (max-width:365px) {
+    .competitiveSelect>div{ width:24.7%;}
+    .nearSertvan>span{ font-size:12px; }
+    .listImg>i>img{ width:65px;}
+    .listImg, .listInfo{margin-left:1px; }
+    .listInfo{ margin-top:8px; }
+    .listInfo>em{ top:10px; }
+    .listInfo>span{ top:37px; }
+    .listInfo>div:nth-child(2)>span{ font-size:12px; }
+    .listInfo>div:nth-child(2)>em{ font-size:12px; }
+    .list2>dl>dd:first-child>div>span{ font-size:12px; padding:0;}
+}
+@media screen and (min-width:600px){
+    .list2>dl>dd{ text-align:center; }
+}

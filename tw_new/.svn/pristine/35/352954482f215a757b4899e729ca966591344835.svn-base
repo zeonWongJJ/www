@@ -1,0 +1,68 @@
+
+/*  耗材列表 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.suppliesList{ margin-top:20px; margin-left:22px; }
+.suppliesList>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+/* 产品内容 */
+/*  产品种类 */
+.supplies_content{ margin-top:20px; }
+.supplies_content>ul{ padding:20px 25px 10px 25px; background:white; }
+.supplies_content>ul>li{ padding:15px; }
+.supplies_content>ul>li.coffee_cate>span>a{ display:inline-block; margin-right:32px; padding:5px 14px; font-size:14px; color:#5a2e17; border:1px solid #5a2e17; border-radius:4px; }
+.supplies_content>ul>li.coffee_cate>span>a:hover{ color:white; background:#5a2e17; }
+.supplies_content>ul>li.coffee_cate>span.cateCur>a{ background:#5a2e17; color:white; }
+.supplies_content>ul>li.coffee_cate>span:hover{ background:#5a2e17; color:white; }
+.supplies_content>ul>li.coffee_cate>em.add_product>img{ width:10px; vertical-align:middle; padding:0 10px; }
+.supplies_content>ul>li.coffee_cate>em.add_product{ float:right; display:inline-block; padding:6px 12px; background:#f4f0ed; border-radius:10px; box-shadow:1px 1px 3px #eaeaea; }
+.supplies_content>ul>li.coffee_cate>em.add_product>span>a{ vertical-align:middle; font-size:14px; color:#8b8a8a; }
+
+.supplies_content>ul>li.coffee_type{ border-bottom:1px solid #ddd; }
+.supplies_content>ul>li.coffee_type>em,.supplies_content>ul>li.coffee_grade>em,.supplies_content>ul>li.coffee_key>em{ width:90px; display:inline-block; text-align:right; font-size:14px; }
+.supplies_content>ul>li.coffee_type>span,.supplies_content>ul>li.coffee_grade>span,.supplies_content>ul>li.coffee_key>span{ display:inline-block; font-size:14px; margin-left:24px; margin-bottom:10px; padding:6px 12px; color:#2b333b; }
+.supplies_content>ul>li.coffee_type>span.typeCur{ background:#5a2e17; border-radius:4px; }
+.supplies_content>ul>li.coffee_type>span.typeCur>a{ color:white; }
+.supplies_content>ul>li.coffee_type>span>a{ color:#5a2e17; }
+.supplies_content>ul>li.coffee_type>span:hover{ background:#5a2e17; color:white; border-radius:4px; }
+.supplies_content>ul>li.coffee_type>span:hover>a{ color:white; }
+
+.supplies_content>ul>li.coffee_grade{ border-bottom:1px solid #ddd; }
+.supplies_content>ul>li.coffee_grade>span.typeCur{ background:#5a2e17; color:white; border-radius:4px; }
+.supplies_content>ul>li.coffee_grade>span.typeCur>a{ color:white; }
+.supplies_content>ul>li.coffee_grade>span>a{ color:#5a2e17; }
+.supplies_content>ul>li.coffee_grade>span:hover{ background:#5a2e17; color:white; border-radius:4px; }
+.supplies_content>ul>li.coffee_grade>span:hover>a{ color:white; }
+
+.supplies_content>ul>li.coffee_key>span.typeCur{ background:#5a2e17; color:white; border-radius:4px; }
+.supplies_content>ul>li.coffee_key>span:hover{ background:#5a2e17; color:white; border-radius:4px; }
+
+.storageList{ padding:15px; margin-top:15px; background:white; font-size:15px; }
+.cateHead{ height:53px; line-height:53px; background:#F4F7FC }
+.cateHead>em,.cateHead>em>span{ font-weight:bold; }
+.storageList>li>em{ display:inline-block; text-align:center; vertical-align:middle;}
+.cateHead>em{  font-size:14px;  }
+.cateBody>em{ font-size:12px;  }
+
+.v1{ width:150px; }
+.v2{ width:150px; font-weight:bold; }
+.v3{ width:160px; font-weight:bold; }
+.v4{ width:170px; font-weight:bold; }
+.v5{ width:180px; }
+.v6{ width:160px; }
+.v7{ width:140px; }
+.v7>img{ margin:0 5px; cursor:pointer; }
+.cateRed{ color:red; }
+.cateBody{ padding:15px 0; border-bottom:1px solid #ddd; }
+.cateBody:last-child{ border:none; }
+
+/* 重要提示  */
+.tips{ width:340px; position:absolute; top:50%; left:50%; padding:34px 34px 0 34px; font-size:14px; background:white; box-shadow:3px 5px 23px #888888; }
+.tips>img{ position:absolute; right:20px; top:15px; }
+.tips>p>span{ display:block; margin-top:5px; }
+.tipsBtn{ text-align:center; margin-top:22px; }
+.tipsBtn>em{ display:inline-block; padding:4px 10px; color:#aa4301; border:1px solid #e69c14; background:#ffce1c; }
+.tipsBtn>a{ display:inline-block; padding:4px 10px; margin-left:28px; margin-bottom:20px; border:1px solid #ddd; }
+
+/* 分页 */
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }

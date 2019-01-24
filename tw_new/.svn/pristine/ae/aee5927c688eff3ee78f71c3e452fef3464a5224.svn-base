@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*-----------------search--list-----------------*/
+#header_jk{ position: relative; z-index: 8888; height: 44px; background: none repeat scroll 0% 0% #0886BB;}
+.logo{ margin-left:10px; padding-top:2px;}
+#header_jk .c-inav { height: 30px;  position: relative;}
+.btn_back_l{ position: absolute; top: 6px;  left: 15px;  width: 30px; height: 32px;}
+.btn_back_l span { display: inline-block;  width: 10px;  height: 18px; margin-top: 6px; background:url(../image/icon2b.png) no-repeat scroll -60px 0px / 180px 180px transparent; text-indent: -9999px;}
+#header_jk .c-inav section:nth-child(2) span { color: #333; display: block; font-size: 18px; font-weight: bold; height: 32px; line-height: 32px; overflow: hidden; padding: 0 10px; text-overflow: ellipsis; white-space: nowrap;}
+#header_jk h2 { height: 40px; line-height: 40px; font-weight: normal; font-size: 16px; color: #FFF; text-align: center;}
+.navlist { position: absolute; right: 10px; top: 10px;}
+#navlist { cursor: pointer;     display: inline-block; width: 21px; height: 30px; background: url("../image/icon2b.png") no-repeat scroll -7px -100px / 180px 180px transparent; text-indent: 9999px;}
+.searchBox{ width:90%; margin:0 auto; font-size:0;}
+.searchBox>form>input{ width:86%; height:30px; color:gray; float:left; padding-left:10px; margin-top:5px; }
+.searchBox>form>button{ height:30px; float:left; padding:0 4px; margin-top:5px;}
+#navboxwrap { position: relative; margin-top:10px;}
+.navbox { margin-top:45px;}
+.navboxshow { display: block;}
+#navbox { width:100%; /*position:absolute;*/  right: 0; top: 0; z-index: 9999;}
+.navbox_top { padding-right: 10px;}
+.navbox_top p {-moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; border-color: transparent transparent #096917; border-image: none; border-style: solid; border-width: 10px; height: 0; position: absolute; right: 12px;top: -20px; width: 0;z-index:999;}
+.navmain {    background: none repeat scroll 0 0 rgba(22, 106, 140, 0.76);  border-radius: 3px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.8); overflow: hidden; padding: 10px 0;}
+#navbox ul {width:100%;  border-right: 1px solid #D4D6D4; }
+#navbox ul li { float: left; line-height: 30px; list-style: outside none none; padding-left:5px; text-align:center;width:75px;}
+#navbox ul li a { color: #fff; font-size: 12px; text-decoration: none; background:none;}
+
+
+
+.good-list { border-top: 1px solid #E1E1E1; border-bottom: 1px solid #E1E1E1;  padding: 0px 10px;}
+.good-list li { padding: 15px 0px; border-bottom: 1px solid #E1E1E1; position:relative;}
+.good-list a {  display: block;  text-decoration: none;  overflow: hidden;   color: #252525;font-size: 14px;}
+.good-list img { width: 80px; height: 80px;  float: left; margin-right: 13px; border: 1px solid #E1E1E1;  vertical-align: middle;}
+.good-list .zuxiao_tb{position: absolute;left: 60%;top: 58px;border: none;}
+.good-list .zuxiao_tb img{border:none; margin-right:0px; width:40px; height:20px;}
+.g-title { height: 32px; overflow: hidden; font-size: 14px; color: #fff;  line-height: 16px;  margin-bottom: 13px;}
+.g-price {  color: #E4393C;  font-size: 14px;  margin-bottom: 3px; font-family:Arial,Helvetica,sans-serif,"����"}
+.g-price-odd { font-size: 11px; color: #656565;}
+.good-list li .count {height: 20px;  position: absolute; bottom: 15px; right: 0px; color: #E4FF00; text-align: center;  vertical-align: middle; line-height: 20px; font-size: 12px;font-family:Arial,Helvetica,sans-serif,"����"}
+
+.m_1 { margin: 0px auto; overflow:hidden; margin-bottom:10px; padding-left:11px;}
+.m_1 ul li{ float:left;}
+.m_1 ul li a {  display: inline-block; border: 1px solid #EDEDED; border-radius: 4px;  width: 65px; text-align: center; font-size: 12px;  color: #666;   background-color: #FFF;  height: 24px;  line-height: 24px; padding: 0px 4px; margin: 10px 5px 0px 0px;  font-family: verdana; text-decoration: none;}
+.m_1 ul li a:hover,.m_1 ul li .on{ background-color:#0886BB; color:#FFF;}
+
+.mancontentbox {clear: both;margin: 10px auto 0 auto;border: 1px solid #e0e0e0;}
+.man_header { height:36px; line-height:36px;overflow: hidden; background-color:#FFCB38; font-weight:bold;}
+.man_header div{ float:left; width:100px;}
+.man_header .list_bar{ width:5px; height:20px; display:block; float:left; margin:8px 5px; background-color:#F87F19; }
+.man_header ul {float: right;padding-right: 10px;}
+.man_header ul li {float: left;padding: 0 7px 0 7px;line-height:36px;height: 36px;}
+.man_header ul .li_der{width:1px; height:10px; line-height:10px; display:block; float:left; margin:13px 0px; background-color:#333; padding:0;}
+.man_header ul li a{ font-size:12px; font-weight:normal; color:#000;}
+

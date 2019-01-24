@@ -1,0 +1,64 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*筛选导航*/
+.dressNav{padding: 24px; background: white; margin-top: 22px;}
+.oneLevel li{float: left;}
+.oneLevel li a{display: block; font-size: 14px; color: #5a2e17; padding: 8px 18px; border: 1px solid #5a2e17; border-radius: 2px; margin:0 35px 25px 0;}
+.oneLevel li.oneCuttom a{background:#5a2e17; color: white;}
+.twoLevel div{ border-bottom: 1px solid #edf1f2; padding-bottom: 15px; margin-bottom: 15px; }
+.twoLevel div:last-child{border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+.twoLevel span{ float: left; padding:6px 10px; display: block; font-size: 14px; text-align: right; color: #000000; min-width: 80px; }
+.twoLevel ul{float:left; max-width: 1040px;}
+.twoLevel li{float: left;}
+.twoLevel li a{display: block; font-size: 14px; color: #000000; padding:6px 10px; border-radius: 2px; margin-right: 5px;}
+.twoLevel li.twoCuttom a{ background:#000000; color: white;}
+/*咖啡列单表*/
+.coffeeModule{ width: 1440px;}
+.sigleModule{padding: 12px; width: 385px; height: 185px; background:white; float: left; margin:20px 18px 0 0; display: inline-block;}
+.sigleModule:nth-child(3h){margin-right: none;}
+.sigleModule:hover{background: #e8f3f9;}
+.sigleModule .imgBox{float: left; width: 72px; height: 70px; border-radius: 6px; overflow: hidden; }
+.imgBox img{width: 100%; height: 100%;}
+.sigleModule .characterBox{float: left; margin-left: 15px; width: 270px; }
+.characterBox .title{height: 24px; position: relative;}
+.characterBox .h2{float: left; width: 230px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.characterBox .h2 a{font-size: 16px; color: #000000; font-weight:400;}
+.characterBox .updown{width: 24px; height: 9px; float: right; }
+.characterBox .updown img{cursor: pointer;}
+.characterBox .describe{width: 270px; height: 40px; display: -webkit-box !important; overflow: hidden; word-break: break-all; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}
+.characterBox .describe a{ font-size: 12px; color: #666666;}
+.characterBox .stopOpen,.characterBox .open{margin-top: 6px; }
+.stopOpen span,.open span{font-size: 12px; color: #666666; cursor: pointer;}
+.stopOpen img,.open img{vertical-align: middle; cursor: pointer;}
+.characterBox .label{margin-top: 10px;}
+.label .word{width: 190px; float: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.label .word span{color: #322124; font-size: 12px; padding: 5px 5px; background: white;}
+.label .price{width: 70px; float: right; font-size: 16px; color: #000000; font-weight:500; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: right;}
+/*上下架弹框*/
+.title .stop{position: absolute; right: -20px; top: 28px; box-shadow: 0 0 10px #bebebe; display: none;}
+.title .stop a{ display: block; width: 105px; height: 45px; line-height: 45px; background: white; font-size: 10px; color: #FE5621; text-indent: 16px;}
+.title .stop a .stopImg{ display: inline-block; width: 16px; height: 16px; background: url(/static/style_default/images/updown_03.png); vertical-align: middle; margin-right: 8px;}
+.title .up a .stopImg{background: url(/static/style_default/images/updown_07.png);}
+.upModule{background:#787878;}
+.upModule:hover{background:#787878;}
+.upModule .h2 a,.upModule .describe a,.upModule .stopOpen span,.upModule .open span{color:white;}
+
+/*下架产品弹框*/
+.delePart{ width: 340px; height: 180px; background:white; position: fixed; left: 50%; margin-left: -170px; top: 50%; margin-top: -85px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; display: none; }
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(/static/style_default/images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{ margin-top:10px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.stock{ font-size:12px; }
+.stock>em{ margin-right:10px; }
+.stock>span{ margin:0 5px; }
+.stock>img{ width:10px; }
+.stock>em,.stock>span,.stock>img{ vertical-align:middle; }
+
+.deleSingle p:nth-child(1){ margin-top: 15px;}
+.deleSingle a.think{ width: 42px; height: 20px;}
+.deleSingle p:nth-child(4)>input{ width:40px; padding:2px; font-size:14px; border:1px solid #ddd; }
+.deleSingle p:nth-child(4)>input,.deleSingle p:nth-child(4)>span{ vertical-align:middle; }

@@ -1,0 +1,96 @@
+/* 分享订单管理 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.shareOrder{ margin-top:15px; margin-left:15px; margin-right:15px; }
+.shareTitle{ padding:10px; }
+.shareTitle>span{ margin-left:5px; color:#999; }
+.shareTitle>span,.shareTitle>em{ font-size:14px; }
+.shareTitle>span,.shareTitle>em,.shareTitle>img{ vertical-align:middle; }
+/* 分享订单订单导航 */
+.shareNav{ padding:0 20px; font-size:14px; background:white; }
+.shareNav>ul>li{ margin-left:30px; }
+.shareNav>ul>li>a{ padding:12px 0; color:#999; cursor:pointer; }
+.shareNav>ul>li:first-child{ margin-left:0; }
+.shareNav>ul>li:last-child{ margin-left:50px; }
+.shareNav>ul>li>a.cafeCur{ color:#5d3719; border-bottom:2px solid #5d3719; }
+.shareNav>ul>li>a,.shareNav>ul>li>i,.shareNav>ul>li>em,.shareNav>ul,.shareNav>ul>li{ display:inline-block; vertical-align:middle; }
+.shareNav>ul>li>i{ width:6px; height:6px; border-radius:50%;  }
+.pendingPayment>i{ background:#747edc; }
+.waitingList>i{ background:#ff5d4a; }
+.distribution>i{ background:#1dc499; }
+.inDistribution>i{ background:#ffa800; }
+.cafeComplete>i{ background:#b5b5b5; }
+.cafeNav>ul>li>em{ padding:2px 15px; font-size:12px; border-radius:12px; background:#e1e1e1; }
+
+/* 查找单号 */
+.searchOrder{ padding-left:20px; }
+.searchOrder>form>ul>li{ display:inline-block; margin-right:26px; padding:15px 0; }
+.searchOrder>form>ul>li>span,.searchOrder>form>ul>li>input{ vertical-align:middle; }
+.searchOrder>form>ul>li>span{ font-size:12px; }
+.searchOrder>form>ul>li>input{ height:28px; padding-left:15px; margin-left:10px; font-size:12px; border-radius:20px;  }
+#orderNum{ width:158px; box-shadow: 1px 2px 4px #888888; }
+#seatNum{ width:116px;  box-shadow: 1px 2px 4px #888888; }
+#orderSub{ width:80px; padding-left:0; background:#fec006; color:white; font-size:12px; cursor:pointer; }
+
+/* 分享列表 */
+.shareList{ padding:0 15px; }
+.shareListTitle{ padding:10px; }
+.shareListTitle>span{ display:inline-block; text-align:center; font-size:14px; }
+.shareListTitle>span:first-child{ text-align:left; }
+.dealState{ margin-left:82px; font-size:15px; background:none; border:1px solid #efefef; border-bottom:none; }
+.dealState:hover{ background:white; border:1px solid #ddd; border-bottom:none; }
+.dealStateBox{ width:100px; position:absolute;border:1px solid #ddd; border-top:none; background:white; }
+.dealStateBox>a{ height:25px; line-height:25px; display:block; text-align:left; padding-left:10px; color:black; }
+.dealStateBox>a:hover{ color:#ffa42f; }
+.shareListContent>li{ margin-top:15px; background:white; }
+.shareListContent>li:hover{ box-shadow:3px 5px 23px #888888; }
+.shareListContent>li:first-child{ margin-top:0; }
+.shareListContent>li>dl>dt{ padding:10px 20px; border-bottom:1px solid #ddd; }
+.shareListContent>li>dl>dd{ height:88px; display:inline-block; text-align:center; vertical-align:middle; border-right:1px solid #ddd; }
+.shareListContent>li>dl>dd>div{ font-size:12px; }
+.shareListContent>li>dl>dd:last-child{ border-right:none; }
+.shareListContent>li>dl>dt>span,.cafeListContent>li>dl>dt>em{ color:#999; font-size:14px; }
+.shareListContent>li>dl>dt>em{ margin-left:50px; font-size:14px; color:#aaaaaa; }
+.cafeUser{ width:364px; }
+.distributionCost{ width:140px; }
+.orderProgress{ width:230px; }
+.transactionState{ width:264px; }
+.cafeOperation{ width:214px; }
+.cafeUser>div>img,.cafeUser>div>em{ vertical-align:middle; }
+.cafeUser>div>img{ width:55px; border-radius:6px; }
+.cafeUser>div>em{ display:inline-block; margin-left:5px; margin-top:8px; }
+.cafeUser>div>em>p{ margin-bottom:5px;  }
+.cafeUser>div>em>span{ color:#999; }
+.distributionCost>div>span{ color:#ffa42f; font-weight:bold; }
+.distributionCost>div>p{ color:#999; font-size:12px; }
+.transactionState>div>div>i{ display:inline-block; width:6px; height:6px; border-radius:50%;  }
+.cafeOperation a{ display:inline-block; padding:5px 15px; background:#b5b5b5; color:white;  }
+.cafeUser>div{ margin-top:13px; margin-left:15px; }
+.distributionCost>div{ margin-top:37px;  }
+.orderProgress>div{ margin-top:12px; }
+.transactionState>div{ margin-top:34px;  }
+.cafeOperation>div{ margin-top:30px; }
+.progressContentBg{ width:197px; height:9px; display:inline-block;  background:url(../images/ordpro_06.png) no-repeat; }
+.progressContent{ width:0px; height:9px; background:url(../images/ordpro_03.png) no-repeat; color:#fff; text-align:left; font-size:18px; line-height:48px; }
+.orderProgress>div>a{ display:inline-block; padding:5px 10px; margin:0 10px; background:#798697; color:white; font-size:12px; font-style:normal; cursor:pointer; }
+.progressText{ margin-top:0; }
+.progressText>span,.progressText>em{ color:#999; }
+.progressText>span{ float:left; margin-left:18px; font-size:12px; }
+.progressText>em{ float:right; margin-right:18px; font-size:12px; }
+.seatTime{ width:178px; }
+.seatTime>p{ font-size:12px; }
+.seatContact{ width:242px; }
+.seatContact>p{ font-size:12px; }
+.seatTime>p:first-child,.seatContact>p:first-child{ margin-top:30px; }
+
+.remarkInfo{ width:100px; position:absolute; top:24px; left:134px; padding:5px; border:1px solid #ffa42f; font-style:normal; background-color:#FFF; }
+.remarkInfo em{ width:10px; height:10px; position:absolute; top:-6px; left:50px; display:inline-block; background:#fff; border-width:1px; border-style:solid; border-color:#fff #fff #ffa42f #ffa42f; transform:rotate(136deg); }
+
+
+/* 分页 */
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+.current {
+	border-bottom: 2px solid rgb(149, 131, 127);
+}

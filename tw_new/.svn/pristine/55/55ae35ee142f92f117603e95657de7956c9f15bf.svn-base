@@ -1,0 +1,192 @@
+<?php
+
+class Auth_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /************************************* 权限列表 *************************************/
+
+    /**
+     * [get_auth_showlist 获取所有权限信息]
+     * @return [array] [返回查询到的所有权限信息]
+     */
+    public function get_auth_showlist()
+    {
+        $a_where = [
+            'auth_type' => 3,
+        ];
+        $a_order = [
+            'auth_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('auth', $a_where, '', $a_order, 0, 999999999);
+        return $a_data;
+    }
+
+    /************************************* 添加权限 *************************************/
+
+    /**
+     * [insert_auth 添加权限]
+     * [ 操作表 auth 操作方式 insert ]
+     * @param  [array] $a_data [要插入的数据]
+     * @return [int]           [返回新数据的id]
+     */
+    public function insert_auth($a_data)
+    {
+        $i_result = $this->db->insert('auth', $a_data);
+        return $i_result;
+    }
+
+    /*********************************** 权限是否存在 ***********************************/
+
+    /**
+     * [get_auth_exist 验证权限是否存在]
+     * @param  [string] $auth_url [传入的权限url]
+     * @return [int]              [返回查询到的总条数]
+     */
+    public function get_auth_exist($auth_url)
+    {
+        $a_where  = [
+            'auth_url'  => $auth_url,
+            'auth_type' => 3,
+        ];
+        $i_result = $this->db->get_total('auth', $a_where);
+        return $i_result;
+    }
+
+    /************************************* 修改权限 *************************************/
+
+    /**
+     * [get_auth_detail 获取要修改权限的详情]
+     * [ 操作表 auth 操作方式 select ]
+     * @param  [int] $auth_id [要获取详情的权限id]
+     * @return [array]        [返回查询到的数据]
+     */
+    public function get_auth_detail($auth_id)
+    {
+        $a_where = [
+            'auth_id' => $auth_id,
+        ];
+        $a_data  = $this->db->get_row('auth', $a_where);
+        return $a_data;
+    }
+
+    /**
+     * [update_auth 修改权限]
+     * [ 操作表 auth 操作方式 update ]
+     * @param  [array] $a_where [要修改的条件]
+     * @param  [array] $a_data  [要修改的数据]
+     * @return [int]            [返回修改的行数]
+     */
+    public function update_auth($a_where, $a_data)
+    {
+        $i_result = $this->db->update('auth', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /************************************* 删除权限 *************************************/
+
+    /**
+     * [delete_auth 删除权限 单个删除]
+     * [ 操作表 auth 操作方式 delete ]
+     * @param  [type] $auth_id [要删除权限的id]
+     * @return [type]          [返回删除的行数]
+     */
+    public function delete_auth_one($auth_id)
+    {
+        $a_where  = [
+            'auth_id' => $auth_id,
+        ];
+        $i_result = $this->db->delete('auth', $a_where);
+        return $i_result;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [delete_manager_mony 批量删除权限]
+     * @param  [array] $a_data     [要删除权限的id数组]
+     * @return [int]   $i_result   [返回删除的行数]
+     */
+    public function delete_auth_mony($a_data)
+    {
+        $i_result = $this->db->where_in('auth_id', $a_data)->delete('auth');
+        return $i_result;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [get_role_info 获取所有角色信息]
+     * @return [array] [返回查询到的所有角色信息]
+     */
+    public function get_role_info()
+    {
+        $a_where = [
+            'role_id !=' => 1,
+        ];
+        $a_data  = $this->db->get('role', $a_where);
+        return $a_data;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [get_group_info 获取所有的分组信息]
+     * @return [array] [返回所有的分组信息]
+     */
+    public function get_group_info()
+    {
+        $a_data = $this->db->get('group');
+        return $a_data;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [update_role_all 更新角色信息]
+     * @param  [array] $a_where [更新的条件]
+     * @param  [array] $a_data  [更新的数据]
+     * @return [int]            [返回受受影响的行数]
+     */
+    public function update_role_all($a_where, $a_data)
+    {
+        $i_result = $this->db->update('role', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [update_group_all 更新分组信息]
+     * @param  [array] $a_where [更新的条件]
+     * @param  [array] $a_data  [更新的数据]
+     * @return [int]            [返回受受影响的行数]
+     */
+    public function update_group_all($a_where, $a_data)
+    {
+        $i_result = $this->db->update('group', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [get_son_total 获取权限的子权限总数]
+     * @return [int] [返回查询到的子权限总数]
+     */
+    public function get_son_total($auth_id)
+    {
+        $a_where  = [
+            'auth_pid' => $auth_id,
+        ];
+        $i_result = $this->db->get_total('auth', $a_where);
+        return $i_result;
+    }
+
+    /************************************************************************************/
+
+}

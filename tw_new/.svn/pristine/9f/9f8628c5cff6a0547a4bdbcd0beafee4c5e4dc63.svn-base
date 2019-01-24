@@ -1,0 +1,16 @@
+body{ background:#efefef; }
+/*  ÉêÇëÍË¿îÓë±£ÐÞ */
+.guaranteeRefund{ margin:0.25rem; }
+.guaranteeRefund>a{ display:block; text-align:center; margin-bottom:0.25rem; background:white; border-radius:0.25rem;  }
+.guaranteeRefund>a>i>img{ width:2.4rem; margin-top:1.3rem; margin-bottom:0.5rem; }
+.guaranteeRefund>a>h1{ margin-bottom:0.2rem; font-size:0.5rem; color:black;  }
+.guaranteeRefund>a>span{ display:inline-block; margin-bottom:0.8rem; font-size:0.4rem; color:#999; }
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+.valuation_box {
+	width: 100%;
+	height: 4.8rem;
+	font-size: 0.14rem;
+	background: #fff;
+	position: absolute;
+	top: 1.71rem;
+	overflow: scroll;
+	display: none;
+}
+
+.valuation_box .header {
+	display: flex;
+	align-items: center;
+	padding: .2rem;
+}
+
+.valuation_box .header .left {
+	border-right: 1px solid #999999;
+	padding: 0 .3rem;
+	font-size: .11rem;
+	text-align: center;
+}
+
+.valuation_box .header .left .num {
+	font-size: .24rem;
+}
+
+.valuation_box .header .right {
+	padding: 0 .2rem;
+	font-size: .11rem;
+}
+
+.valuation_box .header .right span {
+	color: #f5b72e;
+	font-size: .13rem;
+	padding: 0 .1rem;
+}
+
+.valuation_box .nav {
+	display: flex;
+	padding: .1rem;
+}
+
+.valuation_box .nav>div {
+	flex: 1;
+	text-align: center;
+	border: 1px solid #ff6633;
+	color: #FF6633;
+	padding: .05rem;
+}
+
+.valuation_box .nav>div:nth-child(1) {
+	border-radius: .05rem 0 0 .05rem;
+}
+
+.valuation_box .nav>div:nth-child(3) {
+	border-radius: 0 .05rem .05rem 0;
+}
+
+.valuation_box .nav>div.check {
+	background: #ff6633;
+	color: #fff;
+}
+
+.valuation_box .view {
+	padding: .1rem;
+	font-size: .12rem;
+}
+
+.valuation_box .view>div {
+	display: none;
+}
+
+.valuation_box .view>div.check {
+	display: block;
+}
+
+.valuation_box .view .top {
+	display: flex;
+}
+
+.valuation_box .view .top .type {
+	padding: .05rem;
+	background: #ffe8e0;
+	border-radius: .025rem;
+	margin-right: .05rem;
+	color: #666666;
+}
+
+.valuation_box .view .top .type.bad {
+	background: #f1f1f1;
+}
+
+.valuation_box .view .top .type.check {
+	background: #ff6633;
+	color: #fff;
+}
+
+.valuation_box .kg {
+	height: .1rem;
+	width: 100%;
+	background: #f7f7f7;
+}
+
+.valuation_box .valua {
+	display: flex;
+	padding: .1rem 0;
+}
+
+.valuation_box .valua .img {
+	width: .31rem;
+	height: .31rem;
+	background: #000000;
+	border-radius: 50%;
+	margin-right: .1rem;
+}
+
+.valuation_box .valua .other {
+	flex: 1;
+}
+
+.valuation_box .valua .other .nameBox {
+	display: flex;
+	justify-content: space-between;
+}
+
+.valuation_box .imgs {
+	line-height: 0;
+	padding: .1rem 0;
+	display: flex;
+	overflow-x: auto;
+}
+
+.valuation_box .imgs>img {
+	width: .905rem;
+	height: .905rem;
+}
+
+.valuation_box .imgs>img+img {
+	padding-left: .1rem;
+}
+
+.valuation_box .c_orange {
+	color: #ff6633;
+}
+
+.valuation_box .c_gray {
+	color: #999999;
+}
+
+.valuation_box .view {
+	height: calc(4rem - 1rem);
+	overflow: scroll;
+}
+
+.valuation_box .info .nameBox .name {
+	font-size: .12rem;
+}

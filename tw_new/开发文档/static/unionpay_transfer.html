@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">银联代付接口</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载银联代付接口
+	$this->load->library('unionpay_transfer');
+	// 使用$this->unionpay_transfer->方法名进行访问操作
+</code>
+</pre>
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->unionpay_transfer->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	从企业账户转账到银行卡，如用户提现。
+</div>
+<code class="language-php">
+	$this->unionpay_transfer->pay();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('unionpay_transfer');
+$a_param = [
+	// 标志该笔交易发生的日期,格式为YYYYMMDD，请填写当天的日期。
+	'mer_date' => '20171207',
+	// 订单号，商户流水号
+	'mer_seqId' => '20171208004',
+	// 银行卡号或者存折号
+	'card_no' => '01010101010101',
+	// 收款人在银行开户时留存的开户姓名
+	'usr_name' => 'xxx',
+	// 开户银行名称
+	'open_bank' => '招商银行',
+	// 收款人开户行所在省
+	'prov' => '广东',
+	// 收款人开户行所在地区
+	'city' => '广州',
+	// 金额，整数，货币种类为人民币，以分为单位
+	'trans_amt' => '1',
+	// 存款用途。
+	'purpose' => '测试',
+	// 开户支行名称。
+	'sub_bank' => '广州分行花城支行',
+	// 对公对私标记。“00”对私，“01”对公。该字段可以不填，如不填则默认为对私。
+	'flag' => '00',
+	// 表示商户代付业务使用场景，（业务参数）07：互联网；08：移动端
+	'term_type' => '07',
+	// 表示商户代付业务交易模式（业务参数），0：被动发起代付，1：主动发起代付
+	'pay_mode' => '1'
+];
+$a_result = $this->unionpay_transfer->pay($a_param);
+print_r($a_result);
+
+// 返回数组格式
+Array
+(
+    [responseCode] => 0000
+    [merId] => 808080211307008
+    [merDate] => 20171207
+    [merSeqId] => 20171208005
+    [cpDate] => 20171207
+    [cpSeqId] => 125548
+    [transAmt] => 1
+    [stat] => s
+    [cardNo] => 6225881209923845
+    [chkValue] => 9097991EB6DF9D237FB91AABE61F2900727D01CDA61514AF251B8C91F702D037466F9FB6C7C14DAB7D45AD1C619AD18445ABF30B255BE2D250AF859757FB0F4D010BF53CFB358CA11A04CD369A93E3B726D0AAF63D7DE4D2AC51F4128FE3F005587E985965C527B07CC47A64A2E7EB7BE76DF0BCBE3C3FF3E43516B21DED3259
+)
+
+// 返回数组参数说明
+No	字段名称				长度		是否必然出现		项目描述
+1.	responseCode		4位			是					请求应答码，0000 接收成功；0100 商户提交的字段长度、格式错误；0101 商户验签错误；0102 手续费计算出错；0103 商户备付金帐户金额不足；0104 操作拒绝； 0105 待查询，重复交易；
+2.	merId				15位		否					同请求报文参数中的商户号
+3.	merDate				8位			否					同请求报文参数中的商户日期
+4.	merSeqId			16位		否					同请求报文参数中的商户流水号
+5.	cpDate				8位			否					ChinaPay接收到交易的日期
+6.	cpSeqId				6位			否					ChinaPay系统内部流水
+7.	transAmt			12位		否					同请求报文参数中的金额
+8.	stat				1位			否					交易状态码，s 交易成功，2、3、4、5、7、8都表示处理中，6、9表示失败。
+9.	cardNo				32位		否					同请求报文参数中的收款账号
+10.	chkValue			256位		是					对返回字串的签名。返回应答报文中最后一个“&”符号以前的都是作为签名的明文。明文需进行BASE64编码，具体见下方。
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->unionpay_transfer->query(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	查询订单。
+</div>
+<code class="language-php">
+	$this->unionpay_transfer->query();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('unionpay_transfer');
+$a_param = [
+	// 标志该笔交易发生的日期,格式为YYYYMMDD，请填写当天的日期。
+	'mer_date' => '20171208',
+	// 订单号，商户流水号
+	'mer_seqId' => '20171208001'
+];
+$a_result = $this->unionpay_transfer->query($a_param);
+print_r($a_result);
+
+// 返回数据格式
+Array
+(
+    [0] => 000
+    [1] => 808080211307008
+    [2] => 20171207
+    [3] => 20171208006
+    [4] => 20171208
+    [5] => 149733
+    [6] => 招商银行
+    [7] => 23845
+    [8] => xxx
+    [9] => 1
+    [10] => 100
+    [11] => 广东
+    [12] => 广州
+    [13] => 测试
+    [14] => s
+    [15] => 
+    [16] => 0B6775DF23DD8EE29615A779CA0B3438673E2240851CCBA05693AAD107DD45E4EF81D5C9A841477C200AE601B48C298CED96BD0CC2E69B1ABE9C1A59C66238035D78DDEC4D7723B1F90BBAB244C0454834289A4B863AC00217E1D1A5FDD0E3C7C4EA20D90A324DBC42BB4B58AD229FD328D2AA06052D17FDA33FEDBA48898E36
+)
+// [0] 如果等于 000 表示查询成功，001表示没有记录。002表示查询出错或查询频率超限。
+// [14] s 表示交易成功，请参考支付函数的返回字段stat说明。
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->unionpay_transfer->query_balance(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	查询总余额
+</div>
+<code class="language-php">
+	$this->unionpay_transfer->query_balance();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('unionpay_transfer');
+$a_result = $this->unionpay_transfer->query_balance();
+print_r($a_result);
+
+// 返回数据格式：
+Array
+(
+    [0] => 000
+    [1] => 808080211307008
+    [2] => 10000
+    [3] => 6FD65EE12C4B29D265B474D4265682B95C87746ACCCB91F92C8CFDA7CF3567138471E517DB37C6F2C86837B0A262324263463A769E5E428AB7236E21DBD8941E9432DFFDBD98A58B63AAFEE621D9BD49D732FEBA427657DC0632E418E3251922EABA64597FFBC5966EF72A4448C3DDC8147B6B6797713626E04FD09FDEDD900D
+)
+// [0] 表示查询成功。001表示查询出错或签名错误或超限错误
+// [2] 表示余额数，单位为分
+</code>
+</pre>
+</div>
+
+
+</body>
+</html>

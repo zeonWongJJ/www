@@ -1,0 +1,266 @@
+<?php
+/**
+ * 需求模型
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace model;
+
+use utils\Factory;
+
+/**
+ * Class DemandModel
+ * @package model
+ */
+class DemandModel extends BaseModel
+{
+    /**
+     * 审核需求
+     * @param int|array $id
+     * @return mixed
+     */
+    public function examineDemand($id)
+    {
+        if (\is_array($id)) {
+            $query = $this->db->where_in('id', $id);
+        } else {
+            $query = $this->db->where(compact('id'));
+        }
+
+        $query->update(get_table('demand'), ['demand_is_show' => 1]);
+        return $this->success(false);
+    }
+
+    /**
+     * 需求退款
+     * @param array $row
+     */
+    public function refundOrder(array $row)
+    {
+        $user_info = $this->db->get_row('user', ['user_id' => $row['user_id']]);
+
+        if ($row['order_deductible_type'] == 1) { // 订单使用了余额抵扣，返还抵扣的到余额
+            $update = [
+                'user_balance' => sprintf(
+                    '%.2f'
+                    , ($user_info['user_balance'] * 100 + $row['order_deductible_count'] + $row['order_actual_amount']) / 100)
+            ];
+            $this->db->insert('userbalance', [
+                'ub_type'          => 1
+                , 'ub_money'       => sprintf('%.2f', ($row['order_deductible_count'] + $row['order_actual_amount']) / 100)
+                , 'ub_balance'     => $update['user_balance']
+                , 'ub_time'        => $_SERVER['REQUEST_TIME']
+                , 'ub_item'        => '退还金额'
+                , 'user_id'        => $row['user_id']
+                , 'ub_number'      => $row['order_sn']
+                , 'ub_description' => '订单号' . $row['order_sn'] . '过期退还金额'
+            ]);
+        }  elseif ($row['order_deductible_type'] == 2) { // 使用了积分抵扣，返回抵扣的到积分
+            $update = [
+                'user_score'     => sprintf(
+                    '%.2f'
+                    , ($user_info['user_score'] * 100 + $row['order_deductible_count']) / 100
+                )
+                , 'user_balance' => sprintf(
+                    '%.2f'
+                    , ($user_info['user_balance'] * 100 + $row['order_actual_amount']) / 100
+                )
+            ];
+            $this->db->insert('userbalance', [
+                'ub_type'          => 1
+                , 'ub_money'       => sprintf('%.2f', $row['order_actual_amount'] / 100)
+                , 'ub_balance'     => $update['user_balance']
+                , 'ub_time'        => $_SERVER['REQUEST_TIME']
+                , 'ub_item'        => '退还金额'
+                , 'user_id'        => $row['user_id']
+                , 'ub_number'      => $row['order_sn']
+                , 'ub_description' => '订单号' . $row['order_sn'] . '过期退还金额'
+            ]);
+            $this->db->insert('points_log', [
+                'user_id'          => $row['user_id']
+                , 'user_name'      => $user_info['user_name']
+                , 'pl_type'        => 1
+                , 'pl_variation'   => sprintf('%.2f', $row['order_deductible_count'] / 100)
+                , 'pl_score'       => $update['user_score']
+                , 'pl_item'        => '退还积分'
+                , 'pl_description' => '订单号' . $row['order_sn'] . '过期退还积分'
+                , 'pl_time'        => $_SERVER['REQUEST_TIME']
+                , 'pl_code'        => 4
+            ]);
+        } else { // 没有使用抵扣，退还订单金额到用户余额中
+            $update['user_balance'] = sprintf(
+                '%.2f'
+                , ($user_info['user_balance'] * 100 + $row['order_amount']) / 100
+            );
+            $this->db->insert('userbalance', [
+                'ub_type'          => 1
+                , 'ub_money'       => sprintf('%.2f', $row['order_amount'] / 100)
+                , 'ub_balance'     => $update['user_balance']
+                , 'ub_time'        => $_SERVER['REQUEST_TIME']
+                , 'ub_item'        => '退还金额'
+                , 'user_id'        => $row['user_id']
+                , 'ub_number'      => $row['order_sn']
+                , 'ub_description' => '订单号' . $row['order_sn'] . '过期退还金额'
+            ]);
+        }
+
+//        $update['user_balance'] = number_format($update['user_balance'], 2);
+//        $update['user_score']   = number_format($update['user_score'], 2);
+
+        $this->db->set('user_balance', "user_balance + {$update['user_balance']}", false)
+            ->update('user', null, ['user_id' => $row['user_id']]);
+
+        $this->db->update(get_table('order'), [
+            'order_state'       => 4
+            , 'order_refund'    => 1
+            , 'order_refund_at' => $_SERVER['REQUEST_TIME']
+        ], ['order_sn' => $row['order_sn']]);
+        $this->db->insert(get_table('order_log'), [
+            'order_sn' => $row['order_sn']
+            , 'log_at' => $_SERVER['REQUEST_TIME']
+            , 'log'    => '订单' . $row['order_sn'] . '由于失效已被系统自动取消，资金退回'
+            , 'uid'    => 0
+        ]);
+    }
+
+    /**
+     * @remark 处理过期的需求
+     * @return bool
+     */
+    public function BeOverdue(): bool
+    {
+        $this->db->set_error_mode();
+        $map = [
+            'b.order_type'            => 2,
+            'b.order_state <>'        => 4,
+            'b.order_is_pay'          => 1,
+            'b.order_refund'          => 0,
+            'b.order_belong_store_id' => 0,
+            'a.demand_post_at <'      => strtotime('-15 days'),
+        ];
+        // 输出列表之前关闭过期的需求
+        $count = $this->db->join([get_table('demand') => 'a'], ['a.order_sn' => 'b.order_sn'], 'INNER')
+            ->get_total([get_table('order') => 'b'], $map);
+        if ($count) {
+            $rows = $this->db->limit(0, $count)
+                ->join([get_table('order') => 'b'], ['a.order_sn' => 'b.order_sn'], 'INNER')
+                ->select('b.*, a.id', false)
+                ->get([get_table('demand') => 'a'], [
+                    'b.order_is_pay'          => 1,
+                    'b.order_belong_store_id' => 0,
+                    'b.order_refund'          => 0,
+                    'a.demand_post_at <'      => strtotime('-15 days'),
+                ]);
+            // 循环处理回滚订单
+            foreach ($rows as $row) {
+                $this->refundOrder($row);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 格式化数据
+     * @param array $row
+     * @param bool $sort_by_distance
+     * @return array
+     */
+    public function formatRow(array $row, $sort_by_distance = false): array
+    {
+        $row['demand_remuneration'] = number_format($row['demand_remuneration'] / 100, 2, '.', ',');
+        $row['demand_post_at']      = date('Y-m-d H:i:s', $row['demand_post_at']);
+        $row['demand_service']      = date('Y-m-d H:i:s', $row['demand_service_at']);
+        $row['demand_img']          = explode(',', $row['demand_img']);
+        $append = '';
+        if (mb_strlen($row['demand_info']) > 30) {
+            $row['demand_info'] = mb_substr($row['demand_info'], 0, 30) . '...';
+            $append = '...';
+        }
+        if (!$row['subject_title']) {
+            $row['subject_title'] = mb_substr($row['demand_info'], 0, 15) . $append;
+        }
+
+        list($lng, $lat) = explode(',', $row['demand_lal']);
+
+        if ($sort_by_distance) {
+            $user_lat = $this->request->post('lat', '', 'trim');
+            $user_lng = $this->request->post('lng', '', 'trim');
+            $row['_distance'] = get_distance($lng, $lat, $user_lat, $user_lng);
+            $row['lat'] = trim($lat);
+            $row['lng'] = trim($lng);
+        }
+        return $row;
+    }
+
+    /**
+     * @remark 通过地址坐标排序服务列表
+     * @param string $local
+     * @return array
+     */
+    public function getDemandListByLocal($local): array
+    {
+        // 执行一次处理过期需求
+        $this->BeOverdue();
+
+        list($field, $sort, $offset, $limit, $condition) = $this->buildQuery();
+
+        list($lng, $lat) = explode(',', $local);
+
+        $result  = $this->db->query('SHOW FULL COLUMNS FROM ' . $this->db->get_prefix(get_table('order')));
+        $columns = [];
+        foreach ($result as $item) {
+            if ('id' === $item['Field']) {
+                $columns[] = 'b.' . $item['Field'] . ' as order_id';
+            } elseif ('order_sn' === $item['Field']) {
+                $columns[] = 'b.' . $item['Field'] . ' as order_table_sn';
+            } else {
+                $columns[] = 'b.' . $item['Field'];
+            }
+        }
+        $map = [
+            'b.order_type ='            => 2,
+            'b.order_state <>'        => 4,
+            'b.order_is_pay ='          => 1,
+            'b.order_belong_store_id =' => 0
+        ];
+
+        $_column = '';
+        foreach ($columns as $column) {
+            $_column .= $column . ',';
+        }
+
+        $where = '';
+        foreach ($map as $key => $value) {
+            $where .= " {$key} {$value} AND ";
+        }
+
+        $where = trim($where, 'AND ');
+        $demand_name = $this->db->get_prefix(get_table('demand'));
+        $sql = <<<EOF
+SELECT 
+  {$_column}
+  {$demand_name}.* ,
+  ROUND(
+    6378.138 * 2 * ASIN(
+      SQRT(
+        POW(SIN(({$lat} * PI() / 180- demand_lat * PI() / 180) / 2), 2) + COS({$lat} * PI() / 180) * COS(demand_lat * PI() / 180) * POW(SIN(({$lng} * PI() / 180- demand_lng * PI() / 180) / 2), 2)
+      )
+    ) * 1000
+  ) AS juli 
+FROM
+  {$demand_name} 
+INNER JOIN {$this->db->get_prefix(get_table('order'))} as b ON b.order_sn = {$demand_name}.order_sn
+WHERE {$where}
+HAVING juli
+ORDER BY juli ASC 
+LIMIT {$offset}, {$limit} 
+EOF;
+        $query_res   = $this->db->query($sql);
+        $rows = $query_res->fetchAll(\PDO::FETCH_ASSOC);
+        foreach ($rows as &$row) {
+            $row = $this->formatRow($row);
+        }
+
+        return $rows;
+    }
+}

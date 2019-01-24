@@ -1,0 +1,52 @@
+/* ��¼ע�� */
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance:none; }
+.loginRegister{ width:100%; height:100%; background:url(../images/loginBG.png) no-repeat; background-size:100% 100%; position:absolute; }
+.loginRegister>a{ display:inline-block; margin-top:0.85rem; margin-left:0.24rem; }
+.loginRegister>a>img{ width:0.86rem; }
+.logo{ position:absolute; right:0.73rem; top:0.8rem; border-radius:50%; }
+.logo>img{ width:1.29rem; }
+.kip{ width:100%; position:absolute; bottom:2.2rem; text-align:center;  }
+.kip>span,.kip>h1{ font-size:0.37rem; }
+.lgBox{ margin-top:0.8rem; }
+.lgBox>span{ width:4rem; height:1.06rem; line-height:1.06rem; display:inline-block; font-size:0.37rem; border-radius:0.1rem;  }
+.loginBtn{ margin:0 0.2rem; background:#ff6633; color:white; border:1px solid #ff6633; }
+.registerBtn{ border:1px solid #ff6633; color:#ff6633; }
+.loginRegister>p{ width:100%; position:absolute; bottom:0; text-align:center; margin-bottom:0.2rem;  font-size:0.29rem; }
+.loginRegister>p>a{ color:#ff9471; }
+/* ��¼ */
+.login{ width:7.94rem; position:absolute; left:1rem; top:1rem; padding:0.64rem 0.36rem; background:white; z-index:2; box-shadow: 10px 10px 20px #888888; border-radius:0.45rem;  }
+.closeLogin{ width:0.8rem; position:absolute; right:0.44rem; }
+.login>i{ display:block; text-align:center; margin-top:1.4rem; }
+.login>form{ margin-top:1.04rem; }
+.login>form>input{ width:7.2rem; height:0.9rem; margin-top:0.37rem; padding:0 0.29rem; font-size:0.32rem; background:#ececec; border-radius:0.15rem; cursor:pointer; }
+.login>form>a{ display:inline-block; padding:0.33rem 0; font-size:0.34rem; }
+#loginSub{ margin-top:0; font-size:0.42rem; background:#ff6633; color:white; }
+.userBox{ background:#ececec; }
+.userBox>li{ height:0.6rem; line-height:0.6rem; padding:0 0.29rem; font-size:0.3rem; }
+.remeberPwd{ float:right; margin-top:0.3rem; cursor:pointer; }
+.remeberPwd>img,.remeberPwd>span{ vertical-align:middle; }
+.remeberPwd>img{ width:0.4rem; }
+.remeberPwd>span{ font-size:0.34rem; }
+/* ����ʽ��¼ */
+.modeLogin{ margin-top:0.58rem; }
+.modeLogin>p{ text-align:center; font-size:0.3rem; color:#666666; }
+.modeLogin>a{ width:7.2rem; height:0.88rem; line-height:0.88rem; text-align:center; display:inline-block; margin-top:0.42rem; font-size:0.34rem; border:0.02rem solid #ddd; }
+/* ע�� */
+.register{ width:7.94rem; position:absolute; left:1rem; top:1.5rem; padding:0.64rem 0.36rem; background:white; z-index:2; box-shadow: 10px 10px 20px #888888; border-radius:0.45rem;  }
+.closeRegister{ width:0.8rem; position:absolute; right:0.44rem; }
+.register>i{ display:block; text-align:center; margin-top:1.4rem; }
+.register>form>input{ width:7.2rem; height:0.9rem; margin-top:0.37rem; padding:0 0.29rem; font-size:0.32rem; background:#ececec; border-radius:0.15rem; }
+#user_code{ width:4.6rem; }
+#codeBtn{ width:2.17rem; height:0.92rem; line-height:0.92rem; display:inline-block; text-align:center; margin-left:0.26rem; font-size:0.32rem; color:white; background:#ff6633; border-radius:0.2rem; }
+#regSub{ margin-top:0.69rem; font-size:0.42rem; background:#ff6633; color:white; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:white; opacity:0; z-index:1; }
+/* ��ʾ�� */
+.tips{ width:8rem; position:absolute; top:50%; left:1rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }
+
+
+-moz-document url-prefix() {
+  .parent {
+    transform: none;
+  }
+ }

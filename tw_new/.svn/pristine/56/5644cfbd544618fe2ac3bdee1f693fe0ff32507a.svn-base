@@ -1,0 +1,160 @@
+<?php
+
+class Cate_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /************************************* 分类列表 *************************************/
+
+    /**
+     * [get_cate_showlist 获取所有分类信息]
+     * @return [array] [返回查询到的所有分类信息]
+     */
+    public function get_cate_showlist()
+    {
+        $a_order = [
+            'cate_id' => 'asc',
+        ];
+        $a_data  = $this->db->get('cate', [], '', $a_order, 0, 9999999);
+        return $a_data;
+    }
+
+    /************************************* 获取一条 *************************************/
+
+    /**
+     * [get_cate_one 获取一条分类信息]
+     * @param  [int] $cate_id   [要查询的分类id]
+     * @return [array]          [返回查询到数据]
+     */
+    public function get_cate_one($cate_id)
+    {
+        $a_where = [
+            'cate_id' => $cate_id,
+        ];
+        $a_data  = $this->db->get_row('cate', $a_where);
+        return $a_data;
+    }
+
+    /************************************* 增加分类 *************************************/
+
+    /**
+     * [insert_cate 增加分类]
+     * @param  [array] $a_data   [要添加插入的数据]
+     * @return [type]  $i_result [返回新数据的id]
+     */
+    public function insert_cate($a_data)
+    {
+        $i_result = $this->db->insert('cate', $a_data);
+        return $i_result;
+    }
+
+    /************************************* 修改分类 *************************************/
+
+    /**
+     * [update_cate 修改分类信息]
+     * @param  [array] $a_where [修改的条件]
+     * @param  [array] $a_data  [修改的数据]
+     * @return [int]            [返回修改受影响的行数]
+     */
+    public function update_cate($a_where, $a_data)
+    {
+        $i_result = $this->db->update('cate', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /************************************* 删除分类 *************************************/
+
+    /**
+     * [delete_cate 删除分类]
+     * @param  [int] $cate_id [要删除的分类id]
+     * @return [int]          [返回删除的总行数]
+     */
+    public function delete_cate($cate_id)
+    {
+        $a_where  = [
+            'cate_id' => $cate_id,
+        ];
+        $i_result = $this->db->delete('cate', $a_where);
+        return $i_result;
+    }
+
+    /********************************** 获取子分类总数 **********************************/
+
+    public function get_cate_son($cate_id)
+    {
+        $a_where  = [
+            'cate_pid' => $cate_id,
+        ];
+        $i_result = $this->db->get_total('cate', $a_where);
+        return $i_result;
+    }
+
+    /************************************ 批量删除分类 **********************************/
+
+    public function delete_cate_mony($new_ids)
+    {
+        $i_result = $this->db->where_in('cate_id', $new_ids)->delete('cate');
+        return $i_result;
+    }
+
+    /*************************** 查找同一分类下相同子分类的个数 ************************/
+
+    public function get_same_cate($cate_pid, $cate_name)
+    {
+        $a_where  = [
+            'cate_pid'  => $cate_pid,
+            'cate_name' => $cate_name,
+        ];
+        $i_result = $this->db->get_total('cate', $a_where);
+        return $i_result;
+    }
+
+    /********************************** 当前分类所有子分类 *******************************/
+
+    public function get_this_son($cate_id)
+    {
+        $a_where = [
+            'cate_pid' => $cate_id,
+        ];
+        $s_field = '';
+        $a_order = [
+            'cate_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('cate', $a_where, $s_field, $a_order, 0, 9999999);
+        return $a_data;
+    }
+
+    /******************************* 修改分类时查找其可选你类 ****************************/
+
+    public function get_cate_part($son_ids)
+    {
+        $a_order = [
+            'cate_id' => 'asc',
+        ];
+        $a_data  = $this->db->where_not_in('cate_id', $son_ids)->get('cate', [], '', $a_order, 0, 9999999);
+        return $a_data;
+    }
+
+    /*************************************** 搜索分类 ************************************/
+
+    public function get_cate_search($keywords)
+    {
+        $a_where = [
+            'cate_name LIKE' => '%' . $keywords . '%',
+        ];
+        $a_order = [
+            'cate_id' => 'asc',
+        ];
+        $a_data  = $this->db->get('cate', $a_where, '', $a_order, 0, 9999999);
+        return $a_data;
+    }
+
+    /************************************************************************************/
+
+}
+
+?>

@@ -1,0 +1,74 @@
+/*  �Ĳ����� */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.consumablesApplication{ margin-top:20px; margin-left:22px; }
+.consumablesApplication>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.consumablesContent{ margin-top:15px; background:#fff; }
+.searchStore{ padding:10px 0; }
+.searchStore>form>input{ width:180px; vertical-align:middle; padding:8px 5px; margin-left:20px; font-size:12px; border:1px solid #ddd; background:#f7f6f6; border-bottom-left-radius:5px; border-top-left-radius:5px;  }
+.searchStore>form>i{ width:30px; height:32px; vertical-align:middle; display:inline-block; border:1px solid #b7b6b3; background:#f4f0ee; border-bottom-right-radius:6px; border-top-right-radius:6px; }
+.searchStore>form>i>img{ width:20px; margin-top:6px; margin-left:6px; }
+/* �����б� */
+.consumablesList{ margin-top:20px; padding:0 20px; }
+.consumablesList>li>em{ display:inline-block; vertical-align:middle; font-size:14px; }
+.cateHead{ height:53px; line-height:53px; background:#f4f7fc; }
+.cateHead>em,.cateHead>em.v1>p>span,.cateHead>em>span{ font-weight:bold; }
+.cateBody{ border-bottom:1px solid #f4f4f4; }
+.cateBody>em.v1{ text-align:center; height:45px; line-height:45px; }
+.cateBody>em.v1>p>span{ margin-left:20px; }
+.cateBody>em.v2>p,.cateBody>em.v3>p{ height:45px; font-size:12px; border-left:1px solid #f4f4f4; border-bottom:1px solid #f4f4f4; }
+.cateBody>em.v2>p>span,.cateBody>em.v3>p>span{ margin-top:10px; display:inline-block; }
+.cateBody>em.v2>p:last-child,.cateBody>em.v3>p:last-child{ border-bottom:none; }
+.cateBody>em.v3>p{ border-right:1px solid #f4f4f4; }
+.cateBody:nth-child(even)>em.v2>p:nth-child(odd),.cateBody:nth-child(even)>em.v3>p:nth-child(odd){ background:#f6f9fa; }
+.cateBody:nth-child(odd)>em.v2>p:nth-child(even),.cateBody:nth-child(odd)>em.v3>p:nth-child(even){ background:#f6f9fa; }
+.cateBody>em.v8>a{ color:black; }
+.cateBody>em.v9>a{ color:#5a2e17 }
+.stateBox{ position:relative; border:1px solid #f4f7fc; border-bottom:none; }
+.state{ width:100px; position:absolute; border:1px solid #ddd; border-top:none; background:white; }
+.state>a{ height:30px; line-height:30px; display:block; text-align:left; padding-left:12px; font-size:14px; color:black; cursor:pointer; }
+.state>a:hover{ color:#6e5c58; }
+.v1>img{ width:23px; vertical-align:middle; }
+.v1>p{ display:inline-block; }
+.v1>p>img{ width:16px; vertical-align:middle; padding:0 10px; }
+.v1>p>span{ vertical-align:middle; }
+
+.v1{ width:175px; vertical-align:middle; margin-left:20px; }
+.v2,.v3,.v4{ width:120px; text-align:center; }
+.v5{ width:100px; text-align:center; }
+.v6,.v7{ width:140px; text-align:center; }
+.v8{ width:100px; text-align:center; }
+.v9{ width:130px; text-align:center; }
+
+/* �ײ�ѡ�� */
+.bottomTool{ width:200px; height:50px; line-height:50px; display:inline-block; margin:20px 0; margin-left:20px;  background:white; }
+.bottomTool>a{ display:inline-block; margin-left:26px; }
+.bottomTool>a>span{ font-size:16px; }
+.bottomTool>a>img{ vertical-align:middle; }
+.bottomTool>a>span{ vertical-align:middle; margin-left:7px; }
+.bottomAllSelect>img{ width:23px; }
+.bottomDelect>img{ width:16px; }
+.bottomProvisional>img{ width:16px; }
+
+/* 分页 */
+.page{ float:right; margin-top:30px; margin-right:20px; margin-bottom: 30px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+/* ������  ��Ҫ��ʾ*/
+.popLay,.tips{ width:340px; position:absolute; top:30%; left:50%; padding:34px 34px 0 34px; font-size:14px; background:white; box-shadow:3px 5px 23px #888888; }
+.popLay>img,.tips>img{ position:absolute; right:20px; top:15px; }
+.popLay>p>span,.tips>p>span{ display:block; margin-top:5px; }
+.popBtn,.tipsBtn{ text-align:center; margin-top:22px; padding-bottom:15px;  }
+.popBtn>em,.tipsBtn>em{ display:inline-block; padding:4px 10px; color:#aa4301; border:1px solid #e69c14; background:#ffce1c; }
+.popBtn>a,.tipsBtn>a{ display:inline-block; padding:4px 10px; margin-left:28px; margin-bottom:20px; border:1px solid #ddd; }
+.tips>p>input{ padding:5px; margin-top:10px; border:1px solid #ddd; }
+
+
+
+
+
+
+
+
+

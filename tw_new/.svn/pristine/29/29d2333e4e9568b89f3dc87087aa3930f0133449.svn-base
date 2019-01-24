@@ -1,0 +1,254 @@
+body{
+	background: #ffffff;
+}
+body,html{
+	overflow: inherit;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	font-size:0.14rem;
+}
+.main .title{
+/*	font-size: 0.426666rem;*/
+	text-align: center;
+	margin-top: 0.3rem;
+	position: relative;
+	margin-bottom: 0.2rem;
+}
+.main .title i{
+	font-style: normal;
+}
+.main .title .guan{
+	color: #ff6633;
+	position: absolute;
+	right: 0.5rem;
+	top: 0;
+}
+.main .control{
+	margin-right: 0.2rem;
+	text-align: right;	
+
+}
+.control a{
+	display: inline-block;
+	text-align: center;
+	box-sizing: border-box;
+	line-height: 0.24rem;
+	/*font-size: 0.373333rem;*/
+	color: #FF6633;
+	border: 1px solid #FF6633;
+	border-radius: 0.32rem;
+}
+.control a.addIn{
+	width: 1rem;
+	height: 0.24rem;
+	margin-right: 0.1rem;	
+}
+.control a.delete{
+	width: 0.8rem;
+	height: 0.24rem;
+}
+/*钟福广场店*/
+.main .shopBox{
+	margin-top: 0.2rem;
+	position: relative;
+}
+.appoint .aTit{
+	padding-left: 0.2rem;
+	position: relative;
+	font-size: 0;
+	height: 0.3rem;
+}
+.shopBox .chooseBox{
+	position: absolute;
+	left: 0.3rem;
+	top: 0.1rem;
+	z-index: 3;
+}
+.chooseBox .allCho{
+	display: inline-block;
+	width:0.24rem;
+	height: 0.24rem;
+	background: url(../images/shopcar_10.png) no-repeat;
+	background-size: 100%;
+	vertical-align: middle;
+}
+.chooseBox .allHas{/*全选的勾选*/
+	background: url(../images/shopcar_19.png) no-repeat;
+	background-size: 100%;
+}
+.chooseBox span{
+	display: inline-block;
+	vertical-align: middle;
+	/*font-size: 0.4rem;*/
+	color: #000000;
+	margin-left: 0.1rem;
+}
+.appoint .aTit span{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0.14rem;
+	color: #000000;
+}
+.appoint .aTit .span1{
+	margin-left: 0.4rem;
+}
+.appoint .aTit .span2{
+	position: absolute;
+	right: 0.533333rem;
+	top: 0.12rem;
+}
+.appoint .shopList{
+	/*margin-top: -0.186666rem;*/
+}
+.appoint .shopList li{
+	padding-left: 0.3rem;
+	font-size: 0;
+	margin-top: 0.3rem;/*28*/
+}
+.appoint .shopList li .singleCho{
+	display: inline-block;
+	width:0.24rem;
+	height: 0.24rem;
+	background: url(../images/shopcar_10.png) no-repeat;
+	background-size: 100%;
+	vertical-align: middle;	
+}
+.appoint .shopList li .singleHas{/*单选的勾选*/
+	background: url(../images/shopcar_19.png) no-repeat;
+	background-size: 100%;
+}
+.shopList .sDiv{
+	display: inline-block;
+	width: 2.8rem;/*570*/
+	height: 1rem;/*230*/
+	background: white;
+	border-radius: 0.1rem;
+	/*background: red;*/
+	vertical-align: middle;
+	margin-left: 0.15rem;
+	font-size: 0;
+	box-shadow:0.026666rem 0.026666rem 0.4rem #e4e4e4;/*2 2 30*/
+}
+.shopList .sDiv .img{
+	display: inline-block;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 0.16rem;
+	/*background: yellow;*/
+	margin-top: 0.1rem;
+	margin-left: 0.1rem;
+	vertical-align: top;
+}
+.shopList .sDiv .describe{
+	display: inline-block;
+	width: 1.2rem;/*270*/
+	height: 1.3rem;
+	margin-left: 0.1rem;
+	position: relative;
+	font-size:0.14rem;
+}
+.describe .name{
+	/*font-size: 0.4rem;*/
+	color: #000000;
+	margin-top: 0.1rem;/*28*/
+	display: -webkit-box !important; 
+	overflow: hidden; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp: 2;
+}
+.describe .smallN{
+	/*font-size: 0.32rem;*/
+	color: #666666;
+	margin-top: 0.1rem;
+	display: -webkit-box !important; 
+	overflow: hidden; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp: 1;
+}
+.describe .money{
+	/*font-size: 0.4rem;*/
+	color: #000000;
+	position: absolute;
+	bottom: 0.373333rem;
+	left: 0;
+}
+.describe .money .qian{
+	font-style: normal;
+}
+.shopList .sDiv .quantity{
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 0.15rem;
+	margin-left: 0.213333rem;
+}
+.quantity a{
+	display: block;
+	width: 0.24rem;
+	height: 0.24rem;
+	box-sizing: border-box;
+}
+.quantity a.qNum{
+	font-size: 0.14rem;
+	color: #000000;
+	text-align: center;
+	line-height: 0.25rem;
+}
+.shopBox .notAppoint{
+	margin-top: 0.15rem;
+}
+.notAppoint .shopList li:first{
+	margin-top: 0.1rem;
+}
+/*结费*/
+.main .countMoney{
+	margin-top: 0.2rem;
+	padding-bottom:1rem;
+}
+.countMoney li span{
+	/*font-size: 0.373333rem;*/
+	color: #656e86;
+	display: inline-block;
+}
+.countMoney li{
+	text-align: right;
+	margin-right: 0.5rem;
+	font-size: 0;
+	margin-top: 0.1rem;
+}
+.countMoney li .smallTot{
+	width: 2.8rem;/*210*/
+	text-align: right;
+	margin-right: 0.1rem;
+}
+.countMoney li .smallTot .jian{
+	font-style: normal;
+}
+.countMoney li .smallMon{
+	width: 2rem;/*150*/
+	text-align: right;
+}
+.countMoney .goCount{
+	display: block;
+	width: 2.8rem;
+	height: 0.4rem;
+	background: #ff6633;
+	border-radius: 0.4rem;
+	font-size: 0.15rem;
+	color: #FFFFFF;	
+	line-height: 0.4rem;
+	text-indent: 1rem;
+	margin-top: 0.2rem;
+	margin-left: 0.5rem;
+	margin-bottom: 0.4rem;
+}
+.countMoney .goCount img{
+	width: 0.3rem;
+	margin-left: 0.1rem;
+}
+

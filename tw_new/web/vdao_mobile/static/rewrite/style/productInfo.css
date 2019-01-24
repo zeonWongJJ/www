@@ -1,0 +1,209 @@
+.body {
+	width: 100%;
+	/*position: absolute;*/
+	height: calc( 7.1rem - 0.62rem );
+	font-size: 0.14rem;
+	background: #fff;
+	/*z-index: 0;*/
+	overflow: scroll;
+	display: none;
+}
+
+
+/* Swipe 2 required styles */
+
+.body .swipe {
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.body .swipe-wrap {
+	overflow: hidden;
+	position: relative;
+}
+
+.body .swipe-wrap>div {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+.body .swipe-wrap>div>img {
+	width: 100%;
+	height: auto;
+	/*height: 1.4rem;*/
+}
+
+
+/* END required styles */
+
+.body #mySwipe .row {
+	position: absolute;
+	top: .1rem;
+	display: flex;
+	justify-content: space-between;
+	height: .33rem;
+	width: 100%;
+	padding: 0 .1rem;
+}
+
+.body #mySwipe .row2 {
+	position: absolute;
+	top: .53rem;
+	display: flex;
+	justify-content: flex-end;
+	height: .33rem;
+	width: 100%;
+	padding: 0 .1rem;
+}
+
+.body #mySwipe .row>div:nth-child(2),
+.body #mySwipe .row2>div {
+	flex: 0 0 .33rem;
+	background-size: .33rem .33rem;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.body #mySwipe .row>div:nth-child(1){
+	flex: 0 0 .33rem;
+	background-size: 100% .15rem;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.body #mySwipe .row .back {
+	background-image: url(../../style_default/images/dri_03.png);
+}
+
+.body #mySwipe .row .share {
+	background-image: url(../img/share.png);
+}
+
+.body #mySwipe .row2 .like {
+	background-image: url(../img/like.png);
+}
+
+.body #mySwipe .index {
+	position: absolute;
+	bottom: .1rem;
+	right: .1rem;
+	color: #fff;
+	font-size: .13rem;
+}
+
+
+/*mySwipe End*/
+
+.body .info,
+.describe,
+.valuation {
+	padding: .1rem;
+}
+
+.body .info .price {
+	font-size: .18rem;
+}
+
+.body .info .nameBox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.body .info .nameBox .name {
+	font-size: .16rem;
+	font-weight: 700;
+}
+
+.body .info .nameBox .shop {
+	color: #fff;
+	background: #ff6633;
+	width: .955rem;
+	height: .33rem;
+	line-height: .33rem;
+	text-align: center;
+	border-radius: .05rem;
+}
+
+.body .info .star {
+	font-size: .18rem;
+	font-weight: 700;
+}
+
+.body .describe .top {
+	font-size: .16rem;
+}
+
+.body .describe p {
+	color: #666666;
+	text-indent: 2em;
+}
+
+.body .valuation .top {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.body .valuation .top .left {
+	font-size: .16rem;
+}
+
+.body .valuation .top .right {
+	color: #888888;
+	font-size: .12rem;
+}
+
+.body .valua {
+	display: flex;
+	padding: .1rem 0;
+}
+
+.body .valua .img {
+	width: .31rem;
+	height: .31rem;
+	background: #000000;
+	border-radius: 50%;
+	margin-right: .1rem;
+}
+
+.body .valua .other {
+	flex: 1;
+}
+
+.body .valua .other .nameBox {
+	display: flex;
+	justify-content: space-between;
+}
+
+.body .imgs {
+	line-height: 0;
+	padding: .1rem 0;
+	display: flex;
+	overflow-x: auto;
+}
+
+.body .imgs>img {
+	width: .905rem;
+	height: .905rem;
+}
+
+.body .imgs>img+img {
+	padding-left: .1rem;
+}
+
+.body .c_orange {
+	color: #ff6633;
+}
+
+.body .c_gray {
+	color: #999999;
+}
+
+.body .valuaBox {
+	height: auto;
+	overflow: scroll;
+	padding-bottom: 1rem;
+}

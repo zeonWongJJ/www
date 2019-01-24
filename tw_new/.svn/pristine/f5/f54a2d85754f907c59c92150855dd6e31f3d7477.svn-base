@@ -1,0 +1,109 @@
+<?php
+
+class Footprint_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /************************************* 足迹列表 *************************************/
+
+    public function get_footprint_page($user_id, $page)
+    {
+        // 先设置默认从第一页开始
+        $i_page = $page;
+        if (empty($i_page)) {
+            $i_page = 1;
+        }
+        // 设置每页显示的数据行数
+        $i_prow = 10;
+        // 加载分页类
+        $this->load->library('pages');
+        // 获取数据总行数
+        $a_where = [
+            'user_id' => $user_id,
+        ];
+        $i_total = $this->db->get_total('footprint', $a_where);
+        // 调用分页运算函数
+        $a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+        // 开始获取产品数据
+        $this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+        $s_field = '';
+        $a_order = [
+            'footprint_time' => 'desc',
+        ];
+        $a_data  = $this->db->get('footprint', $a_where, $s_field, $a_order);
+
+        // 判断是否超出最大页数
+        if ($page > ceil($i_total / $i_prow)) {
+            return [];
+        } else {
+            return $a_data;
+        }
+    }
+
+    /******************************** 获取一条办公室信息 ********************************/
+
+    /**
+     * [get_office_one 获取一条办公室信息]
+     * @param  [type] $office_id [description]
+     * @return [type]            [description]
+     */
+    public function get_office_one($office_id)
+    {
+        $a_where = [
+            'office_id' => $office_id,
+        ];
+        $a_data  = $this->db->from('office')
+            ->join('room', [$this->db->get_prefix() . 'office.room_id' => $this->db->get_prefix() . 'room.room_id'])
+            ->get_row('', $a_where);
+        return $a_data;
+    }
+
+    /******************************** 获取办公室设备信息 ********************************/
+
+    /**
+     * [get_room_device 获取办公室设备信息]
+     * @return [type] [description]
+     */
+    public function get_room_device($device_ids)
+    {
+        $a_data = $this->db->where_in('device_id', $device_ids)
+            ->get('device');
+        return $a_data;
+    }
+
+    /*********************************** 批量删除足迹 ***********************************/
+
+    /**
+     * [function_name 批量删除足迹]
+     * @param  [type] $del_arr [description]
+     * @return [type]          [description]
+     */
+    public function delete_footprint($del_arr)
+    {
+        $i_result = $this->db->where_in('footprint_id', $del_arr)->delete('footprint');
+        return $i_result;
+    }
+
+    /*********************************** 获取一条产品 ***********************************/
+
+    /**
+     * [get_product_one 获取一条产品]
+     * @return [type] [description]
+     */
+    public function get_product_one($product_id)
+    {
+        $a_where = [
+            'product_id' => $product_id,
+        ];
+        $a_data  = $this->db->get_row('product', $a_where);
+        return $a_data;
+    }
+
+    /************************************************************************************/
+
+}

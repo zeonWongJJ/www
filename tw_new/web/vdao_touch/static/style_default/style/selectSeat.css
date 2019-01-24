@@ -1,0 +1,46 @@
+/* 选择座位 */
+.pjoTitle{ position:relative; border-bottom:none; background:#ff7f00; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>span{ color:white; }
+.pjoTitle>a>img{ width:0.85rem; }
+.roomBox{ padding:0.32rem 0.53rem; background:white; }
+.roomBox>ul>li{ margin-top:0.32rem; }
+.roomBox>ul>li:first-child{ margin-top:0; }
+.roomtype>span,.roomtype>em,.roomtype>dfn{ font-size:0.42rem; font-style:normal; }
+.roomTime{ font-size:0.32rem; }
+.roomTime>span{ margin-right:0.2rem; }
+.roomTime>span,.roomTime>em,.roomTime>dfn{ font-style:normal; color:#666666; }
+.roomPosition{ text-align:center; border-top:0.01rem solid #ddd; }
+.roomPosition>ol{ margin-top:0.2rem; }
+.roomPosition>ol>li{ display:inline-block; margin-right:0.2rem;  }
+.roomPosition>ol>li>img,.roomPosition>ol>li>span{ vertical-align:middle; }
+.roomPosition>ol>li>img{ width:0.4rem; margin-right:0.1rem; }
+.roomPosition>ol>li>span{ font-size:0.29rem; }
+/*  座位 */
+.seat{ text-align:center; margin-top:0.5rem; }
+.col{ margin-top:0.5rem; }
+.row>ol>li{ width:0.6rem; height:0.6rem; line-height:0.6rem; text-align:center; display:inline-block;  margin-left:0.6rem; font-size:0.24rem; color:#999999; }
+.row>ol>li>img{ width:0.48rem; vertical-align:middle; }
+.row>ol>li.su{  }
+.row>ol>li.su>img{ width:0.8rem; }
+
+/* 底部 */
+.bottom{ width:100%; position:fixed; bottom:0; padding:0.4rem 0.53rem; background:white; border-top:0.01rem solid #ddd; }
+.bottom>dl>dt{ margin-bottom:0.26rem; font-size:0.24rem; color:#666; }
+.bottom>dl>dd{ height:0.6rem; line-height:0.6rem; position:relative; display:inline-block; padding:0 0.1rem; font-size:0.32rem; border:0.01rem solid #ddd; }
+.bottom>dl>dd>img{ width:0.4rem; position:absolute; right:-0.25rem; top:-0.2rem; }
+.sureSeat{ height:0.74rem; line-height:0.74rem; position:absolute; display:inline-block; top:0.6rem; right:0.4rem; padding:0 0.24rem; font-size:0.37rem; background:#fa4b09; color:white; border-radius:0.1rem; }
+.disabled{ background:#f1f1f1; }
+/* 提示层 */
+.tips{ width:8rem; position:absolute; top:50%; left:1rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }
+
+
+
+
+
+
+
+
+
+
+

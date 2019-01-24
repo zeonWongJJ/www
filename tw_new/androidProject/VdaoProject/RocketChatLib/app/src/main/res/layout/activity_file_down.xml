@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/blue"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/left_back"
+            android:layout_width="30dp"
+            android:background="@drawable/picture_back"
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:text="文件下载"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/white">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher" />
+
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+    <!--<ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:max="100"
+        android:progress="0"
+        android:indeterminate="true"/>-->
+
+        <LinearLayout
+            android:id="@+id/progress_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="20dp" >
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_height="10dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:background="@null"
+                android:progress="0"
+                android:max="100"/>
+
+            <TextView
+                android:id="@+id/text_progress_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:textColor="@color/black"
+                android:padding="6dp"
+                android:textSize="13dp"/>
+        </LinearLayout>
+    <TextView
+        android:id="@+id/download_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:gravity="center"
+        android:text="下载"
+        android:background="@color/blue"
+        />
+     </LinearLayout>
+</LinearLayout>

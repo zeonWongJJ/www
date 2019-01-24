@@ -1,0 +1,28 @@
+/*  产品列表 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.productList{ margin-top:20px; margin-left:22px; }
+.productList>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+/* 发布产品 */
+.newProduct{ margin-top:20px; }
+.productTitle{ background:#fbfbfb; border-bottom:1px solid #ddd; }
+.productTitle>span{ display:inline-block; padding:15px 22px; font-size:16px; border:1px solid #ddd; border-top:2px solid #ffb900; border-bottom:none; background:white; }
+.newProductContent{ background:white; }
+.newProductContent ul{ padding-top:33px; padding-left:32px; }
+.newProductContent ul>li:first-child{ margin-top:0; }
+.newProductContent ul>li{ margin-top:15px; }
+.newProductContent ul>li>em{ width:90px; display:inline-block; text-align:right; margin-right:12px; font-size:15px; }
+.newProductContent ul>li>em>s{ font-size:12px; text-decoration:none; color:red; }
+.newProductContent ul>li>span{ font-size:14px; color:#bfbfbf; }
+.newProductContent ul>li>input{ height:30px; padding:0 10px; border:1px solid #ddd; }
+
+.productName>input,.productCate>input{ width:135px; }
+.productPrice>input{ width:50px; }
+.mainFigure>input{ border:none; }
+.productDescribe>em{ vertical-align:top; }
+.productDescribe>textarea{ width:680px; padding:10px 10px; border:1px solid #ddd; }
+
+#productSub{ width:118px; height:38px; line-height:38px; margin-left:133px; margin-top:17px; margin-bottom:17px; color:#a33300; border:1px solid #e69c14; background:#ffce1c; }
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/userdata.css"/>
+    <title></title>
+</head>
+<body>
+<!-- 头部 -->
+<header class="head" id="head">
+    <div class="headBox">
+        <div class="head_back">
+            <a href="" class="back"><i class="iconfont">&#xf007a;</i></a>
+        </div>
+        <div class="head_pjName">
+            <i class="iconfont">&#xe604;</i>
+            <span>项目名</span>
+        </div>
+        <div class="head_search">
+            <input type="text"/>
+            <i></i>
+        </div>
+        <div class="talk">
+            <i class="iconfont">&#xe684;</i>
+        </div>
+    </div>
+
+</header>
+<!-- 头部结束 -->
+
+
+    <div class="navbar">
+        <div class="userCenter">
+            <i>
+                <img src="" alt=""/>
+            </i>
+            <p>会员中心</p>
+        </div>
+        <i></i>
+        <span>当前页面</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1rem;
+	/*line-height:1rem;*/
+	text-align: center;
+	font-size: 0.426666rem;
+	background: #ffd703;
+	position: relative;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a{
+	margin-top: 0.066666rem;
+	width: 0.8rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .nav{
+	background: white;
+}
+.main .nav li{
+	float: left;
+	margin-left: 6.6%;
+	line-height: 0.933333rem;
+}
+.main .nav li a{
+	display: block;
+	height: 0.906666rem;
+	font-size: 0.32rem;
+	color: #000000;
+	box-sizing: border-box;
+}
+.main .nav li.current a{
+	border-bottom: 2px solid #ffd703;
+}
+.content li{
+	background: white;
+	margin-top: 0.266666rem;
+}
+.content li .tit{
+	line-height: 0.933333rem;
+	border-bottom: 1px solid #efefef;
+}
+.content li .tit .pic{
+	display: inline-block;
+	width: 0.373333rem;
+	height: 0.333333rem;
+	background: url(../images/dingdan_03.png) no-repeat center center;
+	background-size: 100%;
+	vertical-align: middle;
+	margin-left: 0.293333rem;
+}
+.content li .tit .span1{
+	font-size: 0.346666rem;
+	color: #333333;
+	vertical-align: middle;
+	margin-left: 0.213333rem;
+}
+.content li .tit .span2{
+	font-size: 0.32rem;
+	color: #FFD703;
+	float: right;
+	vertical-align: middle;
+	margin-right: 0.293333rem;
+}
+.content li .tit .hasCancel{
+	color: #666666;
+}
+.content li .describe{
+	padding: 0.133333rem 0;
+	border-bottom: 1px solid #efefef;
+}
+.content li .describe a{
+	display: block;
+}
+.describe a .left{
+	width: 1.733333rem;
+	height: 1.733333rem;
+	display:inline-block;
+	vertical-align:middle ;
+	border-radius: 0.133333rem;
+	overflow: hidden;
+	margin-left: 0.266666rem;
+}
+.describe a .right{
+	width: 7rem;
+	display:inline-block;
+	vertical-align:middle ;
+	margin-left: 0.2rem;
+	padding-top: 0.053333rem;
+}
+.describe a .right p{
+	width: 7.8rem;
+	font-size: 0.32rem;
+	color: #000000;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-top: 0.066666rem;
+}
+.content li .control{
+	padding: 0.133333rem 0;
+}
+.content li .control a{
+	width: 1.866666rem;
+	height: 0.666666rem;
+	border: 1px solid #efefef;
+	border-radius: 25px;
+	font-size: 0.373333rem;
+	color: #999999;
+	text-align: center;
+	line-height: 0.666666rem;
+	float: right;
+	margin-right: 0.293333rem;;
+}
+.content li .control a.overOffic,
+.content li .control a.appraise,
+.content li .control a.bookAgain,
+.content li .control a.oredering,
+.content li .control a.overStore{
+	background: #ffd703;
+	color: white;
+	border: none;
+}
+.main .noMore{
+	font-size: 0.373333rem;
+	color: #666666;
+	text-align: center;
+	line-height: 0.866666rem;
+	margin-bottom:2rem;
+}
+
+/*导航开始*/
+.wrapper01 {
+	position:relative;
+	height: 0.92rem;
+	width: 100%;
+	overflow: hidden;
+	margin:0 auto;
+	background: white;
+}
+.wrapper01 .scroller {
+	position:absolute;
+}
+.wrapper01 .scroller li {
+	height: 0.92rem;
+	color: #000000;
+	float: left;
+	line-height: 0.92rem;
+	font-size: 0.32rem;
+	text-align: center;
+}
+.wrapper01 .scroller li a{
+	color: #000000;
+	display:block;
+	margin:0 .3rem;
+	height: 0.906666rem;
+	box-sizing: border-box;
+	margin-left: 0.666666rem;
+	margin-right: 0;
+}
+/*.wrapper01 .scroller li.cur a{
+	border-bottom: 2px solid #ffd703;
+}*/
+.wrapper01 .scroller li.current a{
+	border-bottom: 2px solid #ffd703;
+}
+/*导航结束*/
+/*遮罩层*/
+.shade{
+	display: none;
+}
+/*取消订单弹框*/
+.qqBomb{
+	width: 6.533333rem;
+	height: 3rem;
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -3.266666rem;
+	top: 50%;
+	margin-top: -1.5rem;
+	border-radius: 0.266666rem;
+}
+.qqBomb .p1{
+	font-size: 0.426666rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.4rem;
+}
+.qqBomb .p2{
+	font-size: 0.32rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.053333rem;
+}
+.qqBomb .btnBox{
+	height: 1.066666rem;
+	border-top: 1px solid #efefef;
+	margin-top: 0.4rem;
+}
+.qqBomb .btnBox a{
+	font-size: 0.426666rem;
+	color: #005eff;
+	display: inline-block;
+	width: 3.2rem;
+	text-align: center;
+	line-height: 1.066666rem;
+	box-sizing: border-box;
+}
+.qqBomb .btnBox a.cancel{
+	border-right: 1px solid #efefef;
+	border-bottom-left-radius: 0.266666rem;
+}
+.qqBomb .btnBox a.remove{
+	border-bottom-right-radius: 0.266666rem;
+}
+.cancelBomb{
+	display: none;
+}
+.cancelBomb .p1{
+	font-size: 0.426666rem;
+	color: #000000;
+	text-align: center;
+	margin-top: 0.666666rem;
+}
+.cancelBomb .btnBox{
+	height: 1.066666rem;
+	border-top: 1px solid #efefef;
+	margin-top: 0.64rem;
+}
+.overBomb{
+	display: none;
+}
+/*取消订单成功提示*/
+.cancelTip,
+.overTip{
+	margin-left: -2rem;
+	display: none;
+}
+
+@media screen and (max-width: 360px) {
+	.main .nav li{
+		margin-left: 5.4%;
+	}
+}
+
+
+/*支付弹框*/
+.payment{ width:100%; position:fixed; bottom:0; z-index:2; background:white; display: none; }
+.surplusTime{ height:1.22rem; line-height:1.22rem; position:relative; text-align:center; border-bottom:0.01rem solid #ddd; }
+.surplusTime>span{ font-size:0.37rem; }
+.surplusTime>span>em{ font-style:normal; color:#ff6633; }
+.closeSurplus{ width:0.32rem; position:absolute; top:0.45rem; right:0.48rem; }
+.payment>dl>dd{ height:1.22rem; line-height:1.22rem; position:relative; padding-left:0.53rem; border-bottom:0.01rem solid #ddd; }
+.payment>dl>dd:last-child{ border-bottom:none; }
+.payment>dl>dd>img,.payment>dl>dd>span{ vertical-align:middle; }
+.payment>dl>dd>img{ width:0.82rem; margin-right:0.34rem; }
+.payment>dl>dd>span{ font-size:0.34rem; }
+.surePay{ text-align:center; background:#ff6633; }
+.surePay>a>span{ font-size:0.42rem; color:white; }
+.surePay>a>span>em{ font-style:normal; }
+.surePay>a>span>em>i{ font-style: normal;}
+.checkPay{ position:absolute; top:0.1rem; right:0.89rem; }
+.checkPay>img{ width:0.46rem; }

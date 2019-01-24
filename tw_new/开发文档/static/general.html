@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">常用函数集合</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<code class="language-php">
+	$this->general->get(索引名<span>(字符)</span>, 是否安全过滤<span>(boolen)</span>);
+</code>
+</div>
+<div class="desc">
+	取代$_GET变量。第二个参数为是否进行安全过滤，默认过滤，如果是后台发表带有html代码的内容，并且希望保留html内容的，需要传入false;
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 获取进行了html代码过滤后的$_GET
+$this->general->get();
+
+// 获取和$_GET完全一致的内容
+$this->general->get(NULL, false);
+
+// 获取$_GET数组中名为'abc'的索引值，经过安全过滤的
+$this->general->get('abc');
+
+// 获取$_GET数组中名为'abc'的索引值，不经过安全过滤的
+$this->general->get('abc', false);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->general->post(索引名<span>(字符)</span>, 是否安全过滤<span>(boolen)</span>);
+</code>
+</div>
+<div class="desc">
+	取代$_POST变量。第二个参数为是否进行安全过滤，默认过滤，如果是后台发表带有html代码的内容，并且希望保留html内容的，需要传入false;
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 获取进行了html代码过滤后的$_POST
+$this->general->post();
+
+// 获取和$_POST完全一致的内容
+$this->general->post(NULL, false);
+
+// 获取$_POST数组中名为'abc'的索引值，经过安全过滤的
+$this->general->post('abc');
+
+// 获取$_POST数组中名为'abc'的索引值，不经过安全过滤的
+$this->general->post('abc', false);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->general->get_ip();
+</code>
+</div>
+<div class="desc">
+	获取真实的IP地址。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->general->get_ip();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->general->base64_convert(需要编码或解码的字符<span>(字符)</span>, 编码或解码<span>(boolen)</span>);
+</code>
+</div>
+<div class="desc">
+	框架采用“-”字符来分割参数，如果要在url中传输“-”等特殊字符，会导致参数错乱，所以需要此函数进行编码后再行传输，接收的时候使用此函数再行解码。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 编码字符：abc-efd
+$this->general->base64_convert('abc-efd');
+// 解码，第二个参数传入true
+$this->general->base64_convert(需要解码的字符, true);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->general->is_mail(邮箱<span>(字符)</span>);
+</code>
+</div>
+<div class="desc">
+	判断邮箱格式是否正确。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+if ($this->general->is_mail('abc@efd.com')) {
+	echo '正确';
+} else {
+	echo '错误';
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->general->underline_to_hump(需要转换的字符<span>(字符)</span>);
+</code>
+</div>
+<div class="desc">
+	下划线转驼峰格式。如 aBc 转成 a_bc
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+echo $this->general->underline_to_hump('aBc');
+// 结果为  a_bc
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->general->hump_to_underline(需要转换的字符<span>(字符)</span>);
+</code>
+</div>
+<div class="desc">
+	驼峰转下划线。如 a_bc 转成 aBc
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+echo $this->general->hump_to_underline('a_bc');
+// 结果为  aBc
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->general->batch_to_hump(需要转换的数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	批量下划线转驼峰，只转索引名。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_data = [
+	'a_bc' => '0',
+	'e_fg' => '1',
+];
+$a_res = $this->general->batch_to_hump($a_data);
+print_r($a_res);
+// 结果为
+Array
+(
+    [aBc] => 0
+    [eFg] => 1
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->general->batch_to_underline(需要转换的数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	批量驼峰转下划线，只转索引名。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_data = [
+	'aBc' => '0',
+	'eFg' => '1',
+];
+$a_res = $this->general->batch_to_underline($a_data);
+print_r($a_res);
+// 结果为
+Array
+(
+    [a_bc] => 0
+    [e_fg] => 1
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">10</span>
+<code class="language-php">
+	$this->general->object_to_array(需要转换的对象<span>(object)</span>);
+</code>
+</div>
+<div class="desc">
+	对象类型转换成数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$o_gen = (object)$o_gen;
+$o_gen->a = 'aaa';
+$o_gen->b = 'bbb';
+$a_res = $this->general->object_to_array($o_gen);
+print_r($a_res);
+// 结果为
+Array
+(
+    [a] => aaa
+    [b] => bbb
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">11</span>
+<code class="language-php">
+	$this->general->xml_to_array(需要转换的xml<span>(字符)</span>);
+</code>
+</div>
+<div class="desc">
+	对象类型转换成数组。第二个参数设置使用的解析模式，1：SIMPLE（默认），2：PARSER
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 默认采用SIMPLE模式
+$this->general->xml_to_array($xml);
+// 采用PARSER模式
+$this->general->xml_to_array($xml, 'PARSER');
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">12</span>
+<code class="language-php">
+	$this->general->request(请求URL<span>(字符)</span>, 请求数据<span>[字符/数组]</span>, 请求类型<span>[字符]</span>, 请求模式<span>[字符]</span>, header报文<span>[字符/数组]</span>, ssl证书<span>[数组]</span>, 代理<span>[数组]</span>);
+</code>
+</div>
+<div class="desc">
+	向目标网址发起请求，返回目标网址的输出内容。只有第一个参数是必传，其它都是可行参数，参数说明：
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+1. 请求URL：字符串，如http://www.7dugo.com 
+2. 请求数据：字符或者数组，如：aaaa，或['a' => 'b', 'c' => 'd'] <br />
+3. 请求类型：字符串，两个类型分别为"GET"和"POST"，默认POST
+4. 请求模式：字符串，两个模式，"FEIL" 和 "CURL"， 默认使用 CURL <br />
+5. 报文信息：字符串适用于"FEIL"模式，如:'Content-type: application/x-www-form-urlencoded'，数组模式适用于"CURL"模式，如：array('User-Agent' => 'Mozilla/5.0 Windows; U; Windows NT 5.1; zh-CN; rv:1.9) Gecko/2008052906 Firefox/3.0', 'Referer'    => 'http://www.163.com'); <br />
+6. ssl证书：数组，如：['ssl_cert_type' => 'PEM', 'ssl_cert' => '../cert.pem', 'ssl_key' => '../key.pem', 'ssl_key_type' => 'PEM']  ssl_key_type和ssl_cert_type表示对应的证书文件类型，默认PEM，可选参数，ssl_cert和ssl_key表示证书文件所在路径，如果两个证书文件合并到一个文件，只需要传递ssl_cert参数即可 <br />
+7. 代理：数组，如 ['ip' => '123.12.13.15', 'port' => 80]，ip表示代表ip，port表示代理端口
+
+// 使用举例
+$a = $this->general->request('http://www.7dugo.com');
+print_r($a);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">13</span>
+<code class="language-php">
+	$this->general->rand_string(需要的随机数长度<span>[整数]</span>, 随机字符库<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	获取一个随机字符串，默认是返回6位长度，默认的字符库是大写26个字母加小写26个字母，和10个数字。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+echo $this->general->rand_string();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">14</span>
+<code class="language-php">
+	$this->general->json_encode(需要的转换成json格式的数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	此函数用来替代php系统自带的json_encode函数。由于php的json_encode会把10.06转换成10.059999999999，所以重写此函数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+echo $this->general->json_encode(['value' => 10.06]);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">15</span>
+<code class="language-php">
+	$this->general->value_to_string(需要的转换的数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	此函数会把数组中的值，全部转换成字符类型，由于php的json_encode会把10.06转换成10.059999999999，通过此函数把10.06转换成字符型，避免了前述bug的出现。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+print_r($this->general->value_to_string(['value' => 10.06]));
+</code>
+</pre>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/* 小导航*/
+.smallNav{ width: 1190px; height: 30px; margin-top: 8px;}
+.smallNav i{ display: inline-block; width: 25px; height: 25px; background: url(../images/ding_03.png); vertical-align: middle;}
+.smallNav a{ font-size: 14px; color: #999999;}
+.smallNav a.cur{ color: #333333;}
+/*所有订单*/
+.allOrder{ width: 1190px; height: 50px; background: white; margin-top: 10px; padding-left: 20px;}
+.allOrder li{ float: left; padding-top: 2px;}
+.allOrder li a{ display: block; line-height: 46px; font-size: 14px; color: #666666; margin-right: 25px; padding: 0 2px;}
+.allOrder li a .dot{ display: inline-block; width: 6px; height: 6px; background: #ff5d4a; border-radius: 50%; vertical-align: middle; margin-right: 4px;}
+.allOrder li a .number{ display: inline-block; min-width: 26px; height: 14px; text-align: center; line-height: 14px; background: #e1e1e1; border-radius: 6px; font-size: 10px; color: #000000; font-style: normal; margin-left: 4px;}
+.allOrder li.hasCancel a{ text-decoration: line-through; margin-left: 30px;}
+.allOrder li.allList{ margin-right: 20px;}
+.allOrder li.current a{ color: #5a2e17; border-bottom: 2px solid #5a2e17;}
+.allOrder li.waitServe a .dot{ background: #ffa800;}
+.allOrder li.inService a .dot{ background: #1dc499;}
+.allOrder li.hasFinish a .dot{ background: #b5b5b5;}
+/*搜索预约*/
+.sbBox{ margin-top: 20px;}
+.sbBox .searchL{ height: 80px; float: left; padding-top: 18px;}
+.searchL .user{ font-size: 12px; color: #666666; float: left; margin-left: 30px;}
+.user .bianhao{ display: inline-block; width: 160px; height: 30px; background: white; border-radius: 13px; padding: 0 6px; box-shadow: 0 2px 3px #e7e7e7; border-bottom: 1px solid #d1d1d1;}
+.searchL .roomType{ float: left; margin-left: 25px; font-size: 12px; color: #666666;}
+.roomType .roomName{ float: left; line-height: 30px;}
+.roomType .twoSelect{ float: left; min-width: 170px; height: 30px; background: white; border-radius: 13px; padding: 0 6px; box-shadow: 0 2px 3px #e7e7e7; border-bottom: 1px solid #d1d1d1; padding-top: 6px;}
+.twoSelect select{ float: left; font-size: 12px; color:#999999; cursor: pointer;}
+.twoSelect select option{ color:#000000;}
+.twoSelect .su{ float: left; color:#999999; margin: 0 5px;}
+.searchL .search{ float: left; margin-left: 25px;}
+.search a{ display: block; width: 80px; height: 30px; background: #fec006; font-size: 12px; color: white; text-align: center; line-height: 30px; border-radius: 13px;}
+.sbBox .bookR{ width: 120px; height: 80px; background: white; float: right; text-align: center; color: #000000; margin-right: 20px;}
+.bookR .p1{ font-size: 14px; margin-top: 18px;}
+.bookR .p2{ font-size: 20px; margin-top: 2px;}
+
+/*表格模块*/
+.tableBox{ margin-top: 20px;}
+.tableBox li{ width: 1190px; background: white; padding: 15px 20px; margin-top: 15px; cursor: pointer;}
+.tableBox li:hover{ box-shadow: 0 0 15px #c1c1c1;}
+.tableBox li .title{ height: 30px; font-size: 14px;}
+.tableBox li .title .h3{ color: #000000; float: left; font-weight: 500;}
+.tableBox li .title .time{ float: right; color: #666666;}
+.tableBox li .row{font-size: 0; margin-top: 8px;}
+.tableBox li .row span{ display: inline-block; min-height: 90px; border-right: 1px solid #eeeeee; vertical-align: top;}
+.row span:nth-child(1){ width: 335px; }
+.row span:nth-child(2){ width: 190px; padding-left: 50px;}
+.row span:nth-child(3){ width: 230px; padding-left: 50px;}
+.row span:nth-child(4){ width: 180px; padding-left: 50px;}
+.row span:nth-child(5){ width: 215px; padding-left: 65px; border-right: none !important;}
+.row span .tit{ font-size: 14px; color: #666666; margin-bottom: 12px;}
+.row .userBox .imgL{ width: 60px; height: 60px; float: left; border-radius: 8px; overflow: hidden;}
+.userBox .imgL img{width: 100%; height: 100%;}
+.row .userBox .messageR{ float: left; width: 250px; margin-left: 15px;}
+.userBox .messageR .name{ font-size: 14px; color: #000000; margin-top: 2px;}
+.userBox .messageR .orderNum{ font-size: 14px; color: #aaaaaa; margin-top: 14px;}
+.row span .bookTime,.row span .contact{ font-size: 12px; color: #333333; margin-top: 30px;}
+.row span .contact{ margin-top: 28px;}
+.row span .waitLis,.row span .waitSer,.row span .inSer,.row span .hasFin{ margin-top: 28px;}
+.row span .waitLis i,.row span .waitSer i,.row span .inSer i,.row span .hasFin i{display: inline-block; width: 6px; height: 6px; background: #ff5d4a; border-radius: 50%; vertical-align: middle; margin-right: 4px;}	
+.row span .waitSer i{ background: #ffa800;}
+.row span .inSer i{ background: #1dc499;}
+.row span .hasFin i{ background: #b5b5b5; }
+.row span .waitLis b,.row span .waitSer b,.row span .inSer b,.row span .hasFin b{ font-style: normal; font-size: 14px; color: #333333; vertical-align: middle; display: inline-block;}
+.row span .getOrder,.row span .beginSer,.row span .overSer{ display:block; width: 138px; height: 40px; background: #ff5d4a; font-size: 18px; color: #FFFFFF; text-align: center; line-height: 40px; border-radius: 6px; margin-top: 10px;}
+.row span .beginSer{ background: #ffa800;}
+.row span .overSer{ background: #1dc499;}
+.row span .cancel{ display: block; font-size: 12px; color: #666666; margin-top: 10px; margin-left: 57px;}
+/*分页*/
+.page{ float:right; margin-top:30px; margin-bottom: 30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+/*删除订单提示弹框*/
+.delePart{ width: 380px; height: 180px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -90px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; z-index: 10;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 20px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.cancelBomb{ display: none;}
+.cancelBomb .reasonBox{ height: 25px;}
+.reasonBox .ding{ width: 103px; float: left;}
+.reasonBox .reasonSel{ width: 150px; float: left; position: relative;}
+.reasonBox .reasonSel .choose{ width: 150px; height: 20px; display: inline-block; border: 1px solid #dddddd; margin-top: 2px;}
+.reasonSel .choose span{ font-size: 12px; color: #333333; display: inline-block; width: 133px; padding: 0 2px; }
+.reasonSel .choose .down{ display: inline-block; width: 13px; height: 7px; background:url(../images/sanjiao_03.png);}
+.reasonSel .select{ width: 152px; border: 1px solid #dddddd; border-top: none; background: white; position: absolute; left: 0; top: 21px; padding-top: 5px; padding-bottom: 5px; display: none;}
+.reasonSel .select .rad{ vertical-align: middle; margin-right: 4px; margin-left: 5px;}
+.select .rea{ font-size: 12px; color: #333333;}
+.cancelBomb .txt{ display: inline-block; width: 202px; height: 20px; border: 1px solid #dddddd; padding: 0 5px; vertical-align: middle;}
+.cancelBomb .select li{ margin-top: 2px;}
+
+
+
+

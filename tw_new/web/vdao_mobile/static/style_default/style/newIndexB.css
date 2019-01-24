@@ -1,0 +1,117 @@
+/* 首页 */
+body,html{ height:100%; }
+body{ background:#ffffff; }
+.weather,.location,.productSearch,.notice,.hotDyn{ padding:0 0.4rem;  }
+
+.weather{ margin-top:0.56rem; }
+.weather>a{ font-size:0.32rem; color:#999999; }
+.store{ font-size:0.8rem; }
+.city{ font-size:0.34rem; }
+.message{ float:right; position:relative; margin-top:0.3rem; }
+.message>img{ width:0.6rem; }
+.message>i{ width:0.15rem; height:0.15rem; position:absolute; top:-0.05rem; right:-0.05rem; display:inline-block; background:#ff6633; border-radius:50%; }
+/* 产品搜索 */
+.productSearch{ margin-top:0.56rem; }
+#product_search{ width:100%; height:0.9rem; padding-left:1rem; font-size:0.32rem; background:url("/static/style_default/images/searchB.png") no-repeat 0.3rem 0.2rem; background-size:0.5rem; box-shadow: 3px 4px 18px #e3e3e3; border-radius:0.4rem; }
+/*  广告轮播 */
+.carousel{ margin-top:0.4rem; }
+/* 消息公告 */
+.notice{ margin-top:0.42rem; }
+.notice>a>img{ width:0.48rem; margin-right:0.29rem; }
+.notice>a>marquee{ height:0.4rem; font-size:0.32rem; color:#ff6633; }
+.notice>a>img,.notice>a>marquee{ vertical-align:middle; }
+/* 选择服务*/
+.service{ margin-top:0.5rem; }
+.service>a{ display:inline-block; margin-left:0.4rem; }
+.service>a>img{ width:1.33rem; }
+.service>a>img,.service>a>em{ display:inline-block; vertical-align:middle; font-style:normal; }
+.service>a>em{ margin-left:0.1rem; }
+.service>a>em>h1{ margin-bottom:0.2rem; font-size:0.42rem; font-weight:bold; }
+.service>a>em>span{ font-size:0.32rem; }
+/* 动态 */
+.dynamic{ height:1.5rem; line-height:1.5rem; margin:0.4rem; background:#444444; border-radius:0.1rem; }
+.dynamic>form>span{ padding:0 0.32rem; font-size:0.48rem; color:white; border-right:0.04rem solid white; }
+.dynamic>form>input{ width:5.6rem; margin-left:0.2rem; font-size:0.32rem; color:white; background:none; }
+.dynamic>form>button{ width:1.17rem; height:1.17rem; background:url("/static/style_default/images/GO.png") no-repeat; background-size:100% 100%;  }
+.dynamic>form>span,.dynamic>form>input,.dynamic>form>button{ vertical-align:middle; }
+/* 热门推荐 */
+.recommend{ padding-left:0.4rem; }
+.recommend>p>span{ font-size:0.53rem; font-weight:600; }
+.recmore{ float:right; margin-top:0.1rem; margin-right:0.4rem; }
+.recmore>span{ font-size:0.37rem; color:#999999; }
+.recmore>img{ width:0.2rem; }
+.recmore>span,.recmore>img{ vertical-align:middle; }
+.typeSeq{ position:relative; margin-top:0.2rem; font-size:0; }
+.seqBox>a{ display:inline-block; padding:0.1rem 0.3rem; margin-top:0.2rem; margin-right:0.4rem; font-size:0.32rem; background:#e9e9e9; font-weight:600; border-radius:0.1rem; }
+.seqBox>a.typeCur{ background:#fed536; }
+.sanjiao{ width:0; height:0; position:absolute; top:0.5rem; left:0.3rem; border-top:0.3rem solid rgba(0,0,0,0); border-right:0.3rem solid  rgba(0,0,0,0); border-bottom:0.3rem solid #f4f4f4; border-left:0.3rem solid  rgba(0,0,0,0); }
+.productContainer{ height:5.7rem; overflow:hidden; margin-top:0.4rem; background:#f4f4f4; border-top-left-radius:0.2rem;  border-bottom-left-radius:0.2rem;  }
+.productList{ width:3.2rem; display:inline-block; background:white; border-radius:0.1rem; }
+.productContent>dt{ position:relative; }
+.productContent>dt>img{ width:100%; height:3rem; border-top-left-radius:0.15rem; border-top-right-radius:0.1rem; }
+.productContent>dt>span{ position:absolute; top:0.15rem; left:-0.2rem; padding:0.01rem 0.2rem; font-size:0.21rem; color:white; border-radius:0.4rem; }
+.noA>span{ background:#fed54c; }
+.noB>span{ background:#9ab5b9; }
+.noC>span{ background:#d2ae81; }
+.productContent>dd{ padding:0 0.2rem; }
+.productContent>dd:nth-child(2){ font-size:0.34rem; font-weight:600; }
+.productContent>dd:nth-child(3){ margin-top:0.15rem; }
+.productContent>dd:nth-child(3)>span{ font-size:0.34rem; font-weight:600; }
+.productContent>dd:nth-child(3)>em{ font-size:0.29rem; font-style:normal; color:#999999; }
+.productContent>dd:nth-child(4){ overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; margin-top:0.3rem; margin-bottom:0.5rem;  font-size:0.26rem; color:#c1b9ae; }
+.productContainer .swiper-slide{ width:3.2rem; margin-right:0.4rem; margin-top:0.4rem; margin-bottom:0.4rem; }
+.swB{ display:none; }
+.swC{ display:none; }
+.swD{ display:none; }
+/* 热门动态*/
+.hotDyn{ margin-top:0.4rem; margin-bottom:2rem; }
+.hotDyn>dl>dt{ margin-bottom:0.2rem; }
+.hotDyn>dl>dt>span{ font-size:0.53rem; font-weight:600; }
+.Dynmore{ float:right; margin-top:0.1rem; }
+.Dynmore>span{ font-size:0.37rem; color:#999999; }
+.Dynmore>img{ width:0.2rem; }
+.Dynmore>span,.Dynmore>img{ vertical-align:middle; }
+.hotDyn>dl>dd{ margin-bottom:0.5rem; }
+.hotDyn>dl>dd>a{ display:block; padding:0.2rem; background:#f4f4f4; border-radius:0.15rem; }
+.hotDyn>dl>dd>a>i{ width:3.6rem; }
+.hotDyn>dl>dd>a>i>img{ width:100%; border-radius:0.15rem; }
+.hotDyn>dl>dd>a>div.detail{ width:4.8rem; margin-left:0.2rem; }
+div.detail>p{ font-size:0.38rem; }
+div.detail>em{ width:100%; display:inline-block; margin-top:0.1rem; }
+div.detail>em,div.detail>em>dfn{ font-style:normal; }
+div.detail>em>img{ width:0.61rem; height:0.61rem; border-radius:50%; }
+div.detail>em>img,div.detail>em>span{ vertical-align:middle; }
+div.detail>em>span{ font-size:0.29rem; }
+div.detail>em>dfn{ float:right; margin-top:0.1rem; font-size:0.29rem; color:#666666; }
+.iconBox{ text-align:right; margin-top:0.2rem; }
+.iconBox>em{ margin-left:0.2rem; font-style:normal; }
+.iconBox>em>span{ font-size:0.29rem; color:#666666; }
+.iconBox>em>img{ width:0.29rem; }
+.iconBox>em>span,.iconBox>em>img{ vertical-align:middle; }
+.hotDyn>dl>dd>a>i,.hotDyn>dl>dd>a>div.detail{ display:inline-block; vertical-align:top; }
+.carousel .swiper-container {
+    width: 10rem;
+    height: 5rem;
+}
+.carousel .swiper-container .swiper-slide img{ width:100%; }
+body .carousel .swiper-container .swiper-pagination-bullet{ background:#ddd; }
+body .carousel .swiper-container .swiper-pagination-bullet-active{ background:#ff6633; }
+
+input::-webkit-input-placeholder{
+    color:#999999;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#999999;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#999999;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+    color:#999999;
+}
+
+

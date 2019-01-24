@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+
+
+    <LinearLayout
+        android:id="@+id/details_popview_layout_flip"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:background="@drawable/red_packet_background_ready"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_marginTop="170dip"
+            android:textColor="#fefefe"
+            android:text="李小龙"
+            android:textSize="20sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="14.33dip"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="20dp"
+            android:overScrollMode="never"
+            android:requiresFadingEdge="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/gift_details_text_flip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dip"
+                    android:text="发了一个红包,金额随机"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+
+                <TextView
+                    android:id="@+id/gift_tips_text_flip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11.67dip"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="4dip"
+                    android:maxLines="2"
+                    android:text="恭喜发财，大吉大利"
+                    android:textColor="#ebb66b"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/open_red_packet"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="13.67dip"
+            android:background="@drawable/icon_gold_red_packet"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/details_popview_close_img"
+        android:layout_width="35dip"
+        android:layout_height="35dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/red_packet_bottom_close" />
+</RelativeLayout>

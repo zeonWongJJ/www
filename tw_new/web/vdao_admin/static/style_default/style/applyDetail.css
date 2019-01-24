@@ -1,0 +1,20 @@
+/* ÉêÇëÏêÇé */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.applyDetail{ margin-top:20px; margin-left:22px; }
+.applyDetail>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.applyContainer{ margin-top:20px; padding:35px 45px; padding-bottom:150px;  background:white; }
+.applyContainer>div{ display:inline-block; }
+.applyLeft,.applyRight{ vertical-align:top; }
+.applyLeft{ width:524px; }
+.applyLeft>dl,.applyRight>dl{ margin-bottom:18px; }
+.applyLeft>dl>dt,.applyLeft>dl>dd{ font-size:16px; }
+.applyRight>dl>dt,.applyRight>dl>dd{ font-size:16px; }
+.applyLeft>dl>dt,.applyRight>dl>dt{ font-weight:bold; }
+.applyLeft>dl>dd,.applyRight>dl>dd{ color:#666; }
+.applyLegal>dd>img{ width:218px; margin-top:20px; margin-right:38px; }
+.applyLegal>dd>img:last-child{ margin-right:0; }
+
+.line{ width:4px; height:460px; vertical-align:bottom; margin:0 60px; background:#b8b8b8; }
+
+

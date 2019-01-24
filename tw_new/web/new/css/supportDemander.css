@@ -1,0 +1,39 @@
+body{ background:#efefef; }
+/* 处理完毕，支持需求者 */
+.supportDemanderContent{ margin-top:0.25rem; padding:0 0.6rem; background:white; }
+.supportDemanderInfo>h3{ height:1.5rem; line-height:1.5rem; text-align:center; }
+.supportDemanderInfo>h3>img{ width:0.8rem; vertical-align:middle; }
+.supportDemanderInfo>h3>span{ font-size:0.45rem; vertical-align:middle; font-weight:bold; }
+.supportDemanderInfo>p{ margin-bottom:0.15rem; font-size:0.4rem; }
+.supportDemanderInfo>p>em{ color:#999; }
+.c{ color:#666df4; }
+.btnBox{ text-align:right; margin-top:0.5rem; padding-bottom:0.5rem; font-size:0.35rem; border-bottom:0.01rem dotted #ddd;  }
+.btnBox>a{ display:inline-block; padding:0.15rem 0.2rem; border-radius:1rem;  }
+.btnBox>a{ border:0.01rem solid #666df4; color:#666df4; }
+
+/* 用户信息 */
+.userInfo                       { position:relative; }
+.userInfo>i                     { display:inline-block; position:relative; padding-top:0.2rem; }
+.userInfo>i>img:first-child    { width:1.8rem; }
+.userInfo>i>img:last-child     { width:0.6rem; position:absolute; top:0.2rem; left:1.3rem; }
+.userInfo>span                  { position:relative; top:-1.15rem; left:0.05rem; }
+.userInfo>span>em               { font-size:0.45rem; font-weight:bold;  }
+.userInfo>span>i                { position:relative; top:0.05rem; left:0.1rem; }
+.userInfo>span>i>img            { width:0.5rem; }
+.userInfo>em                    { position:relative; display:inline-block; top:-0.3rem; left:-3.8rem; padding:0 0.2rem; font-size:0.4rem; border:0.01rem solid #ffd736; border-radius:1rem; }
+/*  右侧的图标 */
+.rightIcon            { position:absolute; top:0.65rem; right:0; font-size:0; }
+.rightIcon>a          { display:inline-block; padding:0 0.2rem;}
+.rightIcon>a>img      { width:1rem; }
+/* 波浪 */
+.bolang>img{ width:10rem; position:absolute; top:-0.45rem; }
+/* 协商历史 */
+.consult{ position:relative; background:white; margin-top:0.4rem; }
+.consult>a{ height:1rem; line-height:1rem; display:block; font-size:0.4rem; }
+.consult>a>span{ display:inline-block; vertical-align:middle; margin-left:0.5rem; color:black; }
+.consult>a>img{ width:0.4rem; float:right; margin-right:0.5rem; margin-top:0.2rem; }
+/*  状态信息 */
+.stateInfo{ margin-top:0.3rem; }
+.stateInfo>ul{ padding:0.3rem 0.5rem; background:white; font-size:0.4rem; }
+.stateInfo>ul>li{ margin-bottom:0.2rem; }
+.stateInfo>ul>li:last-child{ margin:0; }

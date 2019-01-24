@@ -1,0 +1,188 @@
+<?php
+
+class News_model extends TW_Model {
+
+	public function __construct() {
+		parent :: __construct();
+	}
+
+/************************************* 新闻列表 *************************************/
+
+	public function get_news_showlist($cate_id, $cate_ids) {
+		// 先设置默认从第一页开始
+		$i_page = $this->router->get(2);
+		if (empty($i_page)) {
+			$i_page = 1;
+		}
+		// 设置每页显示的数据行数
+		$i_prow = 10;
+		// 加载分页类
+		$this->load->library('pages');
+		// 获取数据总行数
+		if ($cate_id == 'all') {
+			$i_total = $this->db->get_total('news');
+		} else {
+			$i_total = $this->db->where_in('cate_id', $cate_ids)->get_total('news');
+		}
+		// 调用分页运算函数
+		$a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+		// 开始获取产品数据
+		$this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+		$a_order = [
+			'news_id' => 'desc'
+		];
+		if ($cate_id == 'all') {
+			$a_data['news'] = $this->db->get('news', [], '', $a_order);
+		} else {
+			$a_data['news'] = $this->db->where_in('cate_id', $cate_ids)->get('news', [], '', $a_order);
+		}
+		$a_data['count'] = $i_total;
+		return $a_data;
+	}
+
+/************************************* 获取一条 *************************************/
+
+	/**
+	 * [get_news_one 获取一条新闻数据]
+	 * @param  [int] $news_id [description]
+	 * @return [array]          [description]
+	 */
+	public function get_news_one($news_id) {
+		$a_where = [
+			'news_id' => $news_id
+		];
+		$a_data = $this->db->get_row('news', $a_where);
+		return $a_data;
+	}
+
+/************************************* 添加新闻 *************************************/
+
+	/**
+	 * [insert_news 插入一条新闻数据]
+	 * @param  [array] $a_data [要插入的数据]
+	 * @return [int]           [返回新数据的id]
+	 */
+	public function insert_news($a_data) {
+		$i_result = $this->db->insert('news', $a_data);
+		return $i_result;
+	}
+
+/************************************* 修改新闻 *************************************/
+
+	/**
+	 * [update_news 修改新闻]
+	 * @param  [array] $a_where [修改的条件]
+	 * @param  [array] $a_data  [修改的数据]
+	 * @return [int]            [返回修改的行数]
+	 */
+	public function update_news($a_where, $a_data) {
+		$i_result = $this->db->update('news', $a_data, $a_where);
+		return $i_result;
+	}
+
+/************************************* 删除新闻 *************************************/
+
+	/**
+	 * [delete_user 删除新闻 单个删除]
+	 * [操作的表 user 操作方式 delete]
+	 * @param  [int] $user_id [要删除新闻的id]
+	 * @return [int]          [返回删除受影响的行数]
+	 */
+	public function delete_news_one($news_id) {
+		$a_where = [
+			'news_id' => $news_id,
+		];
+		$i_result = $this->db->delete('news', $a_where);
+		return $i_result;
+	}
+
+	/**
+	 * [delete_room_mony 批量删除新闻]
+	 * @param  [array] $a_data     [要删除的新闻的id数组]
+	 * @return [int]   $i_result   [返回删除的行数]
+	 */
+	public function delete_news_mony($a_data) {
+		$i_result = $this->db->where_in('news_id', $a_data)->delete('news');
+		return $i_result;
+	}
+
+/************************************* 新闻搜索 *************************************/
+
+	/**
+	 * [get_room_search 根据关键词搜索新闻]
+	 * @param  [string] $keywords [传入的关键词]
+	 * @return [array]            [返回查询到的数据]
+	 */
+	public function get_news_search($keywords) {
+		$a_where = [
+			'wf_news.news_title LIKE' => '%'.$keywords.'%',
+		];
+		$a_where_or = [
+			'wf_news.news_keywords LIKE' => '%'.$keywords.'%',
+		];
+		$s_field = '';
+		$a_order = [
+			'wf_news.news_id' => 'desc'
+		];
+		$a_data = $this->db->from('news')
+						   ->join('cate', ['wf_cate.cate_id'=>'wf_news.cate_id'])
+						   ->where($a_where)
+						   ->where_or($a_where_or)
+						   ->get('', NULL, $s_field , $a_order);
+		return $a_data;
+	}
+
+/*********************************** 获取所有分类 ***********************************/
+
+	public function get_cate_all() {
+		$a_order = [
+			'cate_id' => 'asc'
+		];
+		$a_data = $this->db->get('cate', [], '', $a_order, 0, 99999999);
+		return $a_data;
+	}
+
+/*********************************** 获取一条分类 ***********************************/
+
+	public function get_cate_one($cate_id) {
+		$a_where = [
+			'cate_id' => $cate_id
+		];
+		$a_data = $this->db->get_row('cate', $a_where);
+		return $a_data;
+	}
+
+/********************************** 获取显示的分类 **********************************/
+
+	public function get_cate_show() {
+		$a_where = [
+			'is_show' => 1
+		];
+		$s_field = '';
+		$a_order = [
+			'cate_id' => 'desc'
+		];
+		$a_data = $this->db->get('cate', $a_where, $s_field, $a_order, 0, 99999999);
+		return $a_data;
+	}
+
+/********************************** 修改一条分类记录 **********************************/
+
+	/**
+	 * [update_cate 修改一条分类记录]
+	 * @param  [type] $a_where [description]
+	 * @param  [type] $a_data  [description]
+	 * @return [type]          [description]
+	 */
+	public function update_cate($a_where, $a_data) {
+		$i_result = $this->db->update('cate', $a_data, $a_where);
+		return $i_result;
+	}
+
+/************************************************************************************/
+
+
+}
+
+?>

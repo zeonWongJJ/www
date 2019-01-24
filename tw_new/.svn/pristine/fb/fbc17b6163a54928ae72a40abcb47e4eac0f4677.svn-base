@@ -1,0 +1,23 @@
+version: "3.6"
+
+services:
+  qiqing_jiajie_v1:
+    image: qiqing/jiajie:1.0
+    container_name: qiqing_jiajie_v1
+    restart: always
+    ports:
+      - "19010:19001"
+      - "19011:19002"
+      - "19012:19003"
+      - "19013:19004"
+    environment:
+      APP_DEBUG: 1
+    networks:
+      yiyenet:
+        ipv4_address: 172.18.0.10 # 这个是应用分配的IP，前三个网段不能变，不然会导致连接不上数据库
+
+# 下面照着抄就行了
+networks:
+  yiyenet:
+    external: true
+

@@ -1,0 +1,55 @@
+body{ background:#efefef;  }
+
+/*.pr{position:relative;}
+.abs{position: absolute}
+.fl{float:left;display:inline-block;}
+.fr{float:right;display:inline-block;}
+.clearfix:after{content:".";display:block;height:0;clear: both;visibility:hidden;}
+.clearfix{*zoom:1;}
+.wrap{min-width:320px;max-width:768px;margin:0 auto;overflow:hidden;position:relative;}*/
+
+/* 导航 */
+.nav { position:relative; height:1rem; width:100%; overflow:hidden; margin:0 auto; background:#fff; }
+.nav .scroller { position:absolute }
+.nav .scroller li { height:1rem; color:#333; float:left; line-height: 1rem;font-size:.4rem;text-align: center}
+.nav .scroller li a{ position:relative; color:#333; display:block; margin:0 .3rem}
+.nav .scroller li.cur{ }
+.nav .scroller li.cur a{ color:#5856d6; }
+.nav .scroller li.cur a>hr{ width:0.5rem; height:0.1rem; position:absolute; top:0.7rem; left:0.5rem; background:#5856d6; border:none; }
+
+/*  全部订单  */
+.allOrders                     { margin:0 0.25rem; }
+.allOrders>ul>li              { margin:0.2rem 0; background:#fff; }
+.allOrders>ul>li>p            { padding:0.25rem 0.2rem; font-size:0.4rem; }
+.allOrders>ul>li>p>span       { font-weight:bold; }
+.allOrders>ul>li>p>em         { float:right; color:#5856d6; }
+.infoContent                          { position:relative; background:#fafafa; }
+.infoContent>i                        { position:absolute; top:-0.2rem; left:0.1rem; }
+.infoContent>i>img                    { width:3rem; }
+.infoContent>p                        { height:2.2rem; margin:0.6rem 0; padding:0.2rem 1.6rem 0.2rem 3.3rem; font-size:0.38rem;  }
+.infoContent>p>span                   { font-weight:bold; }
+.infoContent>p>em                     { width:1.2rem; display:block; text-align:center; margin-top:0.1rem; padding:0 0.1rem; font-size:0.3rem; color:red; border:1px solid red; border-radius:4px;  }
+.infoContent>span                     { position:absolute; top:0.2rem; right:0.1rem; font-size:0.38rem; font-weight:bold; }
+.infoContent>dfn                      { position:absolute; top:0.7rem; right:0.1rem; color:#a5a5a5; font-size:0.38rem; font-style:normal; }
+.info>p                                { text-align:right; margin-right:0.2rem; margin-bottom:0.2rem; font-size:0.4rem; color:#fff; }
+.info>p>a                              { display:inline-block; padding:0.1rem 0.2rem; color:#000; border:1px solid #ddd; border-radius:10px; }
+/* 金额 */
+.sum                        { line-height:0.3rem; padding:0.5rem 0.2rem; font-size:0.4rem; }
+.sum>dfn                    { color:#ddd; font-style:normal; }
+.sum>dfn>span               { font-size:0.38rem; }
+.sum>b                      { float:right; font-size:0.4rem; margin-right:0.2rem; font-weight:bold; }
+.sum>b>em                   { font-weight:bold; font-size:0.6rem;}
+/* 按钮 */
+.btnBox                      { text-align:right; padding-right:0.2rem; padding-bottom:0.3rem; }
+.btnBox>a                    { height:0.8rem; line-height:0.8rem; display:inline-block; text-align:center; font-size:0.35rem; padding:0 0.2rem; margin-left:0.2rem; color:#000; border:1px solid #ddd; border-radius:22px; }
+.btnBox>a:last-child       { color:#5856d6; border-color:#5856d6; }
+
+
+
+/* 虚线 */
+.dashed               { position:relative; }
+.dashed>p             { width:90%; margin:0 auto; height:3px; border-bottom:1px dashed #ddd; }
+.dashed>i             { width:15px; height:15px; display:inline-block; position:absolute;  border-radius:50%; background:#efefef; border-color:#5856d6; }
+.dashed>i:first-child{ top:-4px; left:-8px; }
+.dashed>i:last-child { right:-8px; top:-4px;}
+

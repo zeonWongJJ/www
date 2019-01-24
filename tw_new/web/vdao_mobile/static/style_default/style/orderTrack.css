@@ -1,0 +1,21 @@
+/* �������� */
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.29rem; }
+
+/* ������Ϣ */
+.logInfo{ padding:0.64rem 0.2rem; margin-top:0.26rem; background:white; }
+
+/* �������� */
+.expressList>a{ display:inline-block;  vertical-align:top;  }
+.exTime{ width:1.73rem; text-align:center; }
+.exTime>p,.exTime>span{ font-size:0.24rem; color:#ff6633; }
+.line{ width:0.96rem; text-align:center; font-size:0; }
+.exCur>.line>i{ width:0.45rem; height:0.45rem; background:#ff6633; }
+.exCur>.line>hr{  height:3.2rem; }
+.line>i{ width:0.18rem; height:0.18rem; display:inline-block; border-radius:50%; background:#cbcecc; }
+.line>hr{ width:0.03rem; height:1.4rem; display:block; margin-top:0; background:#cbcecc; border:none; }
+.exInfo{ width:6.5rem; }
+.exInfo>span{ font-size:0.32rem; color:#666666; }
+.exCur>.exInfo>span{ color:#ff6633; }
+.mapBox{ height:3rem; position:relative; display:block; border-radius:0.4rem; }
+ 

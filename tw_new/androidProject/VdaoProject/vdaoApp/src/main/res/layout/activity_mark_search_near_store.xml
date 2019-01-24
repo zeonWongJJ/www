@@ -1,0 +1,202 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:panel="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_bg"
+    android:layout_height="match_parent">
+    <!--activity_mark_search_near_address-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include layout="@layout/fragment_near_store_list"/>
+        <FrameLayout
+            android:id="@+id/bg_color"
+            android:layout_width="match_parent"
+            android:background="#80000000"
+            android:visibility="gone"
+            android:layout_height="match_parent"/>
+        <app.vdao.qidu.widget.PanelView
+            android:id="@+id/topPanel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            panel:handle="@+id/panelHandle"
+            panel:content="@+id/panelContent"
+            panel:position="top"
+            panel:animationDuration="1000"
+            panel:linearFlying="false"
+            >
+
+            <ImageView
+                android:id="@+id/panelHandle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/mark_margin_right"
+                android:background="@drawable/icon_mark_touch"
+                android:gravity="center"
+                android:layout_gravity="top|right"/>
+
+            <LinearLayout
+                android:id="@+id/panelContent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/mark_margin_right"
+                        android:background="@drawable/icon_mark_line"
+                        android:gravity="center"
+                        android:layout_gravity="bottom|right"/>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_mark_bg"
+                        android:orientation="horizontal" >
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/mark_margin_item_top"
+                            android:layout_marginLeft="@dimen/mark_margin_item_left_right"
+                            android:button="@null"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/home"
+                                android:layout_width="@dimen/mark_img_size"
+                                android:src="@drawable/tab_icon_home_selector"
+                                android:background="@drawable/circle_red"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:layout_height="@dimen/mark_img_size" />
+                            <TextView
+                                style="@style/markTextStyle"
+                                android:text="@string/home"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:orientation="vertical"
+                            android:layout_marginTop="@dimen/mark_margin_item_top"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/found"
+                                android:layout_width="@dimen/mark_img_size"
+                                android:src="@drawable/icon_found"
+                                android:background="@drawable/circle_red"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:layout_height="@dimen/mark_img_size" />
+                            <TextView
+                                style="@style/markTextStyle"
+                                android:text="@string/product"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/mark_margin_item_top"
+                            android:button="@null"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/shopping_car"
+                                android:layout_width="@dimen/mark_img_size"
+                                android:src="@drawable/icon_shopping_card"
+                                android:background="@drawable/circle_red"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:layout_height="@dimen/mark_img_size"/>
+                            <TextView
+                                style="@style/markTextStyle"
+                                android:text="@string/shopping_car"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:orientation="vertical"
+                            android:layout_marginTop="@dimen/mark_margin_item_top"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/chat"
+                                android:layout_width="@dimen/mark_img_size"
+                                android:src="@drawable/icon_message"
+                                android:background="@drawable/circle_red"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:layout_height="@dimen/mark_img_size" />
+                            <TextView
+                                style="@style/markTextStyle"
+                                android:text="@string/chat"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/mark_margin_item_top"
+                            android:button="@null"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/dynamic_state"
+                                android:layout_width="@dimen/mark_img_size"
+                                android:src="@drawable/icon_dynamic_state"
+                                android:background="@drawable/circle_red"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:layout_height="@dimen/mark_img_size" />
+                            <TextView
+                                style="@style/markTextStyle"
+                                android:text="@string/dynamic"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:layout_marginTop="@dimen/mark_margin_item_top"
+                            android:layout_marginRight="@dimen/mark_margin_item_left_right"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/user_center"
+                                android:layout_width="@dimen/mark_img_size"
+                                android:src="@drawable/icon_user_center"
+                                android:background="@drawable/circle_red"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:layout_height="@dimen/mark_img_size" />
+                            <TextView
+                                style="@style/markTextStyle"
+                                android:text="@string/mine"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+        </app.vdao.qidu.widget.PanelView>
+
+
+    </FrameLayout>
+
+</FrameLayout>

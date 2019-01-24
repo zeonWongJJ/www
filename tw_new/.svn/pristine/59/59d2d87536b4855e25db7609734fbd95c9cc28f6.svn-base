@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">分页类</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<code class="language-php">
+	$this->load->library('pages')
+</code>
+</div>
+<div class="desc">
+	加载类，下面作一个完整使用演示
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 先设置默认从第一页开始
+$i_page = $this->router->get(1);
+if (empty($i_page)) {
+	$i_page = 1;
+}
+// 设置每页显示的数据行数
+$i_prow = 10;
+// 加载分页类
+$this->load->library('pages');
+// 获取数据总行数，以产品为例
+$i_total = $this->db->get_total('goods');
+// 调用分页运算函数
+$a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+// 开始获取产品数据
+$this->db->limit($a_pdata['start'], $a_pdata['last']);
+$a_data = $this->db->get('goods');
+// 这里就是产品数据了，可以在模板里面循环出来
+print_r($a_data);
+// 这里是在模板输出分页链接，注意这里的URL末尾不能带.html，所以$this->router->url函数用了第四个参数，并且设置为false
+// 还需要注意URL后面会被自动加上分页码，所以需要传入一个参数分隔符“-”
+echo $this->pages->link_style_one($this->router->url('index-', [], false, false));
+// 关于$this->router->url函数的另一种用法，可以在参数里面传入一个空参数来让URL末尾生成一个"-"
+echo $this->pages->link_style_one($this->router->url('index', [''], false, false));
+</code>
+</pre>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->pages->get(需要分页的数据总行数<span>(整数)</span>, 当前页码<span>(整数)</span>, 每页显示多少条数据<span>[整数]</span>);
+</code>
+</div>
+<div class="desc">
+	分页类必调用函数，通过此函数的调用来进行分页运算，第三个参数，默认每页显示20条数据,举例：
+</div>
+<code class="language-php">
+	$a_pdata = $this->pages->get(100, 1, 10);
+</code>
+<div class="desc">
+	此语句返回一个数组：
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+array(
+	'pages' => 10, // 总共的分页数
+	'rows' => 100, // 总共的数据行数，也就是刚刚传入的第一个参数
+	'start' => 0, // 当前页面显示的数据开始行，对应SQL语句的limit第一个参数，主要获取参数之一
+	'last' => 10, // 当前页面显示的数据结束行，对应SQL语句的limit第二个参数，主要获取参数之二，结合上一个参数来获取数据用
+)
+</code>
+</pre>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->pages->link_style_one(URL带参数分隔符，但是不带结尾.html<span>(字符串)</span>, 显示可以点击的分页链接数量，默认8个<span>[整数]</span>, URL结尾后缀，默认会加".html"<span>[.html]</span>);
+</code>
+</div>
+<div class="desc">
+	链接样式1，该方法返回已经生成好的链接HTML代码，显示效果：首页  <<上一页  1  [2]  [3]  下一页>> 末页，如果对样式不满意，可继承扩展此类
+</div>
+<code class="language-php">
+	echo $this->pages->link_style_one($this->router->url('index', [''], false, false));
+</code>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->pages->link_style_two(URL带参数分隔符，但是不带结尾.html<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	链接样式2，该方法返回已经生成好的链接HTML代码，显示效果：共1036条 - 第0-15条 - 第 1/70 页 转到第 页 共有记录: 1036 首页 上一页 下一页 尾页，如果对样式不满意，可继承扩展此类
+</div>
+<code class="language-php">
+	echo $this->pages->link_style_two($this->router->url('index', [''], false, false));
+</code>
+</div>
+
+
+</body>
+</html>

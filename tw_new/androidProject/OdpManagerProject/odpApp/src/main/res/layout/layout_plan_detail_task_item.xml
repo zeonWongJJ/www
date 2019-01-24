@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/plan_order"
+            android:layout_width="@dimen/left_title_width"
+            android:layout_height="wrap_content"
+            style="@style/publish_task_black_style"
+            android:text="计划1"
+            />
+        <TextView
+            android:id="@+id/edit_plan_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/publish_task_black_style"
+            android:background="@color/white"
+            android:layout_marginRight="@dimen/default_margin"
+            android:text="app登录注册页面"
+            />
+        <ImageView
+            android:id="@+id/show_task"
+            android:layout_width="wrap_content"
+            android:src="@drawable/icon_increase"
+            android:padding="@dimen/default_padding"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/task_list_layout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/icon_gray_solid_arrow_up"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:id="@+id/task_list"
+            android:background="@drawable/shape_task_list_radius"
+            />
+    </LinearLayout>
+
+    <include layout="@layout/line"/>
+</LinearLayout>

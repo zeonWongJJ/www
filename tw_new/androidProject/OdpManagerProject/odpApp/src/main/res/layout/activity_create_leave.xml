@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <include layout="@layout/layout_title"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"
+            android:padding="15dp"
+            android:text="请假类型"
+            />
+        <TextView
+            android:id="@+id/leave_type"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/publish_task_black_style"
+            android:background="@color/white"
+            android:textColorHint="@color/gray"
+            android:hint="请选择请假类型"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="@drawable/icon_arrow_right"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <include layout="@layout/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"
+            android:padding="15dp"
+            android:text="开始时间"
+            />
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/publish_task_black_style"
+            android:background="@color/white"
+            android:textColorHint="@color/gray"
+            android:hint="请选择开始时间"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="@drawable/icon_arrow_right"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <include layout="@layout/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"
+            android:padding="15dp"
+            android:text="结束时间"
+            />
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/publish_task_black_style"
+            android:background="@color/white"
+            android:textColorHint="@color/gray"
+            android:hint="请选择结束时间"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="@drawable/icon_arrow_right"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <include layout="@layout/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"
+            android:padding="15dp"
+            android:text="审批人    "
+            android:paddingBottom="@dimen/default_padding"
+            />
+        <com.app.base.flow.FlowTagLayout
+            android:id="@+id/color_flow_layout"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <include layout="@layout/line"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_normal"
+        android:background="@color/white"
+        android:padding="15dp"
+        android:text="请假原因"
+        />
+    <EditText
+        android:id="@+id/reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_normal"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
+        android:minLines="6"
+        android:gravity="left"
+        android:textColorHint="@color/gray"
+        android:hint="请填写请假原因"
+        />
+
+    <TextView
+        android:id="@+id/commit"
+        android:layout_width="match_parent"
+        android:layout_marginTop="34dp"
+        android:padding="12dp"
+        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:background="@drawable/shape_blue_small_radius"
+        android:textColor="@color/white"
+        android:text="确认申请"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_normal"
+
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

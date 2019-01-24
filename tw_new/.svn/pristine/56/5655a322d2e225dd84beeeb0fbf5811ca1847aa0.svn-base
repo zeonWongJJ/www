@@ -1,0 +1,25 @@
+body{ background:#efefef; }
+/*  退款进度 */
+.refundInfo                           { background:white; }
+.refundInfo>ul                        { padding:0.2rem; font-size:0.4rem; }
+.refundInfo>ul>li                     { margin-bottom:0.2rem; }
+.refundInfo>ul>li:last-child         { margin:0; }
+.refundInfo>ul>li>span                { width:2rem; display:inline-block; }
+.pay                                    { color:#666DF4; }
+/*  进度 */
+.progress            { margin-top:0.25rem; background:white; }
+.proTitle            { height:1rem; line-height:1rem; margin:0 0.4rem; font-size:0.4rem; border-bottom:0.01rem solid #ddd; }
+.proTitle>em         { float:right; }
+.proTitle>em>img     { width:0.7rem; vertical-align:middle; }
+.proTitle>em>span    { color:#666DF4; vertical-align:sub; }
+/* 进度信息 */
+.progressInfo              { position:relative; }
+.verticalLine              { width:0.02rem;  position:absolute; top:0.5rem; left:0.5rem; display:inline-block; background:#999; border:none; }
+.progressInfo>ul           { padding-top:0.5rem; padding-bottom:4rem;  }
+.progressInfo>ul>li        { position:relative; margin-left:1rem; padding-bottom:1rem;  font-size:0.45rem; }
+.progressInfo>ul>li>span  { width:0.25rem; height:0.25rem; position:absolute; left:-0.6rem;
+   top:0.1rem; display:inline-block; border-radius:50%; background:#999; }
+.progressInfo>ul>li>em{ font-size:0.4rem; color:#999; }
+
+
+

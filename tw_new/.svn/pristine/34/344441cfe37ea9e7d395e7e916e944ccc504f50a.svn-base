@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    label {
+        display: block;
+    }
+</style>
+
+<form action="" onsubmit="return false;" id="main-form">
+    <label>
+        demand_level_1:
+        <input type="text" name="demand_level_1" value="1">
+    </label>
+    <label>
+        demand_level_2:
+        <input type="text" name="demand_level_2" value="1">
+    </label>
+    <label>
+        demand_level_3:
+        <input type="text" name="demand_level_3" value="1">
+    </label>
+    <label>
+        demand_belong_id:
+        <input type="text" name="demand_belong_id" value="1">
+    </label>
+    <label>
+        demand_pay_type:
+        <input type="text" name="demand_pay_type" value="price">
+    </label>
+    <label>
+        subject_title:
+        <input type="text" name="subject_title" value="测试订单提交">
+    </label>
+    <label>
+        demand_remuneration:
+        <input type="text" name="demand_remuneration" value="100">
+    </label>
+    <label>
+        demand_info:
+        <input type="text" name="demand_info" value="demand_infodemand_infodemand_infodemand_info">
+    </label>
+    <label>
+        demand_service_at:
+        <input type="text" name="demand_service_at" value="2018-7-19 12:33:33">
+    </label>
+    <label>
+        demand_contact_name:
+        <input type="text" name="demand_contact_name" value="李锐钊">
+    </label>
+    <label>
+        demand_gender:
+        <input type="text" name="demand_gender" value="1">
+    </label>
+    <label>
+        demand_telephone:
+        <input type="text" name="demand_telephone" value="15819943115">
+    </label>
+    <label>
+        demand_address_name:
+        <input type="text" name="demand_address_name" value="长华创意谷">
+    </label>
+    <label>
+        demand_house_number:
+        <input type="text" name="demand_house_number" value="16坐103">
+    </label>
+    <label>
+        demand_lal:
+        <input type="text" name="demand_lal" value="1.222,3,4444">
+    </label>
+    <label>
+        demand_price_type:
+        <input type="text" name="demand_price_type" value="alipay">
+    </label>
+    <input type="submit" value="提交" id="post-btn">
+</form>
+
+<label>
+    线下：<input type="radio" name="env" value="http://pay.qidu.cc/pay.php/">
+    线上：<input type="radio" name="env" value="http://jiajie-server.7dugo.com/">
+</label>
+<label>
+    test_pay_order_sn: <input type="text" name="test_pay_order_sn">
+</label>
+<label>
+    test_pay_order_sign: <input type="text" name="test_pay_order_sign">
+</label>
+<label>
+    test_pay_token: <textarea name="test_pay_token" cols="30" rows="10"></textarea>
+</label>
+<div id="test-order" style="background: red">发起支付</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        // var token = 'ZIchWRKSEtgwb/0Xip/RTAX5H+PMwBv+nAXEfFHWOpBNQ+7QWvO37w8pBQL8c3xBggCGrX6wQJysqZZOuay6rfYbRJx3amh4AQGhn44mWeaVHNc+HPfWu98cF3BzasdCKkY3fQzCfdEQrSLnE3zFOgKLBTLSkmun7gu4zyqV4sMlEeJVAAjULQDzESMTEeQUddBZaFdeqd0waMIAeapObWVmjkKC0vC9V7QplfkudW7kC0Adcnu9wIHA79kXA6yJ6409FvqOo+XjV7VZuhg6iKb3geVBoNHMFuYav4VQ0vH1+xEyKRaIeCUVq8KYX8YB0x6in1L9UlAi21IfYbaZiQ==';
+        // token = encodeURIComponent(token);
+        $('#post-btn').click(function() {
+            $.ajax({
+                url: 'http://jiajie.qidu.cc/demand.add',
+                headers: {
+                    'X-Token': token
+                },
+                type: 'POST',
+                dataType: 'JSON',
+                data: $('#main-form').serialize(),
+                success: function(rs) {
+                    console.log(rs)
+                }
+            })
+        });
+
+        $('#test-order').click(function() {
+            var order_sn = $('[name=test_pay_order_sn]').val()
+                , order_sign = $('[name=test_pay_order_sign]').val()
+                , uri = $('[name=env]:checked').val()
+                , token = $('[name=test_pay_token]').val();
+            token = encodeURIComponent(token);
+            window.open(uri + 'order.pay?order_sn='+order_sn+'&order_sign='+order_sign+'&token=' + token);
+        });
+    });
+</script>
+</body>
+</html>

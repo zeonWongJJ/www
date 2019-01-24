@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<div class="title">第一个程序</div>
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+在框架的开发文档\sample目录，是一个完整的项目结构，application和web目录下的 test目录，分别是同一个应用的前后端文件目录，复制修改web\test\index.php。（每个应用都有对应的前后端目录，要增加应用，则复制多一套前后端test目录改名即可）
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 项目后端目录名
+define('PROJECTPATH', APPPATH . '/test');
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+配置好WEB服务器软件，如果使用的是nginx，请在虚拟机中添加好重写代码，apache只需要支持.htaccess即可，这里举例是以test.7du.com为访问地址
+</div>
+<pre  class="line-numbers">
+<code class="language-nginx">
+location / {
+	if (!-e $request_filename) {
+	  rewrite ^/(.*)$ /index.php?$1 last;
+	  break;
+	}
+}
+</code>
+</pre>
+<div class="desc">全部代码展示</div>
+<pre  class="line-numbers">
+<code class="language-nginx">
+server {
+	listen       80;
+	server_name  test.7du.com ;
+	root   "D:/www/sample/web/test";
+	location / {
+		index  index.html index.htm index.php;
+		#autoindex  on;
+		if (!-e $request_filename) {
+		  rewrite ^/(.*)$ /index.php?$1 last;
+		  break;
+		}
+	}
+	location ~ \.php(.*)$ {
+		fastcgi_pass   127.0.0.1:9000;
+		fastcgi_index  index.php;
+		fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;
+		fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+		fastcgi_param  PATH_INFO  $fastcgi_path_info;
+		fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;
+		include        fastcgi_params;
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+确认后端目录名正确，示例后端目录应该是：sample\application\test；示例前端目录应该是：sample\web\test；
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+配置数据库文件：application\test\config\config_database.php，代码如下
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_db_config['db'] = array(
+	'server' => 'localhost',
+	'user' => 'root',
+	'password' => 'root',
+	'database' => 'mysql',
+	'charset' => 'UTF8',
+	'persistent' => true,
+	'prefix' => 'tw_'
+);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+配置路由文件：application\test\config\config_router.php，代码如下
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+static $a_router = [
+	// 首页
+	'index' => [
+		'class' => 'Test',
+		'method' => 'index'
+	],
+];
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+application\shop_pc\controller增加一个Test_ctrl.php 控制器，代码如下
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+defined('BASEPATH') OR exit('禁止访问！');
+
+class Test_ctrl extends TW_Controller {
+	
+	public function __construct() {
+		parent :: __construct();
+		
+		$this->load->model('test_model');
+	}
+
+	public function index()	{
+		$a_data = $this->test_model->te();
+		$this->view->display('test', $a_data);
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+application\shop_pc\model增加一个Test_model.php 模型，代码如下
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+defined('BASEPATH') OR exit('禁止访问！');
+
+class Test_model extends TW_Model {
+	public function te() {
+		$a_data = $this->db->get_row('user');
+		return $a_data;
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+application\test\template增加一个test.php 模板，代码如下
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+&lt?php print_r($a_view_data);?&gt
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+打开浏览器，访问test.7du.com/index.html（虚拟主机设置方法请参考环境支持），我们就能看到数据输出了，这样我们就完成了整个流程操作，并且使用了模型和模板
+</div>
+</div>
+
+
+</body>
+</html>

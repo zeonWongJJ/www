@@ -1,0 +1,58 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*表格模块*/
+.tableModule{width: 1190px; background: white; padding: 20px 0 0 25px; margin-top: 22px;}
+.addSearch{height: 50px;}
+/*.addSearch .addBox{float: left;}
+.addBox a{display: block; width: 118px; height: 37px; background: url(../images/search_03.png); line-height: 37px; text-align: center; font-size: 14px; color: #a09f9f;}
+.addBox a i{font-style: normal; margin-right: 10px;}*/
+.addSearch .searchBox{float: left; width: 600px;}
+.searchBox .int{float: left; width: 136px; height: 37px; background: url(../images/search_05.png); text-indent: 10px;}
+.searchBox .btn{float: left; width: 33px; height: 37px; background: url(../images/search_06.png); cursor: pointer;}
+.tableBox{width: 1140px;}
+.tableBox .thead{ background: #f5f7fd; height: 56px; line-height: 56px; }
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: center;}
+.tableBox .thead span{font-size: 14px; color: #333333; font-weight: bold;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 2px;}
+.tableBox .row{border-bottom: 1px solid #f4f4f4; background: white;}
+.tableBox span{display: inline-block; vertical-align: middle;}
+.tableBox span:nth-child(1){ width: 50px; }
+.tableBox span:nth-child(2){ width: 140px; }
+.tableBox span:nth-child(3){ width: 90px;}
+.tableBox span:nth-child(4){ width: 225px;}
+.tableBox span:nth-child(5){ width: 230px;}
+.tableBox span:nth-child(6){ width: 155px;}
+.tableBox span:nth-child(7){ width: 125px;}
+.tableBox span:nth-child(8){ width: 125px;}
+.tableBox span img{vertical-align: middle;}
+.tableBox a.addRoom{display: inline-block; width: 15px; height: 15px; background: url(../images/addRoom_03.png); vertical-align: middle;}
+.tableBox a.gapCheck{display: inline-block; width: 23px; height: 23px; background: url(../images/pro_07.png) no-repeat center center; vertical-align: middle;}
+.tableBox a.grayCheck{display: inline-block; width: 23px; height: 23px; background: url(../images/pro_46.png) no-repeat center center; vertical-align: middle;}
+.tableBox a.greenCheck{display: inline-block; width: 23px; height: 23px; background: url(../images/pro_23.png) no-repeat center center; vertical-align: middle;}
+.tableBox a.open{display: inline-block; width: 39px; height: 15px; background:url(../images/pro_10.png) center center; vertical-align: middle;}
+.tableBox a.close{display: inline-block; width: 39px; height: 15px; background:url(../images/pro_33.png) center center; vertical-align: middle;}
+/*全选模块*/
+.controlBox{width:275px; height: 56px; background: white; margin-top: 20px; line-height: 56px; padding-left: 40px; }
+.controlBox a{display: inline-block; color: #333333; font-size: 14px; margin-right: 25px;}
+.controlBox a i{margin-right: 5px;}
+.controlBox a.gapCheck i{display: inline-block; width: 23px; height: 23px; background:url(../images/pro_07.png) center center; vertical-align: middle;}
+.controlBox a.grayCheck i{display: inline-block; width: 23px; height: 23px; background:url(../images/pro_46.png) center center; vertical-align: middle;}
+.controlBox a.greenCheck i{display: inline-block; width: 23px; height: 23px; background:url(../images/pro_23.png) center center; vertical-align: middle;}
+.controlBox a.addBtn i{display: inline-block; width: 15px; height: 15px; background:url(../images/addRoom_03.png) center center; vertical-align: middle;}
+/*遮罩层*/
+.shade{width: 100%; height: 100%; position: absolute; background:rgba(255,255,255,0.4); left: 0; top: 0; display: none; }
+/*删除部分房间提示-是否删除*/
+.delePart{ width: 380px; height: 170px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -85px; padding: 15px 20px; /*box-shadow: 0 0 20px #ededed;*/ box-shadow: 0 0 20px #dedede; }
+.batchDel{ display: none;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 38px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+/*删除单个房间提示*/
+.deleSingle{display:none;}
+.deleSingle p:nth-child(1){ margin-top: 15px;}
+.deleSingle a.think{ width: 42px; height: 20px;}

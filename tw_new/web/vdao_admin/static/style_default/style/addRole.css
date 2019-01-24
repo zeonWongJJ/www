@@ -1,0 +1,30 @@
+/*  ��ӽ�ɫ */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.adminList{ margin-top:20px; margin-left:22px; }
+.adminList>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.addRole{ margin-top:15px; margin-left:22px; font-size:15px; background:white; }
+.addRole>p{ padding:12px 15px;  border-bottom:1px solid #ddd; }
+.addRole>p>span{ color:#58AFE8; font-weight:bold; }
+.addRole>p>img{ float:right; }
+.addRole>form{ padding:20px; }
+.addRole>form>ul>li{ margin-top:10px; }
+.addRole>form>ul>li>span{ display:inline-block; margin-right:10px; }
+.addRole>form>ul>li>span,.addRole>form>ul>li>em>span{ color:#A6A6A6; font-size:14px; }
+.addRole>form>ul>li>input,.addRole>form>ul>li>textarea{ padding:5px; border:1px solid #ddd; }
+.addRole>form>ul>li>input,.addRole>form>ul>li>em>img,.addRole>form>ul>li>em>span{ vertical-align:middle; }
+.addManagersDisplay>img{ vertical-align:middle; }
+.permissContent{ display:inline-block; vertical-align:top; padding:10px; border:1px solid #ddd; }
+.permissContent>ul{ height:320px; overflow:auto; }
+.permissContent>ul::-webkit-scrollbar { width:8px; border-left:2px solid #ffffff; border-right: 2px solid #ffffff; background-color:#b8b8b8; }
+.permissContent>ul::-webkit-scrollbar-thumb {width:8px; height:50px; background-color: #f3c727;}
+.permissContent>ul>li{ margin-top:8px; }
+.permissContent>ul>li>span{ margin-right:15px; }
+.permissContent>ul>li>span,.permissContent>ul>li>i>em,.permissContent>ul>li>i>img{ vertical-align:middle; font-size:13px; color:#999; }
+.permissContent>ul>li>i{ margin-right:10px; }
+.permissContent>ul>li>i>img{ width:18px; }
+.addManagersDisplay>img{ vertical-align:middle; }
+#addRole_name{ width:120px; }
+#addRole_des{ width:282px; height:50px; vertical-align:top; }
+#addRole{ display:inline-block; padding:6px 15px; margin-left:70px; margin-top:15px; color:#a33300; background:#ffce1c; border:1px solid #e69c14; }
+

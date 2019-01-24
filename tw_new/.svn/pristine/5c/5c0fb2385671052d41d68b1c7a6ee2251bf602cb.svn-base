@@ -1,0 +1,16 @@
+body{ background:#efefef; }
+/* ±£ÐÞ¼ÇÂ¼ */
+.repairRecord>ul>li{ font-size:0.4rem; }
+.repairRecord>ul{ margin:0 0.5rem; }
+.repairTime{ text-align:center; padding:0.3rem 0;}
+.orderNum{ padding:0.4rem 0; padding-left:0.3rem; background:#667CF2; color:white; border-top-left-radius:0.25rem; border-top-right-radius:0.25rem; }
+.reason{ padding:0.3rem; background:white; }
+.repairPic{ border-bottom:0.02rem solid #ddd; padding-bottom:0.2rem;  }
+.repairPic>i>img{ width:2rem; margin-top:0.2rem; }
+.repairState{ background:white; text-align:right; padding-bottom:0.3rem; border-bottom-left-radius:0.25rem; border-bottom-right-radius:0.25rem; }
+.repairState>span{ float:left; margin-top:0.2rem; margin-left:0.3rem; font-weight:bold; }
+.repairState>a{ height:0.8rem; line-height:0.8rem; display:inline-block; margin-right:0.2rem; padding:0 0.2rem; color:#667CF2; border:0.02rem solid #667CF2; border-radius:1rem; }
+
+
+
+

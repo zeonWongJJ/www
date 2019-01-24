@@ -1,0 +1,129 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*返单记录*/
+.repeatOrder{ width: 1190px; height: 310px; background: white; margin-top: 15px;}
+.repeatOrder .orderL{ float: left; width: 310px; height: 310px; padding: 20px 0 0 55px;}
+.orderL .tit{ font-size: 16px; color: #666666;}
+.orderL .money{ font-size: 30px; color: #000000; font-weight:bold; margin-top: 5px;}
+.orderL .cashSurplus{ height: 50px; margin-top: 20px;}
+.orderL .integral{ margin-top: 10px;}
+.cashSurplus .surPic{ width: 50px; height: 50px; float: left;}
+.cashSurplus .surNum{ float: left;}
+.cashSurplus .surNum .xian{ font-size: 12px; color: #333333;}
+.cashSurplus .surNum .yuan{ font-size: 18px; color: #000000;}
+.orderL .takeCash{ margin-top: 20px;}
+.orderL .takeCash a{ display: block; width: 100px; height: 45px; background: #5d3719; font-size: 18px; color: white; text-align: center; line-height: 45px;}
+.repeatOrder .orderR{ float: left; width: 880px; height: 310px; padding-top: 20px;}
+.orderR .h3{ font-size: 16px; color: #666666; padding-left: 30px;}
+.orderR .integralBox{ width: 840px; height: 195px;}
+.orderR .summaryBox{ margin-left: 120px;}
+.orderR .summaryBox li{ float: left; width: 170px;}
+.summaryBox li .wen{ font-size: 12px; color: #333333;}
+.summaryBox li .shu{ font-size: 18px; color: #000000;}
+/*表格模块*/
+.tableModule{width: 1190px; background: white; padding: 20px 0 0 25px; margin-top: 22px;}
+	/*交易记录*/
+.tableModule .dealBox{ border-bottom: 1px dashed #EDF1F2; width: 1140px;}
+.tableModule .dealBox .jiaoyi{ font-size: 16px; color: #666666; }
+.tableModule .dealBox .nearTime{ padding-left: 35px; height: 45px; margin-top: 15px;}
+.nearTime .timeL{ float: left; width: 310px; }
+.time .heng{ margin: 0 5px;}
+.time #test1,.time #test2{ width: 105px; height: 28px; background: #f5f5f5 url(/static/style_default/images/sanjiao_03.png) no-repeat 85px center; border: 1px solid #d7dadc; border-radius: 14px; padding: 0 10px; font-size: 12px; cursor: pointer; color: #666666;}
+.timeL .shijian,.timeR .zuijin{ font-size: 12px; color: #666666; width: 45px; float: left; padding: 6px 0;}
+.nearTime .timeR{ float: left; width: 740px;}
+.timeR .close{ float: left;}
+.timeR .close a{ display: inline-block; padding: 6px 20px; background: #f5f5f5; border-radius: 14px; text-align: center;  font-size: 12px; color: #666666; margin-right: 10px;} 
+.timeR .close a.current{ background: #5d3719; color: white;}
+
+	/*变动事项*/
+.changeBox{ height: 40px; margin-top: 15px;}
+.changeBox .bian{ font-size: 12px; color: #666666; float: left; width: 68px; padding: 6px 0;}
+.changeBox .shi{ float: left; }
+.changeBox .shi a{ display: inline-block; padding: 6px 20px; background: #f5f5f5; border-radius: 14px; text-align: center;  font-size: 12px; color: #666666; margin-right: 10px;}
+.changeBox .shi a.current{ background: #5d3719; color: white;}
+	/*表格*/
+.tableBox{width: 1140px;}
+.tableBox .thead{ height: 56px; line-height: 56px; border-bottom: 1px solid #edf1f2;}
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: left;}
+.tableBox li span:first-child{ padding-left: 40px;}
+.tableBox .thead span{font-size: 14px; color: #333333; font-weight: bold;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 2px;}
+.tableBox .row{border-bottom: 1px solid #edf1f2; background: white;}
+.tableBox span{display: inline-block; vertical-align: middle;}
+.tableBox span:nth-child(1){ width: 260px;}
+.tableBox span:nth-child(2){ width: 180px;}
+.tableBox span:nth-child(3){ width: 180px;}
+.tableBox span:nth-child(4){ width: 140px;}
+.tableBox span:nth-child(5){ width: 140px;}
+.tableBox span:nth-child(6){ width: 240px;}
+.tableBox span img{vertical-align: middle;}
+.tableBox li.today{ background: #f5f5f5; }
+.tableBox li.today span:first-child{border-left: 4px solid #ed2151;}
+
+/*分页*/
+.page{ float:right; margin-top:30px; margin-right:20px; margin-bottom: 40px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+/*资金提现弹框*/
+.editBomb{width: 480px; height: 320px; background: white; position: fixed; left: 50%; margin-left: -240px; top: 50%; margin-top: -160px; box-shadow: 0 0 20px #dedede; display: none;}
+.editBomb .h2{height: 50px; background: #fbfbfb; border-bottom: 1px solid #E8E8E8; padding: 18px 18px 0 18px;}
+.editBomb .h2 span{ font-size: 14px; color: #48a5ea;}
+.editBomb .h2 a.close{ width: 17px; height: 17px; background: url(/static/style_default/images/pro_19.png); float: right;}
+.editBomb .formBox{ padding: 20px 0 0 50px;}
+.formBox li{height: 50px;}
+.formBox li .left{width: 60px; float: left; font-size: 12px; color: #9e9e9e; text-align: right; line-height: 30px;}
+.formBox li .right{ float: left; margin-left: 10px; line-height: 30px;}
+.formBox li .right .input{ width: 140px; height: 30px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px;}
+.right .green,.right .red{  color: #999999; font-size: 12px; margin-left: 4px; display: none;}
+.right .green i{color: #ee2222; font-style: normal;}
+.right .green em{display: inline-block; width: 18px; height: 17px; background: url(/static/style_default/images/t_03.png) no-repeat left center; vertical-align: middle;}
+.right .wen{ margin-left: 10px;}
+.right .red em{display: inline-block; width: 18px; height: 18px; background: url(/static/style_default/images/f_03.png) no-repeat left center; vertical-align: middle;}
+.right .red{text-indent: 30px;}
+.right s{text-decoration: none;}
+.right .boy{display: inline-block; position: relative; width: 355px; height: 30px; float: left; }
+.right .boy input{opacity: 0; position: absolute; left: 0; top: 0;}
+.right .boy .pattern{ display: inline-block;  background: url(/static/style_default/images/pro_38.png) no-repeat left center; text-indent: 20px; position: absolute; left: 0; top: 0; font-size: 12px; color: #9e9e9e;}
+.sex .right .green{ margin-left: 100px; float: left;}
+.sex .right .ding2{ left: 80px;}
+.sex .right .red{float: left; margin-left: 114px;}
+.formBox .sureBox a{width: 85px; height: 28px; font-size: 14px; display: inline-block; background: #ffce1c; color: #a33300; text-align: center; line-height: 28px; border: 1px solid #e69c14; margin-left: 70px;}
+
+/*未设置提现银行卡弹框*/
+.delePart{ width: 380px; height: 170px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 50%; margin-top: -85px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; z-index: 10;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(/static/style_default/images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 30px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.bankBomb{ display: none;}
+.alipayBomb{ display: none;}
+.successBomb{ display: none;}
+.successBomb .btnBox a.sure{ margin-right: 0;}
+/*余额比例图*/
+.processingbar {
+  position: relative;
+  width: 50px;
+  text-align: left;
+  margin:-7px 0 0 -5px;
+}
+.processingbar font {
+  color: #ec1749;
+  display: block;
+  width: 50px;
+  height: 50px;
+ 	line-height: 50px;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0px 0 0 0px;
+}
+#processingbar2 font{ 
+  color: #008be9;
+}

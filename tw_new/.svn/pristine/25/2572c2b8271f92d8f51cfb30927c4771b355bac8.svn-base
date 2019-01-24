@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<div class="title">框架介绍</div>
+<div class="container">
+<div class="line">
+<span class="step">1</span> 框架尚不完善，如果发现问题，或者希望框架实现某些功能，都可以提出来。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span> 框架主要参考的CodeIgniter框架，所以有很多类似的地方。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span> 和以往框架不一样的是，此框架支持多项目共存。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span> 和CI框架不一样的是，此框架的操作更为灵活，使用更方便。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span> 比CI框架更好的URI，URL更简短。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span> 框架手册中的参数，如果参数类型使用圆括号说明此参数为必传参数，如果参数类型使用的方括号表示可选参数。
+</div>
+</div>
+
+</body>
+</html>

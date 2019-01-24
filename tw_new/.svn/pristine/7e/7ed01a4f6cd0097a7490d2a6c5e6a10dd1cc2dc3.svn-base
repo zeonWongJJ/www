@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">支付宝当面付</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载支付宝当面付接口类
+	$this->load->library('alipay_f2f');
+	// 使用$this->alipay_f2f->方法名进行访问操作
+</code>
+</pre>
+</div>
+<div class="desc">
+	在框架的libraries\pay\alipay_f2f目录下有个config_alif2f.php的配置文件，<br />
+	里面用来配置商户的密钥等信息，请复制此文件放到项目的config目录下，并且根据项目实际情况进行配置，<br />
+	如果项目的config目录下不存在config_alif2f.php文件，将会默认调用libraries\pay\alipay_f2f\config_alif2f.php。<br />
+	<b><a href="https://docs.open.alipay.com/194/105072/" target="_blank">接口文档，点此链接查看参数</a></b>
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->alipay_f2f->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	收银员使用扫码设备读取用户手机支付宝“付款码”/声波获取设备（如麦克风）读取用户手机支付宝的声波信息后，将二维码或条码信息/声波信息通过本接口上送至支付宝发起支付。
+	<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.pay" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->alipay_f2f->pay();
+</code>
+<div class="desc">
+	此函数返回一个数组。需要注意的是，配置文件中，有配置等待用户付款的时间设置：max_query_retry * query_duration = 最长的等待时间，如果等待结束，用户还没有支付完成，就需要通过查询query函数来得知支付结果。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_f2f');
+$a_param = [
+	// (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线
+	'out_trade_no' => '20171201001',
+	// (必填) 订单总金额，单位为元，不能超过1亿元
+	'total_amount' => '0.01',
+	// (必填) 付款条码，用户支付宝钱包手机app点击“付款”产生的付款条码，（通过扫码枪获取）
+	'auth_code' => '282353688539850801',
+	// (必填) 订单标题，粗略描述用户的支付目的。如“XX品牌XXX门店消费”
+	'subject' => '测试当面付',
+	// (可选) 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
+	'body' => '测试'
+];
+$a_result = $this->alipay_f2f->pay($a_param);
+print_r($a_result);
+
+// 返回格式
+Array
+(
+    [code] => 10000
+    [msg] => Success
+    [sub_code] => ACQ.TRADE_HAS_CLOSE
+    [sub_msg] => 支付失败，本笔交易已关闭。[TRADE_HAS_CLOSE]
+    [buyer_logon_id] => 363***@qq.com
+    [buyer_pay_amount] => 0.00
+    [buyer_user_id] => 2088002458391244
+    [invoice_amount] => 0.00
+    [out_trade_no] => 20171201001
+    [point_amount] => 0.00
+    [receipt_amount] => 0.00
+    [total_amount] => 0.01
+    [trade_no] => 2017120121001004240283289701
+    [sign] => Rfxb9w5h848jVjDrmduDHlH7LiHREH/IBY8GqutiOgU6OFhkEAyF5O3mnyRisLzGSmn18zMRbzQR+pTXZIQP64vV7J2IJp0f0AgjS96aHFc7ICaassI9p5amjZU9yrbu44kOJHXIUE+oyS7g6evwxHTICgxLJgzTNSB/iglNfJ54arcM9gaNiZozVPjSHG0e/UysZg8q/IrRKYHUUbtRvxnL4v/C1X3vKDDH3/vyHXvzz4Jc5NaLCTGJ99gj5B8X6d3Ha/KxeUUA+3DelVJF6cZSRkIM4QApGwlNaxDAYGVtIBbf3Scyac1r7R86q8PhM018pceXeyVlTQA5iyOpdA==
+    [trade_status] => TRADE_CLOSED
+)
+主要判断[trade_status]字段来知道结果（或者通过查询query函数）：
+WAIT_BUYER_PAY（交易创建，等待买家付款）
+TRADE_CLOSED（未付款交易超时关闭，或支付完成后全额退款）
+TRADE_SUCCESS（交易支付成功）
+TRADE_FINISHED（交易结束，不可退款）
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->alipay_f2f->query(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	查询订单。<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.query/" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->alipay_f2f->query();
+</code>
+<div class="desc">
+	此函数返回一个数组。数组格式参考支付pay函数的返回结果，一样的。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_f2f');
+$a_param = [
+	// 订单支付时传入的商户订单号,和支付宝交易号不能同时为空。trade_no,out_trade_no如果同时存在优先取trade_no
+	'out_trade_no' => '20171201001',
+	// 支付宝交易号，和商户订单号不能同时为空
+	// 'trade_no' => ''
+];
+$a_result = $this->alipay_f2f->query($a_param);
+print_r($a_result);
+// 返回结果格式和支付pay函数一样
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->wxpay_pub->qrcode(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	收银员通过收银台或商户后台调用支付宝接口，生成二维码后，展示给用户，由用户扫描二维码完成订单支付。
+	<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.precreate/" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->wxpay_pub->qrcode();
+</code>
+<div class="desc">
+	此函数返回一个数组。根据返回数组中的“qr_code”字段去生成二维码，然后提供给用户去扫码支付。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+<?php
+class Index_ctrl extends TW_Controller {
+	
+	public function __construct() {
+		parent :: __construct();
+
+		//实例化模型
+		$this->load->model('index_model');
+	}
+	
+	public function test() {
+		$this->load->library('alipay_f2f');
+		$a_param = [
+			// (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线
+			'out_trade_no' => '20171201002',
+			// (必填) 订单总金额，单位为元，不能超过1亿元
+			// 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
+			'total_amount' => '0.01',
+			// (必填) 订单标题，粗略描述用户的支付目的。如“XX品牌XXX门店消费”
+			'subject' => '测试当面付',
+			// (可选) 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
+			'body' => '测试'
+		];
+		$a_result = $this->alipay_f2f->qrcode($a_param);
+		echo '<img alt="扫码支付" src="' . $this->router->url('qrcode', [$this->general->base64_convert($a_result['qr_code'])]) . '" style="width:150px;height:150px;"/>';
+	}
+	
+	// 生成二维码
+	public function qrcode() {
+		$s_url = $this->general->base64_convert($this->router->get(1), true);
+		$this->load->library('phpqrcode');
+		$a_param = [
+			// 要生成二维码的数据，必填
+			'data' => $s_url,
+			// 二维码图片大小，选填，默认4
+			'size' => 10,
+			// 二维码错误修正级别L/M/Q/H，选填，默认“L”。L水平 7% 的字码可被修正，M水平 15% 的字码可被修正，Q水平 25% 的字码可被修正，H水平 30% 的字码可被修正
+			'level' => 'L'
+		];
+		$this->phpqrcode->qrcode($a_param);
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->alipay_f2f->cancel(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	支付交易返回失败或支付系统超时，调用该接口撤销交易。如果此订单用户支付失败，支付宝系统会将此订单关闭；如果用户支付成功，支付宝系统会将此订单资金退还给用户。 注意：只有发生支付系统超时或者支付结果未知时可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.cancel/" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->alipay_f2f->cancel();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_f2f');
+$a_param = [
+	// 原支付请求的商户订单号,和支付宝交易号不能同时为空
+	'out_trade_no' => '20171201002',
+	// 支付宝交易号，和商户订单号不能同时为空
+	//'trade_no' => ''
+];
+$a_result = $this->alipay_f2f->cancel($a_param);
+print_r($a_result);
+
+// 返回格式
+Array
+(
+    [code] => 10000
+    [msg] => Success
+    [action] => close
+    [out_trade_no] => 20171201002
+    [retry_flag] => N
+    [trade_no] => 2017120121001004240284080250
+    [sign] => WpCy4rY5qJH3bocK/xEBsomw0SMR7m//8NWZU+MpFHEuWGKyI/sc59D/5cCn8fnLM/71Hqw66uF55eJPui+trwkV+/rZrEvIWFVuW/WhLIXN0H1c6L2U2seCtwBHzlnPwyjnMNU7biXT6CWhGvM5oecxuuXW0DsjWjzF/44bemaCKhabaq8xF7x+EOd/go9148jSBz8jbPFpQpnL5hwzm+h1Q7/y6xtGTRw6WuzKSMMJBLMJWDTw1GNCfdR+7pZ0SjzyJi/ANH7T45r4tmhjwxFbpjHYY3ovqFmRBBSVeyy3WBbOQR7a470tMfcPnVLjuTKpOKGvmbaSw+Hv6Jpvfw==
+)
+主要判断[action]字段：
+close：交易关闭，无退款 
+refund：产生了退款
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->alipay_f2f->close(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	用于交易创建后，用户在一定时间内未进行支付，可调用该接口直接将未付款的交易进行关闭。
+	<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.close/" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->alipay_f2f->close();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_f2f');
+$a_param = [
+	// 原支付请求的商户订单号,和支付宝交易号不能同时为空
+	'out_trade_no' => '20171201003',
+	// 支付宝交易号，和商户订单号不能同时为空
+	//'trade_no' => ''
+];
+$a_result = $this->alipay_f2f->close($a_param);
+print_r($a_result);
+
+// 返回格式
+Array
+(
+    [code] => 10000
+    [msg] => Success
+    [out_trade_no] => 20171201003
+    [trade_no] => 2017120121001004240284025645
+    [sign] => hL8Wccp3KtTI66AYP/+nwfOAsBvWT/AQcoXnfdpr8hLK99ppwpEe3nlFe84vSiHTaGpde5fPbJtLnpqQ5mvb46TxgrKEyfeH50jY1kH4CxVpL5S38Zym8IVAXoqw4kzVM9AWl5MPDvm+MajuxeLJEiKIMYH+AKwOeFLruz6W67JU7OQkG0G9LBb+4yQEFbs7UpPUYIJfr7oPqH6zGREP3Z+cnE0oh2N0wtl/cQb/ApDZFS2PvMVvwbNMXarir68hCKzh1Q10/9nWPU/LKTXO8qsSXYHh2USHBlizqzETazAO2B4fSfKu/F5IDS+VKwah+vbFbbbh27h+POkY5uM79g==
+)
+判断 [code] = 10000 即为关闭订单成功。
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->alipay_f2f->refund(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	当交易发生之后一段时间内，由于买家或者卖家的原因需要退款时，卖家可以通过退款接口将支付款退还给买家，支付宝将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退到买家帐号上。 交易超过约定时间（签约时设置的可退款时间）的订单无法进行退款 支付宝退款支持单笔交易分多次退款，多次退款需要提交原支付订单的商户订单号和设置不同的退款单号。一笔退款失败后重新提交，要采用原来的退款单号。总退款金额不能超过用户实际支付金额。
+	<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.refund/" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->alipay_f2f->refund($a_data);
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_f2f');
+$a_param = [
+	// 原支付请求的商户订单号,和支付宝交易号不能同时为空
+	'out_trade_no' => '20171201005',
+	// 支付宝交易号，和商户订单号不能同时为空
+	//'trade_no' => ''
+	// 请求退款接口时，传入的退款请求号，如果在退款请求时未传入，则该值为创建交易时的外部交易号
+	'refund_amount' => '0.01',
+	// 可选，标识一次退款请求，同一笔交易多次退款需要保证唯一，如需部分退款，则此参数必传。
+	'out_request_no' => '',
+	// 可选，退款的原因说明
+	'refund_reason' => '测试退款'
+];
+$a_result = $this->alipay_f2f->refund($a_param);
+print_r($a_result);
+
+// 返回格式
+Array
+(
+    [code] => 10000
+    [msg] => Success
+    [buyer_logon_id] => 363***@qq.com
+    [buyer_user_id] => 2088002458391244
+    [fund_change] => Y
+    [gmt_refund_pay] => 2017-12-01 19:34:19
+    [out_trade_no] => 20171201005
+    [refund_detail_item_list] => Array
+        (
+            [0] => stdClass Object
+                (
+                    [amount] => 0.01
+                    [fund_channel] => ALIPAYACCOUNT
+                )
+
+        )
+
+    [refund_fee] => 0.01
+    [send_back_fee] => 0.01
+    [trade_no] => 2017120121001004240284143496
+    [sign] => AjdGxNANEFu0MpDZRHhwTp4HwyeurPKUDFGoPPwVTOYsOrHomhs3n0qMKzYTOtK0PMT+cucHKEV93jh6gbHTrepFXYaQxVEnbrY3rpV9ERCAYFEyJA9MM1Yq3nNDJdGqck5BlR+JrtpHGZMS0ViipmbLFzB7/h4rNUYg/hhTUrnS6MQZjWGfTSXEHmTpa1ZJRQw7+T5g6KquaCiNZX7Xi4bIlDMkvZKuCQfIQj6SJvKp0BwSlnO58V33iK9I5OAgOgvz5kCduU3tK6Ss9Y+NvrdkYPhqXbxHAPSTYk5rvgt44KCK3sPVtV3Y6eKasTq92crwwzCr250oEjeh8MmBLw==
+)
+[code] = 10000 表示退款订单提交成功，[fund_change] = Y 表示退款成功。
+</code>
+</pre>
+</div>
+
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->alipay_f2f->query_refund(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	商户可使用该接口查询自已通过alipay.trade.refund提交的退款请求是否执行成功。 该接口的返回码10000，仅代表本次查询操作成功，不代表退款成功。如果该接口返回了查询数据，则代表退款成功，如果没有查询到则代表未退款成功，可以调用退款接口进行重试。重试时请务必保证退款请求号一致。
+	<b><a href="https://docs.open.alipay.com/api_1/alipay.trade.fastpay.refund.query/" target="_blank">参数文档，点此链接查看参数</a></b>
+</div>
+<code class="language-php">
+	$this->alipay_f2f->query_refund($a_data);
+</code>
+<div class="desc">
+	此函数返回数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('alipay_f2f');
+$a_param = [
+	// 原支付请求的商户订单号,和支付宝交易号不能同时为空
+	'out_trade_no' => '20171201005',
+	// 支付宝交易号，和商户订单号不能同时为空
+	//'trade_no' => ''
+	// 请求退款接口时，传入的退款请求号，如果在退款请求时未传入，则该值为创建交易时的外部交易号(商户订单号)
+	'out_request_no' => '20171201005'
+];
+$a_result = $this->alipay_f2f->query_refund($a_param);
+print_r($a_result);
+
+// 返回格式
+Array
+(
+    [code] => 10000
+    [msg] => Success
+    [out_request_no] => 20171201005
+    [out_trade_no] => 20171201005
+    [refund_amount] => 0.01
+    [total_amount] => 0.01
+    [trade_no] => 2017120121001004240284143496
+    [sign] => gNzuDc5FKCC5gUb8Od8FHk1e6lkxtpCE8MSVGOpmfrW6UIo+h5wA+9nluhKlFB2/xZRzzGHzZAUdIVdDfU2jV/zLMsxTJmknWOGFT38BCgKyXrHdrkK8NKrCBUpUqY7g+I3tFV+OyxXJoULKQAusPpf701yUZUOS6pwwwwYi/Ey1X0u4GVTjcG5FBKvI5b6n+jdCFMQDE/5Tq/8JvzBWu/SYMkxME6TjWrt9tzISnWCV3d4Zsm1VGRbI8vw5UECYvBLsoXET14SpE+/3+DhYOtKYTOoU44/+dceDrv5o07bWXTaPw+wbJqIpDHgjZeAePd770SJBp6Xtc3m+QL5IZg==
+)
+[code] => 10000 表示查询成功。
+</code>
+</pre>
+</div>
+
+
+</body>
+</html>

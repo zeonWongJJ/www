@@ -1,0 +1,38 @@
+/* 资质认证 */
+.pjoTitle{ height:5.64rem; position:relative; border-bottom:0.01rem solid #f5f5f5; background:#ff6633; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+.pjoTitle>span{ color:white; }
+
+.companyContainer{ width:9.36rem; position:absolute; top:3rem; left:0.3rem; padding:0.5rem 0; background:white; border-radius:0.2rem; box-shadow: 0 0 5px #888888; }
+.companyContainer>dl{ margin-left:0.64rem; }
+.companyContainer>dl>dt{ margin-bottom:0.56rem; }
+.companyContainer>dl>dt>img{ width:1.5rem;  }
+.companyContainer>dl>dt>em{ display:inline-block; font-style:normal; }
+.companyContainer>dl>dt>img,.companyContainer>dl>dt>em{ vertical-align:middle; }
+.companyContainer>dl>dt>em{ margin-left:0.42rem; }
+.companyContainer>dl>dt>em>h1{ font-size:0.48rem; font-weight:bold; }
+.companyContainer>dl>dt>em>p{ margin:0.1rem 0; font-size:0.32rem; color:#666666; }
+.companyContainer>dl>dt>em>dfn{ display:inline-block; padding:0.05rem 0.1rem;  font-size:0.29rem; font-style:normal;  }
+.suc{ color:#25c4ff; background:#d9faff; }
+.companyContainer>dl>dd{ margin-bottom:0.3rem; font-size:0.34rem; }
+.companyContainer>dl>dd>span,.companyContainer>dl>dd>em{ color:#666666; font-style:normal; }
+.companyContainer>dl>dd>span{ width:1.2rem; display:inline-block; }
+.companyContainer>dl>dd>em{ margin-left:0.64rem; }
+/* 其他信息 */
+.otherInfo{ padding-top:3.5rem; background:white; }
+.otherInfo>dl>dt,.otherInfo>dl>dd{ padding-left:0.34rem; }
+.otherInfo>dl>dt{ height:1.13rem; line-height:1.13rem; font-size:0.4rem; border-bottom:0.01rem solid #ddd;  }
+.otherInfo>dl>dd{ margin-top:0.48rem; }
+.otherInfo>dl>dd>span,.otherInfo>dl>dd>em{ font-size:0.4rem; color:#666; }
+.otherInfo>dl>dd>span{ width:3.8rem; display:inline-block;  }
+.otherInfo>dl>dd>em{ font-style:normal; }
+.changeInfo{ display:block; text-align:center; margin-top:0.48rem; padding:0.34rem 0; font-size:0.37rem; border-top:0.01rem solid #ddd; }
+.changeInfo>span{ height:1.06rem; line-height:1.06rem; display:inline-block; padding:0 0.4rem; color:#ff6633; border:0.02rem solid #ff6633; border-radius:1rem;  }
+
+
+
+
+
+
+

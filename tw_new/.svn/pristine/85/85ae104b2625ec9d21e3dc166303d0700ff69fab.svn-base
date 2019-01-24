@@ -1,0 +1,262 @@
+body{
+	background: white;
+	overflow-x: initial;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	position: relative;
+}
+.main .head i{
+	font-style: normal;
+	color: white;
+}
+.main .head a.back{
+	margin-top: 0.066666rem;
+	width: 0.8rem;
+	position: absolute;
+	left: 0.533333rem;
+	/*top: 0.866666rem;*/
+}
+.main .head a.news{
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.56rem;
+	position: absolute;
+	right: 0.4rem;
+	/*top: 0.933333rem;*/
+}
+.main .top{
+	width: 100%;
+	height: 7.84rem;
+	background: white url(../images/dongtai_02.png) no-repeat center center;
+	background-size: 101%;
+	position: relative;
+}
+.top .headPic{
+	margin: 1.333333rem 0 0 0.933333rem;
+}
+.top .headPic .pic{
+	display: inline-block;
+	width: 1.466666rem;
+	height: 1.466666rem;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.top .headPic .nickname{
+	font-size: 0.426666rem;
+	color: white;
+	vertical-align: middle;
+	margin-left: 0.266666rem;
+}
+.top .camera{
+	position: absolute;
+	right: 0.933333rem;
+	bottom: -0.333333rem;
+	z-index: 9;
+}
+.top .camera a{
+	display: block;
+	width: 1.466666rem;
+	height: 1.466666rem;
+	background: #fe3264;
+	border-radius: 50%;
+	text-align: center;
+}
+.top .camera a img{
+	display: inline-block;
+	width: 0.853333rem;
+	height: 0.773333rem;
+	margin-top: 0.333333rem;
+}
+/*新消息*/
+.main .newMessage{
+	margin:0 auto;
+	margin-bottom: 0.506666rem;
+}
+.main .newMessage a{
+	margin: 0 auto;
+	display: block;
+	width: 4rem;
+	height: 1.2rem;
+	background: #575757;
+	border-radius: 0.133333rem;
+	padding: 0.146666rem 0 0 0.133333rem;
+	box-sizing: border-box;
+}
+.newMessage a .photo{
+	display: inline-block;
+	width: 0.933333rem;
+	height: 0.933333rem;
+	border-radius: 0.106666rem;
+	vertical-align: middle;
+}
+.newMessage a .message{
+	vertical-align: middle;
+	font-size: 0.373333rem;
+	color: white;
+	margin-left: 0.4rem;
+}
+/*动态列表*/
+.actList>ul>li{
+	padding: 0 0.226666rem;
+	margin-bottom: 0.666666rem;
+}
+.actList>ul>li .date{
+	display: inline-block;
+	width: 1.04rem;
+	font-size: 0.373333rem;
+	color: #000000;
+	vertical-align: top;
+}
+.actList>ul>li .round{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	background: #eab429;
+	border-radius: 50%;
+	vertical-align: top;
+}
+.actList>ul>li .tit{
+	display: inline-block;
+	width: 80%;
+	vertical-align: top;
+	box-sizing: border-box;
+	margin-left: 0.133333rem;
+	font-size: 0.4rem;
+	color: #161d41;	
+	margin-top: -0.053333rem;
+}
+.actList>ul>li .tit a{
+	display: inline-block;
+}
+.actList>ul>li .imgBox{
+	margin:0.293333rem 0 0 1.733333rem;
+}
+.actList>ul>li .imgBox .bigImg{
+	width: 7.066666rem;
+	height: 3.866666rem;
+	overflow: hidden;
+	border: 1px solid #f3f3f3;
+	border-radius: 0.16rem;
+}
+.actList>ul>li .imgBox .smallImg{
+	margin: 0.4rem 0 0 -0.466666rem;
+	position: relative;
+}
+.smallImg>ul>li{
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 0.16rem;
+	border: 1px solid #f3f3f3;
+	overflow: hidden;
+	margin-left: 0.466666rem;
+	margin-top: 0.266666rem;
+}
+.smallImg .grey{
+	width: 2rem;
+	height: 2rem;
+	text-align: center;
+	line-height: 2rem;
+	border-radius: 0.16rem;
+	background: rgba(0,0,0,0.2);
+}
+.smallImg .grey{
+	margin-left: 0.026666rem;	
+	font-size: 0.666666rem;
+	color: white;
+	position: absolute;
+	right: 0.8rem;
+	bottom: 0;
+}
+.smallImg .grey i.shu{
+	font-style: normal;
+	margin-left: 0.026666rem;
+}
+.actList>ul>li .controlBox{
+	margin:0.293333rem 0 0 1.733333rem;
+}
+.controlBox a{
+	margin-right: 0.6rem;
+	font-size: 0.373333rem;
+	color: #999999;
+}
+.controlBox a .tu{
+	display: inline-block;
+	width: 0.44rem;
+	height: 0.48rem;
+	background: url(../images/dongtai_36.png) no-repeat;
+	background-size: 100%;
+	vertical-align: middle;
+}
+.controlBox a i{
+	font-style: normal;
+	vertical-align: middle;	
+}
+.controlBox a i.num{
+	margin-left: 0.093333rem;
+}
+.controlBox a.discuss .tu{
+	width: 0.546666rem;
+	height: 0.506666rem;
+	background: url(../images/dongtai_39.png) no-repeat;
+	background-size: 100%;
+}
+.controlBox a.share .tu{
+	width: 0.506666rem;
+	height: 0.426666rem;
+	background: url(../images/dongtai_41.png) no-repeat;
+	background-size: 100%;
+}
+.controlBox a.giveBood .hand{
+	background: url(../images/dongxiang_12.png) no-repeat;
+	background-size: 100%;
+}
+.controlBox a.delete{
+	font-size: 0.373333rem;
+	color: #778dff;
+}
+/*加*/
+.transmit{
+	font-size: 0;
+	margin: 0.133333rem 0 0.266666rem 0.333333rem;
+	margin-top: 0.266666rem;
+}
+.transmit .tPic{
+	display: inline-block;
+	width: 0.933333rem;
+	height: 0.933333rem;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: top;
+}
+.transmit .tDescribe{
+	display: inline-block;
+	font-size: 0.293333rem;
+	color: #666666;
+	vertical-align: top;
+	margin-left: 0.2rem;
+	width: 7.733333rem;
+}
+.transmit .tDescribe .tMing{
+	font-size: 0.32rem;
+	color: #666666;
+}
+
+@media screen and (max-width: 420px) {
+	.smallImg .grey{
+		right: 0.666666rem;
+	}
+}
+
+
+

@@ -1,0 +1,831 @@
+<?php
+/**
+ * 用户model，用于处理用户逻辑
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace model;
+
+use utils\BaseModel;
+use utils\Factory;
+
+class UserModel extends BaseModel
+{
+    /**
+     * 用户登录逻辑
+     * @param $name_or_tel
+     * @param $user_password
+     * @param string $user_type 用户类型， user 普通用户 admin 管理员
+     * @return mixed
+     * @throws \Exception
+     */
+    public function login($name_or_tel, $user_password, $user_type = 'user')
+    {
+        if (!\in_array($user_type, ['user', 'admin'])) {
+            return $this->error('账号类型不允许');
+        }
+        $table_name = $user_type === 'user' ? $user_type : get_table('admin');
+        if (is_numeric($name_or_tel)) {
+            $user = $this->db->get_row($table_name, ['user_phone' => $name_or_tel]);
+        } else {
+            $user = $this->db->get_row($table_name, ['user_name' => $name_or_tel]);
+        }
+
+        if ($user) {
+            if ($user['user_password'] !== md5(md5($user_password))) {
+                return $this->error('密码不匹配');
+            }
+
+            $data['user_salt']    = md5(uniqid(microtime(), true));
+            $data['user_logtime'] = $_SERVER['REQUEST_TIME'];
+
+//            $share_info = $this->db->get_row(get_table('share_relationship'), ['user_id' => $user['user_id']]);
+//            // 没有验证码时获取一个
+//            $user_code = $this->createInviteCode();
+//
+//            if ($share_info && !$share_info['user_code']) {
+//                $this->db->update(get_table('share_relationship'), compact('user_code'), ['user_id' => $user['user_id']]);
+//            } elseif (!$share_info) {
+//                $this->db->insert(get_table('share_relationship'), [
+//                    'user_id'      => $user['user_id'],
+//                    'parent_id'    => 0,
+//                    'user_level'   => 0,
+//                    'user_code'    => $user_code,
+//                    'relation_map' => ''
+//                ]);
+//            }
+
+            $this->db->update('user', $data, ['user_id' => $user['user_id']]);
+            if ('user' === $user_type) {
+                if (!$user['user_erweima']) {
+//                    file_get_contents('http://vdao-mobile.7dugo.com/upload_qrcode-' . $user['user_id']);
+                    // 生成二维码文件
+                    $this->load->library('phpqrcode');
+                    $a_param = [
+                        // 要生成二维码的数据，必填
+                        'data'      => $user['user_id'],
+                        // 二维码文件生成路径，选填，不设置将直接浏览器输出，设置此参数，二维码将不直接输出，而是生成文件
+                        'file_name' => './uploadfile/qrcode_' . $user['user_id'] . '.png',
+                        // 二维码图片大小，选填，默认4
+                        'size'      => 10,
+                        // 二维码错误修正级别L/M/Q/H，选填，默认“L”。L水平 7% 的字码可被修正，M水平 15% 的字码可被修正，Q水平 25% 的字码可被修正，H水平 30% 的字码可被修正
+                        'level'     => 'L'
+                    ];
+                    $this->phpqrcode->qrcode($a_param);
+                    $this->db->update('user', ['user_erweima' => 'http://jiajie-server.7dugo.com/uploadfile/qrcode_' . $user['user_id'] . '.png']);
+                }
+            }
+
+            $role_key = 'guest';
+            if ($user['role_id']) {
+                $role = $this->db->get_row(get_table('role'), ['id' => $user['role_id']]);
+                $role && $role_key = $role['role_key'];
+            }
+            /** @var TokenModel $token_model */
+            $token_model = Factory::getFactory('token');
+            $token       = $token_model->generalToken($user, $role_key);
+            $token_model->clearExpireToken(); // 清理过期token
+            return $this->success([
+                'token'     => $token,
+                'user_id' => $user['user_id']
+            ]);
+        }
+        return $this->error('用户不存在');
+    }
+
+    /**
+     * 生成用户邀请码
+     * @return string
+     * @throws \Exception
+     */
+    function createInviteCode()
+    {
+        $code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $rand = $code[random_int(0, 25)]
+            . strtoupper(dechex(date('m')))
+            . date('d')
+            . substr(time(), -5)
+            . substr(microtime(), 2, 5)
+            . sprintf('%02d', random_int(0, 99));
+        for (
+            $a = md5($rand, true),
+            $s = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            $d = '',
+            $f = 0;
+            $f < 6;
+            $g = \ord($a[$f]),
+            $d .= $s[($g ^ \ord($a[$f + 8])) - $g & 0x1F],
+            $f++
+        ) {
+        }
+
+        if ($this->db->get_total(get_table('share_relationship'), ['user_code' => $d])) {
+            $this->createInviteCode();
+        } else {
+            return $d;
+        }
+    }
+
+    /**
+     * 用户注册逻辑
+     * @param $user_phone
+     * @param $verify_code
+     * @param $user_password
+     * @return mixed
+     * @throws \Exception
+     */
+    public function register($user_phone, $verify_code, $user_password)
+    {
+        $user_referee = $this->request->post('user_referee', 0, 'intval');
+        $had_user = $this->db->get_total('user', ['user_phone' => $user_phone]);
+        if ($had_user) {
+            return $this->error('手机号已注册!');
+        }
+
+        $code = $this->cache('user.code.' . $user_phone);
+
+//        if ($verify_code != $code) {
+//            return $this->error('验证码不正确');
+//        }
+        $this->db->set_error_mode();
+        $data['user_phone']      = $user_phone;
+        $data['user_password']   = md5(md5($user_password));
+        $data['user_salt']       = md5(uniqid(microtime(), true));
+        $data['role_id']         = 2;
+        $data['user_regip']      = $_SERVER['REMOTE_ADDR'];
+        $data['user_regtime']    = $_SERVER['REQUEST_TIME'];
+        $data['shopman_regtime'] = 0;
+        $data['user_position']   = 0;
+//        $data['user_orders']     = $data['referee_orders'] = $data['user_selfoffice'] = $data['user_refereeoffice'] = '';
+        $data['update_time'] = 0;
+        // 注册赠送红包
+        $register_to_give_red_packets = $this->db->get_row(get_table('config'), ['config_key' => 'register_to_give_red_packets'], 'config_value');
+        if ($register_to_give_red_packets && $register_to_give_red_packets['config_value'] > 0) {
+            $data['user_balance'] = sprintf('%.2f', $register_to_give_red_packets['config_value']);
+        }
+        if ($result = $this->db->insert('user', $data)) {
+            $share_relationship_table = get_table('share_relationship');
+            $inviter_row              = [];
+            if (!$user_referee) {
+                // 如果没有指定邀请人的user_id,则尝试获取是否有邀请码
+                if ($invitation_code = $this->request->post('invitation_code', '', 'trim')) {
+                    $inviter_row = $this->db->get_row($share_relationship_table, ['user_code' => $invitation_code]);
+                }
+            } else {
+                $inviter_row = $this->db->get_row($share_relationship_table, ['user_id' => $user_referee]);
+            }
+
+            // 如果有邀请人记录
+            $parent_id    = $inviter_row ? $user_referee : 0;
+            $level        = $inviter_row ? $inviter_row['user_level'] + 1 : 0; // 计算裂变等级
+            $relation_map = $inviter_row ? $inviter_row['relation_map'] . '-' . $parent_id : '';
+
+            $user_code = $this->createInviteCode();
+
+            $this->db->insert(get_table('share_relationship'), [
+                'user_id'      => $result,
+                'parent_id'    => $parent_id,
+                'user_level'   => $level,
+                'relation_map' => $relation_map, // 层级关系
+                'user_code'    => $user_code // 用户邀请码
+            ]);
+
+            if (isset($data['user_balance'])) {
+                $this->db->insert('userbalance', [
+                    'ub_type'          => 1
+                    , 'ub_money'       => $data['user_balance']
+                    , 'ub_balance'     => $data['user_balance']
+                    , 'ub_time'        => $_SERVER['REQUEST_TIME']
+                    , 'ub_item'        => '用户注册赠送红包'
+                    , 'user_id'        => $result
+                    , 'ub_number'      => '无订单号'
+                    , 'ub_description' => '用户注册系统自动赠送红包'
+                ]);
+                $this->db->insert(get_table('message'), [
+                    'message_content'      => '系统赠送您一个金额￥' . number_format($data['user_balance'], 2) . '的大红包；可用作抵扣哦~'
+                    , 'message_post_at'    => $_SERVER['REQUEST_TIME']
+                    , 'message_notice_uid' => $result
+                ]);
+            }
+//            file_get_contents('https://vdao-mobile.7dugo.com/upload_qrcode-' . $result);
+            return $this->success(false);
+        }
+        return $this->error('ips-server-error');
+    }
+
+    /**
+     * 修改用户登录密码
+     * @param int $type 修改密码的方式，1为通过旧密码修改，2为通过短信修改
+     * @return mixed
+     */
+    public function updatePwd($type)
+    {
+        // 通过旧密码方式修改密码
+        if (1 === $type) {
+            $map['user_phone']    = $data['user_phone'] = $this->request->post('phone', '', 'trim');
+            $data['old_password'] = $this->request->post('old_password', '', 'trim');
+            $data['new_password'] = $this->request->post('new_password', '', 'trim');
+
+            $this->validate($data, [
+                'user_phone'   => 'required|phone',
+                'old_password' => 'required',
+                'new_password' => 'required'
+            ]); // 验证数据
+
+            if ($data['old_password'] === $data['new_password']) {
+                return $this->error('新旧密码不能重复!');
+            }
+
+            $user = $this->db->get_row('user', $map);
+            if (!$user) {
+                return $this->error('未知错误!');
+            }
+
+            if ($user['user_password'] === md5(md5($data['old_password']))) {
+                $this->db->update(
+                    'user',
+                    ['user_password' => md5(md5($data['new_password']))],
+                    $map
+                );
+
+                return $this->success(false);
+            }
+
+            return $this->error('旧密码不匹配');
+        }
+
+        // 通过短信方式修改密码
+        if (2 === $type) {
+            $map['user_phone']    = $data['user_phone'] = $this->request->post('phone', '', 'trim');
+            $data['code']         = $this->request->post('code', '', 'trim');
+            $data['new_password'] = $this->request->post('new_password', '', 'trim');
+
+            $this->validate($data, [
+                'user_phone'   => 'required|phone',
+                'new_password' => 'required',
+                'code'         => 'required'
+            ]);
+            $verification_code = $this->cache('user.code.' . $data['user_phone']);
+            if ($verification_code) {
+
+                if (\strlen($data['code']) !== 6) {
+                    return $this->error('验证码长度不符!');
+                }
+
+
+                if ($data['code'] != $verification_code) {
+                    return $this->error('验证码不正确!');
+                }
+
+                $user = $this->db->get_row('user', $map);
+
+                if (!$user) {
+                    return $this->error('该手机号码未绑定账号');
+                }
+
+                if ($user['user_password'] === md5(md5($data['new_password']))) {
+                    $this->error('新旧密码不能重复!');
+                }
+
+                $this->db->update('user', ['user_password' => md5(md5($data['new_password']))], $map);
+                $this->cache('user.code.' . $data['user_phone'], null); // 删除缓存
+                return $this->success(false);
+            }
+            return $this->error('请先获取验证码!');
+        }
+    }
+
+    /**
+     * 修改用户交易密码
+     * @param $type
+     * @return mixed
+     */
+    public function updatePayment($type)
+    {
+        // 通过旧密码改变交易密码
+        if (1 === $type) {
+            $data['old_payment'] = $this->request->post('old_payment', '', 'trim');
+            $data['new_payment'] = $this->request->post('new_payment', '', 'trim');
+            $map['user_phone']   = $data['user_phone'] = $this->request->post('phone', '', 'trim');
+
+            $this->validate($data, [
+                'user_phone'  => 'required|phone',
+                'old_payment' => 'required',
+                'new_payment' => 'required'
+            ]);
+
+            if ($data['old_payment'] === $data['new_payment']) {
+                return $this->error('交易密码不能重复');
+            }
+
+            $user = $this->db->get_row('user', ['user_phone' => $data['user_phone']]);
+
+            if (!$user) {
+                return $this->error('未知错误!');
+            }
+
+            // 判断旧密码是否正确
+            if ($user['payment_code'] === md5(md5($data['old_payment']))) {
+                $this->db->update('user', ['payment_code' => md5(md5($data['new_payment']))], $map);
+                return $this->success(false);
+            }
+            return $this->error('旧交易密码不正确');
+
+        }
+        // 通过短信验证码修改密码
+        if (2 === $type) {
+            // key值为 code_update_password_15819943115
+            $data['code']        = $this->request->post('code', 0, 'intval');
+            $data['new_payment'] = $this->request->post('new_payment', '', 'trim');
+            $data['user_phone']  = $this->request->post('phone', '', 'trim');
+
+            $this->validate($data, [
+                'user_phone'  => 'required|phone',
+                'new_payment' => 'required',
+                'code'        => 'required',
+            ]);
+
+            if (\strlen($data['code']) !== 6) {
+                return $this->error('验证码长度不符!');
+            }
+
+            $verification_code = $this->cache('user.code.' . $data['user_phone']);
+
+            if ($data['code'] != $verification_code) {
+                return $this->error('验证码不正确!');
+            }
+
+            $user = $this->db->get_row('user', ['user_phone' => $data['user_phone']]);
+            if (!$user) {
+                return $this->error('该手机号未绑定账号');
+            }
+            if ($user['payment_code'] === md5(md5($data['new_payment']))) {
+                $this->error('新旧密码不能重复!');
+            }
+
+            $this->db->update('user', ['payment_code' => md5(md5($data['new_payment']))], ['user_phone' => $data['user_phone']]);
+            $this->cache('user.code.' . $data['user_phone'], null); // 删除缓存
+            return $this->success(false);
+        }
+    }
+
+    /**
+     * 用户提现操作统一封装
+     * @param string $withdraw_type 提现方式
+     * @return mixed
+     * @throws \Exception
+     */
+    public function withdraw($withdraw_type)
+    {
+        $withdraw_quantity     = 0;
+        $update                = [];
+        $data['payment_code']  = $this->request->post('payment_code', '', 'trim');
+        $data['withdraw_type'] = $this->request->post('withdraw_type', '', 'trim'); // 提现方式
+        $way_type              = $this->request->post('way_type', '', 'trim'); // 从店铺提现还是从用户钱包
+        $withdraw_money        = $this->request->post('withdraw_money', 0, 'float');
+
+        if ($withdraw_type === 'balance') {
+            $withdraw_quantity = $data['withdraw_money'] = $this->request->post('withdraw_money', 0, 'float');
+        } else if ($withdraw_type === 'score') {
+            $withdraw_quantity = $data['withdraw_score'] = $this->request->post('withdraw_score', 0, 'float');
+        }
+
+        if (!\in_array($data['withdraw_type'], ['alipay', 'wechat', 'bankcard'])) {
+            return $this->error('提现方式不支持');
+        }
+
+        $this->validate($data, [
+            'withdraw_score' => 'required',
+            'payment_code'   => 'required'
+        ]);
+
+        if ((float)$withdraw_quantity < 0.1) {
+            return $this->error('提现不能小于0.1');
+        }
+
+        $user_info = app('user_info');
+        if (!$user_info || !isset($user_info->user_id)) {
+            return $this->error('user-info-error');
+        }
+
+        try {
+            $this->db->begin(); // 开启事务
+            $this->db->set_error_mode(); // 开启数据库错误捕抓
+
+            $map['user_id'] = $user_info->user_id;
+            $user           = $this->db->get_row('user', $map);
+
+            // 验证提现额
+            if ('store' == $way_type) {
+                $store_info = $this->db->get_row(get_table('store'), ['user_id' => $user_info->user_id]);
+
+                if ($store_info['wallet_lock'] == 1) {
+                    return $this->error('提现账号处于上锁状态中，请稍后再试!');
+                }
+                if ($store_info['store_wallet'] < $data['withdraw_money']) {
+                    throw new \RuntimeException('用户账号额度不足');
+                }
+
+                $update['store_wallet'] = $store_info['store_wallet'] - $withdraw_money; // 计算提现后的店铺余额
+            } else {
+                if ($withdraw_type === 'balance') {
+                    if ($user['user_balance'] < $data['withdraw_money']) {
+                        throw new \RuntimeException('用户账号额度不足');
+                    }
+                    $update['user_balance'] = $user['user_balance'] - $data['withdraw_money']; // 计算提现后的余额
+                } else if ($withdraw_type === 'score') {
+                    if ($user['user_score'] < $data['withdraw_score']) {
+                        throw new \RuntimeException('用户账号额度不足');
+                    }
+                    $update['user_score'] = $user['user_score'] - $data['withdraw_score']; // 计算提现后的积分
+                }
+            }
+
+            // 验证支付密码
+            if ($user['payment_code'] != md5(md5($data['payment_code']))) {
+                throw new \RuntimeException('提现密码不正确');
+            }
+
+            $insert['transfer_way']      = $data['withdraw_type'];
+            $insert['transfer_mount']    = $withdraw_quantity * 100;
+            $insert['transfer_status']   = 0;
+            $insert['transfer_account']  = 'UN_ACCOUNT';
+            $insert['transfer_add_at']   = $_SERVER['REQUEST_TIME'];
+            $insert['user_id']           = $map['user_id'];
+            $insert_id                   = $this->db->insert(get_table('transfer_log'), $insert); // 写入转账记录表
+            $insert['transfer_trade_no'] = date('Ymd') . str_pad($insert_id, 3, '0', STR_PAD_LEFT);
+            $this->db->update(get_table('transfer_log'), ['id' => $insert_id], ['transfer_trade_no' => $insert['transfer_trade_no']]);
+
+            // 根据不同的转账方式处理
+            switch ($data['withdraw_type']) {
+                case 'wechat':
+                    $openid_row = $this->db->get_row(get_table('user_openid'), ['user_id' => $user_info->user_id]);
+                    if (!$openid_row['wx_openid']) {
+                        throw new \RuntimeException('用户暂未绑定微信，不能执行提现操作!');
+                    }
+                    $way              = '微信';
+                    $pay_way          = PayModel::WECHAT;
+                    $transfer_info    = [
+                        'partner_trade_no' => $insert['transfer_trade_no'],
+                        'openid'           => $openid_row['wx_openid'],
+                        'check_name'       => 'NO_CHECK',
+                        'amount'           => $withdraw_quantity * 100, // 微信以分做单位
+                        'desc'             => '帐户提现'
+                    ];
+                    $transfer_account = $user['wx_openid'];
+                    break;
+
+                case 'alipay':
+                    if (!$user['alipay_number'] || !$user['alipay_realname']) {
+                        throw new \RuntimeException('用户绑定支付宝信息不正确，不能执行提现操作!');
+                    }
+                    $way              = '支付宝';
+                    $pay_way          = PayModel::ALIPAY;
+                    $transfer_info    = [
+                        'out_biz_no'      => $insert['transfer_trade_no'],
+                        'payee_type'      => 'ALIPAY_LOGONID',
+                        'payee_account'   => $user['alipay_number'],
+                        'amount'          => $withdraw_quantity,
+                        'payee_real_name' => $user['alipay_realname'],
+                    ];
+                    $transfer_account = $user['alipay_number'];
+                    break;
+
+                case 'bankcard':
+                    if (!$user['bank_number'] || !$user['bank_realname']) {
+                        throw new \RuntimeException('用户绑定银行卡信息不正确，不能执行提现操作!');
+                    }
+                    // 判断余额是否够扣除手续费
+                    if ($withdraw_quantity - 1 < 0.1) {
+                        throw new \RuntimeException('扣除手续费后不能达到最小提现单位');
+                    }
+
+                    $way              = '银行卡';
+                    $pay_way          = PayModel::BANKCARD;
+                    $transfer_info    = [
+                        'mer_date'  => date('Ymd'),
+                        'mer_seqId' => $insert['transfer_trade_no'],
+                        'card_no'   => $user['bank_number'],
+                        'usr_name'  => $user['bank_realname'],
+                        'open_bank' => $user['bank_name'],
+                        'prov'      => $user['bank_province'],
+                        'city'      => $user['bank_city'],
+                        'trans_amt' => ($withdraw_quantity - 1) * 100, // 此处处理扣除手续费用
+                        'purpose'   => '余额提现',
+                        'sub_bank'  => $user['sub_bank'],
+                        'flag'      => '00',
+                        'term_type' => '07',
+                        'pay_mode'  => '1'
+                    ];
+                    $transfer_account = $user['bank_number'];
+                    break;
+
+                default:
+                    $way           = '未知';
+                    $transfer_info = $transfer_account = $pay_way = false;
+            }
+
+            if (!$pay_way) {
+                throw new \RuntimeException('支付方式未支持');
+            }
+
+            $this->db->update(get_table('transfer_log'), ['transfer_account' => $transfer_account], ['id' => $insert_id]);
+
+            /** @var PayModel $pay_model */
+            $pay_model       = Factory::getFactory('pay');
+            $transfer_result = $pay_model->setPayWay($pay_way)->transfer($transfer_info);
+            if (true === $transfer_result) {
+                if ('store' == $way_type) {
+                    // 店铺提现走这里
+                    $store_info = $this->db->get_row(get_table('store'), ['user_id' => $user_info->user_id]);
+                    $this->db->update(get_table('store'), $update, ['user_id' => $user_info->user_id]);// 更新额度
+                    $this->db->insert(get_table('store_wallet_log'), [
+                        'store_id'           => $store_info['id'],
+                        'wallet_change_type' => 1, // 1 表示出账
+                        'order_sn'           => $insert['transfer_trade_no'],
+                        'wallet_change'      => $withdraw_money,
+                        'current_balance'    => $update['store_wallet'],
+                        'log_at'             => $_SERVER['REQUEST_TIME'],
+                        'log_remark'         => '提现'
+                    ]);
+                } else {
+                    $this->db->update('user', $update, $map); // 更新额度
+                    if ($withdraw_type === 'balance') {
+                        $this->db->set_error_mode();
+                        $insert_log = [
+                            'ub_type'        => 2, // 2代表出账
+                            'ub_money'       => $withdraw_quantity,
+                            'ub_balance'     => $user['user_balance'] - $withdraw_quantity,
+                            'ub_time'        => $_SERVER['REQUEST_TIME'],
+                            'ub_item'        => '余额提现',
+                            'ub_description' => '提现到' . $way . $data['withdraw_account'],
+                            'user_id'        => $map['user_id'],
+                            'ub_number'      => $user_info->user_name,
+                        ];
+                        $this->db->insert('userbalance', $insert_log);
+                    }
+
+                    if ($withdraw_type === 'score') {
+                        $insert_log = [
+                            'user_id'        => $map['user_id'],
+                            'user_name'      => $user_info->user_name,
+                            'pl_type'        => 2, // 2代表出账
+                            'pl_variation'   => $withdraw_quantity,
+                            'pl_score'       => $user['user_score'] - $withdraw_quantity,
+                            'pl_item'        => '积分提现',
+                            'pl_description' => '提现到' . $way . '账号' . $data['withdraw_account'],
+                            'pl_time'        => $_SERVER['REQUEST_TIME'],
+                            'pl_code'        => 3,
+                        ];
+
+                        $this->db->insert('points_log', $insert_log);
+                    }
+                }
+                $this->db->commit(); // 提交事务
+                return $this->success(false);
+            }
+
+            // 转账失败后
+            switch ($data['withdraw_type']) {
+                case 'alipay':
+                    $error = $transfer_result['sub_msg'];
+                    break;
+                case 'wechat':
+                default:
+                    $error = $transfer_result['msg'];
+                    break;
+            }
+            throw new \RuntimeException($error);
+        } catch (\Exception $e) {
+            $this->db->roll_back(); // 回滚事务
+            return $this->error($e->getMessage());
+//            return $this->json('非常抱歉，您的提现没有成功，您的问题我们已经自动记录，马上会有攻城狮进行处理，请在24小时后再试，谢谢您的理解！', 1, $e->getMessage());
+        }
+    }
+
+    /**
+     * 获取当前登录用户的后台菜单列表
+     * @return mixed
+     */
+    public function getUserNav()
+    {
+        $user_info = app('user_info');
+        if (!$user_info || !isset($user_info->user_id)) {
+            return $this->error('user-info-error');
+        }
+
+        $role = $this->db->get_row(get_table('role'), ['role_key' => strtolower($user_info->user_type_key)]);
+
+        $rows = [];
+        // 如果是超级管理员，获取所有菜单
+
+        if ('admin' == $role['role_key']) {
+            $count = $this->db->get_total(get_table('rule'), ['is_menu' => 1]);
+            $rows  = $this->db->limit(0, $count)
+                ->select('rule_name as title, rule_controller, rule_action, id, parent_id')
+                ->get(get_table('rule'), ['is_menu' => 1, 'rule_enable' => 1]);
+        } else {
+            $count = $this->db->get_total(get_table('role_assign'), ['role_id' => $role['id']]);
+            if ($count > 0) {
+                $rows = $this->db->join([get_table('rule') => 'a'], ['a.id' => 'b.rule_id'])
+                    ->select('a.rule_name as title, a.id, a.rule_controller, a.rule_action, a.parent_id')
+                    ->limit(0, $count)
+                    ->where(['b.role_id' => $role['id']])
+                    ->get([get_table('role_assign') => 'b']);
+            }
+        }
+
+        if ($rows) {
+            foreach ($rows as &$row) {
+                $row['href'] = $row['rule_controller'] . '.' . hump_to_line($row['rule_action']);
+                unset($row['rule_controller'], $row['rule_action']);
+            }
+
+            $rows = list_to_tree(filter($rows));
+        }
+
+        $this->success($rows ?: []);
+    }
+
+    /**
+     * 余额充值逻辑处理
+     */
+    public function balanceRecharge()
+    {
+        $user_info = app('user_info');
+
+        if (!$user_info || !isset($user_info->user_id)) {
+            return $this->error('user-info-error');
+        }
+
+        $pay = app('router')->get(1);
+        if (!\in_array($pay, ['alipay', 'wechat', 'bankcard'])) {
+            return $this->error('支付方式不支持');
+        }
+
+        $data['recharge_money']  = $this->request->post('recharge_money', 0, 'float');
+        $data['recharge_status'] = 0;
+        $data['recharge_money']  = sprintf('%.2f', $data['recharge_money']);
+        $data['recharge_money']  *= 100;
+        $data['user_id']         = $user_info->user_id;
+
+        $insert_id = $this->db->insert(get_table('recharge'), $data);
+
+        /** @var OrderModel $order_model */
+        $order_model = Factory::getFactory('order');
+        $order_info  = $order_model->setContact(
+            $user_info->user_phone
+            , '充值订单，无地址'
+            , '充值订单，无门牌号'
+            , $user_info->user_name
+        )->coumpteDeductible(0)->unifiedOrder(
+            OrderModel::ORDER_USER_RECHANGE
+            , $insert_id
+            , $pay
+            , $data['recharge_money']
+        );
+
+        // 组装返回的信息
+        $return = [
+            'order_sn' => $order_info['order_sn']
+        ];
+
+        $this->db->update(get_table('recharge'), $return, ['id' => $insert_id]);
+
+        return $order_info;
+    }
+
+    /**
+     * 用户下单服务逻辑处理
+     * @param int $service_id 服务id
+     * @return mixed
+     */
+    public function orderService($service_id)
+    {
+        if (!$service = $this->db->get_row(get_table('service'), ['id' => $service_id])) {
+            return $this->error('要下单的服务已不存在');
+        }
+        $user_info = app('user_info');
+        if (!$user_info || !isset($user_info->user_id)) {
+            return $this->error('user-info-error');
+        }
+        $staff_row = $this->db->get_row(get_table('store_user'), ['user_id' => $user_info->user_id]);
+
+        if ($staff_row && $service['store_id'] == $staff_row['store_id']) {
+            return $this->error('不能下单自己店铺的服务');
+        }
+        $store_info = $this->db->get_row(get_table('store'), ['id' => $service['store_id']]);
+        // 写入订单
+        $data['order_lal']              = $this->request->post('order_lal', '', 'trim');
+        $data['contact_name']           = $this->request->post('contact_name', '', 'trim');
+        $data['address_name']           = $this->request->post('address_name', '', 'trim');
+        $data['house_number']           = $this->request->post('house_number', '', 'trim');
+        $data['telephone']              = $this->request->post('order_phone', '', 'trim');
+        $data['contact_appointment_at'] = $this->request->post('contact_appointment_at', '', 'trim');
+        $data['service_length']         = $this->request->post('service_length', '', 'intval'); // 服务时长
+        $data['order_message']          = $this->request->post('service_message', '', 'trim'); // 下单留言
+        $data['order_deductible_type']  = $this->request->post('order_deductible_type', 0, 'intval'); // 订单抵扣方式 1：余额 2：积分 0：无抵扣
+        $data['order_pay_way']          = $this->request->post('service_price_type', '', 'trim'); // 支付订单的方式，alipay：支付宝 wechat: 微信 bankcard：银行卡
+
+        $this->validate($data, [
+            'lal_info'               => 'required',
+            'address_name'           => 'required',
+            'contact_name'           => 'required',
+//            'house_number'           => 'required',
+            'telephone'              => 'required|phone',
+            'contact_appointment_at' => 'required',
+            'service_length'         => 'required',
+            'order_pay_way'          => 'required',
+        ]);
+
+        // 判断是否经纬度
+        if (!preg_match('/^.*,.*$/', $data['order_lal'])) {
+            return $this->error('经纬度格式不正确');
+        }
+
+        list($lng, $lat) = explode(',', $data['order_lal']);
+        $data['order_lng'] = $lng;
+        $data['order_lat'] = $lat;
+
+        // 判断支付方式是否支持
+        if (!\in_array($data['order_pay_way'], ['alipay', 'wechat', 'bankcard'])) {
+            return $this->error('支付方式不支持');
+        }
+        $data['service_length']         = ceil($data['service_length']); // 取整
+        $data['contact_appointment_at'] = strtotime($data['contact_appointment_at']); // 字符串转时间戳
+        $data['house_number']           = $data['house_number'] ?: '无门牌号';
+        /** @var ServiceModel $service_model */
+        $service_model = Factory::getFactory('service');
+        $remuneration  = $service_model->computedRemuneration($service_id); // 获取服务的实际收费，受店铺等级影响
+        // 计算应付金额
+        $data['order_actual_amount'] = $remuneration * $data['service_length']; // 应付金额 = 服务的实际收费 * 时长
+        try {
+            $this->db->begin();
+            $this->db->set_error_mode();
+            /** @var OrderModel $order_model */
+            $order_model = Factory::getFactory('order');
+            $order_info  = $order_info = $order_model->setContact(
+                $data['telephone']
+                , $data['address_name']
+                , $data['house_number']
+                , $data['contact_name']
+            )->coumpteDeductible(
+                $data['order_deductible_type']
+            )->unifiedOrder(
+                OrderModel::ORDER_USER_BUY_SERVER
+                , $service_id
+                , $data['order_pay_way']
+                , $data['order_actual_amount']
+            );
+
+            $order_update = [
+                'order_belong_store_id'    => $service['store_id']
+                , 'order_message'          => $data['order_message']
+                , 'service_length'         => $data['service_length']
+                , 'contact_appointment_at' => $data['contact_appointment_at']
+                , 'order_lat'              => $data['order_lat']
+                , 'order_lng'              => $data['order_lng']
+            ];
+
+            $this->db->update(get_table('order'), $order_update, ['order_sn' => $order_info['order_sn']]);
+            $this->db->commit();
+            return $this->success($order_info);
+        } catch (\Exception $e) {
+            $this->db->roll_back();
+            return $this->error('下单失败' . $e->getMessage());
+        }
+    }
+
+    /**
+     * 判断是否管理员用户
+     * @return bool|mixed
+     */
+    public function isAdmin()
+    {
+        $user_info = app('user_info');
+        if (!$user_info || !isset($user_info->user_id)) {
+            return $this->error('user-info-error');
+        }
+        if ('admin' === strtolower($user_info->user_type_key)) {
+            return $user_info;
+        }
+        return false;
+    }
+
+    /**
+     * 获取当前登录用户的店铺信息
+     * @return array|bool|mixed
+     */
+    public function userStoreInfo()
+    {
+        $user_info = app('user_info');
+
+        if (!$user_info || !isset($user_info->user_id)) {
+            return $this->error('user-info-error');
+        }
+
+        $store_info = $this->db->get_row(get_table('store'), ['user_id' => $user_info->user_id]);
+
+        return [$store_info, filter($user_info)];
+    }
+}

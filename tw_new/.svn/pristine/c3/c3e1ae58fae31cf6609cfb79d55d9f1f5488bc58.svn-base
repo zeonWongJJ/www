@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录--layui后台管理模板</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="<?= ASSETS ?>/layui/css/layui.css" media="all"/>
+    <script type="text/javascript" src="<?= ASSETS ?>/layui/layui.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/r23/html5.js"></script>
+    <script src="https://cdn.bootcss.com/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <?php if (isset($a_view_data['customize_css'])): ?>
+        <link rel="stylesheet" href="<?= ASSETS ?>/css/<?= $a_view_data['customize_css']; ?>.css" media="all"/>
+    <?php endif;
+    PHP_EOL; ?>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!--suppress EqualityComparisonWithCoercionJS -->
+    <script type="text/javascript">
+        var root_url = '<?=ROOT_URL?>', // 根url
+            api_prefix = '<?=API_ADDRESS?>', // api前缀
+            pathname = window.location.pathname;
+
+        function _init() {
+            // 全局变量
+            window.config = {
+                root_url: root_url,
+                api_prefix: api_prefix
+            };
+            localStorage.removeItem('user_token');
+            var token = sessionStorage.getItem('user_token');
+            if (token && pathname === '/user.login') {
+                window.location.href = root_url + 'admin.index';
+            } else if (!token && pathname !== '/user.login') {
+                window.location.href = root_url + 'user.login';
+            } else {
+                if (token) {
+                    $.ajax({
+                        url: window.config.api_prefix + '/user.check.token'
+                        , type: 'post'
+                        , data: {}
+                        , beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader('X-Token', token);
+                            XMLHttpRequest.setRequestHeader('X-Source-sign', 'admin');
+                        }
+                        , dataType: 'JSON'
+                        , success: function (data) {
+                            if (data.error != 0) {
+                                alert('用户token已失效,请重新登录');
+                                sessionStorage.removeItem('user_token');
+
+                                window.location.href = root_url + 'user.login';
+                                parent.location.href = root_url + 'user.login';
+                                top.location.href = root_url + 'user.login';
+                            }
+                        }
+                    })
+                }
+            }
+        }
+
+        _init();
+    </script>
+    <style>
+        .childrenBody {
+            margin: 10px 10px 0;
+        }
+    </style>
+</head>

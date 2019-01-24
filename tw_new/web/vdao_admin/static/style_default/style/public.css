@@ -1,0 +1,45 @@
+/* ����  */
+
+/* �����б� */
+.nav{ width:210px; display:inline-block; background:#95837f; }
+.nav>.greetings{ display:inline-block; margin:20px 0 0 20px; font-size:14px; color:white;  }
+.nav>.logoBox{ text-align:center; }
+.nav>.logoBox>i{ width:118px; height:118px; line-height:118px; display:inline-block; background:white; border-radius:50%; border:6px solid #cac1bf; }
+.nav>.logoBox>i>img{ width:118px; vertical-align:middle; }
+.nav>.logoBox>span,.nav>.logoBox>p{  color:white; font-size:16px; margin:16px 0; }
+.nav>ul.navList{ margin-top:24px; }
+.nav>ul>li{ position:relative; border-top:1px solid #7b6d6a; border-bottom:1px solid #b19e99; }
+.nav>ul>li>a{ height:45px; line-height:45px; display:block;  }
+.nav>ul>li>a>img{ width:22px; vertical-align:middle; padding-left:20px; }
+.nav>ul>li>a>span{ vertical-align:middle; padding-left:12px; color:white; font-size:14px; }
+.nav>ul>li>ul{  }
+/*.nav>ul>li>ul>li.listCur>a{ margin-left:79px; padding-left:13px; border-left:3px solid #ffd75c;!important }*/
+.nav>ul>li>ul>li{ height:45px; line-height:45px; background:#6e5c58; border-bottom:1px dotted #95837f; }
+.nav>ul>li>ul>li>a{ display:block; padding-left:94px; font-size:14px; color:white; }
+.nav>ul>.navCur{ background:#6e5c58; border:none; }
+.navList>li>ul{ display:none; }
+.aChild{ height:16px; line-height:16px; display:inline-block; position:absolute; right:14px; top:18px; }
+.aChild>img{ width:12px; }
+
+ /*  ���� */
+.title{ width:1230px; height:60px; line-height:60px; display:inline-block; background:white; border-bottom:1px solid #ddd; }
+.title>h3{ display:inline-block; margin-left:22px; font-size:20px; color:#5a2e17; }
+.titleRight{ float:right; }
+.titleRight>a{ display:inline-block; margin-right:26px; }
+.titleRight>a>img{ width:20px; vertical-align:middle; margin-right:8px; }
+.titleRight>a>span{ vertical-align:middle; font-size:13px; color:black; }
+.newsContent{ position:relative; }
+.newsContent>i{ line-height:10px; position:absolute; top:8px; left:13px; display:inline-block; padding:4px 6px; font-size:14px; font-style:normal;  background:red; color:white; border-radius:50%;  }
+
+/* �Ҳ����� */
+article{ width:1230px; display:inline-block; vertical-align:top; }
+
+
+@media screen and (max-width:1100px) {
+    .title{ width:890px; }
+}
+
+
+
+
+

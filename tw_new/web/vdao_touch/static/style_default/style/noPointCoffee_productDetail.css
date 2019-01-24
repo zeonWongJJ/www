@@ -1,0 +1,617 @@
+body{
+	background: white;
+}
+html,body{
+	overflow:inherit;
+}
+.main{
+	width: 100%;
+	height: 100%;
+}
+.main .head{
+	width: 10rem;
+	height: 8.346666rem;
+	background-size: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.head .title{
+	text-align: center;
+	margin-top: 0.853333rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 0.666666rem;
+	width: 100%;
+}
+.head .title .back{
+	display: inline-block;
+	width: 1.2rem;
+	text-align: center;
+	line-height: 0.6rem;
+	vertical-align: middle;
+	position: absolute;
+	left: 0.266666rem;
+}
+.head .img{
+	width: 100%;
+	text-align: center;
+}
+.head .img img{
+	width: 100%;
+}
+.head .title .back img{
+	width: 1.2rem;
+	margin-top: 0.093333rem;
+}
+.head .title span{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0.426666rem;
+	color: white;
+}
+.head .starName{
+	margin-left: 0.4rem;
+	position: absolute;
+	left: 0;
+	bottom: 0.8rem;
+	bottom: 0.933333rem;/*改*/
+}
+.head .star i{
+	display: inline-block;
+	width: 0.453333rem;
+	height: 0.453333rem;
+	background:url(../images/xing_03.png) no-repeat;
+	background-size: 100%;
+	margin-right: 0.093333rem;
+}
+.head .star i.half{
+	background:url(../images/xing_05.png) no-repeat;
+	background-size: 100%;
+}
+/*加*/
+.head .xiebai{
+	width: 100%;
+	position: absolute;
+	right: 0;
+	bottom: -0.266666rem;
+}
+.head .xiebai img{
+	width: 100%;
+}
+/*分享开始*/
+.head .control{
+	position: absolute;
+	right: 0;
+	top: 0.853333rem;
+	right: 0.533333rem;
+	font-size: 0;
+}
+.head .control a{
+	display: inline-block;
+}
+.head .control a.collect{
+	width: 0.65rem;
+	margin-right: 0.4rem;
+}
+.head .control a.share{
+	width: 0.65rem;
+}
+/*分享结束*/
+.main .starName{
+	margin-top: 5.2rem;
+}
+.starName .star span{
+	display: inline-block;
+	vertical-align: middle;
+}
+.starName .star .xing{
+	font-size: 0;
+}
+.starName .star .fen{
+	font-size: 0.48rem;
+	font-weight:bold;
+	margin-left: 0.133333rem;
+}
+.starName .name{
+	font-size: 0.373333rem;
+	color: white;
+}
+.main .price{/*改*/
+	font-size: 0.72rem;
+	color: #000000;
+	text-align: right;
+	/*margin-top: -0.466666rem;*/
+	/*padding-right: 0.506666rem;*/
+	position: absolute;
+	bottom: -0.133333rem;
+	right: 0.533333rem;
+}
+.price i{
+	font-style: normal;
+}
+.price i.fu{
+	color: #f5b72e;
+	font-size: 0.373333rem;
+	margin-right: 0.2rem;
+}
+.price i.qi{
+	font-size: 0.373333rem;
+}
+.main .describe{
+	padding: 0 0.506666rem;
+	margin-top: 0.466666rem;
+}
+.describe .h3{
+	font-size: 0.426666rem;
+	color: #000000;
+}
+.describe .miao{
+	font-size: 0.346666rem;
+	color: #000000;
+	line-height: 0.533333rem;
+	margin-top: 0.133333rem;
+}
+/*评价*/
+.main .appraise,
+.main .picture{
+	padding: 0 0.506666rem;
+	margin-top: 0.466666rem;
+}
+.appraise .aTitle,
+.picture .aTitle{
+	font-size: 0.346666rem;
+	color: #000000;
+	position: relative;
+}
+.appraise .aTitle .ping,
+.picture .aTitle .ping{
+	position: relative;
+}
+.appraise .aTitle .ping .pNum,
+.picture .aTitle .ping .pNum{
+	font-size: 0.32rem;
+	color: #F5B72E;
+	font-style: normal;
+	position: absolute;
+	right: -0.346666rem;
+	top: -0.106666rem;
+	font-weight: bold;
+}
+.appraise .aTitle .seeMore{
+	font-size: 0.293333rem;
+	color: #888888;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.appraise .aList{
+	margin-top: 0.266666rem;
+}
+.appraise .aList li{
+	float: left;
+	margin-left: 0.133333rem;
+	margin-top: 0.133333rem;
+}
+.appraise .aList li a{
+	display: inline-block;
+	padding: 0.133333rem 0.133333rem;
+	font-size: 0.293333rem;
+	color: #ff7f00;
+	border: 1px solid #ffb642;
+	border-radius: 0.106666rem;
+}
+.appraise .aList li i{
+	font-style: normal;
+}
+/*图片*/
+.main .picture{
+	margin-bottom: 0.8rem;
+	position: relative;
+}
+.main .picture .picList{
+	margin-top: 0.266666rem;
+	width: 100%;
+	overflow-x: auto;
+	height: 2.8rem;/*210*/
+}
+.main .picture .picList ul{
+	width: 200%;
+}
+.main .picture .picList li{
+	float: left;
+	font-size: 0;
+}
+.main .picture .picList li a{
+	display:inline-block;
+	font-size: 0;
+	width: 2.213333rem;
+	height: 2.213333rem;
+	overflow: hidden;
+}
+.main .picture .picList li a img{
+	display: block;
+}
+.main .picture .addBtn{
+	position: absolute;
+	right: 1.2rem;
+	top: 1.733333rem;
+}
+.main .picture .addBtn a{
+	display: block;
+	width: 1rem;
+}
+/*遮罩层*/
+.lightGrey{
+	background:rgba(0,0,0,0.2);
+	display: none;
+}
+/*加入购物车弹框*/
+.putinBomb{
+	width: 100%;
+	/*min-height: 8.333333rem;*/
+	background: white;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 0 0.4rem;	
+	display: none;
+}
+.putinBomb .goods{
+	border-bottom: 1px solid #E4E4E4;
+	height: 2.2rem;
+	font-size: 0;
+	position: relative;
+}
+.goods .pic{
+	display: inline-block;
+	width: 2.64rem;
+	height: 2.64rem;
+	margin-top: -0.933333rem;
+	vertical-align: top;
+	overflow: hidden;
+}
+.goods .characters{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 0.133333rem;
+	width: 5.8rem;
+}
+.goods .characters .cName{
+	font-size: 0.426666rem;
+	color: #000000;
+	margin-top: 0.266666rem;
+}
+.goods .characters .cPrice{
+	font-size: 0.453333rem;
+	color: #000000;
+	margin-top: 0.2rem;
+}
+.goods .characters .cPrice i{
+	font-style: normal;
+}
+.goods .characters .cPrice .pFu{
+	font-size: 0.213333rem;
+	color: #fcaf16;
+	margin-right: 0.133333rem;
+}
+.goods .characters .cPrice .pYou{
+	font-size: 0.373333rem;
+	margin-left: 0.333333rem;
+}
+.goods .close{
+	display: inline-block;
+	width: 0.666666rem;
+	height: 0.666666rem;
+	position: absolute;
+	right: -0.146666rem;
+	top: 0.066666rem;
+	text-align: center;
+	line-height: 0.666666rem;	
+	margin-top: 0.106666rem;
+}
+.goods .close img{
+	width: 0.28rem;
+	vertical-align: middle;
+}
+/*杯型*/
+.putinBomb .type{
+	font-size: 0;
+	min-height: 2.4rem;
+}
+.type .cup{
+	display: inline-block;
+	width: 4.133333rem;/*310*/
+	position: relative;
+	vertical-align: top;
+	margin-left: 0.133333rem;
+}
+.cup .su{
+	display: inline-block;
+	width: 1px;
+	height: 0.666666rem;
+	background: #f0f0f0;
+	position: absolute;
+	right: 0;
+	bottom: 0.2rem;
+}
+.type .temperature1{
+	display: inline-block;
+	margin-left: 0.6rem;/*45*/
+	vertical-align: top;
+}
+.temperature{
+	width: 4.266666rem;
+}
+.temperature .wen{
+	font-size: 0.346666rem;
+	color: #000000;
+	margin-top: 0.333333rem;/*25*/
+}
+.temperature .temType{
+	margin-top: 0.466666rem;
+}
+.temperature .temType i{
+	display: inline-block;
+	width: 0.933333rem;
+	height: 0.933333rem;
+	border: 1px solid #bebebe;
+	border-radius: 50%;
+	box-sizing: border-box;
+	font-style: normal;
+	margin-right: 0.4rem;
+	font-size: 0.24rem;
+	color: #000000;
+	text-align: center;
+	line-height: 0.933333rem;
+	margin-bottom: 0.133333rem;/*10*/
+	vertical-align: middle;
+}
+.add{
+	width: 100%;
+	padding-bottom: 0.2rem;
+	border-bottom: 1px solid #E4E4E4;
+	margin-left: 0.133333rem;
+}
+.add .temType s{
+	text-decoration: none;
+}
+.add .temType .s1{
+	text-decoration: none;
+	display: block;
+	width: 0.16rem;
+	height: 0.16rem;
+	text-align: center;
+	line-height: 0.16rem;	
+	margin-left: 0.373333rem;/*28*/
+	margin-top: 0.16rem;/*12*/
+	margin-bottom: 0.093333rem;/*7*/
+	display: none;
+}
+.add .temType .s2{
+    display: block;
+	height: 0.293333rem;
+	text-align: center;
+	line-height: 0.32rem;
+	margin-top: 0.32rem;/*24*/
+}
+.cup .temType i.cupCur{/*选中的杯型*/
+	background: #FF6633;
+	color: white;
+	border: none;
+}
+.temperature1 .temType i.temCur{/*选中的温度*/
+	background: #FF6633;
+	color: white;
+	border: none;
+}
+.add .temType i.addCur{/*选中的果肉*/
+	background: #FF6633;
+	color: white;
+	border: none;
+}
+/*加*/
+.add .temType i.addCur .s1{
+	display: block;
+}
+.add .temType i.addCur .s2{
+	margin-top: 0;
+}
+/*加*/
+/*数量*/
+.putinBomb .quantity{
+	margin-top:0.333333rem;
+	margin-left: 0.133333rem;
+	position: relative;
+	min-height: 0.866666rem;
+}
+.quantity .shuliang{
+	font-size: 0.346666rem;
+	color: #000000;
+	display: inline-block;
+	line-height: 0.826666rem;
+}
+.quantity .numBox{
+	font-size: 0;
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.quantity .numBox i{
+	display: inline-block;
+	width: 1rem;/*75*/
+	height: 0.826666rem;/*64*/
+	border: 1px solid #b5b5b5;
+	box-sizing: border-box;
+	font-size: 0.346666rem;
+	color: #000000;
+	text-align: center;
+	line-height: 0.826666rem;
+	font-style: normal;
+}
+.quantity .numBox i.less{
+	border-right: none;
+	border-radius: 0.053333rem 0 0 0.053333rem;
+}
+.quantity .numBox i.more{
+	border-left: none;
+	border-radius: 0 0.053333rem 0.053333rem 0;
+}
+.quantity .numBox .yijian{
+	font-size: 0.346666rem;
+	color: #000000;
+	margin-left: 0.133333rem;
+}
+/*按钮*/
+.putinBomb .controlBox{
+	font-size: 0;
+	margin-top: 0.333333rem;
+	margin-bottom: 0.333333rem;
+	margin-left: 0.106666rem;
+}
+.putinBomb .controlBox a{
+	display: inline-block;
+	width: 3.733333rem;
+	height: 1.066666rem;
+	background: #FF6633;
+	color: white;
+	font-size: 0.346666rem;
+	color: white;
+	box-sizing: border-box;
+	text-align: center;
+	line-height: 1.066666rem;
+	border-radius: 0.266666rem;
+	margin-left: 0.426666rem;
+}
+.putinBomb .controlBox a.buy{
+	color: #FF6633;
+	border: 1px solid #FF6633;
+	background: white;
+}
+/*遮罩层*/
+.shade{ display: none;}
+/*图片弹框*/
+.picBomb{
+	width: 8.533333rem;/*640*/
+	height: 11.066666rem;/*830*/
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -4.266666rem;
+	top: 50%;
+	margin-top: -5.533333rem;
+	display: none;
+}
+.picBomb .close2{
+	height: 1.066666rem;
+}
+.picBomb .close2 a{
+	display: block;
+	text-align: center;
+	float: right;
+	width: 0.733333rem;
+	height: 0.733333rem;
+	line-height: 0.733333rem;
+}
+.picBomb .close2 a img{
+	vertical-align: middle;
+	width: 0.4rem;
+}
+.picBomb .picWrap{
+	padding-left: 0.666666rem;
+	position: relative;
+}
+.picWrap .picShow{
+	width: 7.133333rem;/*535*/
+	height: 8.733333rem;/*655*/
+}
+.picWrap .picShow ul li{
+	float: left;
+	width: 7.133333rem;/*535*/
+	height: 8.733333rem;/*655*/
+	display: none;
+}
+.picWrap .picShow ul li.show{
+	display: block;
+}
+.picWrap .left{
+	display: block;
+	width: 0.853333rem;
+	height: 0.853333rem;
+	position: absolute;
+	left: -0.106666rem;
+	top: 40%;
+}
+.picWrap .right{
+	display: block;
+	width: 0.853333rem;
+	height: 0.853333rem;
+	position: absolute;
+	right: -0.106666rem;
+	top: 40%;
+}
+/*分享弹框*/
+.shareBomb{
+	width: 100%;
+	min-height: 5.066666rem;
+	background: white;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding: 0 0.4rem;
+	padding: 0 0.266666rem;
+	display: none;
+}
+.shareBomb .fenxiang{
+	font-size: 0.373333rem;
+	color: #666666;
+	text-align: center;
+	height: 1.066666rem;
+	line-height: 1.066666rem;
+	border-bottom: 1px solid #f5f5f5;
+}
+.shareBomb ul{
+	margin-top: 0.4rem;
+	border-bottom: 1px solid #f5f5f5;
+	padding-bottom: 0.4rem;
+}
+.shareBomb li{
+	float: left;
+	text-align: center;
+	width: 1.893333rem;
+}
+.shareBomb li .pic{
+	width: 1.2rem;
+	display: inline-block;
+	
+}
+.shareBomb li .tit{
+	font-size: 0.293333rem;
+	color: #151515;
+	margin-top: 0.133333rem;
+}
+.shareBomb .cancel a{
+	display: block;
+	font-size: 0.373333rem;
+	color: #666666;
+	text-align: center;
+	line-height: 1.333333rem;
+}
+.main .sharing{
+	padding: 0 0.506666rem;
+	margin-top: 0.466666rem;
+}
+.main .sharing>dl>dt{
+	font-size:0.42rem;
+	margin-bottom:0.2rem;
+}
+.main .sharing>dl>dd{
+	font-size:0.34rem;
+}
+.main .sharing>dl>dt>em,.main .sharing>dl>dd>em{
+	font-style:normal;
+}
+.main .sharing>dl>dd>em{
+	font-size:0.34rem;
+}

@@ -1,0 +1,12 @@
+<xml>
+    <amount>16</amount>
+    <check_name>NO_CHECK</check_name>
+    <desc>积分提现</desc>
+    <mch_appid>wx6c69af15244da7bc</mch_appid>
+    <mchid>1514558451</mchid>
+    <nonce_str>956342</nonce_str>
+    <openid>owHro04wdLd-ROeslqTFvk-uDswc</openid>
+    <partner_trade_no>20180915030</partner_trade_no>
+    <spbill_create_ip>113.111.180.176</spbill_create_ip>
+    <sign>11E9764A044098CE7936DD218D5B21E9</sign>
+</xml>

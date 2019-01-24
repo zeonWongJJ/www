@@ -1,0 +1,393 @@
+.main{
+	width: 1024px;
+	margin: 0 auto;
+}
+/*中间订单详情*/
+.middle{
+	width: 240px;
+	height: 695px;
+	float: left;
+}
+.middle .title{
+	font-size: 18px;
+	color: #FFFFFF;
+	text-align: center;
+	height: 55px;
+	line-height: 55px;
+	background: #25d7d5;
+}
+.middle .orderList{
+	padding: 0 4px;
+	height: 474px;
+	overflow: auto;
+}
+.orderList li{
+	font-size: 0;
+	padding: 12px 0;
+	border-bottom: 1px solid #e8e8e8;
+}
+.orderList li .oLeft{
+	width: 154PX;
+	display: inline-block;
+	vertical-align: middle;
+}
+.orderList li .oLeft .name{
+	font-size: 14px;
+	color: #333333;
+}
+.orderList li .oLeft .name i{
+	font-style: normal;
+	font-size: 10px;
+}
+.orderList li .oLeft .num{
+	font-size: 14px;
+	color:#ff6633;
+	margin-top: 5px;
+}
+.orderList li .oRight{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left:10px;
+}
+.orderList li .oRight .less{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.orderList li .oRight .shu{
+	display: inline-block;
+	font-size: 14px;
+	color: #333333;
+	vertical-align: middle;
+	width: 20px;
+	text-align: center;
+}
+.orderList li .oRight .more{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+	/*结算*/
+.middle .account{
+	padding: 0 8px;
+	padding: 20px 8px 0 8px;
+}
+.account p{
+	font-size: 12px;
+	color: #333333;
+	margin-top: 4px;
+}
+	/*提交*/
+.middle .submit{
+	margin-top: 25px;
+}
+.middle .submit a{
+	display: block;
+	height: 80px;
+	background: #f3566b;
+	font-size: 32px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 80px;
+}
+
+/*右边菜单列表*/
+.right{
+	width: 730px;
+	min-height: 770px;
+	float: left;
+}
+.right .rNav{
+	padding-left: 5px;
+	height: 55px;
+	line-height: 55px;
+	font-size: 16px;
+	color: #333333;
+	background: white;
+	box-shadow: 0 2px 10px #e6e8ee;
+}
+.rNav li{
+	float: left;
+	margin-right: 40px;
+}
+.rNav li i{
+	font-size: 12px;
+	color: #F3566B;
+	font-style: normal;
+}
+.right .rDown{
+	
+}
+.rDown .rdL{
+	width: 624px;
+	float: left;
+}
+.rdL .lNav{
+	margin-top: 15px;
+}
+.rdL .lNav li{
+	float: left;
+	font-size: 0;
+	width: 190px;
+	height: 70px;
+	background: white;
+	box-shadow: 0 0 10px #e6e8ee;
+	margin-right: 24px;
+}
+.rdL .lNav li:last-child{
+	margin-right: 0;
+}
+.rdL .lNav li .lImg{
+	width: 75px;
+	height: 70px;
+	background: #37aae3 url(../images/diancan_12.png) no-repeat center center;
+	display: inline-block;
+	vertical-align: top;
+}
+/*加*/
+.rdL .lNav li:nth-child(2) .lImg{
+	background: #2fd07d url(../images/diancan_14.png) no-repeat center center;
+}
+.rdL .lNav li:nth-child(3) .lImg{
+	background: #f9c164 url(../images/diancan_17.png) no-repeat center center;
+}
+/*加*/
+.rdL .lNav li .lDes{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 25px;
+}
+.rdL .lNav li .lDes .p1{
+	font-size: 16px;
+	color: #666666;
+	margin-top: 18px;
+}
+.rdL .lNav li .lDes .p2{
+	font-size: 12px;
+	color: #aaaaaa;
+}
+.rdL .lList{
+	margin-top: 5px;
+}
+.rdL .lList li{
+	float: left;
+	margin: 10px 10px 0 0;
+}
+.lList>ul>li>a{
+	display: block;
+	width: 141px;
+	height: 220px;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 0 0 10px #b9b9b9;
+	position: relative;
+}
+.lList>ul>li>a .lPic{
+	width: 146px;
+	height: 145px;
+	border-radius: 10px 10px 0 0;
+	text-align: center;
+	overflow: hidden;
+}
+.lList>ul>li>a .lName{
+	text-align: center;
+	font-size: 16px;
+	color: #333333;
+	margin-top: 16px;
+	display: -webkit-box !important;
+	overflow: hidden; 
+	word-break: break-all; 
+	text-overflow: ellipsis; 
+	-webkit-box-orient: vertical; 
+	-webkit-line-clamp: 2;
+}
+.lList>ul>li>a .price{
+	font-size: 14px;
+	color: #ff0041;
+	text-align: center;
+}
+.lList>ul>li>a .red{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	font-size: 14px;
+	color: white;
+	background: #f3566b;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: center;
+	line-height: 20px;
+}
+	/*下右*/
+.rDown .rdR{
+	width: 105px;
+	float: right;
+	margin-top: 10px;
+}
+.rdR li{
+	float: right;
+	margin-top: 12px;
+}
+/*改*/
+.rdR li a{
+	display: block;	
+	width: 100px;
+	/*height: 65px;*/
+	background: white;
+	border: 1px solid #e8e8e8;
+	border-radius: 10px;
+	font-size: 20px;
+	color: #333333;
+	text-align: center;
+	/*line-height: 65px;*/	
+	padding: 18px 2px;
+}
+/*改*/
+.rdR li.rCurrent a{
+	background: #f3566b;
+	color: white;
+}
+/*详情弹框*/
+.detailBomb{
+	width: 590px;
+	min-height: 430px;
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -215px;
+	top: 175px;
+	border-radius: 6px;
+	box-shadow: 0 0 10px #a1a1a1;
+	display: none;
+	z-index:2;
+}
+.detailBomb .dTit{
+	height: 45px;
+	background: #34c9e1;
+	border-radius: 6px 6px 0 0;
+	line-height: 45px;
+}
+.dTit .chan{
+	font-size: 16px;
+	color: white;
+	margin-left: 15px;
+}
+.dTit .dClose{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../images/tankuang_03.png);
+	float: right;
+	margin: 10px 15px 0 0;
+}
+.detailBomb .describe{
+	
+}
+.describe .imgBox{
+	width: 215px;
+	height: 162px;
+	float: left;
+	margin: 55px 0 0 20px;
+	overflow: hidden;
+}
+.describe .imgBox img{
+	width: 100%;
+}
+.describe .chooseBox{
+	float: left;
+	margin-left: 30px;
+}
+.chooseBox .single{
+	font-size: 0;
+	margin-top: 10px;
+}
+.chooseBox .single .biao{
+	font-size: 14px;
+	color: #333333;
+	display: inline-block;
+	vertical-align: top;
+	padding: 6px 0;
+	margin-top: 4px;
+	width: 55px;
+}
+.chooseBox .cPrice{
+	font-size: 14px;
+	color: #333333;
+	margin-top: 10px;
+}
+.chooseBox .cPrice #product_price{
+	margin-left: 20px;
+}
+.chooseBox .xuan{
+	display: inline-block;
+	margin-left: 5px;
+	width: 250px;
+}
+.chooseBox .xuan li{
+	float: left;
+	margin:4px 10px 0 0;
+}
+.chooseBox .xuan a{
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 6px 10px;
+	border: 1px solid #a8a8a8;
+	border-radius: 4px;
+	font-size: 12px;
+	color: #333333;
+}
+.chooseBox .xuan li.xCurrent a{
+	color: #34C9E1;
+	border: 1px solid #34C9E1;
+}
+.chooseBox .number select{
+	width: 215px;
+	height: 30px;
+	text-align: center;
+	border: 1px solid #a8a8a8;
+	border-radius: 4px;
+	text-indent: 40px;
+	font-size: 12px;
+	color: #333333;
+	margin-top: 6px;
+}
+.chooseBox .number select option{
+	text-indent: 40px;
+	height: 30px !important;
+}
+	/*提交按钮*/
+.describe .btnBox{
+	/*margin-top: 145px;*/
+	/*margin-left: 62px;*/
+	position:relative;
+}
+.describe .btnBox a{
+	display: block;
+	width: 90px;
+	height: 35px;
+	background: #f3566b;
+	text-align: center;
+	line-height: 35px;
+	font-size: 14px;
+	color: white;
+	border-radius: 4px;
+	position:absolute;
+	top:110px;
+	left:110px;
+}
+
+/* 套餐显示 */
+.packageShow{ display:inline-block; margin-left:20px; margin-top:10px; margin-bottom:10px; }
+.packageShow>p{ width:130px; height:50px; display:inline-block; text-align:center; vertical-align:middle;  padding-top:4px; margin-right:10px; border-radius:10px; border:1px solid #ddd;  }
+.packageShow>a{ width:60px; height:50px; line-height:50px; display:inline-block; text-align:center; vertical-align:middle; font-size:14px; color:white; background:#f3566b; border:1px solid #f3566b; border-radius:14px; cursor:pointer;  }
+.packageShow>p>span{ font-size:14px; }
+.packageShow>p>em{ display:block; font-size:12px; }
+.listContent{ height:450px; overflow-y:scroll; }
+
+/* 选项导航 */
+.choiceNav{ margin-top:10px; margin-left:20px; }
+.choiceNav>a{ display:inline-block; margin:0 10px; font-size:16px; cursor:pointer; }
+.chCur{ color:#ff6633; font-weight:bold; }

@@ -1,0 +1,12 @@
+/* 银行卡认证成功  */
+.authSuccess>i            { display:block; text-align:center; padding:1rem 0;}
+.authSuccess>i>img        { width:7rem; }
+.authInfo                  { text-align:center; }
+.authInfo>h3               { font-size:0.45rem; }
+.authInfo>h4               { margin-top:0.15rem; }
+.authSuccess>ul            { width:78%; margin:0 auto; font-size:0.45rem; color:#333333; padding:0.45rem 0; }
+.authSuccess>ul>li         { padding:0.1rem 0; }
+.authFun                    { text-align:center; }
+.authFun>a>i                { position:relative; }
+.authFun>a>i>img            { width:5rem; height:1.2rem; }
+.authFun>a>i>span           { position:absolute; top:-0.6rem; left:1.2rem; font-size:0.45rem; font-style:normal; color:#5856d6; }

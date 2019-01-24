@@ -1,0 +1,19 @@
+/* 充值金额 */
+/* 金额 */
+.amount{ text-align:center; margin:0.26rem 0; padding:0.5rem 0; background:white; }
+.amount>span,.amount>em{ font-size:0.36rem; }
+.amount>p{ padding:0.58rem 0; font-size:0.8rem; font-weight:bold; }
+.amount>em{ color:#ffa200; font-style:normal; }
+/* 金额信息 */
+.amountInfo{ font-size:0.4rem; background:white; }
+.amountInfo>ul>li{ padding:0.2rem 0.34rem; }
+.amountInfo>ul>li>em{ font-style:normal; color:#666666; }
+.amountInfo>ul>li>span{ float:right; color:#666666; }
+.amountInfo>ul>li>ul>li{ padding:0.2rem 0; }
+.amountInfo>ul>li>ul>li>img{ width:0.44rem; }
+.amountInfo>ul>li>ul>li>span{ font-size:0.4rem; color:#007be5; }
+.amountInfo>ul>li>ul>li>em,.amountInfo>ul>li>ul>li>dfn{ font-size:0.32rem; color:#666; font-style:normal; }
+.amountInfo>ul>li>ul>li>img,.amountInfo>ul>li>ul>li>span,.amountInfo>ul>li>ul>li>em,.amountInfo>ul>li>ul>li>dfn{ vertical-align: middle; }
+
+
+

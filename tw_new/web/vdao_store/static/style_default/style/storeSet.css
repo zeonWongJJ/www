@@ -1,0 +1,235 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*右下半部分*/
+.rightDown{width: 1190px; margin-top: 20px; background: white;}
+.rightDown .rightNav{height: 50px; background: #fbfbfb;}
+.rightNav li{float: left;}
+.rightNav li a{display: block; font-size: 16px; color: #666666; width: 110px; text-align: center; line-height: 48px;}
+.rightNav li.current a{border-top: 2px solid #ffb900; border-right: 1px solid #e8e8e8; color: #000000; background: #ffffff;}
+.rightDown .wrapBox{width: 1190px;}
+	/*基本设置*/
+.wrapBox .basicBox{ width: 1190px; display: none; display: block;}
+.basicBox .bLeft{ float: left; width: 840PX; padding: 15px 0 150px 12px;}
+.bLeft li{ height: 50px; margin-top: 2px;}
+.bLeft li .smallTitle{width: 95px; float: left; text-align: right; font-size: 14px; color: #000000; line-height: 50px;}
+.bLeft li .smallTitle .xing{ display: inline-block; width: 7px; height: 6px; background: url(/static/style_default/images/xing_03.png); margin-right: 2px;}
+.bLeft li .fill{float: left; font-size: 12px; color: #333333; margin-left: 10px; line-height: 50px;}
+.bLeft li .fillBox{ float: left; margin-left: 10px; line-height: 50px;}
+.bLeft li .fillBox .int{ display: inline-block; width: 150px; height: 30px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px;}
+.bLeft li .fillBox .position{ font-size: 12px; color: #5a2e17; margin-left: 5px;}
+		/*地图*/
+.bLeft li.mapLi .mapBox{ width: 670px; height: 500px; background:white; position: fixed; left: 50%; margin-left: -335px; top: 50%; margin-top: -250px; z-index: 99; box-shadow: 0 0 20px #dedede; display: none;}
+.mapBox .tit{ font-size: 14px; color: #48a5ea; height: 30px; margin-top: 10px; line-height: 30px; text-indent: 308px; }
+.mapBox .tit .guan{ display: inline-block; width: 12px; height: 12px; background: url(/static/style_default/images/close_03.png); float: right; margin: 10px 20px 0 0; }
+.mapBox .map{ width: 630px; height: 375px; background:paleturquoise; margin: 10px 0 0 20px;}
+.mapBox .guanbi{ text-align: center; margin-top: 10px;}
+.mapBox .guanbi a{ width: 85px; height: 28px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 28px; text-align: center;}
+.bLeft li .tipsBox{ float: left; line-height: 50px; margin-left: 10px; font-size: 12px; color: #333333;}
+.bLeft li .tipsBox .red{ display: none;}/*隐藏红色提醒*/
+.bLeft li .tipsBox .red i{ display: inline-block; width: 18px; height: 18px; background: url(/static/style_default/images/f_03.png); vertical-align: middle; margin-right: 8px;}
+.bLeft li.sell .fillBox .int{ width: 130px;}
+.bLeft li.makings .fillBox .int{ width: 210px;}
+.bLeft li.order .fillBox .int{ width: 145px;}
+.bLeft li.phone .fillBox .int{ width: 170px;}
+.bLeft li.traffic .fillBox .txt{ width: 410px; height: 90px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 5px;}
+.bLeft li.traffic{ margin-top: 14px; height: 100px;}
+.bLeft li.traffic .smallTitle{ line-height: 0; padding-top: 9px;}
+.bLeft li.traffic .tipsBox{ line-height: 90px;}
+.bLeft li.traffic .fillBox{position: relative;}
+.bLeft li.traffic .fillBox .num{ font-size: 12px; color: #999999; position: absolute; right: 13px; bottom: 5px;}
+.bLeft li.introduce .txt{ width: 685px !important; height: 155px !important;}
+.bLeft li.introduce{ height: 160px;}
+.bLeft li.pic{ min-height: 120px; height: auto; padding-bottom: 20px;}
+.bLeft li.pic .fillBox .upLoad{ display:inline-block; font-size: 12px; color: #FFFFFF; width: 88px; height: 30px; background: #26c0fe; text-align: center; line-height: 30px; border: 1px solid #2494cb;}
+.bLeft li.pic .fillBox .wen{ font-size: 12px; color: #999999; display: inline-block; line-height: 22px; width: 680px; vertical-align: middle; margin-left: 10px;}
+.bLeft li.pic .fillBox{ position: relative;}
+.bLeft li.pic .tipsBox{ position: absolute; left: 515px; top: 0;}
+
+.bLeft .saveBox{ margin-left: 105px;}
+.bLeft .saveBox a{ display: block; width: 120px; height: 40px; background:#ffce1c; font-size: 16px; color: #A33300; text-align: center; line-height: 40px; border: 1px solid #e69c14;}
+
+.basicBox .bRight{ float: left; width: 340PX; height: 500px; padding-top: 35px;}
+.bRight .headBox{ width: 300px; height: 120px; background: #f9f9f9; border: 1px solid #cccccc; padding: 12px 0 0 12px;}
+.headBox .leftImg{ width: 100px; height: 100px; border-radius: 50%; border: 2px solid #e3e3e3; float: left; overflow: hidden;}
+.headBox .leftImg img{ width: 100%; height: 100%;}
+.headBox .rightCha{ width: 173px; float: left; margin-left: 10px;}
+.rightCha .wen2{ font-size: 12px; color: #999999; margin-top: 18px;}
+.rightCha .setUp{ font-size: 12px; color: #5a2e17; margin-top: 10px;}
+	/*提现账户*/
+.wrapBox .accountBox{ width: 1190px; min-height: 940px; padding-top: 35px; padding: 35px 0 0 30px; display: none;}
+.accountBox li{ height: 50px;}
+.accountBox li .name{ float: left; width: 105px; height: 30px; font-size: 14px; color: #000000; text-align: right;}
+.accountBox li .int{ float: left; width: 110px; height: 30px; font-size: 14px; color: #000000; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px; margin-left: 10px; font-size: 12px;}
+.accountBox li .width170{ width: 200px;}
+.accountBox .saveBox{ margin-left: 115px;}
+.accountBox .saveBox a{ display: block; width: 120px; height: 40px; background:#ffce1c; font-size: 16px; color: #A33300; text-align: center; line-height: 40px; border: 1px solid #e69c14;}
+.accountBox li .red{ font-size: 12px; color: #333333; line-height: 30px; margin-left: 10px; display: none;}/*隐藏红色提醒*/
+.accountBox li .red i{ display: inline-block; width: 18px; height: 18px; background: url(/static/style_default/images/f_03.png); vertical-align: middle; margin-right: 8px;}
+/*引入bootstrap修改的样式*/
+body{ background: #f1f1f1 !important; font-family:"微软雅黑" !important;}
+.header .headRight .store_news{ margin-top: -10px; vertical-align: top; padding-top: 8px;}
+.header .headRight .store_news i{ margin-top: 5px;}
+.breadNav a:hover{ text-decoration: none;}
+.rightNav li a{ text-decoration: none;}
+.bLeft li{ height: 58px; margin-top: 2px;}
+.bLeft li .int{ font-size: 12px;}
+.bLeft li .txt{ padding:5px !important; line-height: 20px; font-size: 12px;}
+.rightCha .setUp{ font-size: 12px; color: #5a2e17; background: none; border: none; margin-left: 5px; margin-top: 3px;}
+.rightDown a:hover{ text-decoration: none !important;}
+.modal-title{ font-size: 14px; color: #48a5ea;}
+.modal-open .modal{ top: 130px;}
+	/*提现账户*/
+.accountBox li{ height: 60px;}
+
+/*图片上传样式*/
+._filelist li{/*这个选择器一定要有宽高，否则图片显示不出来，因为它里面的内容是绝对定位的*/
+		width: 180px;
+		height: 160px;
+	}
+	.choose-file-btn{
+		width: 90px;
+		height: 30px;
+		line-height: 30px;
+		background-color: #f60;
+		overflow: hidden;
+		float: left;
+		margin-top: 10px;
+	}
+	#upload_now {
+		width: 90px;
+		height: 30px;
+		line-height: 30px;
+		background-color: #2fbeff;
+		border: 0px;
+		color: #fff;
+		cursor: pointer;
+		outline:none;
+		float: left;
+		border:1px solid #16b5fe;
+		font-size: 12px;
+		margin: 10px 8px 0 8px;
+	}
+	#retry_upload {
+		width: 90px;
+		height: 30px;
+		line-height: 30px;
+		background-color: #3ec1fd;
+		border: 0px;
+		color: #fff;
+		cursor: pointer;
+		outline:none;
+		float: left;
+		font-size: 12px;
+		border: 1px solid #16b5fe;
+		margin-top: 10px;
+	}
+	.webuploader-pick{
+		font-size: 12px;
+		color: #FFFFFF;
+		width: 90px;
+		height: 30px;
+		background: #26c0fe;
+		text-align: center;
+		line-height: 30px;
+		border: 1px solid #2494cb;
+		border-radius: 0;
+	}
+	._filelist{
+		width: 600px;
+	}
+
+
+
+
+/*图片上传css*/
+
+#picbox {
+	float: left;
+    width: 685px;
+    overflow: hidden;
+}
+.minbox {
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    background-image: url(/static/style_default/images/bg.png);
+}
+.minbox img {
+    width: 180px;
+    height: 180px;
+    border: 0px;
+}
+#mypic {
+    width: 0px;
+    height: 0px;
+    color: white;
+    background-color: rgb(95, 184, 120);
+}
+#choose_box {
+    width: 90px;
+    height: 30px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgb(0, 183, 238);
+}
+#upload_box {
+    width: 90px;
+    height: 30px;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgb(0, 150, 136);
+}
+.shade_box {
+    display: none;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background-color: rgb(127, 127, 127);
+}
+.shade_box img {
+    max-width: 15px;
+    max-height: 15px;
+    float: right;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+.success_box {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-image: url(/static/style_default/images/up_success.png);
+    display: none;
+}
+.mainpic {
+    color: white;
+    line-height: 30px;
+    font-size: 14px;
+    margin-left: 10px;
+    display: none;
+    float: left;
+}

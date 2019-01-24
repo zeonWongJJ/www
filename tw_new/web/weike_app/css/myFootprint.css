@@ -1,0 +1,32 @@
+/*  我的足迹 */
+.myFootprint              { margin-bottom:50px; }
+/*  头部 */
+.headTitle>p              { height:60px; text-align:center; line-height:60px; margin-left:20px; border-bottom:1px solid #ddd;  }
+.headTitle>p>span         { height:58px; line-height:60px; display:inline-block; font-weight:bold; border-bottom:2px solid red; }
+.headTitle>p>em           { float:right; margin-right:10px; color:#666666; }
+/* 足迹列表 */
+.footPrintList>ul>li                 { position:relative; border-bottom:1px solid #ddd;padding:10px 0 0 0;}
+.footPrintList>ul>li>i               { position:absolute; display:inline-block; top:24px; padding-left:5px;}
+.footPrintList>ul>li>i>img           { width:100px; box-shadow:3px 0 3px #888889; }
+.footPrintList>ul>li>i>p             { width:100%; position:absolute; bottom:0; text-align:center; font-size:14px; padding:2px 0; opacity:0.5;   background:#000; color:#fff; font-style:normal; }
+.footPrintList>ul>li>i>em            { position:absolute; top:3px; left:10px; }
+.footPrintList>ul>li>i>em>img        { width:28px; }
+.costInfo             { background:#fafafa; }
+.costInfo>p           { position:relative; padding:10px 0; margin:15px 0; font-size:14px; }
+.costInfo>p>span      { width:190px; display:inline-block; margin-left:31%; font-weight:bold;}
+.costInfo>p>span>em   { font-weight:bold; }
+.costInfo>p>span>s    { display:inline-block; text-decoration:none; padding:0 15px; border:1px solid red; border-radius:5px; font-size:12px; color:red;}
+.costInfo>p>em        { float:right; padding-right:10px; font-weight:bold;}
+.costInfo>p>em>span   { display:block; color:#999999; font-weight:bold;}
+.costInfo>p>em>em     { float:right; margin-top:38px; font-weight:bold; color:#6699ed;}
+.toubiao               { float:right; margin-top:30px; padding:5px 8px; font-weight:bold; color:#6699ed; border:1px solid #6699ed; border-radius:5px;  }
+/*  底部删除栏 */
+.bottomDelete{ -webkit-transform: translateZ(0); width:100%; text-align:center; position:fixed; padding:15px; background:#ff6700; color:white; bottom:0;}
+
+
+@media screen and (max-width: 350px) {
+    .footPrintList>ul>li>i                           { top:30px; }
+    .footPrintList>ul>li>i>img                      { width:85px; }
+    .costInfo>p>span                { width:140px; margin-left:95px;}
+}
+

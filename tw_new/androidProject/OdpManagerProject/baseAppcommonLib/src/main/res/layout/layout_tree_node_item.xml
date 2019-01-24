@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_item_title"
+        android:layout_width="match_parent"
+        android:text=""
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:background="@drawable/node_view_bg"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_title"
+        android:text="完成家洁项目10%的开发"
+        android:textColor="@color/black"
+        android:singleLine="true"
+        android:ellipsize="end"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <com.app.base.widget.ZzHorizontalProgressBar
+            android:id="@+id/pb"
+            android:layout_width="80dp"
+            android:layout_height="6dp"
+            android:layout_marginRight="15dp"
+            app:zpb_padding="0dp"
+            app:zpb_pb_color="@color/node_progress_color"
+            app:zpb_bg_color="@color/node_progress_bg"
+            app:zpb_max="100"
+            app:zpb_show_mode="round_rect"
+            app:zpb_round_rect_radius="2dp"
+            app:zpb_draw_border="true"
+            app:zpb_border_width="1dp"
+            app:zpb_border_color="#0ab3e9"
+            app:zpb_progress="0"
+            />
+        <!--app:zpb_round_rect_radius="5dp"-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:text="36%"
+            android:textSize="@dimen/text_size_small"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

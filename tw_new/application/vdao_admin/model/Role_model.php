@@ -1,0 +1,153 @@
+<?php
+
+class Role_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /************************************* 角色列表 *************************************/
+
+    /**
+     * [get_role_showlist 获取所有的角色信息]
+     * @return [type] [返回查询到的所有角色信息]
+     */
+    public function get_role_showlist()
+    {
+        $a_order = [
+            'role_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('role', [], '', $a_order, 0, 999999);
+        return $a_data;
+    }
+
+    /************************************* 添加角色 *************************************/
+
+    /**
+     * [get_auth_all 获取所有的权限]
+     * @return [array] [返回查询到的所有权限]
+     */
+    public function get_auth_all()
+    {
+        $a_where = [
+            'auth_type' => 1,
+        ];
+        $a_order = [
+            'auth_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('auth', $a_where, '', $a_order, 0, 999999);
+        return $a_data;
+    }
+
+    /**
+     * [insert_role 添加角色]
+     * [ 操作表 role 操作方式 insert ]
+     * @param  [array] $a_data [要添加的数据]
+     * @return [int]           [返回新数据的id]
+     */
+    public function insert_role($a_data)
+    {
+        $i_result = $this->db->insert('role', $a_data);
+        return $i_result;
+    }
+
+    /************************************* 修改角色 *************************************/
+
+    /**
+     * [get_role_detail 获取某一条角色的详情]
+     * [ 操作表 role 操作方式 select ]
+     * @param  [int]   $role_id [要获取角色的id]
+     * @return [array] $a_data  [返回查询到的角色信息]
+     */
+    public function get_role_detail($role_id)
+    {
+        $a_where = [
+            'role_id' => $role_id,
+        ];
+        $a_data  = $this->db->get_row('role', $a_where);
+        return $a_data;
+    }
+
+    /**
+     * [update_role 修改角色信息]
+     * [ 操作表 role 操作方式 update ]
+     * @param  [array] $a_where    [更新的条件]
+     * @param  [array] $a_data    [更新的数据]
+     * @return [int]   $i_result    [返回修改的行数]
+     */
+    public function update_role($a_where, $a_data)
+    {
+        $i_result = $this->db->update('role', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /************************************* 删除角色 *************************************/
+
+    /**
+     * [delete_role 删除角色]
+     * [ 操作表 role 操作方式 delete ]
+     * @param  [int] $role_id [要删除角色的id]
+     * @return [int]          [返回受删除的行数]
+     */
+    public function delete_role_one($role_id)
+    {
+        $a_where  = [
+            'role_id' => $role_id,
+        ];
+        $i_result = $this->db->delete('role', $a_where);
+        return $i_result;
+    }
+
+    /**
+     * [delete_manager_mony 批量删除角色]
+     * @param  [array] $a_data     [要删除角色的id数组]
+     * @return [int]   $i_result   [返回删除的行数]
+     */
+    public function delete_role_mony($a_data)
+    {
+        $i_result = $this->db->where_in('role_id', $a_data)->delete('role');
+        return $i_result;
+    }
+
+    /************************************************************************************/
+
+    /**
+     * [get_admin_total 获取某一角色下管理员的总数]
+     * @param  [int] $role_id [角色id]
+     * @return [int]          [返回查询到的总数]
+     */
+    public function get_admin_total($role_id)
+    {
+        $a_where  = [
+            'role_id' => $role_id,
+        ];
+        $i_result = $this->db->get_total('admin', $a_where);
+        return $i_result;
+    }
+
+    /******************************** 根据关键词获取角色 ********************************/
+
+    /**
+     * [get_role_search 根据关键词获取角色]
+     * @param  [string] $keywords [传入的关键词]
+     * @return [array]            [返回查询到的角色信息]
+     */
+    public function get_role_search($keywords)
+    {
+        $a_where_or = [
+            'role_name LIKE'        => '%' . $keywords . '%',
+            'role_description LIKE' => '%' . $keywords . '%',
+        ];
+        $s_field    = '';
+        $a_order    = [
+            'role_id' => 'desc',
+        ];
+        $a_data     = $this->db->where_or($a_where_or)->get('role', [], $s_field, $a_order);
+        return $a_data;
+    }
+
+    /************************************************************************************/
+
+}

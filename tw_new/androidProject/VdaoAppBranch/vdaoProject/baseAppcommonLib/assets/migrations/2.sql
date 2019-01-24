@@ -1,0 +1,2 @@
+ALTER TABLE user ADD COLUMN nickname TEXT;
+ALTER TABLE User ADD COLUMN saveTime LONG;

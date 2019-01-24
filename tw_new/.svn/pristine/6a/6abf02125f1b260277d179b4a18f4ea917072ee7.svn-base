@@ -1,0 +1,352 @@
+<?php
+
+class Product_ctrl extends TW_Controller
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+        $this->load->model('set_model');
+        $this->load->model('allow_model');
+        $this->allow_model->is_login();
+        $this->allow_model->is_allow();
+    }
+
+    // 门店的产品
+    public function store_product()
+    {
+        $i_one   = $this->router->get(1) ? $this->router->get(1) : 0;
+        $i_two   = $this->router->get(2) ? $this->router->get(2) : 0;
+        $i_three = $this->router->get(3) ? $this->router->get(3) : 0;
+        $i_four  = $this->general->base64_convert($this->router->get(4), true) ? $this->general->base64_convert($this->router->get(4), true) : '';
+        $a_data  = [
+            'i_one'   => $i_one,
+            'i_two'   => $i_two,
+            'i_three' => $i_three,
+            'i_four'  => $i_four,
+            'i_pag'   => $i_pag,
+        ];
+        $a_where = "`pro_show` = 1 AND `goods_stye` = 1";
+        if (!empty($i_one)) {
+            $a_where .= ($a_where ? ' AND ' : '') . "`proid_id_1` = $i_one";
+        }
+        if (!empty($i_two)) {
+            $a_where .= ($a_where ? ' AND ' : '') . "`proid_id_2` = $i_two";
+        }
+        if (!empty($i_three)) {
+            $a_where .= ($a_where ? ' AND ' : '') . "`proid_id_3` = $i_three";
+        }
+        if (!empty($i_four)) {
+            $a_where .= ($a_where ? ' AND ' : '') . "`antistop` LIKE '%$i_four%'";
+        }
+        // 先设置默认从第一页开始
+        $i_page = $this->router->get(5);
+        if (empty($i_page)) {
+            $i_page = 1;
+        }
+        // 设置每页显示的数据行数
+        $i_prow = 9;
+        // 加载分页类
+        $this->load->library('pages');
+        // 获取数据总行数，以产品为例
+        $i_total = $this->db->get_total('product', $a_where);
+        // 调用分页运算函数
+        $a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+        // 开始获取产品数据
+        $this->db->limit($a_pdata['start'], $a_pdata['last']);
+        $a_data['product'] = $this->db->get('product', $a_where);
+        $a_data['page']    = $this->db->get_total('product', $a_where);
+        // echo $this->db->get_sql();
+        $a_data['pages'] = $this->pages->link_style_one($this->router->url('store_product-' . $i_one . '-' . $i_two . '-' . $i_three . '-' . $i_four . '-', [], false, false));
+        $a               = '';
+        $today_start     = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+        $new_data        = [];
+        foreach ($a_data['product'] as $product) {
+            $a .= $product['antistop'] . ',';
+            // 验证当前门店当前产品当日是否有为存量
+            $a_where         = [
+                'store_id'   => $_SESSION['store_id'],
+                'product_id' => $product['product_id'],
+                'stock_time' => $today_start,
+            ];
+            $a_stock_row     = $this->db->get_row('stock', $a_where);
+            $a_where_store   = [
+                'product_id' => $product['product_id'],
+                'store_id'   => $_SESSION['store_id'],
+            ];
+            $a_store_product = $this->db->get_row('prod_sto', $a_where_store);
+            if (empty($a_stock_row)) {
+                $product['today_stock'] = $a_store_product['pro_stock'];
+            } else {
+                if ($a_store_product) {
+                    $product['today_stock'] = $a_stock_row['product_stock'];
+                } else {
+                    $product['today_stock'] = 0;
+                }
+            }
+            $new_data[] = $product;
+        }
+        $a_data['product'] = $new_data;
+        $a                 = str_replace(",,", ",", $a);
+        $a                 = str_replace(",,", ",", $a);
+        $a                 = rtrim($a, ",");
+        $a                 = explode(",", $a);
+        $a_data['name']    = array_unique($a);
+        // 2级
+        $a_data['pro'] = $this->db->limit(0, 99999999999)->get('pro', ['is_show' => 1]);
+        //3级分类
+        $a_data['search'] = $this->set_model->category($i_one, $i_two);
+        $a_data['price']  = $this->db->limit(0, 99999999999)->get('price', ['price >' => 0]);
+        $a_data['sto']    = $this->db->limit(0, 99999999999)->get('prod_sto', ['store_id' => $_SESSION['store_id']]);
+        $i                = 0;
+        foreach ($a_data['sto'] as $key => $value) {
+            $new_data[$i] = $value['product_id'];
+            $i++;
+        }
+        $a_data['mendian'] = $new_data;
+        // print_r($a_data['mendian']);
+        $this->view->display('store_product', $a_data);
+    }
+
+    // 门店产品删除
+    public function product_dele()
+    {
+        $id      = trim($this->general->post('id'));
+        $a_goods = $this->db->delete('prod_sto', ['product_id' => $id, 'store_id' => $_SESSION['store_id']]);
+        // 删除当前产品库存数据
+        $a_where  = [
+            'store_id'   => $_SESSION['store_id'],
+            'product_id' => $id,
+        ];
+        $i_result = $this->db->delete('stock', $a_where);
+        if ($a_goods) {
+            echo json_encode(20);
+        } else {
+            echo json_encode(40);
+        }
+    }
+
+    //产品状态修改
+    public function product_state()
+    {
+        $i_state = $this->general->post('state');
+        if ($i_state == 1) {
+            $i_id   = $this->general->post('id');
+            $a_prod = $this->db->update('prod_sto', ['prod_show' => 2], ['id' => $i_id, 'store_id' => $_SESSION['store_id']]);
+        } else {
+            $i_id   = $this->general->post('id');
+            $a_prod = $this->db->update('prod_sto', ['prod_show' => 1], ['id' => $i_id, 'store_id' => $_SESSION['store_id']]);
+        }
+        if ($a_prod) {
+            echo json_encode(66);
+        } else {
+            echo json_decode(88);
+        }
+    }
+
+    //添加门店产品
+    public function product_add()
+    {
+        // 单个添加
+        $i_id      = $this->general->post('id');
+        $pro_stock = $this->general->post('pro_stock');
+        $a_product = $this->db->get_row('prod_sto', ['product_id' => $i_id, 'store_id' => $_SESSION['store_id']]);
+        if (empty($a_product)) {
+            $a_data    = [
+                'product_id' => $i_id,
+                'store_id'   => $_SESSION['store_id'],
+                'prod_show'  => 1,
+                'pro_stock'  => $pro_stock,
+            ];
+            $a_product = $this->db->insert('prod_sto', $a_data);
+            if ($a_product) {
+                echo json_encode(22);
+                die;
+            } else {
+                echo json_encode(44);
+                die;
+            }
+        }
+    }
+
+    // 修改库存
+    public function update_stock()
+    {
+        // 接收参数
+        $product_id = $this->general->post('product_id');
+        $stock_num  = $this->general->post('stock_num');
+        // 验证当日库存是否存在
+        $today_start  = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+        $a_where      = [
+            'store_id'   => $_SESSION['store_id'],
+            'product_id' => $product_id,
+            'stock_time' => $today_start,
+        ];
+        $a_data_stock = $this->db->get_row('stock', $a_where);
+        if (!empty($a_data_stock)) {
+            // 不为空则更新
+            $a_where_update = [
+                'stock_id' => $a_data_stock['stock_id'],
+            ];
+            $a_data_update  = [
+                'product_stock' => $stock_num,
+            ];
+            $i_result       = $this->db->update('stock', $a_data_update, $a_where_update);
+        } else {
+            // 插入一条当日库存
+            $a_data_insert = [
+                'product_id'    => $product_id,
+                'store_id'      => $_SESSION['store_id'],
+                'product_stock' => $stock_num,
+                'stock_time'    => $today_start,
+            ];
+            $i_result      = $this->db->insert('stock', $a_data_insert);
+        }
+        if ($i_result) {
+            echo json_encode(['code' => 200, 'msg' => '设置成功']);
+        } else {
+            echo json_encode(['code' => 400, 'msg' => '设置失败']);
+        }
+    }
+
+
+    public function package_showlist()
+    {
+        // 先设置默认从第一页开始
+        $i_page = $this->router->get(1);
+        if (empty($i_page)) {
+            $i_page = 1;
+        }
+        // 设置每页显示的数据行数
+        $i_prow = 10;
+        // 加载分页类
+        $this->load->library('pages');
+        // 获取数据总行数
+        $a_where = [
+            'product_group' => 1,
+        ];
+        $i_total = $this->db->get_total('product', $a_where);
+        // 调用分页运算函数
+        $a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+        // 开始获取产品数据
+        $this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+        $s_field         = 'proid_id_1, proid_id_2, proid_id_3, antistop, product_name, order, pro_details, pro_image, pro_img, goods_stye, pro_show, supply_time, product_group, group_product,' . $this->db->get_prefix() . 'product.product_id, ' . $this->db->get_prefix() . 'price.price';
+        $a_order         = [
+            'product_id' => 'desc',
+        ];
+        $a_product       = $this->db->from('product')
+            ->join('price', [$this->db->get_prefix() . 'product.product_id' => $this->db->get_prefix() . 'price.product_id'])
+            ->get('', $a_where, $s_field, $a_order);
+        $a_data['count'] = $i_total;
+        // 验证当前门店是否有该产品
+        if (!empty($a_product)) {
+            $today_start = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+            foreach ($a_product as $key => $value) {
+                $a_where    = [
+                    'product_id' => $value['product_id'],
+                    'store_id'   => $_SESSION['store_id'],
+                ];
+                $a_prod_sto = $this->db->get_row('prod_sto', $a_where);
+                if (!empty($a_prod_sto)) {
+                    $value['ishavepro'] = 1;
+                    if ($a_prod_sto['prod_show'] == 1) {
+                        $value['prod_show'] = 1;
+                    } else {
+                        $value['prod_show'] = 2;
+                    }
+                    // 验证当前库存
+                    $a_where     = [
+                        'product_id' => $value['product_id'],
+                        'store_id'   => $_SESSION['store_id'],
+                        'stock_time' => $today_start,
+                    ];
+                    $a_stock_row = $this->db->get_row('stock', $a_where);
+                    if (!empty($a_stock_row)) {
+                        $value['today_stock'] = $a_stock_row['product_stock'];
+                    } else {
+                        $value['today_stock'] = $a_prod_sto['pro_stock'];
+                    }
+                } else {
+                    $value['ishavepro']   = 0;
+                    $value['today_stock'] = 0;
+                    $value['prod_show']   = 2;
+                }
+                $new_data[] = $value;
+            }
+            $a_data['product'] = $new_data;
+        } else {
+            $a_data['product'] = [];
+        }
+        $this->view->display('package_showlist', $a_data);
+    }
+
+
+    public function package_add()
+    {
+        // 接收数据
+        $product_id = trim($this->general->post('product_id'));
+        $pro_stock  = trim($this->general->post('pro_stock'));
+        $a_where    = [
+            'product_id' => $product_id,
+            'store_id'   => $_SESSION['store_id'],
+        ];
+        $a_prod_sto = $this->db->get_row('prod_sto', $a_where);
+        if (empty($a_prod_sto)) {
+            $a_data_insert = [
+                'product_id' => $product_id,
+                'pro_stock'  => $pro_stock,
+                'store_id'   => $_SESSION['store_id'],
+            ];
+            $i_result      = $this->db->insert('prod_sto', $a_data_insert);
+            if ($i_result) {
+                echo json_encode(['code' => 200, 'msg' => '上架成功']);
+            } else {
+                echo json_encode(['code' => 400, 'msg' => '上架失败']);
+            }
+        }
+    }
+
+    public function package_delete()
+    {
+        $product_id = trim($this->general->post('product_id'));
+        $a_where    = [
+            'product_id' => $product_id,
+            'store_id'   => $_SESSION['store_id'],
+        ];
+        $i_result   = $this->db->delete('prod_sto', $a_where);
+        if ($i_result) {
+            // 删除库存数据
+            $i_result = $this->db->delete('stock', $a_where);
+            echo json_encode(['code' => 200, 'msg' => '下架成功']);
+        } else {
+            echo json_encode(['code' => 400, 'msg' => '下架失败']);
+        }
+    }
+
+    public function package_switch()
+    {
+        $product_id = trim($this->general->post('product_id'));
+        $a_where    = [
+            'product_id' => $product_id,
+            'store_id'   => $_SESSION['store_id'],
+        ];
+        $a_prod_sto = $this->db->get_row('prod_sto', $a_where);
+        if ($a_prod_sto['prod_show'] == 1) {
+            $a_data = [
+                'prod_show' => 2,
+            ];
+        } else {
+            $a_data = [
+                'prod_show' => 1,
+            ];
+        }
+        $i_result = $this->db->update('prod_sto', $a_data, $a_where);
+        if ($i_result) {
+            echo json_encode(['code' => 200, 'msg' => '设置成功']);
+        } else {
+            echo json_encode(['code' => 400, 'msg' => '设置失败']);
+        }
+    }
+
+}

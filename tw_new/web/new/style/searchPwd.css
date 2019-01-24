@@ -1,0 +1,36 @@
+html    {background:white;}
+/*  头部 */
+.searchPwd                   { width:100%; height:70px; background:url(../img/sePwd.png) no-repeat; background-size:100% 68px; }
+.head                        { width:100%; padding-top:38px; }
+.head>a>i                    { width:14px; display:inline-block; padding:0 20px; margin-right:10px; border-right:1px solid #E8E8E8;}
+.head>a>i>img                { width:100%;}
+.head>span                   { height:34px; vertical-align:middle; display:inline-block; color:white;}
+/*  头部 */
+/* 验证 */
+.validate                    { background:white; }
+.validate ul                 { margin:0 12px; }
+.validate ul>li              { padding:15px 0; border-bottom:1px solid #E8E8E8; font-size:16px; }
+.validate ul>li input       { font-size:16px; color:black; }
+.validate ul>li>span        { width:70px; display:inline-block; color:#666666;}
+.searchUserPhone em                { color:#757575;}
+.searchUserCode                    { position:relative; }
+.searchUserCode>i                                    { width:105px; position:absolute; display:inline-block; right:9px; bottom:5px; }
+.searchUserCode>i>img                                { width:100%;}
+.searchUserCode>a,.searchUserCode>b,.searchUserCode>em          { width:120px; height:30px; line-height:30px; text-align:center;  position:absolute; right:0;  bottom:8px; color:#5856D7; }
+.searchUserpwd,.searchRePwd                                 { position:relative; }
+.searchUserpwd>i,.searchRePwd>i                             { width:20px; position:absolute; right:15px; bottom:14px;}
+.searchUserpwd img,.searchRePwd img                         { width:100%;}
+    /* 提交*/
+.searchSub                     { text-align:center; margin-top:20px; }
+.searchSub>img                 { width:135px; }
+/* 提交*/
+/* 验证 */
+
+/*  验证提示 */
+.searchRegTips                    { width:80%; position:absolute; top:50%; left:50%;  text-align:center; margin:18% 0 0 -42.5%; padding:10px; color:white; background:black; opacity:0.5; border-radius:4px;}
+
+
+
+
+
+

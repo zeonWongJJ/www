@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">网医字典</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+字段名：id
+</div>
+<div class="desc">
+	ID主键，可进行搜索、范围匹配、排序
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+字段名：title
+</div>
+<div class="desc">
+	标题，可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+字段名：keyword
+</div>
+<div class="desc">
+	关键词，可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+字段名：description
+</div>
+<div class="desc">
+	描述（非正文），可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+字段名：content
+</div>
+<div class="desc">
+	正文内容，可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+字段名：author
+</div>
+<div class="desc">
+	作者，可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+字段名：catid
+</div>
+<div class="desc">
+	分类ID，可进行搜索、范围匹配、排序
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+字段名：thumb
+</div>
+<div class="desc">
+	缩略图，可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">10</span>
+字段名：url
+</div>
+<div class="desc">
+	文章链接，可进行搜索
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">11</span>
+字段名：timecreate
+</div>
+<div class="desc">
+	发表时间，可进行搜索、范围匹配、排序
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">12</span>
+字段名：timeupdate
+</div>
+<div class="desc">
+	更新时间，可进行搜索、范围匹配、排序
+</div>
+</div>
+
+</body>
+</html>

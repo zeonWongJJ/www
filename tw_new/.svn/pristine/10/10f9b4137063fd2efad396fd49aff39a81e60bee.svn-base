@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':ModuleLib:ucrop')
+    implementation deps.appcompatV7
+    implementation deps.recyclerviewV7
+
+    implementation deps.glide
+    annotationProcessor deps.annotationProcessor
+    //RxAndroid
+    implementation deps.rxandroid
+    //RxJava
+    implementation deps.rxjava
+    implementation deps.adapterRxjava
+}

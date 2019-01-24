@@ -1,0 +1,64 @@
+/* 头部�*/
+header          { width:100%; float:left; background:#5856D7;}
+
+/* 头像 */
+.setBox         { width:100%; float:left; padding:10px 0;}
+.setBox>a:first-child       { float:left; color:white; margin-left:10px;}
+.setBox>a:last-child>i       { float:right; color:white; font-size:20px;  margin-right:10px;}
+/* 头像 */
+
+/* 用户信息 */
+.userDetails         { clear:both; padding:16px 0;}
+.userDetails>i       { width:60px; float:left; margin-left:20px; margin-bottom:20px;}
+.userDetails>i>img   { width:100%; float:left; border-radius:50%;}
+.userInfo            { display:inline-block; margin-top:5px; margin-left:15px;}
+.userInfo>p          { text-align:center; color:white; margin-bottom:10px; }
+.userInfo>a          { display:inline-block; padding:0 10px; background:#4341C8; border-radius:15px; }
+.userInfo>a          { color:white; font-size:12px;}
+/* 用户信息 */
+
+/* 头部*/
+
+/* 账户 */
+.account                { clear:both; padding:12px; background:white;}
+.accountBox             { padding-bottom:15px; border-bottom:1px solid #dddddd; }
+/* 余额 */
+.balance                { display:inline-block;}
+.balance>span           { font-size:14px; color:#dddddd;}
+.balance>p              { font-size:22px; color:#FF5A5A; margin-top:5px;}
+/* 余额*/
+/* 充值 */
+.rech                   { float:right; margin-top:16px;}
+.rech>a                 { padding:10px 24px; color:white; font-size:14px; border-radius:20px; }
+.rech>a:first-child    { background:#FF5A5A;}
+.rech>a:last-child     { background:#4341C8;}
+/*充值*/
+/* 导航*/
+.nav                    { font-size:0; margin-top:6px; }
+.nav>a                  { width:33.3%; display:inline-block;}
+.nav>a>p                { text-align:center; font-size:14px; color:gray; margin-top:5px;}
+.nav>a>p:last-child    { color:black; font-weight:bold;}
+ /*导航*/
+/*  账户 */
+
+/*  用户状态列表 */
+.stateList                 { margin:12px 5px;}
+.stateList>ul              { width:100%; float:left; background:white; border-radius:5px;}
+.stateList li              { width:20%; float:left; margin:10px 0;}
+.stateList li p            { text-align:center; font-size:14px; color:gray;}
+.stateList li p:last-child{ color:black; font-weight:bold;}
+/*  用户状态列表 */
+
+/*  用户功能列表  */
+.cataList                 { clear:both; margin-top:136px; margin-bottom:100px; }
+.cataList>ul              { background:white; }
+.cataList li              { padding:10px 0; border-bottom:1px solid #dddddd;}
+.cataList li>a>em>i       { margin:0 10px; font-size:20px; color:red;}
+.cataList li>a>em>span    { color:black; }
+.cataList li>a>span       { float:right; font-size:14px; color:#dddddd; margin-right:10px;}
+/*  用户功能列表  */
+
+
+
+
+

@@ -1,0 +1,31 @@
+/* ��ֵ��� */
+.pjoTitle>a.back{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a.back>img{ width:0.85rem; }
+.balanceTitle{ text-align:center; padding-top:0.85rem;  background:white; border-bottom:1px solid #d7d7d7; }
+.balanceTitle>img{ width:0.3rem; margin-top:0.4rem; margin-left:0.53rem; float:left; }
+.balanceTitle>span{ display:inline-block; padding:0.32rem 0; font-size:0.42rem; }
+ /* ֧����ʽ */
+.payMethod{ display:block; margin:0.26rem 0; background:white;  }
+.payMethod>em{ display:inline-block; height:1.3rem; line-height:1.3rem; padding:0 0.38rem; }
+.payMethod>em>img{ width:0.8rem; }
+.payMethod>em>span{ display:inline-block; margin-left:0.26rem; font-size:0.37rem; font-style:normal; }
+.payMethod>em>img,.payMethod>em>span{ vertical-align:middle; }
+.payMethod>img{ width:0.22rem; float:right; margin-top:0.45rem; margin-right:0.26rem; }
+/* ��ֵ��� */
+.rechangeContent{ position:relative; padding:0 0.46rem; background:white; }
+.rechangeContent>h1{ padding:0.5rem 0; font-size:0.37rem; }
+.rechangeContent>span{ position:absolute; bottom:0.7rem; font-size:0.56rem; }
+.rechangeContent>input{ width:9.12rem; padding-left:0.7rem; margin-bottom:0.5rem; font-size:1.3rem; border-bottom:0.02rem solid #efefef; }
+.rechangeContent>p{ padding:0.26rem 0; font-size:0.32rem; }
+.rechangeContent>p>a{ display:inline-block; margin-left:0.21rem; color:#3e87db; }
+#rechangeSub{ width:9.12rem; display:block; margin:0.2rem auto; padding:0.37rem 0; font-size:0.45rem; background:#e10030; color:white; border-radius:0.13rem; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:black; opacity:0.5; z-index:1; }
+.choiceAccout{ width:8.2rem; position:absolute; top:5rem; left:0.95rem; z-index:2; background:white; border-radius:10px; }
+.choiceAccout>dl>dt{ position:relative; padding:0.48rem 0; text-align:center; }
+.choiceAccout>dl>dt>span{ font-size:0.42rem; font-weight:bold;  }
+.choiceAccout>dl>dt>img{ position:absolute; width:0.24rem; right:0.44rem; top:0.6rem; }
+.choiceAccout>dl>dd{ height:1.17rem; line-height:1.17rem; padding:0 0.45rem; border-top:0.02rem solid #ddd; }
+.choiceAccout>dl>dd>img{ width:0.8rem; }
+.choiceAccout>dl>dd>span{ display:inline-block; margin-left:0.26rem; font-size:0.37rem; font-style:normal; }
+.choiceAccout>dl>dd>img,.choiceAccout>dl>dd>a>span{ vertical-align:middle; }

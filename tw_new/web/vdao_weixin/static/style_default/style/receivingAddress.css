@@ -1,0 +1,31 @@
+/* 收货地址 */
+.pjoTitle{ position:relative; border-bottom:none; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+/* 地址列表 */
+.listInfo{ margin-top:0.29rem; background:white; }
+.listInfo:first-child{ margin-top:0; }
+.userInfo,.addressInfo{ font-size:0.36rem; }
+.userInfo{ padding:0 0.37rem; padding-top:0.44rem; }
+.userInfo>span{ color:black; }
+.userInfo>em{ font-style:normal; }
+.operation{ float:right; }
+.operation>a{ display:inline-block; margin-left:0.61rem; }
+.addressInfo{ padding:0.26rem 0.37rem; color:#666666; }
+.addressTool>div{ display:inline-block; }
+.addressTool{ padding:0.26rem 0.37rem; border-top:0.01rem solid #ddd; }
+.choCur>span{ color:#fa4b09; }
+.choDefault>img{ width:0.37rem; }
+.addressTool span{ font-size:0.34rem; }
+.edit>img{ width:0.33rem; }
+.del>img{ width:0.25rem; }
+.addressTool>div img,.addressTool>div span{ vertical-align:middle; }
+.rangeNone>p{ padding:0.18rem 0.34rem; font-size:0.34rem; color:#999999; }
+.rangeNone div.choDefault>span{ color:#666666; }
+/* 新增地址 */
+.addAddress{ width:90%; height:1.06rem; line-height:1.06rem; display:block; text-align:center; margin:0.29rem auto; background:#fa4b09; border-radius:0.1rem;  }
+.addAddress>img{ width:0.5rem; }
+.addAddress>span{ color:white; font-size:0.36rem; }
+.addAddress>img,.addAddress>span{ vertical-align:middle;  }
+
+

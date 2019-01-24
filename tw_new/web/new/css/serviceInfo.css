@@ -1,0 +1,18 @@
+body{ background:#efefef; }
+/*  服务信息 */
+.infoBox>ul                   { background:white; }
+.infoBox>ul>li>i>img          { width:0.6rem; vertical-align:super; }
+.address                       { padding:0.4rem 0; margin-left:1.2rem; border-bottom:0.01rem solid #ddd;  }
+.addressInfo                   { width:6.4rem; display:inline-block; padding-right:0.5rem; border-right:0.01rem solid #ddd; }
+.addressInfo>p                 { margin-left:-0.5rem; font-size:0.4rem; color:black; }
+.default                        { color:#666EF4; font-style:normal; }
+.addressInfo>span              { display:inline-block; margin-top:0.1rem; margin-left:-0.5rem; font-size:0.4rem; color:#999; }
+.address>p                     { float:right; margin-right:0.4rem; }
+.address>p>em                  { display:inline-block; }
+.address>p>em>img              { width:0.7rem; vertical-align:middle; }
+/*  新增地址 */
+.pushAddress                    { position:absolute; bottom:0.3rem; left:0.5rem; }
+.pushAddress>a                  { width:9rem; height:1.2rem; text-align:center; display:inline-block; line-height:1.2rem; font-size:0.45rem ;color:white; border-radius:0.2rem; background:linear-gradient(120deg,#6671f3,#66b2ea); }
+.pushAddress>a>img              { width:0.75rem; vertical-align:middle; }
+
+

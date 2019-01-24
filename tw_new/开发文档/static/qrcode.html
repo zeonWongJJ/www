@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">二维码</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载二维码类
+	$this->load->library('phpqrcode');
+	// 使用$this->phpqrcode>方法名进行访问操作
+</code>
+</pre>
+</div>
+<div class="desc">
+	基于lgpl开源协议的phpqrcode类库进行二次封装
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->phpqrcode>qrcode(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	直接在屏幕输出二维码，或者生成二维码文件。
+</div>
+<code class="language-php">
+	$this->phpqrcode>qrcode();
+</code>
+<div class="desc">
+	此函数根据参数返回结果。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 直接屏幕输出二维码
+$this->load->library('phpqrcode');
+$a_param = [
+	// 要生成二维码的数据，必填
+	'data' => '20171012110138152',
+	// 二维码图片大小，选填，默认4
+	'size' => 10,
+	// 二维码错误修正级别L/M/Q/H，选填，默认“L”。L水平 7% 的字码可被修正，M水平 15% 的字码可被修正，Q水平 25% 的字码可被修正，H水平 30% 的字码可被修正
+	'level' => 'L'
+];
+$this->phpqrcode->qrcode($a_param);
+
+// 生成二维码文件
+$this->load->library('phpqrcode');
+$a_param = [
+	// 要生成二维码的数据，必填
+	'data' => '20171012110138152',
+	// 二维码文件生成路径，选填，不设置将直接浏览器输出，设置此参数，二维码将不直接输出，而是生成文件
+	'file_name' => 'abc.png',
+	// 二维码图片大小，选填，默认4
+	'size' => 10，
+	// 二维码错误修正级别L/M/Q/H，选填，默认“L”。L水平 7% 的字码可被修正，M水平 15% 的字码可被修正，Q水平 25% 的字码可被修正，H水平 30% 的字码可被修正
+	'level' => 'L'
+];
+$this->phpqrcode->qrcode($a_param);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->phpqrcode->qrcode_logo(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	生成带logo图片的二维码。
+</div>
+<code class="language-php">
+	$this->phpqrcode->qrcode_logo();
+</code>
+<div class="desc">
+	此函数根据参数返回。
+</div>
+<pre class="line-numbers">
+<code class="language-php">
+// 二维码中间带logo图片，直接在浏览器输出
+$this->load->library('phpqrcode');
+$a_param = [
+	// 要生成二维码的数据，必填
+	'data' => '20171012110138152',
+	// 二维码文件生成路径，必填，设置此参数，二维码将不直接输出，而是生成文件
+	'file_name' => 'abc.png',
+	// 用来放在二维码中间的logo图片路径，必填
+	'logo' => './image/icon_collect.png',
+	// 二维码图片大小，选填，默认4
+	'size' => 10,
+	// 二维码错误修正级别L/M/Q/H，选填，默认“L”。L水平 7% 的字码可被修正，M水平 15% 的字码可被修正，Q水平 25% 的字码可被修正，H水平 30% 的字码可被修正
+	'level' => 'L'
+];
+$this->phpqrcode->qrcode_logo($a_param);
+
+// 二维码中间带logo图片，生成到文件
+$this->load->library('phpqrcode');
+$a_param = [
+	// 要生成二维码的数据，必填
+	'data' => '20171012110138152',
+	// 二维码文件生成路径，必填，设置此参数，二维码将不直接输出，而是生成文件
+	'file_name' => 'abc.png',
+	// 用来放在二维码中间的logo图片路径，必填
+	'logo' => './image/icon_collect.png',
+	// 带logo的二维码文件生成路径，选填，不设置此参数，二维码将直接输出，设置此参数，将生成文件
+	'file_name_logo' => 'def.png',
+	// true自动删除二维码文件，选填，默认false，本来会产品两个文件，一个二维码文件，一个带logo的二维码，设置此参数，自动删除不带logo的那个二维码
+	'del_file' => true,
+	// 二维码图片大小，选填，默认4
+	'size' => 10,
+	// 二维码错误修正级别L/M/Q/H，选填，默认“L”。L水平 7% 的字码可被修正，M水平 15% 的字码可被修正，Q水平 25% 的字码可被修正，H水平 30% 的字码可被修正
+	'level' => 'L'
+];
+$this->phpqrcode->qrcode_logo($a_param);
+</code>
+</pre>
+</div>
+
+
+</body>
+</html>

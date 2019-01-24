@@ -1,0 +1,23 @@
+.sys_config_item {
+    display:table;
+    border-top: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
+    border-left: 1px #ccc solid;
+    height: 200px;
+    /*line-height: 200px;*/
+    text-align: center;
+}
+.sys_config_item:nth-child(4n+4) {
+    border-right: 1px #ccc solid;
+}
+
+.sys_config_item .sys_config_inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sys_config_item .sys_config_inner .sys_config_title {
+    font-size: 16px;
+    margin-bottom: 10px;
+
+}

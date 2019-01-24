@@ -1,0 +1,21 @@
+/* ������� */
+body{ background:#ffed6d; }
+.pjoTitle{ position:relative; }
+.pjoTitle>a.back{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a.back>img{ width:0.85rem; }
+/* ���� */
+.rule{ height:9.12rem;  background-image:url(../images/red_bg.png); background-repeat:no-repeat; background-position:0 -2rem; background-size:10rem 18.12rem; }
+.ruleContent{ padding:0 0.66rem; padding-top:1.3rem; }
+.ruleContent>p{ margin-top:0.53rem; font-size:0.37rem; color:white;  }
+.ruleContent>p:first-child{ margin-top:0; }
+.rule>p{ text-align:center; margin-top:0.6rem; font-size:0.34rem; color:white;  }
+/* ���뷽ʽ */
+.invitationMode{ text-align:center; }
+.invitationMode>p>em{ display:inline-block; width:1.5rem; height:0.04rem; vertical-align:middle; background:black;  }
+.invitationMode>p>span{ display:inline-block; margin:0 0.32rem; font-size:0.37rem; vertical-align:middle; }
+.modeContent{ width:7.06rem; margin:0.86rem auto; padding:0.7rem 0; background:#fff5aa; }
+.modeContent>a{ display:inline-block; margin:0 0.8rem;  }
+.modeContent>a>img{ width:1.16rem; }
+.modeContent>a>span{ display:block; font-size:0.38rem; margin-top:0.26rem; }
+
+

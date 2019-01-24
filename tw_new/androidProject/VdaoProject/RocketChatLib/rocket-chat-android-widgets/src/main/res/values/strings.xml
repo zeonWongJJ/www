@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_composer_message_hint">Message</string>
+    <string name="click_to_load">点击下载</string>
+    <string name="no_channel_found">频道不存在</string>
+    <string name="no_user_found">用户不存在</string>
+
+    <item type="id" name="tag_voice_path"></item>
+    <item type="id" name="tag_voice_animation"></item>
+</resources>

@@ -1,0 +1,60 @@
+body{
+	background: #25d7d5;
+}
+.main{
+	width: 365px;
+	height: 370px;
+	/*background: pink;*/
+	margin: 0 auto;
+	margin-top: 170px;
+}
+.main .title{
+	font-size: 22px;
+	color: white;
+	text-align: center;
+}
+.main .name{
+	width: 345px;
+	height: 50px;
+	background: #00b9b7;
+	border-radius: 4px;
+	line-height: 50px;
+	font-size: 0;
+	margin:0 auto;
+	margin-top: 40px;
+}
+.main .name span{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 18px;
+	color: white;
+	margin-left: 24px;
+	width: 70px;
+}
+.main .name input{
+	margin-left: 100px;
+	display: inline-block;
+	vertical-align: top;
+	width: 150px;
+	height: 50px;
+	font-size: 18px;
+	color: white;	
+	background: none;
+}
+.main .password{
+	margin-top: 30px;
+}
+.main .submit{
+	margin: 0 auto;
+}
+.main .submit input{
+	display: inline-block;
+	width: 340px;
+	height: 50px;
+	background: #28ebe9;
+	border-radius: 4px;
+	margin: 65px 0 0 10px;
+	font-size: 18px;
+	color: white;
+	cursor: pointer;
+}

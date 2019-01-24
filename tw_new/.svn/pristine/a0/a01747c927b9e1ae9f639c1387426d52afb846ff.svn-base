@@ -1,0 +1,3 @@
+FROM swoft/swoft
+
+EXPOSE 80

@@ -1,0 +1,235 @@
+/*banner*/
+.jiajie-common_banner {
+    position: relative;
+    height: 700px;
+    width: 100%;
+    background: #18b4ed;
+    background: url("../../img/index_banner.jpg") no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.jiajie-common_banner .jiajie-home_banner_inner {
+    background: rgba(75, 94, 101, 0.5);
+    position: absolute;
+    top: 153px;
+    left: 50%;
+    margin-left: -371.5px;
+    width: 743px;
+    height: 266px;
+}
+
+.jiajie-common_banner .jiajie-home_banner_inner p {
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    margin-left: -50px;
+    height: 2px;
+    background: #FFFFFF;
+    width: 100px;
+}
+
+.jiajie-common_banner .jiajie-home_banner_inner h1 {
+    margin-top: 64px;
+    color: #ffffff;
+    font-size: 70px;
+    text-align: center;
+}
+
+.jiajie-common_banner .jiajie-home_banner_inner h2 {
+    margin-top: 25px;
+    color: #ffffff;
+    font-size: 40px;
+    text-align: center;
+}
+
+.jiajie-section-1 .jiajie-section_title {
+    color: #2ddeea;
+    font-size: 32px;
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 65px;
+}
+
+.jiajie-section-1 dl {
+    margin-left: 127px;
+    width: 240px;
+    float: left;
+    overflow: hidden;
+}
+
+.jiajie-section-1 dl dt {
+    position: relative;
+    left: 20px;
+    width: 198px;
+    height: 198px;
+    line-height: 198px;
+    border-radius: 50px;
+    border: 1px #18b4ed solid;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.jiajie-section-1 dl dd {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.jiajie-section-1 dl dd h3 {
+    color: #333333;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.jiajie-section-1 dl dd p {
+    margin-top: 30px;
+    line-height: 36px;
+    color: #707070;
+    font-size: 16px;
+}
+
+.jiajie-section-1 dl dt img {
+    display: table;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+
+.jiajie-section-2 {
+    position: relative;
+    box-sizing: border-box;
+    z-index: 1;
+    margin-top: 90px;
+    padding-top: 40px;
+    background: #18b4ed;
+    height: 498px;
+}
+
+.jiajie-section-2:after {
+    content: '     ';
+    clear: both;
+}
+
+.jiajie-section-2 .jiajie-section_title {
+    text-align: center;
+    width: 100%;
+    color: #FFFFFF;
+    font-size: 40px;
+}
+
+.jiajie-section-2 .jiajie-section_small_title {
+    margin-top: 20px;
+    margin-bottom: 85px;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.jiajie-section-2 .jiajie-section-2_items {
+    z-index: 100;
+    top: 200px;
+    height: 300px;
+    width: 1077px;
+    margin: 0 auto;
+}
+
+.jiajie-section-2 .jiajie-section-2_items .jiajie-section-2_item {
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+    padding-top: 50px;
+    margin-left: 35px;
+    width: 243px;
+    height: 294px;
+    background: #ffffff;
+    /*border: #18b4ed 1px solid;*/
+    box-shadow: 0 0 10px rgba(24, 180, 237, 0.5);
+    -webkit-transition: border linear .2s, -webkit-box-shadow linear .5s;
+    -webkit-box-shadow: 0 0 10px rgba(24, 180, 237, 0.5);
+}
+
+.jiajie-section-2 .jiajie-section-2_items .jiajie-section-2_item:first-child {
+    margin-left: 0;
+}
+
+.jiajie-section-2 .jiajie-section-2_items .jiajie-section-2_item img {
+    margin: 0 auto;
+    display: block;
+    width: 98px;
+    height: 100px;
+}
+
+.jiajie-section-2 .jiajie-section-2_items .jiajie-section-2_item h2 {
+    margin-top: 50px;
+    margin-bottom: 13px;
+    font-size: 28px;
+    font-weight: bolder;
+    color: #000;
+    text-align: center;
+}
+
+.jiajie-section-2 .jiajie-section-2_items .jiajie-section-2_item p {
+    color: #333333;
+    font-size: 16px;
+    text-align: center;
+}
+
+.jiajie-section-2 .jiajie-section-2_items .jiajie-section-2_item .jiajie-section-2_item_fuck_bottom {
+    position: absolute;
+    height: 4px;
+    width: 70px;
+    background: #18b4ed;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -35px;
+    z-index: 100;
+}
+
+/*联系我们区域*/
+.jiajie-section-3 {
+    margin-top: 194px;
+}
+
+.jiajie-section-3 .jiajie-section_title {
+    color: #1fc2ec;
+    font-size: 32px;
+    text-align: center;
+}
+
+.jiajie-section-3 .jiajie-section-3-items {
+    position: relative;
+    margin-top: 73px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.jiajie-section-3-items dl {
+    float: left;
+}
+
+.jiajie-section-3-items dt {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.jiajie-section-3-items dt img {
+    /*width: 47px;*/
+    height: 64px;
+}
+
+.jiajie-section-3-items > dl:nth-child(1) {
+    /*margin-left: 67px;*/
+    width: 382px;
+}
+
+.jiajie-section-3-items > dl:nth-child(3) {
+    width: 178px;
+    margin-left: 232px;
+}
+
+body > div.jiajie-section-3.jiajie-common_full > div > div.jiajie-section-3-items > dl:nth-child(2) {
+    width: 138px;
+    margin-left: 131px;
+}
+
+.jiajie-section-3-items dd {
+    text-align: center;
+}

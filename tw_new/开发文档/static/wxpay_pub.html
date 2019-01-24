@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">微信公众号支付</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载微信支付接口类
+	$this->load->library('wxpay_pub');
+	// 使用$this->wxpay_pub>方法名进行访问操作
+</code>
+</pre>
+</div>
+<div class="desc">
+	因为公众号支付相关的操作，和H5支付略有区别，所以单独写了一个说明文档。<br />
+	在框架的libraries\pay\wxpay_pub目录下有个config_wxpubpay.php的配置文件，<br />
+	里面用来配置商户的密钥等信息，请复制此文件放到项目的config目录下，并且根据项目实际情况进行配置，<br />
+	如果项目的config目录下不存在config_wxpubpay.php文件，将会默认调用libraries\pay\wxpay_pub\config_wxpubpay.php。<br />
+	<b><a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=9_20&index=1" target="_blank">微信接口文档，点此链接查看参数</a></b>
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->wxpay_pub->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	交易支付功能
+</div>
+<code class="language-php">
+	$this->wxpay_pub->pay();
+</code>
+<div class="desc">
+	此函数返回一段javascript代码，通过调用wxpay()函数来触发微信支付。代码中共包含 wxpay 和 wxpay_call两个函数(可自定义名称)，请注意使用的时候避免函数名冲突。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 这是所有支持的参数
+$a_param = [
+	// 商品描述，必填
+	'body' => '',
+	// 商户订单号，必填
+	'out_trade_no' => '',
+	// 标价金额，必填，标价金额，单位为分
+	'total_fee' => '',
+	// 异步通知URL，必填
+	'notify_url' => '',
+	// 附加数据，选参
+	'attach' => '',
+	// 交易起始时间，选参，不填写默认使用当前时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010
+	'time_start' => '',
+	// 交易结束时间，选参，默认在起始时间的10分钟后失效，格式为整数，以秒为单位，如想在1小时后结束，传入：3600
+	'time_expire' => '',
+	// 订单优惠标记，选参，订单优惠标记，使用代金券或立减优惠功能时需要的参数
+	'goods_tag' => '',
+	// 随机字符串，增加破译的难度，选参
+	'nonce_str' => '',
+	// 商品详情，选参
+	'detail' => '',
+	// 商品ID，选参，即扫码支付，此参数必传
+	'product_id' => '',
+	// 调用微信支付的js函数名，选参，默认使用wxpay() 和 wxpay_call()，如修改为"abc"，函数名将变为abc() 和 abc_call()
+	'pay_function_name' => 'wxpay',
+	// 支付成功后，跳转链接，选参，不填写则不跳转，注意，不能作为可靠依据，请以异步通知为准
+	'url_success' => '',
+	// 取消支付或支付失败后，跳转链接，选参，不填写则不跳转，注意，不能作为可靠依据，请以异步通知为准
+	'url_fail' => '',
+	// 获取令牌（token)后返回的链接，通常为当前程序的URL，默认为自动获取当前URL，选参
+	'openid_redirect_uri' => ''
+];
+
+
+// 使用举例：
+$this->load->library('wxpay_pub');
+$a_param = [
+	// 商品描述，必填
+	'body' => '测试',
+	// 商户订单号，必填
+	'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),
+	// 标价金额，必填，标价金额，单位为分
+	'total_fee' => 1,
+	// 异步通知URL，必填
+	'notify_url' => $this->router->url('test'),
+	// 支付成功后，跳转链接，选参，不填写则不跳转，注意，不能作为可靠依据，请以异步通知，或者订单查询结果为准
+	'url_success' => $this->router->url('a'),
+	// 取消支付或支付失败后，跳转链接，选参，不填写则不跳转，注意，不能作为可靠依据，请以异步通知，或者订单查询结果为准
+	'url_fail' => $this->router->url('b')
+];
+$s_result = $this->wxpay_pub->pay($a_param);
+
+echo $s_result;
+// 在微信里面点击”立即支付“按钮，触发支付界面
+echo '&lt;button onclick="wxpay()" &gt;立即支付&lt;/button&gt;';
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	完整的支付举例
+</code>
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+class Index_ctrl extends TW_Controller {
+	
+	public function __construct() {
+		parent :: __construct();
+	}
+	
+	public function test() {
+		// 使用举例：
+		$this->load->library('wxpay_pub');
+		$a_param = [
+			// 商品描述，必填
+			'body' => '测试',
+			// 商户订单号，必填
+			'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),
+			// 标价金额，必填，标价金额，单位为分
+			'total_fee' => 1,
+			// 异步通知URL，必填
+			'notify_url' => $this->router->url('notify'),
+			// 支付成功后，跳转链接，选参，不填写则不跳转，注意，不能作为可靠依据，请以异步通知，或者订单查询结果为准
+			//'url_success' => $this->router->url('notify'),
+			// 取消支付或支付失败后，跳转链接，选参，不填写则不跳转，注意，不能作为可靠依据，请以异步通知，或者订单查询结果为准
+			'url_fail' => $this->router->url('b')
+		];
+		$s_result = $this->wxpay_pub->pay($a_param);
+
+		echo $s_result;
+		// 在微信里面点击”立即支付“按钮，触发支付界面
+		echo '<button onclick="wxpay()" >立即支付</button>';
+	}
+	
+	// 异步通知接收
+	public function notify() {
+		// 注意，异步通知，这里引用了另外一个类
+		$this->load->library('wxpay_pub_notify');
+		
+		// true表示需要输出签名，默认是参数是true，适用于下面的方法一
+		$this->wxpay_pub_notify->Handle(true);
+		
+		// 验证数据安全方法一：(签名验证)
+		$b_result = $this->wxpay_pub_notify->get_verify_result();
+		if ($b_result) {
+			// 验证数据成功，处理业务逻辑
+			file_put_contents('./1.txt', print_r($this->wxpay_pub_notify->get_result_data(), true));
+			// 返回的数据格式：（如果不明白参数，请查看https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_7）
+			Array
+			(
+				[appid] => wxd40a4f9141fe81d0
+				[bank_type] => CFT
+				[cash_fee] => 1
+				[fee_type] => CNY
+				[is_subscribe] => Y
+				[mch_id] => 1450892002
+				[nonce_str] => lsr3hao0c6r2ymcozl0g8qala0yr51qy
+				[openid] => okjLDuMQrWo60D3tNrZai7rIB0tI
+				[out_trade_no] => 20171125042736301
+				[result_code] => SUCCESS
+				[return_code] => SUCCESS
+				[sign] => 85A178B31AF674F0F37A23429FBEFF3A
+				[time_end] => 20171125163100
+				[total_fee] => 1
+				[trade_type] => NATIVE
+				[transaction_id] => 4200000046201711256973248175
+			)
+		} else {
+			// 验证数据失败
+		}
+		
+		// 验证数据安全方法二：(查询验证)
+		/*$a_data = $this->wxpay_pub_notify->get_result_data();
+		if (isset($a_data['transaction_id']) && ! empty($a_data['transaction_id']) ) {
+			// 这里还需要调用微信支付的查询函数（H5的类也是可以的哦）
+			$this->load->library('wxpay_pub');
+			$a_result = $this->wxpay_pub->query($a_data);
+			// 判断查询结果
+			if ($a_result['result_code'] == 'SUCCESS' && $a_result['return_code'] == 'SUCCESS') {
+				// 通过查询结果得知，订单已成功支付，可以继续处理业务逻辑
+			} else {
+				// 通过查询结果得知，订单尚未支付
+			}
+		} else {
+			// 微信订单号不存在，数据有问题
+		}*/
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->wxpay_pub->refund(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	退款
+</div>
+<code class="language-php">
+	$this->wxpay_pub->refund();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('wxpay_pub');
+$a_param = [
+	// 微信订单号，在支付通知中有返回，和商户订单号必填其中一个
+	//'transaction_id' => '4200000019201710127570836440',
+	// 商户订单号，和微信订单号必填其中一个
+	'out_trade_no' => '20171012110138152',
+	// 订单金额，必填，单位为分
+	'total_fee' => 1,
+	// 退款金额，必填，单位为分
+	'refund_fee' => 1,
+	// 商户退款单号，必填
+	'out_refund_no' => date('Ymdhis', time()) . rand(100, 999),
+];
+$a_result = $this->wxpay_pub->refund($a_param);
+// 两种判断成功与否的写法
+//if ($a_data['result_code'] == 'SUCCESS' && $a_data['return_code'] == 'SUCCESS') {
+if ($this->wxpay_pub->check($a_result, 'REFUND')) {
+	echo '退款成功';
+} else {
+	// 对同一个订单重复退款，只有第一个次返回成功，后面都返回失败
+	echo '退款失败';
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->wxpay_pub->query(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	订单查询
+</div>
+<code class="language-php">
+	$this->wxpay_pub->query();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('wxpay_pub');
+$a_param = [
+	// 微信订单号，在支付通知中有返回，和商户订单号必填其中一个
+	'transaction_id' => '4200000008201710127626171905',
+	// 商户订单号，和微信订单号必填其中一个
+	//'out_trade_no' => '20171012110138152'
+];
+$a_result = $this->wxpay_pub->query($a_param);
+print_r($a_result);
+
+// 返回数组：
+Array
+(
+    [appid] => wxd40a4f9141fe81d0
+    [attach] => Array
+        (
+        )
+
+    [bank_type] => CFT
+    [cash_fee] => 1
+    [fee_type] => CNY
+    [is_subscribe] => Y
+    [mch_id] => 1450892002
+    [nonce_str] => VWL7lQlusSkNNGDt
+    [openid] => okjLDuMQrWo60D3tNrZai7rIB0tI
+    [out_trade_no] => 20171012044232826
+    [result_code] => SUCCESS
+    [return_code] => SUCCESS
+    [return_msg] => OK
+    [sign] => 2D076F1B724F1F08C51A2E1FBEEFDC85
+    [time_end] => 20171012164502
+    [total_fee] => 1
+    [trade_state] => REFUND
+    [trade_state_desc] => 订单发生过退款，退款详情请查询退款单
+    [trade_type] => JSAPI
+    [transaction_id] => 4200000008201710127626171905
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->wxpay_pub->refund_query(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	退款查询。
+</div>
+<code class="language-php">
+	$this->wxpay_pub->refund_query();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('wxpay_pub');
+$a_param = [
+	// 微信订单号，以下四个参数，必传其一
+	'transaction_id' => '4200000008201710127626171905',
+	// 商户订单号
+	//'out_trade_no' => '20171012110138152',
+	// 商户退款单号
+	//'out_refund_no' => '',
+	// 微信退款单号
+	//'refund_id' => ''
+];
+$a_result = $this->wxpay_pub->refund_query($a_param);
+print_r($a_result);
+
+// 输出结果为：
+Array
+(
+    [appid] => wxd40a4f9141fe81d0
+    [cash_fee] => 1
+    [mch_id] => 1450892002
+    [nonce_str] => Yta8foYJZ3ImaRbf
+    [out_refund_no_0] => 20171012072133458
+    [out_trade_no] => 20171012044232826
+    [refund_account_0] => REFUND_SOURCE_UNSETTLED_FUNDS
+    [refund_channel_0] => ORIGINAL
+    [refund_count] => 1
+    [refund_fee] => 1
+    [refund_fee_0] => 1
+    [refund_id_0] => 50000104542017101201995765968
+    [refund_recv_accout_0] => 支付用户的零钱
+    [refund_status_0] => SUCCESS
+    [refund_success_time_0] => 2017-10-12 19:23:51
+    [result_code] => SUCCESS
+    [return_code] => SUCCESS
+    [return_msg] => OK
+    [sign] => 63A1E60DE7A29650441DE58F86F455A9
+    [total_fee] => 1
+    [transaction_id] => 4200000008201710127626171905
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->wxpay_pub->close(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	关闭订单。订单生成后不能马上调用关闭接口，最短调用时间间隔为5分钟。
+</div>
+<code class="language-php">
+	$this->wxpay_pub->close();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('wxpay_pub');
+$a_param = [
+	// 商户订单号，必填
+	'out_trade_no' => '20171012110138152',
+];
+$a_result = $this->wxpay_pub->close($a_param);
+print_r($a_result);
+
+// 返回的结果数组：
+Array
+(
+    [appid] => wxd40a4f9141fe81d0
+    [err_code] => ORDERREFUND
+    [err_code_des] => 订单已退款
+    [mch_id] => 1450892002
+    [nonce_str] => vwHpand3PXonMaGP
+    [result_code] => FAIL
+    [return_code] => SUCCESS
+    [return_msg] => OK
+    [sign] => 1561F2EFAB2F200BDF92D25E6BC00F12
+    [sub_mch_id] => Array
+        (
+        )
+
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->wxpay_pub->verify(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	验证签名，确保安全，参数为微信返回的xml，需要转换成数组后才能传入，使用方法请参考支付示例。
+</div>
+<code class="language-php">
+	$this->wxpay_pub->verify($a_data);
+</code>
+<div class="desc">
+	此函数返回布尔值，验证成功返回true，否则返回false。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->alipay_wap->check(参数数组<span>(数组), 'REFUND/QUERY/REFUND_QUERY/CLOSE'</span>);
+</code>
+</div>
+<div class="desc">
+	验证操作是否成功，比如支付是否成功，查询是否成功。重复操作也会返回失败的，比如重复退款，因为款项在第一次已经成功退还，后面再退都会返回失败<br />
+	REFUND 退款是否成功<br />
+	QUERY 订单支付是否成功<br />
+	REFUND_QUERY 退款是否成功<br />
+	CLOSE 关闭订单是否成功
+</div>
+<code class="language-php">
+	$this->wxpay_pub->check($a_data, 'QUERY');
+</code>
+<div class="desc">
+	此函数返回布尔值，验证成功返回true，否则返回false。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">10</span>
+<code class="language-php">
+	$this->alipay_wap->scan_code(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	扫码支付，生成微信支付的二维码，提供给用户扫码付款。
+</div>
+<code class="language-php">
+	$this->wxpay_pub->scan_code($a_data);
+</code>
+<div class="desc">
+	此函数返回用来生成二维码的URL，之后结合qrcode函数来生成二维码。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 完整举例：
+class Index_ctrl extends TW_Controller {
+	
+	public function __construct() {
+		parent :: __construct();
+	}
+	public function test() {
+		// 使用举例：
+		$this->load->library('wxpay_pub');
+		$a_param = [
+			// 商品描述，必填
+			'body' => '测试',
+			// 商户订单号，必填
+			'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),
+			// 标价金额，必填，标价金额，单位为分
+			'total_fee' => 1,
+			// 异步通知URL，必填
+			'notify_url' => $this->router->url('notify'),
+			// 可定义为产品标识或订单号，微信扫码支付模式一需要用到，此为扫码模式二不需要用到，但是必填
+			'product_id' => '123456789',
+			//========= 以下为选填 =========//
+			/*// 附加数据，选参
+			'attach' => 'test',
+			// 交易起始时间，选参，不填写默认使用当前时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010
+			'time_start' => date('YmdHis', $_SERVER['REQUEST_TIME']),
+			// 交易结束时间，选参，默认在起始时间的10分钟后失效，格式为整数，以秒为单位，如想在1小时后结束，传入：3600
+			'time_expire' => 600,
+			// 订单优惠标记，选参，订单优惠标记，使用代金券或立减优惠功能时需要的参数
+			'goods_tag' => 'test',*/
+		];
+		$a_data = $this->wxpay_pub->scan_code($a_param);
+		echo '&lt;img alt="模式二扫码支付" src="' . $this->router->url('qrcode', [$this->general->base64_convert($a_data['code_url'])]) . '" style="width:150px;height:150px;"/&gt;';
+	}
+
+	// 异步通知
+	public function notify() {
+		// 注意，异步通知，这里引用了另外一个类
+		$this->load->library('wxpay_pub_notify');
+		// true表示需要输出签名，默认是参数是true，适用于下面的方法一
+		$this->wxpay_pub_notify->Handle(true);
+		
+		// 验证数据安全方法一：(签名验证)
+		$b_result = $this->wxpay_pub_notify->get_verify_result();
+		if ($b_result) {
+			// 验证数据成功，处理业务逻辑
+			file_put_contents('./1.txt', print_r($this->wxpay_pub_notify->get_result_data(), true));
+			// 返回的数据格式：（如果不明白参数，请查看https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_7）
+			Array
+			(
+				[appid] => wxd40a4f9141fe81d0
+				[bank_type] => CFT
+				[cash_fee] => 1
+				[fee_type] => CNY
+				[is_subscribe] => Y
+				[mch_id] => 1450892002
+				[nonce_str] => lsr3hao0c6r2ymcozl0g8qala0yr51qy
+				[openid] => okjLDuMQrWo60D3tNrZai7rIB0tI
+				[out_trade_no] => 20171125042736301
+				[result_code] => SUCCESS
+				[return_code] => SUCCESS
+				[sign] => 85A178B31AF674F0F37A23429FBEFF3A
+				[time_end] => 20171125163100
+				[total_fee] => 1
+				[trade_type] => NATIVE
+				[transaction_id] => 4200000046201711256973248175
+			)
+		} else {
+			// 验证数据失败
+		}
+	}
+	
+	// 生成二维码
+	public function qrcode() {
+		$s_url = $this->general->base64_convert($this->router->get(1), true);
+		$this->load->library('wxpay_pub');
+		$this->wxpay_pub->qrcode($s_url);
+	}
+}
+
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">11</span>
+<code class="language-php">
+	$this->wxpay_pub->bar_code(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	微信叫刷卡支付，实际上是通过条码支付，应用案例：商家拿扫码枪对着用户的付款码扫一下，完成付款。
+</div>
+<code class="language-php">
+	$this->wxpay_pub->bar_code();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 使用举例：
+$this->load->library('wxpay_pub');
+$a_param = [
+	// 商品描述，必填
+	'body' => '测试',
+	// 商户订单号，必填
+	'out_trade_no' => date('Ymdhis', time()) . rand(100, 999),
+	// 标价金额，必填，标价金额，单位为分
+	'total_fee' => 1,
+	// 授权码（条形码），可通过扫码枪获取
+	'auth_code' => '134913330402115197'
+];
+$a_result = $this->wxpay_pub->bar_code($a_param);
+print_r($a_result);
+// 根据返回的结果完成订单的后续逻辑处理，返回数组格式：（参数说明：https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&index=1）
+Array
+(
+    [appid] => wxd40a4f9141fe81d0
+    [attach] => Array
+        (
+        )
+
+    [bank_type] => CMB_DEBIT
+    [cash_fee] => 1
+    [fee_type] => CNY
+    [is_subscribe] => Y
+    [mch_id] => 1450892002
+    [nonce_str] => BSFGXorxbArxa6hw
+    [openid] => okjLDuMQrWo60D3tNrZai7rIB0tI
+    [out_trade_no] => 20171125053813546
+    [result_code] => SUCCESS
+    [return_code] => SUCCESS
+    [return_msg] => OK
+    [sign] => FAE353EC4733019668CDD75EEE15AF7B
+    [time_end] => 20171125173829
+    [total_fee] => 1
+    [trade_state] => SUCCESS
+    [trade_type] => MICROPAY
+    [transaction_id] => 4200000025201711256984296738
+)
+</code>
+</pre>
+</div>
+
+</body>
+</html>

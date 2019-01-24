@@ -1,0 +1,100 @@
+/*
+Shared gradle properties
+到根build.gradle里面设置apply from: "version.gradle"
+ */
+ext {
+    preDexLibs = "true" != System.getenv("CI")
+    supportLibraryVersion = "25.4.0"
+    constraintLayoutVersion = "1.0.2"
+    kotlinVersion = "1.1.4-2"
+    okHttpVersion = "3.9.0"
+    rxbindingVersion = '2.0.0'
+    supportDependencies = [
+            designSupportLibrary: "com.android.support:design:${supportLibraryVersion}",
+            annotation          : "com.android.support:support-annotations:${supportLibraryVersion}",
+            constrainLayout     : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            kotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+            cardView            : "com.android.support:cardview-v7:${supportLibraryVersion}",
+    ]
+    extraDependencies = [
+            okHTTP         : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:2.1.0",
+            boltTask       : "com.parse.bolts:bolts-tasks:1.4.0",
+            rxAndroid      : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            textDrawable   : "com.github.rocketchat:textdrawable:1.0.2"
+    ]
+    rxbindingDependencies = [
+            rxBinding          : "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
+            rxBindingSupport   : "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxbindingVersion}",
+            rxBindingAppcompact: "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${rxbindingVersion}",
+    ]
+
+
+    /*旧的*/
+
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: '26.0.0',
+            minSdkVersion    : 16,
+            targetSdkVersion : 23,
+            javaVersion      : JavaVersion.VERSION_1_8,
+            versionCode      : 17,
+            versionName      : 'v1.0.7',
+            glideVersion     : '4.0.0-RC0'
+//            appApplicationId : 'com.anthony.app'
+            /*versionCode      : 12,
+            versionName      : 'v1.0.2',*/
+    ]
+
+    depsVersion = [
+            junitVersion                      : '4.12',
+            supportVersion                    : '25.4.0',
+            okhttpVersion                     : '3.9.0',
+            retrofitVersion                   : '2.2.0',
+            butterknifeVersion                : '8.4.0',
+
+            rxJavaVersion                     : '2.1.0',
+            rxAndroidVersion                  : '2.0.1',
+    ]
+
+
+    deps = [
+            jUnit                      : 'junit:junit:' + depsVersion.junitVersion,
+            supportV4                  : 'com.android.support:support-v4:' + depsVersion.supportVersion,
+            supportAnnotations         : 'com.android.support:support-annotations:' + depsVersion.supportVersion,
+            appcompatV7                : 'com.android.support:appcompat-v7:' + depsVersion.supportVersion,
+            design                     : 'com.android.support:design:' + depsVersion.supportVersion,
+            gridlayoutV7               : 'com.android.support:gridlayout-v7:' + depsVersion.supportVersion,
+            recyclerviewV7             : 'com.android.support:recyclerview-v7:' + depsVersion.supportVersion,
+            cardviewV7                 : 'com.android.support:cardview-v7:' + depsVersion.supportVersion,
+            okhttp                     : 'com.squareup.okhttp3:okhttp:' + depsVersion.okhttpVersion,
+            okhttpUrlconnection        : 'com.squareup.okhttp3:okhttp-urlconnection:' + depsVersion.okhttpVersion,
+            loggingInterceptor         : 'com.squareup.okhttp3:logging-interceptor:' + depsVersion.okhttpVersion,
+            rxjava                     : 'io.reactivex.rxjava2:rxjava:' + depsVersion.rxJavaVersion,
+            rxandroid                  : 'io.reactivex.rxjava2:rxandroid:' + depsVersion.rxAndroidVersion,
+            //rxPermission               : 'com.tbruyelle.rxpermissions:rxpermissions:' + depsVersion.rxpermissionsVersion,
+            retrofit                   : 'com.squareup.retrofit2:retrofit:' + depsVersion.retrofitVersion,
+            converterGson              : 'com.squareup.retrofit2:converter-gson:' + depsVersion.retrofitVersion,
+            converterJackson           : 'com.squareup.retrofit2:converter-jackson:' + depsVersion.retrofitVersion,
+            adapterRxjava              : 'com.squareup.retrofit2:adapter-rxjava2:' + depsVersion.retrofitVersion,
+            butterknife                : 'com.jakewharton:butterknife:' + depsVersion.butterknifeVersion,
+            butterknifeCompiler        : 'com.jakewharton:butterknife-compiler:' + depsVersion.butterknifeVersion,
+            //photoView                  : 'com.bm.photoview:library:' + depsVersion.photoViewVersion,
+
+            glide                       :'com.github.bumptech.glide:glide:'+depsVersion.glideVersion,
+            annotationProcessor         :'com.github.bumptech.glide:compiler:'+depsVersion.glideVersion,
+    ]
+}
+
+
+
+
+subprojects {
+    project.plugins.whenPluginAdded { plugin ->
+        if ("com.android.build.gradle.AppPlugin" == plugin.class.name) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        } else if ("com.android.build.gradle.LibraryPlugin" == plugin.class.name) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        }
+    }
+}

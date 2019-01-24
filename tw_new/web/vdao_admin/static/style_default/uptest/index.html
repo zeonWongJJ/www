@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>上传图片</title>
+<link rel="stylesheet" href="css/webuploader.min.css" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/webuploader.js"></script>
+<script src="js/uploadImgPreview.min.js"></script>
+
+<style>
+	._filelist li{/*这个选择器一定要有宽高，否则图片显示不出来，因为它里面的内容是绝对定位的*/
+		width: 180px;
+		height: 160px;
+	}
+	.choose-file-btn{
+		width: 90px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 5px;
+		background-color: #f60;
+		overflow: hidden;
+		margin: 10px;
+	}
+	#upload_now {
+		width: 90px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 5px;
+		background-color: #5FB878;
+		border: 0px;
+		color: #fff;
+		cursor: pointer;
+		outline:none;
+	}
+	#retry_upload {
+		width: 90px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 5px;
+		background-color: #009688;
+		border: 0px;
+		color: #fff;
+		cursor: pointer;
+		outline:none;
+	}
+</style>
+
+</head>
+<body>
+
+<div id="uploader"></div>
+<!-- 千万不要使用button标签，否则在火狐和IE中点击会无效
+<button type="button" id="choose_file">选择图片</button> -->
+<div class="choose-file-btn" id="choose_file">选择图片</div>
+<button type="button" id="upload_now">上传图片</button>
+<button type="button" id="retry_upload">重新上传</button>
+
+
+<script>
+$(function(){
+   var uploader = uploadImage({
+		wrap: "#uploader", //包裹整个上传控件的元素，必须。可以传递dom元素、选择器、jQuery对象
+		/*预览图片的宽度，可以不传，如果宽高都不传则为包裹预览图的元素宽度，高度自动计算*/
+		//width: "160px",
+		height: 120,//预览图片的高度
+		fileVal: "img[]", // [默认值：'file'] 设置文件上传域的name。
+		btns: {//必须
+			uploadBtn: $("#upload_now"), //开始上传按钮，必须。可以传递dom元素、选择器、jQuery对象
+			retryBtn: "#retry_upload", //用户自定义"重新上传"按钮
+			chooseBtn: '#choose_file',//"选折图片"按钮，必须。可以传递dom元素、选择器、jQuery对象
+			chooseBtnText: "选择图片" //选择文件按钮显示的文字
+		},
+		pictureOnly: true,//只能上传图片
+		resize: false,
+		//是否可以重复上传，即上传一张图片后还可以再次上传。默认是不可以的，false为不可以，true为可以
+		duplicate: true
+	});
+});
+</script>
+
+</body>
+</html>

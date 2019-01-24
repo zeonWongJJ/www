@@ -1,0 +1,115 @@
+<?php
+
+class ApiHome_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    //日销售额
+    public function forehead()
+    {
+
+        $a_sales = $this->db->get_total('order');
+        return $a_sales;
+    }
+
+    //总订单
+    public function order()
+    {
+        //各订单数
+        $s_fields      = 'order_state,count(1) as num';
+        $s_group_by    = 'order_state';
+        $a_data_result = $this->db
+            ->select($s_fields, false)
+            ->group_by($s_group_by)
+            ->get('order');
+        foreach ($a_data_result as $key => $value) {
+            $a_result[$value['order_state']] = $value['num'];
+        }
+        $or    = isset($a_result['10']) ? (int)$a_result['10'] : 0;
+        $ord   = isset($a_result['20']) ? (int)$a_result['20'] : 0;
+        $orde  = isset($a_result['25']) ? (int)$a_result['25'] : 0;
+        $order = isset($a_result['30']) ? (int)$a_result['30'] : 0;
+        $rder  = isset($a_result['80']) ? (int)$a_result['80'] : 0;
+        $order = $or + $ord + $orde + $order + $rder;
+        return $order;
+    }
+
+    //总用户数量
+    public function getAllUserCount()
+    {
+        $a_data = $this->db->get_total('user');
+        return $a_data;
+    }
+
+    //总门店数量
+    public function getAllStoreCount()
+    {
+        $a_data = $this->db->get_total('store');
+        return $a_data;
+    }
+
+    //总店主数量
+    public function getShopkeepersCount()
+    {
+        $a_data = $this->db->get_total('user', ['is_shopman' => 1]);
+        return $a_data;
+    }
+
+    //日销售额和日订单
+    public function getOrderSalesAndOrderCountByDay()
+    {
+        $a_data = $this->db->get('consumabel_sales', ['daily_time' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))]);
+        return $a_data;
+    }
+
+    //总销售额
+    public function sales()
+    {
+        $a_where = 'order_state >= 9 AND order_state != 40';
+        $a_sales = $this->db->get('order', $a_where);
+        $a_noet = 0;
+        foreach ($a_sales as $not) {
+            $a_noet += $not['actual_pay'];
+        }
+        return $a_noet;
+    }
+
+    // 月增长
+    public function yuezezhan()
+    {
+        // 上月订单增长
+        $i_account = $this->db->get('account', ['account_time' => mktime(0, 0, 0, date('m') - 1, 1, date('Y'))], ['order_count']);
+        $i_acco    = 0;
+        foreach ($i_account as $kaccs) {
+            $i_acco += $kaccs['order_count'];
+        }
+        $a_data['acco'] = $i_acco;
+        // 本月订单
+        $i_accot  = $this->db->get('account', ['account_time' => mktime(0, 0, 0, date('m'), 1, date('Y'))], ['order_count']);
+        $i_accott = 0;
+        foreach ($i_accot as $kaccs) {
+            $i_accott += $kaccs['order_count'];
+        }
+        $a_data['accott'] = $i_accott;
+        // 上月用户
+        $a_data['user'] = $this->db->where(['user_regtime >=' => mktime(0, 0, 0, date('m') - 1, 1, date('Y')), 'user_regtime <=' => mktime(23, 59, 59, date("m"), 0, date("Y"))])->get_total('user');
+        //本月用户
+        $a_data['user_ben'] = $this->db->where(['user_regtime >=' => mktime(0, 0, 0, date('m'), 1, date('Y')), 'user_regtime <=' => mktime(23, 59, 59, date('m'), date('t'), date('Y'))])->get_total('user');
+        // 上月门店
+        $a_data['store'] = $this->db->where(['store_regtime >=' => mktime(0, 0, 0, date('m') - 1, 1, date('Y')), 'store_regtime <=' => mktime(23, 59, 59, date("m"), 0, date("Y"))])->get_total('store');
+        // 本月门店
+        $a_data['stor_ben'] = $this->db->where(['store_regtime >=' => mktime(0, 0, 0, date('m'), 1, date('Y')), 'store_regtime <=' => mktime(23, 59, 59, date('m'), date('t'), date('Y'))])->get_total('store');
+        // 上月移动店主
+        $a_data['shop'] = $this->db->where(['shopman_regtime >=' => mktime(0, 0, 0, date('m') - 1, 1, date('Y')), 'shopman_regtime <=' => mktime(23, 59, 59, date("m"), 0, date("Y")), 'is_shopman' => 1])->get_total('user');
+        //本月移动店主
+        $a_data['shop_ben'] = $this->db->where(['shopman_regtime >=' => mktime(0, 0, 0, date('m'), 1, date('Y')), 'shopman_regtime <=' => mktime(23, 59, 59, date('m'), date('t'), date('Y')), 'is_shopman' => 1])->get_total('user');
+
+        return $a_data;
+    }
+}
+
+?>

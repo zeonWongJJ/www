@@ -1,0 +1,65 @@
+FROM tw/framework
+
+MAINTAINER rusice liruizhao970302@outlook.com
+
+ENV APP_DEBUG 1
+ENV SERVER_DOMAIN 'http://jiajie-server-v2.7dugo.com'
+ENV SERVER_ROOT '/www/server/web'
+ENV SERVER_PORT 19001
+ENV TOUCH_DOMAIN 'http://jiajie-touch-v2.7dugo.com'
+ENV TOUCH_ROOT '/www/touch'
+ENV TOUCH_PORT 19002
+ENV ADMIN_DOMAIN 'http://jiajie-admin-v2.7dugo.com'
+ENV ADMIN_ROOT '/www/admin'
+ENV ADMIN_PORT 19003
+ENV PC_DOMAIN 'http://jiajie-pc-v2.7dugo.com'
+ENV PC_ROOT '/www/pc'
+ENV PC_PORT 19004
+
+COPY build /tmp/build/
+COPY ./ /www
+COPY build/nginx.conf /usr/local/nginx/conf/nginx.conf
+
+RUN echo '127.0.0.1  jiajie-server-v2.7dugo.com' >> /etc/hosts \
+    && echo '127.0.0.1  jiajie-admin-v2.7dugo.com' >> /etc/hosts \
+    && echo '127.0.0.1  jiajie-pc-v2.7dugo.com' >> /etc/hosts \
+    && echo '127.0.0.1  jiajie-touch-v2.7dugo.com' >> /etc/hosts \
+    && chmod -R 777 /www/server/web/uploadfile \
+    && rm -rf .idea docker-compose.yml Dockerfile \
+    && echo "#! /bin/bash" > /run.sh && \
+    echo "function ypn() {" >> /run.sh && \
+    echo "/usr/local/php/bin/php /tmp/build/init_nginx_vhost.php" >> /run.sh && \
+    echo "/usr/local/php/bin/php /tmp/build/init_touch.php" >> /run.sh && \
+    echo "/usr/local/php/bin/php /tmp/build/init_admin.php" >> /run.sh && \
+    echo "/usr/local/php/bin/php /tmp/build/init_server.php" >> /run.sh && \
+    echo "mkdir /www/server/web/uploadfile/thumb/ -R" >> /run.sh && \
+    echo "chmod -R 777 /www/server/web/uploadfile" >> /run.sh && \
+    echo "    php-fpm start &" >> /run.sh && \
+    echo "    nginx" >> /run.sh && \
+    echo "}" >> /run.sh && \
+    echo "if [ \$1 = 'ypn' ]; then " >> /run.sh && \
+    echo "    ypn" >> /run.sh && \
+    echo "fi" >> /run.sh && \
+    chmod u+rwx /run.sh
+
+#RUN yum install -y vixie-cron crontabs
+
+# 安装xdebug
+#RUN cd /tmp/build/ \
+#  && tar -xvzf xdebug-2.6.1.tgz \
+#  && cd xdebug-2.6.1 \
+#  && phpize &&  ./configure \
+#  && make \
+#  && cp modules/xdebug.so /usr/local/php/lib/php/extensions/no-debug-non-zts-20170718 \
+#  && echo "zend_extension = /usr/local/php/lib/php/extensions/no-debug-non-zts-20170718/xdebug.so" >> /usr/local/php/lib/php.ini \
+#  && echo "xdebug.remote_enable=1" >> /usr/local/php/lib/php.ini \
+#  &&   echo "xdebug.remote_handler=dbgp" >> /usr/local/php/lib/php.ini \
+#  &&   echo "xdebug.remote_mode=req" >> /usr/local/php/lib/php.ini \
+#  &&   echo "xdebug.remote_host=192.168.1.199" >> /usr/local/php/lib/php.ini \
+#  &&   echo "xdebug.remote_port=9000" >> /usr/local/php/lib/php.ini \
+#  &&   echo "xdebug.idekey="PHPSTORM"" >> /usr/local/php/lib/php.ini
+
+
+CMD ["/run.sh", "ypn"]
+
+EXPOSE 80 19001 19002 19003 19004 9000

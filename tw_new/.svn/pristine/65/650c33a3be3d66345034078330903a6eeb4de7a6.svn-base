@@ -1,0 +1,14 @@
+/*.lrp{position:relative; overflow:hidden; }*/
+.loginBox,.register,.findPwd{width:100%; position:absolute; }
+.loginBox{z-index:2;}
+.register{z-index:1;}
+
+
+
+
+
+
+
+
+
+

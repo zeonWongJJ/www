@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<div class="title">目录结构</div>
+<div class="container">
+<div class="line">
+<span class="step">1</span> 目录结构，所列出的目录及文件为基础文件，必须存在。所有文件须按规则存放。
+</div>
+<pre class="line-numbers">
+<code class="language-php">
+application 项目程序主目录全在此目录下面
+	user_pc 项目主程序目录(user_pc为举例项目名)
+		config	项目配置文件目录
+			config_database.php 数据库配置文件
+			config_router.php 路由配置文件
+			config_system.php 系统参数配置文件
+			config_sso_site.php 单点登录配置文件
+		controller 控制器目录
+		core 框架core目录下的类库扩展目录
+		libraries 框架libraries目录下的类库扩展目录
+		model 模型目录
+		template 模板目录
+			style_name 模板风格名(style_name为举例风格名称)
+		
+core 框架核心目录（禁止操作）
+libraries 框架类库目录（禁止操作）
+
+web 项目请求主目录
+	user_pc 项目根目录(user_pc为举例项目名)
+		image 图片文件存在目录
+			error 错误提示页面图片
+		.htaccess APACHE重写文件
+		index.php 用户请求入口文件
+		static 前端文件总目录
+			style_name 模板风格名(style_name为举例风格名称)
+				ajax 网页交互脚本存放目录
+				background 背景图片存放目录，方便管理写在样式背景里面的图片文件
+				foot 字体存放目录
+				image 图片存放目录
+				plugin 插件存放目录，比如jquery
+				script js脚本存放目录
+				style 样式文件(css)存放目录
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span> 新增加的类，放到项目文件夹下的libraries目录里，比如QQ登录类，支付接口类等
+</div>
+</div>
+
+</body>
+</html>

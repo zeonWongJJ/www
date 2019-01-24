@@ -1,0 +1,6 @@
+
+.foot{width:100%; position:fixed; bottom:0; z-index:2; background:blue;}
+.foot li{ width:20%; float:left;}
+.ify{ text-align:center; }
+.ify>p{font-size:14px; text-align:center;}
+

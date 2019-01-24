@@ -1,0 +1,63 @@
+
+html,body{ height:100%;}
+
+body                          { position:relative; background:#efefef; }
+.takingOrder                 { margin:0.2rem 0.2rem; height:100%; }
+/* 待接单*/
+.takingBox                   { background:white; }
+.takingTime                  { text-align:center; }
+.takingTime>p:first-child   { font-size:0.5rem; font-weight:bold; padding-top:0.7rem; }
+.takingTime>em               { display:block; padding:0.2rem 0; }
+.takingTime>em>span          { font-size:0.4rem }
+.takingTime>em>span>em      { color:#fc8c4c; }
+.takingBtn                   { margin-top:0.2rem; padding-bottom:0.7rem; font-size:0.4rem; }
+.takingBtn>a                 { display:inline-block; padding:0.15rem 0.2rem; color:#000; border:1px solid #c9c9c9; border-radius:1rem;  }
+/* 虚线 */
+.dashed               { position:relative; }
+.dashed>p             { width:90%; margin:0 auto; height:10px; border-bottom:1px dashed #ddd; }
+.dashed>i             { width:15px; height:15px; display:inline-block; position:absolute;  border-radius:50%; background:#efefef; }
+.dashed>i:first-child{ top:3px; left:-8px; }
+.dashed>i:last-child { right:-8px; top:2px;}
+/* 虚线 */
+
+/* 订单的信息 */
+.detailInfo            { background:white; margin-top:0.2rem; }
+.detailInfo>ul         { padding:0.5rem; }
+.detailInfo>ul>li      { margin-bottom:0.2rem; font-size:0.4rem; }
+.detailInfo>ul>li>i    { display:inline-block; vertical-align:middle; margin-right:0.2rem;}
+.detailInfo>ul>li img  { width:0.5rem; }
+.detailInfo>ul>li>em   { float:right; margin-right:0.5rem;}
+.detailInfo>ul>li>p    { margin-left:0.85rem; }
+/* 费用 */
+.cost                 { position:relative; padding:10px 0 0 0; }
+.cost>i               { position:absolute; display:inline-block; top:0.7rem; padding-left:0.2rem;}
+.cost>i>img           { width:2.8rem; box-shadow:3px 0 3px 0#888889; }
+.costInfo             { background:#fafafa; }
+.costInfo>p           { position:relative; padding:0.1rem 0; margin:0.6rem 0; font-size:0.4rem; }
+.costInfo>p>span      { width:4.5rem; height:2.3rem; display:inline-block; margin-left:3.2rem; font-weight:bold; }
+.costInfo>p>span>em   { font-weight:bold; }
+.costInfo>p>span>s    { display:inline-block; text-decoration:none; margin-top:0.1rem; padding:0 0.4rem; border:1px solid red; border-radius:5px; font-size:0.3rem; color:red; }
+.costInfo>p>em        { float:right; padding-right:10px; font-size:0.4rem; font-weight:bold;}
+.costInfo>p>em>span   { display:block; color:#999999; }
+.costInfo>p>em>em     { float:right; margin-top:0.11rem; color:#999; }
+
+/*  价格 */
+.pay             { padding:0.4rem; font-size:0.4rem; }
+.pay>span>span  { font-weight:bold;  }
+.pay>span>em    { color:#999; }
+.pay>em         { float:right; }
+.pay>em>span    { font-size:0.55rem; color:red; }
+.pay>em>span>b  { font-size:0.3rem; }
+/* 订单时间信息 */
+.orderInfo         { position:relative; background:white; padding:0.2rem 0.2rem; margin-top:10px; font-size:14px;  }
+.orderInfo>p       { padding:0.1rem 0; font-size:0.4rem; }
+.orderInfo>p>em    { margin-left:10px; }
+.orderInfo>em      { position:absolute; right:0.2rem; top:0.2rem; padding:0.1rem 0.2rem; font-size:0.4rem; border:1px solid #dddddd; }
+
+/* 弹出框 */
+.tips{ width:100%; top:0; left:0; opacity:0.5; position:absolute; background:black; overflow:hidden; }
+.pop{ width:7rem; position:absolute; top:7rem; left:1.1rem; background:white; padding:0.5rem 0.5rem 2rem 0.5rem; font-size:0.4rem; border-radius:10px; }
+.pop>p:first-child{ font-weight:bold; }
+.pop>p:nth-child(2){ margin-top:15px; }
+.pop>a>span{ width:4rem; height:1.3rem; line-height:1.3rem; color:white; position:absolute; bottom:0; left:0; background:#666df4; text-align:center; }
+.pop>a>em{ width:4rem; height:1.3rem; line-height:1.3rem; position:absolute; bottom:0; right:0; text-align:center; color:#999; border-bottom-right-radius:5px; border-top-right-radius:5px; box-shadow:0 0 13px #888888; }

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">V稻</string>
+
+    <string name="app_tip">提示</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+
+    <string name="home">首页</string>
+    <string name="product">产品</string>
+    <string name="shopping_car">购物车</string>
+    <string name="chat">聊天</string>
+    <string name="dynamic">动态</string>
+    <string name="mine">我的</string>
+</resources>

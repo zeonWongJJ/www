@@ -1,0 +1,116 @@
+/* �û���ʾ */
+.userShow{
+    font-size:0;
+}
+.codeBox{
+    width:678px;
+    /*height:768px;*/
+   	height: 740px;
+    display:inline-block;
+}
+.bla{
+    height:390px;
+    background:url(../images/user_01.png);
+    background-repeat:no-repeat;
+    background-size:100%;
+}
+.codeContainer{
+    text-align:center;
+}
+.codeContainer>a{
+    display:inline-block;
+    padding:28px;
+    border:1px solid #ddd;
+    border-radius:14px;
+}
+.zhifubao{
+    margin-left:142px;
+}
+.codeContainer>a>img{
+    width:130px;
+}
+/* �������� */
+.orderDetails{
+    width:338px;
+    /*height:768px;*/
+    height: 740px;
+    position:relative;
+    display:inline-block;
+    vertical-align:top;
+    margin-left:8px;
+}
+.orderDetails>p{
+    height:61px;
+    line-height:61px;
+    text-align:center;
+    font-size:18px;
+    color:white;
+    background:#25d7d5;
+}
+.totalNum{
+    height:37px;
+    line-height:37px;
+    text-align:center;
+    display:block;
+    color:#25d7d5;
+    font-size:14px;
+    font-weight:bold;
+    background:#d3fffe;
+}
+.totalNum>em{
+    margin:0 20px;
+    color:#ff0000;
+    font-weight:bold;
+}
+.orderList{
+    height:555px;
+    overflow-y:scroll;
+}
+.orderList>li{
+    margin-left:10px;
+}
+.orderList ol>li{
+    height:38px;
+    line-height:38px;
+    border-bottom:1px solid #ddd;
+}
+.dishes,.dishesNum,.dishesPrice{
+    display:inline-block;
+    font-size:12px;
+}
+.dishes{
+    width:168px;
+}
+.dishes>dfn{
+    font-style:normal;
+}
+.dishesNum{
+    width:73px;
+    text-align:center;
+}
+.dishesPrice{
+    width:70px;
+    text-align:center;
+}
+/* �ײ����� */
+.bottom{
+    width:100%;
+    height:93px;
+    line-height:93px;
+    text-align:center;
+    position:absolute;
+    color:white;
+    bottom:0;
+    font-size:34px;
+    background:#25d7d5;
+}
+.bottom>span>dfn{
+    font-style:normal;
+}
+
+
+
+
+
+
+

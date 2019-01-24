@@ -1,0 +1,12 @@
+{
+    "name": "7dugo/jiajie",
+    "authors": [
+        {
+            "name": "rusice",
+            "email": "liruizhao970302@outlook.com"
+        }
+    ],
+    "require": {
+        "chrisboulton/php-resque": "*"
+    }
+}

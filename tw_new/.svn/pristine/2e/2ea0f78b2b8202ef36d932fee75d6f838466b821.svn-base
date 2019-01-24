@@ -1,0 +1,39 @@
+body{ background:#efefef; }
+/* 我的积分 */
+.userPoints                    { background:white; padding-top:1rem;}
+.userPoints>p                  { position:relative; font-size:14px; text-align:center; color:#36327C; }
+.userPoints>p>i                { position:absolute; top:-0.2rem; left:6.7rem; }
+.userPoints>p>i>img            { width:0.8rem; }
+.userPoints>p>span             { font-size:1.5rem; }
+.userPoints>p>em               { display:block; margin-top:0.5rem; }
+.userPoints>p>em>img           { width:3.5rem; }
+.pointsInfo                    { margin:0.2rem 0; }
+.pointsInfo>p                  { font-size:0.4rem; text-align:center;}
+.pointsInfo>p>em               { font-size:0.45rem; font-weight:bold; color:#36327C;}
+/*  积分分类 */
+.pointsCate                         { font-size:0; border-top:1px solid #E8E8E8; margin-top:0.5rem;}
+.pointsCate>div:nth-child(odd)     { border-right:1px solid #E8E8E8;}
+.pointsCate>div>a                   { display:block; text-align:center; }
+.pointsCate>div>a>i                 { display:inline-block;}
+.pointsCate>div>a>i>img             { width:0.8rem;}
+.cbox                                { display:inline-block; text-align:left; }
+.reward,.record                     { width:49.8%; display:inline-block; padding:0.35rem 0; font-size:0.4rem;}
+.reward em,.record em               { display:block; font-weight:bold; color:#4C4C4C;}
+.reward span,.record span           { font-size:0.35rem; color:#4C4C4C;}
+/*  积分分类 */
+/* 我的积分 */
+.exchange                      { width:100%; float:left; margin:0.25rem 0; background:white;}
+.exTit                         { padding:0.25rem 0;}
+.exTit>span                    { margin-left:0.3rem; padding-left:0.2rem; border-left:0.1rem solid #74CCF4; font-weight:bold; font-size:0.45rem; }
+.wares li                      { width:50%; float:left; text-align:center;}
+.wares li>a                    { position:relative; display:block; padding:0.5rem 0.5rem;}
+.wares li>a:nth-child(odd)    { border-left:1px solid #E8E8E8;  border-top:1px solid #E8E8E8;}
+.wares li>a>i                  { height:2.8rem; line-height:2.8rem; display:block; }
+.wares li>a>em                 { position:absolute; top:0.7rem; left:0.5rem; display:inline-block; padding:0.1rem 0.1rem; background:#bca17e; color:#fff;  font-size:0.25rem;  }
+.wares li>a>i>img              { width:4rem; vertical-align:middle; }
+.exBox                          { text-align:left; }
+.exBox>p                        { font-size:0.4rem; color:#5A5A5A;}
+.exBox>p>span                   { color:red;}
+
+.bottom                         { clear:both; text-align:center; margin-bottom:0.25rem; font-size:0.3rem; color:#999;}
+.bottom p                       { width:3rem; display:inline-block; height:0.1rem;  border:none; border-top:0.01rem solid #dddddd;}

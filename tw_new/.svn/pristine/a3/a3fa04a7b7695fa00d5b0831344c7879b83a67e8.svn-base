@@ -1,0 +1,68 @@
+/* 杯型管理 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.cupSize{ margin-top:20px; margin-left:22px; }
+.cupSize>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.cup_content{ margin-top:20px; background:white; }
+.cup_content>form{ padding-top:20px; margin-left:24px; }
+.cup_content>form>a{ display:inline-block; vertical-align:middle; padding:8px 16px; font-size:14px; border:1px solid #e8e8e8; color:#a8a7a6; border-radius:14px; background:#f4f1ee; }
+.cup_content>form>a>img{ width:10px; vertical-align:middle; margin-right:10px; }
+.search_cup{ display:inline-block; }
+
+.choice_stage{ padding-top:20px; background:white; }
+.choice_stage>table{ margin-left:20px; border-collapse:collapse;  }
+.choice_stage>table tr>td>img{ width:22px; vertical-align:middle; }
+.choice_stage>table tr>td.choice_stage>img{ width:15px; }
+.choice_stage>table tr>td>span{ vertical-align:middle; font-size:14px; }
+.choice_stage>table>thead>tr{ background:#F4F7FC; }
+.choice_stage>table>thead>tr>td{ padding:10px 0; }
+.choice_stage>table>tbody>tr>td{ padding:12px 0; }
+.choice_stage>table>tbody>tr{ border-bottom:1px solid #ddd; }
+.choice_stage>table>tbody>tr:last-child{ border:none; }
+.choice_stage>table>thead>tr>td>span{ font-weight:bold; }
+
+.all_select{ width:150px; }
+.stage_name{ width:200px; }
+.stage_time{ width:200px; }
+.stage_name,.stage_operate,.stage_time,.stage_select{ text-align:center; }
+.stage_operate{ width:100px; }
+.chocie_select{ text-align:center; }
+.chocie_select>img{ cursor:pointer; }
+.chocie_select>a>img{ vertical-align:middle; }
+.all_select>img,.choice_list>img{ margin-left:10px; padding-right:10px; }
+.choice_cup{ padding-top:20px; background:white; }
+.choice_stage>table .chocie_select>img{ width:14px; margin:0 10px; }
+
+/* 底部工具 */
+.tool_bottom{ width:195px; height:50px; line-height:50px; display:inline-block; margin:20px 0; background:white; }
+.tool_bottom>a{ display:inline-block; margin-left:26px; cursor:pointer; }
+.tool_bottom>a>span{ font-size:14px; }
+.tool_bottom>a>img{ vertical-align:middle; }
+.tool_bottom>a>span{ vertical-align:middle; margin-left:7px; }
+.bottomAllSelect>img{ width:22px; }
+.bottomDelect>img{ width:16px; }
+
+/* 添加杯型 */
+.add_cup,.revise_cup{ width:410px; position:absolute; top:20%; left:50%; font-size:15px; background:white; box-shadow:3px 5px 23px #888888; }
+.add_cup>p,.revise_cup>p{ padding:12px 10px; background:#FBFBFB; border-bottom:1px solid #ddd; }
+.add_cup>p>span,.revise_cup>p>span{ color:#3698E8; }
+.add_cup>p>img,.revise_cup>p>img{ float:right; }
+.add_cup>form,.revise_cup>form{ padding:15px; }
+.cup_info,.reviseCup_info{ margin-top:10px; }
+.cup_info>span,.reviseCup_info>span{ vertical-align:middle; font-size:14px; color:#999; }
+.cup_info>input,.reviseCup_info>input{ width:120px; height:15px; vertical-align:middle; padding:5px; font-size:12px; border:1px solid #ddd; }
+.info_tips>img,.cupInfo_tips>img{ width:18px; vertical-align:middle; }
+.info_tips>span,.cupInfo_tips>span{ color:#999; vertical-align:middle; font-size:14px; }
+#cup_sub,#reviseCup_sub{ padding:5px 25px; margin:20px 62px; color:#AF4605; background:#FFCE1C; border:1px solid #AF4605; }
+
+/* 重要提示 */
+.tips_lay{ width:320px; position:absolute; top:40%; left:50%; padding:30px; font-size:14px; background:white; box-shadow:3px 5px 23px #888888; z-index:2; }
+.tips_lay>img{ width:15px; position:absolute; right:10px; top:10px; cursor:pointer; }
+.tips_lay>p,.tips_lay>span{ margin-top:6px; font-size:14px; }
+.tips_lay>span{ display:block; }
+.tips_btn{ text-align:center; margin-top:20px; }
+.tips_btn>em,.tips_btn>span{ display:inline-block; padding:2px 10px; font-size:12px; cursor:pointer; }
+.tips_btn>em{  color:#AF4605; background:#FFCE1C; border:1px solid #AF4605; }
+.tips_btn>span{ margin-left:20px; border:1px solid #ddd; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:white; opacity:0; z-index:1; }

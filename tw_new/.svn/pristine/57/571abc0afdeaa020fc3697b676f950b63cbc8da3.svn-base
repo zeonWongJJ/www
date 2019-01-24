@@ -1,0 +1,5 @@
+<!DOCTYPE html><html style="height: 100%;" lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>帮家洁</title><script id="jiajie_config">window.config = {
+      baseURL: 'http://192.168.1.200:19020/',
+      touchURL:'http://192.168.1.198:8080/',
+      localhostData: ''
+		}</script><link href="./static/css/app.264eb6acf316a390392ce251d45a771b.css" rel="stylesheet"></head><body style="height: 100%;margin: 0;padding: 0;"><img style="position: absolute;top: 0;z-index: -1;width: 100%;height: 100%;" src="static/images/starup_page.png"><div id="app"></div><script type="text/javascript" src="./static/js/manifest.326105748faefea27fb8.js"></script><script type="text/javascript" src="./static/js/app.54086c1debaa931be094.js"></script></body></html>

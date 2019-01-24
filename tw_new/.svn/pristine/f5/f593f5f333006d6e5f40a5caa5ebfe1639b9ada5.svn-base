@@ -1,0 +1,71 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .content{
+	width: 9rem;
+	height: 11.666666rem;
+	background: white;
+	margin-top: 2rem;
+	border-radius: 0.106666rem;
+	margin-left: 0.466666rem;
+}
+.content .title{
+	font-size: 0;
+	margin: 0.666666rem 0 0 0.6rem;
+}
+.content .title .pic{
+	display: inline-block;
+	width: 1.2rem;
+	height: 1.2rem;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: top;
+}
+.content .title .des{
+	display: inline-block;
+	vertical-align: top;
+	margin-left:0.266666rem;
+	margin-top: 0.106666rem;
+}
+.content .title .des p{
+	font-size: 0.346666rem;
+	color: #000000;
+}
+.content .title .des p.p2{
+	margin-top: 0.04rem;
+}
+.content .erweima{
+	width: 6.933333rem;
+	margin-top: 1.066666rem;
+	margin-left: 1rem;
+}
+.content .zai{
+	font-size: 0.293333rem;
+	color: #999999;
+	text-align: center;
+	margin-top: 0.866666rem;
+}

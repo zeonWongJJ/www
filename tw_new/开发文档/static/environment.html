@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<div class="title">环境支持</div>
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+	必须PHP7及以上版本，建议使用phpStudy集成包，可以多个版本随时切换的
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+	index.php提供对目录路径的配置，除了项目路径，其他的通常不需要修改
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 设置根路径
+define('BASEPATH', '../../');
+// 应用路径
+define('APPPATH', BASEPATH . 'application');
+// 项目路径
+define('PROJECTPATH', APPPATH . '/user_pc');
+// 控制器路径
+define('CONTPATH', PROJECTPATH . '/controller');
+// 模型路径(为了多项目模型共享)
+define('MODELPATH', PROJECTPATH . '/model');
+// 模板路径
+define('TEMPATH', PROJECTPATH . '/template');
+// 系统核心类前缀，不可修改
+define('TW_', 'TW_');
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+配置好WEB服务器软件，如果使用的是nginx，请在虚拟机中添加好重写代码，apache只需要支持.htaccess即可，这里举例是以test.7du.com为访问地址
+</div>
+<pre  class="line-numbers">
+<code class="language-nginx">
+location / {
+	if (!-e $request_filename) {
+	  rewrite ^/(.*)$ /index.php?$1 last;
+	  break;
+	}
+}
+</code>
+</pre>
+<div class="desc">全部代码展示</div>
+<pre  class="line-numbers">
+<code class="language-nginx">
+server {
+	listen       80;
+	server_name  test.7du.com ;
+	root   "D:/www/TW/web/test";
+	location / {
+		index  index.html index.htm index.php;
+		#autoindex  on;
+		if (!-e $request_filename) {
+		  rewrite ^/(.*)$ /index.php?$1 last;
+		  break;
+		}
+	}
+	location ~ \.php(.*)$ {
+		fastcgi_pass   127.0.0.1:9000;
+		fastcgi_index  index.php;
+		fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;
+		fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+		fastcgi_param  PATH_INFO  $fastcgi_path_info;
+		fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;
+		include        fastcgi_params;
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+框架已经默认开启SESSION，不需要手动再session_start()
+</div>
+</div>
+
+</body>
+</html>

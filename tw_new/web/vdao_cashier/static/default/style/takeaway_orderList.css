@@ -1,0 +1,215 @@
+.main{
+	width: 1024px;
+	margin: 0 auto;
+}
+/*中间模块*/
+.middle{
+	float: left;
+	width: 860px;
+	/*min-height: 770px;*/
+	height: 740px;
+	background: #f6f9ff;
+	margin-left: 10px;
+}
+	/*所有订单*/
+.allOrder{ width: 860px; height: 45px; background: white; padding-left: 20px; background: white;}
+.allOrder li{ float: left; padding-top: 2px;}
+.allOrder li a{ display: block; line-height: 41px; font-size: 14px; color: #666666; margin-right: 25px; padding: 0 2px;}
+.allOrder li a .dot{ display: inline-block; width: 5px; height: 5px; background: #ff5f4f; border-radius: 50%; vertical-align: middle; margin-right: 4px;}
+.allOrder li a .number{ display: inline-block; min-width: 20px; height: 12px; text-align: center; line-height: 14px; background: #eb6877; border-radius: 6px; font-size: 10px; color:white; font-style: normal; margin-left: 4px;}
+.allOrder li.hasCancel a{ text-decoration: line-through; margin-left: 30px;}
+.allOrder li.allList{ margin-right: 20px;}
+.allOrder li.current a{ color: #5a2e17; border-bottom: 1px solid #5a2e17;}
+.allOrder li.make a .dot{ background: #ff5f4f;}
+.allOrder li.inCarry a .dot{ background: #ffa800;}
+.allOrder li.hasFinish a .dot{ background: #1dc499;}
+.allOrder li.waitList a .dot{ background: black;}
+	/*标题*/
+.tabThead{ height: 32px; width: 860px; background: #f6f9ff;}
+.tabThead li{ float: left; padding-top: 8px; text-align: center; font-size: 12px; color: #333333;}
+.tabThead li:nth-child(1){ width: 320px; text-align: left; padding-left: 25px;}
+.tabThead li:nth-child(2){ width: 120px;}
+.tabThead li:nth-child(3){ width: 175px;}
+.tabThead li:nth-child(4){ width: 110px;}
+.tabThead li:nth-child(5){ width: 130px;}
+.tabThead li.dealState{ padding-top: 0; position: relative;}
+.tabThead li.dealState .downPic{ display: inline-block; width: 12px; height: 6px; background: url(../images/heisan_06.png); margin-left: 3px;}
+.tabThead li.dealState .biaoti{ display: inline-block; width: 112px; height: 27px; padding-top: 8px; cursor: pointer;}
+.tabThead li.dealState .biaoti .jiao{ display: inline-block; width: 58px; text-align: left;}
+.tabThead li.dealState .selectBox{ position: absolute; left: 0px; top: 28px; z-index: 9; background: white; box-shadow: 0 0 10px #dfdfdf; padding-bottom: 10px; display: none;}
+.tabThead li.dealState .selectBox a{ display: block; width: 112px; font-size: 14px; color: #333333; background: white; margin-top: 10px; text-align: left; text-indent: 21px;}
+.tabThead li.dealState .selectBox a:hover{ color: #5a2e17;}
+.tabThead li.dealState .selectBox i.bai{ display: inline-block; width: 112px; height: 8px; background: white; z-index: 10; position: absolute; left: 0; top: -4px;}
+.tabThead li.clickState .biaoti{ background: white; box-shadow: 0 0 10px #dfdfdf;}
+.tabThead li.clickState .downPic{ background: url(../images/heisan_03.png);}
+	/*表格模块*/
+.tableBox li{ width: 860px; background: white; margin-bottom: 8px; cursor: pointer;}
+.tableBox li:last-child{ margin-bottom:0;}
+.tableBox li:hover{ box-shadow: 0 0 10px #dfdfdf;}
+.tableBox li .title{ height: 20px; font-size: 12px; padding-top: 8px; padding-left: 20px;}
+.tableBox li .title .orderNumber{ float: left; color: #666666; margin-left: 60px;}
+.tableBox li .title .time{ float: left; color: #666666; margin-top: 2px;}
+.tableBox li .row{font-size: 0; margin-top: 12px; border-top: 1px solid #eeeeee;}
+.tableBox li .row span{ display: inline-block; min-height: 100px; border-right: 1px solid #eeeeee; vertical-align: top;}
+.row span:nth-child(1){ width: 320px; padding: 15px 0 0 18px;}
+.row span:nth-child(2){ width: 120px; text-align: center;}
+.row span:nth-child(3){ width: 175px; padding: 30px 0 0 12px;}
+.row span:nth-child(4){ width: 109px; padding-left: 25px;}
+.row span:nth-child(5){ width: 130px; border-right: none !important; text-align: center; line-height: 70px;}
+.row .userBox .imgL{ width: 40px; height: 40px; float: left; border-radius: 6px; overflow: hidden;}
+.userBox .imgL img{width: 100%; height: 100%;}
+.row .userBox .messageR{ float: left; width: 240px; margin-left: 15px;}
+.userBox .messageR .name{ font-size: 14px; color: #000000;}
+.userBox .messageR .orderNum{ font-size: 12px; color: #333333; margin-right:22px; position: relative; line-height: 20px; max-height: 64px;overflow: hidden; }
+.userBox .messageR .orderNum::after{
+	content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
+background: -webkit-linear-gradient(left, transparent, #fff 55%);
+background: -o-linear-gradient(right, transparent, #fff 55%);
+background: -moz-linear-gradient(right, transparent, #fff 55%);
+background: linear-gradient(to right, transparent, #fff 55%);
+}
+.row span .price{ font-size: 14px; color: #ff7802; margin-top: 14px;}
+.row span .carryMoney{ font-size: 10px; color: #6c6c6c; margin-top: 2px;}
+.row span .bigBar1,.row span .bigBar2,.row span .bigBar3,.row span .bigBar4,.row span .bigBar5,.row span .bigBar6{ width: 150px; height: 6px; background: #eeeeee; border-radius: 6px; position: relative;}
+.row span .smallBar{ width: 30px; height: 6px; background: #ffa42f; border-radius: 6px; position: absolute; left: 0; top: 0;} 
+.row span .character{ width: 150px; height: 20px;}
+	/*制作中进度条*/
+.row span .bigBar2 .smallBar{ width: 60px;}
+.row span .bigBar2 .state{ left: 34px;}
+	/*待配送进度条*/
+.row span .bigBar3 .smallBar{ width: 90px;}
+.row span .bigBar3 .state{ left: 64px;}
+	/*配送中进度条*/
+.row span .bigBar4 .smallBar{ width: 120px;}
+.row span .bigBar4 .state{ left: 94px;}
+	/*已完成进度条*/
+.row span .bigBar5 .smallBar{ width: 150px;}
+.row span .bigBar5 .state{ left: 124px;}
+    /*已完成进度条*/
+.row span .bigBar6 .smallBar{ width: 0px;}
+.row span .bigBar6 .state{ left: 55px;}
+
+.row span .character i{ font-style: normal; font-size: 12px; color: #999999;}
+.row span .character .pai{ float: left;}
+.row span .character .wan{ float: right;}
+.row span .state{ width: 50px; height: 25px; background: #798697; position: absolute; left: 4px; top: -32px; font-size: 12px; color: white; text-align: center; line-height: 25px; display: none;}
+.row span .state s{ text-decoration: none;}
+.row span .state .sijiao{ display: inline-block; width: 6px; height: 6px; background: #798697; position: absolute; left: 22px; top: 22px; transform: rotate(45deg);}
+.row span .waitPay2,.row span .waitLis,.row span .waitCar,.row span .inCar,.row span .hasFin{ margin-top: 8px;}
+.row span .waitPay2 i,.row span .waitLis i,.row span .waitCar i,.row span .inCar i,.row span .hasFin i{display: inline-block; width: 5px; height: 5px; background: #ff5d4a; border-radius: 50%; vertical-align: middle; margin-right: 6px;}	
+.row span .waitPay2 i{ background: #000000;}
+.row span .waitLis i{ background: #ff5f4f;}
+/*.row span .waitCar i{ background: #ffa800;}*/
+.row span .inCar i{ background: #ffa800;}
+.row span .hasFin i{ background: #1dc499; }
+.row span .waitPay2 b,.row span .waitLis b,.row span .waitCar b,.row span .inCar b,.row span .hasFin b,.row span .make b,.row span .hadDelete b{ font-style: normal; font-size: 12px; color: #aaaaaa; vertical-align: middle; display: inline-block;}
+.row span .getOrder,.row span .carry,.row span .hadFinish,.row span .make{ display:inline-block; width: 50px; height: 20px; background: #ff5d4a; font-size: 12px; color: #FFFFFF; text-align: center; line-height: 20px; border-radius: 4px; margin-right: 10px; }
+.row span .carry{ background: #ffa800;}
+.row span .hadFinish{ background: #1dc499;}
+.row span .make{ background: #f3566b;}
+.row span .hadDelete b{ margin-left: 8px; text-decoration: line-through; margin-top: 10px;}
+	/*删除按钮*/
+.row span .cancel{ display:inline-block; font-size: 12px; color: #666666; width: 50px; height: 20px; background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 4px; text-align: center; line-height: 20px;}
+	
+.row span .detail{ margin: 2px 0 0 2px;}
+.row span .detail a{ font-size: 12px; color: #2095f2;}
+.row span .reData{ margin: 2px 0 0 2px; }
+.row span .reData a{ font-size: 12px; color: #2095f2;}
+.row span .messageTip{ margin: 3px 0 0 18px; position: relative;}
+.row span .messageTip .imgT{ display: inline-block; width: 20px; height: 18px; background: url(../images/xiao_03.png);}
+.row span .messageTip .messCha{ font-size: 12px; color: #000000; width: 100px; padding:5px 0; text-align: center; border: 1px solid #ffa42f; position: absolute; left: -38px; top:25px; background: white; display: none;}
+.row span .messageTip .messCha .sanjiao{ width: 8px; height: 8px; background: white; border-left: 1px solid #ffa42f; border-top: 1px solid #ffa42f; position: absolute; left: 43px; top: -5px; transform: rotate(45deg);}
+/*右边导航*/
+.right{
+	float: right;
+	width: 90px;
+	/*min-height: 770px;*/
+	height: 740px;
+}
+.right li a{
+	display: block;
+	width: 90px;
+	height: 145px;
+	box-sizing: border-box;
+	border: 1px solid #eb6877;
+	text-align: center;
+	color: #eb6877;
+	font-size: 20px;
+	line-height: 30px;
+	padding-top: 42px;
+	position: relative;
+	background: white;
+}
+.right li.new a{
+	border-bottom: none;
+}
+.right li a .sanjiao{
+	display: inline-block;
+	width: 11px;
+	height: 17px;
+	background: url(../images/sanjiao_03.png) no-repeat;
+	position: absolute;
+	left: -10px;
+	top: 62px;
+	display: none;
+}
+.right li.rCurrent a{
+	background: #eb6877;
+	color: white;
+}
+.right li.rCurrent a .sanjiao{
+	display: block;
+}
+/*订单详情弹框*/
+.detailBomb{ width: 370px; height: 520px; background: white; box-shadow: 0 0 20px #dedede; position: fixed; left: 50%; margin-left: -185px; top: 40%; margin-top: -260px; display: none;}
+.detailBomb .messageBox{ width: 315px; height: 375px; margin: 30px 0 0 28px; overflow: auto; border-bottom: 1px solid #eeeeee;}
+.messageBox .numberBox{ position: relative;}
+.numberBox .dingdan{ font-size: 12px; color: #000000;}
+.numberBox .dingdan i{ display: inline-block; width: 13px; height: 13px; background: white; border-radius: 50%; border: 3px solid #009944; vertical-align: middle; margin-right: 12px;}
+.numberBox .cont{ border-left: 1px solid #F2F2F2; min-height: 50px; margin-left: 6px; margin-top: 2px;}
+.numberBox .cont p{ font-size: 12px; color: #666666; margin-left: 17px;}
+.numberBox span{ display: inline-block; width: 3px; height: 3px; background: #c2c0c1; border-radius: 50%; position: absolute;}
+.numberBox .shang{ left: 5px; top: 19px;}
+.numberBox .xia{left: 5px; bottom: 0px !important;}
+.timeBox .dingdan i{ border: 3px solid #ff9500;}
+.takeBox .dingdan i{ border: 3px solid #dc1c5d;}
+.proBox .dingdan i{ border: 3px solid #1fb5ad;}
+.takeBox .cont{ min-height: 65px;}
+.proBox .cont{ border-left: none;}
+.proBox .cont li{ margin-left: 18px; width: 265px;}
+.proBox .cont li i{ font-style: normal; font-size: 12px; color: #666666; display: inline-block; vertical-align: middle;}
+.proBox .cont li i.wen1{width: 172px;}
+.proBox .cont li i.wen2{width: 30px; text-align: right;}
+.proBox .cont li i.wen3{width: 50px; word-break: break-all; text-align: right;}
+.proBox .cont .redPaper{ width: 264px; height: 30px; margin-top: 5px;}
+
+.proBox .cont .red{float: left; display: inline-block; width: 60px; height: 20px; background: #dc1c5d; font-size: 12px; color: white; text-align: center; line-height: 20px; font-style: normal;}
+.proBox .cont .money{ float: right; font-style: normal;}
+.detailBomb .payBox{ height: 50px; margin-left: 51px; width: 268px; margin-top: 3px;}
+.payBox .payType{ width: 110px; float: left; font-size: 12px; color: #666666; padding-top: 8px;}
+.payBox .allMon{ width: 150px; float: right; font-size: 24px; color: #DC1C5D; text-align: right;}
+.closeBox a{ display: block; width: 105px; height: 35px; background: #43cb83; font-size: 12px; color: white; text-align: center; line-height: 35px; border-radius: 4px; margin-left: 132px;}
+/*删除订单提示弹框*/
+.delePart{ width: 380px; height: 180px; background:white; position: fixed; left: 50%; margin-left: -190px; top: 40%; margin-top: -90px; padding: 15px 20px; box-shadow: 0 0 20px #dedede; z-index: 10;}
+.delePart .close{ display: block; width: 12px; height: 12px; background: url(../images/close_03.png); margin-left: auto;}
+.delePart p{font-size: 12px; color: #333333; line-height: 24px; padding-left: 10px;}
+.delePart .btnBox{margin-top: 20px; text-align: center;}
+.btnBox a.sure{ width: 42px; height: 20px; background: #ffce1c; display: inline-block; border: 1px solid #e69c14; color:#a33300; font-size: 12px; line-height: 20px; vertical-align:middle; margin-right: 30px;}
+.btnBox a.think{ width: 54px; height: 20px; display: inline-block; border: 1px solid #dddddd; color: #333333; font-size: 12px; vertical-align: middle; line-height: 20px;}
+.cancelBomb{ display: none;}
+.cancelBomb .reasonBox{ height: 25px;}
+.reasonBox .ding{ width: 103px; float: left;}
+.reasonBox .reasonSel{ width: 150px; float: left; position: relative;}
+.reasonBox .reasonSel .choose{ width: 150px; height: 20px; display: inline-block; border: 1px solid #dddddd; margin-top: 2px;}
+.reasonSel .choose span{ font-size: 12px; color: #333333; display: inline-block; width: 133px; padding: 0 2px; }
+.reasonSel .choose .down{ display: inline-block; width: 13px; height: 7px; background:url(../images/sanjiao_04.png);}
+.reasonSel .select{ width: 152px; border: 1px solid #dddddd; border-top: none; background: white; position: absolute; left: 0; top: 21px; padding-top: 5px; padding-bottom: 5px; display: none;}
+.reasonSel .select .rad{ vertical-align: middle; margin-right: 4px; margin-left: 5px;}
+.select .rea{ font-size: 12px; color: #333333;}
+.cancelBomb .txt{ display: inline-block; width: 202px; height: 20px; border: 1px solid #dddddd; padding: 0 5px; vertical-align: middle;}
+.cancelBomb .select li{ margin-top: 2px;}
+/*加*/
+.proBox .cont .carryM{ margin-top: -2px;}
+.proBox .cont .carryM .red{ background: #6E5C58;}
+
+.cancelBomb .remark{ display: none;}

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/layout_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/plan_type"
+                    />
+                <TextView
+                    android:id="@+id/plan_type"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:hint="请选择你需要发布的计划类型"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_arrow_right"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <include layout="@layout/line"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/plan_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!--<include layout="@layout/line"/>-->
+            <include layout="@layout/layout_common_pic_file"/>
+            <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/release_project"
+                    />
+                <TextView
+                    android:id="@+id/project_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:hint="请选择你需要关联的项目"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_arrow_right"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/time_line_layout"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <include layout="@layout/line"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/time_select_layout"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/task_cycle"
+                    />
+                <TextView
+                    android:id="@+id/complete_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:hint="请选择完成时间"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_arrow_right"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/task_person"
+                    android:paddingBottom="@dimen/default_padding"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/participant_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/publish"
+                android:layout_width="match_parent"
+                android:layout_marginTop="34dp"
+                android:layout_marginBottom="34dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_blue_radius"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:text="确认发布"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

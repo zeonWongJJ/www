@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<chat.rocket.android.widget.AutofitRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/message_extra_action_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="60dp"
+        tools:listitem="@layout/message_extra_action_item"
+        android:clipToPadding="false">
+
+</chat.rocket.android.widget.AutofitRecyclerView>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/message_extra_action_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        tools:listitem="@layout/message_extra_action_item"
+        android:clipToPadding="false">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

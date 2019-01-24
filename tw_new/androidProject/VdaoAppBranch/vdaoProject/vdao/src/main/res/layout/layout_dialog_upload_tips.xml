@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/white_corner_solid"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/bg_simple"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bg_identity_sample"
+            android:layout_margin="30dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="上传原件照片"
+                android:textSize="@dimen/text_size_title"
+                android:textColor="@color/black"
+                android:paddingTop="@dimen/default_padding"
+                android:drawableLeft="@drawable/icon_credentials_tip"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical|left"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="横向拍摄"
+                android:textSize="@dimen/text_size_title"
+                android:textColor="@color/black"
+                android:paddingTop="@dimen/default_padding"
+                android:drawableLeft="@drawable/icon_credentials_tip"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical|left"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="边框完整 亮度均匀"
+                android:textSize="@dimen/text_size_title"
+                android:textColor="@color/black"
+                android:paddingTop="@dimen/default_padding"
+                android:drawableLeft="@drawable/icon_credentials_tip"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical|left"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="字体清晰 无信息遮挡"
+                android:textSize="@dimen/text_size_title"
+                android:textColor="@color/black"
+                android:paddingTop="@dimen/default_padding"
+                android:drawableLeft="@drawable/icon_credentials_tip"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical|left"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/line"
+            android:layout_marginTop="40dp"
+            android:layout_height="1px"/>
+        <TextView
+            android:id="@+id/dismiss_btn"
+            android:layout_width="match_parent"
+            android:text="我已知晓"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@color/yellow_line_color"
+            android:padding="@dimen/default_padding"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

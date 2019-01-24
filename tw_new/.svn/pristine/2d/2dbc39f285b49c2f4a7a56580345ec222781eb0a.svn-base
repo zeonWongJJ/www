@@ -1,0 +1,255 @@
+<?php
+
+class Order_model extends TW_Model {
+
+	public function __construct() {
+		parent :: __construct();
+	}
+
+/***************************** 获取5条办公室订单信息 *****************************/
+
+	/**
+	 * [get_appointment_part 获取5条办公室订单信息]
+	 * @param  [int] $user_id   [传入的用户id]
+	 * @return [array]          [返回查询到的数据]
+	 */
+	public function get_appointment_user($user_id, $appointment_state) {
+		if ($appointment_state == 9) {
+			$a_where = [
+				'user_id'          => $user_id,
+				'appointment_type' => 1,
+			];
+		} else {
+			$a_where = [
+				'user_id'           => $user_id,
+				'appointment_state' => $appointment_state,
+				'appointment_type'  => 1,
+			];
+		}
+		$s_field = '';
+		$a_order = [
+			'appointment_id' => 'desc'
+		];
+		$a_data = $this->db->from('appointment')
+						   ->join('store', ['wf_store.store_id'=>'wf_appointment.store_id'])
+						   ->get('', $a_where, $s_field, $a_order, 0, 999999999);
+		return $a_data;
+	}
+
+/****************************** 获取一条办公室订单 ******************************/
+
+	/**
+	 * [get_appointment_one 获取一条办公室订单]
+	 * @param  [int] $appointment_id   [传入的订单id]
+	 * @return [array]                 [返回查询到的数据]
+	 */
+	public function get_appointment_one($appointment_id) {
+		$a_where = [
+			'appointment_id' => $appointment_id
+		];
+		$s_field = '';
+		$a_data = $this->db->from('appointment')
+						   ->join('store', ['wf_store.store_id'=>'wf_appointment.store_id'])
+						   ->join('room', ['wf_room.room_id'=>'wf_appointment.room_id'])
+						   ->get_row('', $a_where, $s_field);
+		return $a_data;
+	}
+
+/********************************* 获取房间设备 ********************************/
+
+	/**
+	 * [get_romm_device 获取部分设备信息]
+	 * @param  [array]   $a_data     [要获取的设备id数组]
+	 * @return [array]   $i_result   [返回获取到的数据]
+	 */
+	public function get_room_device($a_data) {
+		$a_where = [
+			'device_state' => 1,
+		];
+		$a_data = $this->db->where_in('device_id', $a_data)->get('device', $a_where, '', [], 0, 99999999);
+		return $a_data;
+	}
+
+/******************************* 更新一条预约记录 *******************************/
+
+	/**
+	 * [update_appointment 更新一条预约记录]
+	 * @param  [array] $a_where [更新的条件]
+	 * @param  [array] $a_data  [更新的数据]
+	 * @return [int]            [返回受影响的行数]
+	 */
+	public function update_appointment($a_where, $a_data) {
+		$i_result = $this->db->update('appointment', $a_data, $a_where);
+		return $i_result;
+	}
+
+/***************************** 获取某条订单评论数 *******************************/
+
+	/**
+	 * [get_comment_total 获取某条订单评论数]
+	 * @param  [int] $appointment_id [传入的订单id]
+	 * @return [int]                 [返回查询到的总数]
+	 */
+	public function get_comment_total($appointment_id) {
+		$a_where = [
+			'object_id'    => $appointment_id,
+			'user_id'      => $_SESSION['user_id'],
+			'comment_type' => 1,
+		];
+		$i_result = $this->db->get_total('comment', $a_where);
+		return $i_result;
+	}
+
+/****************************** 插入一条评论信息 ********************************/
+
+	/**
+	 * [insert_comment 插入一条评论信息]
+	 * @param  [array] $a_data [要插入的信息]
+	 * @return [int]           [返回新数据的id]
+	 */
+	public function insert_comment($a_data) {
+		$i_result = $this->db->insert('comment', $a_data);
+		return $i_result;
+	}
+
+/***************************** 获取5条产品订单信息 *****************************/
+
+	/**
+	 * [product 获取5条产品订单信息]
+	 * @param  [int] $user_id   [传入的用户id]
+	 * @return [array]          [返回查询到的数据]
+	 */
+	public function product() {
+		$this->db->group_by('b.order_id');
+		$a_where = ['a.user_id' => $_SESSION['user_id']];
+		$a_sele  = "b.order_id, b.spec, b.pro_img, b.product_id, b.product_name, b.money, b.goods_num";
+		$a_product = $this->db->from('order as a')
+								->join('order_goods as b', ['a.order_id' => 'b.order_id'])
+								->get('', $a_where, $a_sele, '', 0, 9999999);
+		return $a_product;
+	}
+
+/***************************** 获取产品订单详情信息 *****************************/
+
+	/**
+	 * [product 获取5条产品订单信息]
+	 * @param  [int] $user_id   [传入的订单id]
+	 * @return [array]          [返回查询到的数据]
+	 */
+	public function product_details($id) {
+		$a_where = ['a.user_id' => $_SESSION['user_id'], 'a.order_id' => $id];
+		$a_details = $this->db->from('order as a')
+								->join('order_goods as b', ['a.order_id' => 'b.order_id'])
+								->join('store as c', ['a.store_id' => 'c.store_id'])
+								->get('', $a_where);
+		return $a_details;
+	}
+
+
+/****************************** 获取订单评论的标签 ******************************/
+
+	/**
+	 * [get_comtag_all 获取订单评论的标签]
+	 * @return [type] [description]
+	 */
+	public function get_comtag_all($store_id) {
+		$a_where = [
+			'comtag_type' => 1,
+			'store_id'    =>$store_id
+		];
+		$s_field = '';
+		$a_order = [
+			'comtag_id' => 'desc'
+		];
+		$a_data = $this->db->get('comtag', $a_where, $s_field, $a_order, 0, 999999999);
+		return $a_data;
+	}
+
+/******************************** 获取订座的订单 ********************************/
+
+	public function get_order_book($user_id, $state, $page) {
+		// 先设置默认从第一页开始
+		$i_page = $page;
+		if (empty($i_page)) {
+			$i_page = 1;
+		}
+		// 设置每页显示的数据行数
+		$i_prow = 10;
+		// 加载分页类
+		$this->load->library('pages');
+		// 获取数据总行数
+		if ($state == 9) {
+			$a_where = [
+				'user_id'          => $user_id,
+				'appointment_type' => 2,
+			];
+		} else {
+			$a_where = [
+				'user_id'           => $user_id,
+				'appointment_type'  => 2,
+				'appointment_state' => $state
+			];
+		}
+		$i_total = $this->db->get_total('appointment', $a_where);
+		// 调用分页运算函数
+		$a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+		// 开始获取产品数据
+		$this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+		$s_field = '';
+		$a_order = [
+			'appointment_id' => 'desc'
+		];
+		$a_data = $this->db->from('appointment')
+						   ->join('store', ['wf_store.store_id'=>'wf_appointment.store_id'])
+						   ->get('', $a_where, $s_field, $a_order);
+		return $a_data;
+	}
+
+/****************************** 获取门店所有评论 *******************************/
+
+	/**
+	 * [get_comment_store 获取门店所有评论]
+	 * @param  [type] $store_id [description]
+	 * @return [type]           [description]
+	 */
+	public function get_comment_store($store_id) {
+		$a_where = [
+			'store_id' => $store_id
+		];
+		$s_field = '';
+		$a_order = [
+			'comment_id' => 'desc'
+		];
+		$a_data = $this->db->get('comment', $a_where, $s_field, $a_order, 0, 999999999);
+		return $a_data;
+	}
+
+/******************************* 更新一条门店信息 *******************************/
+
+	/**
+	 * [update_store 更新一条门店信息]
+	 * @param  [type] $a_where [description]
+	 * @param  [type] $a_data  [description]
+	 * @return [type]          [description]
+	 */
+	public function update_store($a_where, $a_data) {
+		$i_result = $this->db->update('store', $a_data, $a_where);
+		return $i_result;
+	}
+
+/************************** 获取最近5秒支付的一条订单 ***************************/
+
+	public function get_officeorder_second() {
+		$a_where = [
+			'pay_time >' => time()-5
+		];
+		$a_data = $this->db->get_row('appointment', $a_where);
+		return $a_data;
+	}
+
+/********************************************************************************/
+
+}
+
+?>

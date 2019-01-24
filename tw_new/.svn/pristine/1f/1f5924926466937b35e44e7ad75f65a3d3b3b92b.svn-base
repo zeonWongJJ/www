@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/app_bg">
+    <include layout="@layout/layout_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/app_bg"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="公告主题"
+                    />
+                <TextView
+                    android:id="@+id/publish_title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:text="端午节放假通知"
+                    />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="创建时间"
+                    />
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:text="2018-05-12 18:12"
+                    android:layout_marginRight="@dimen/default_margin"
+                    />
+                <!--<ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_back_black"
+                    android:layout_height="wrap_content" />-->
+            </LinearLayout>
+
+
+            <include layout="@layout/line"/>
+            <TextView
+                android:id="@+id/edit_publish_content"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                style="@style/publish_task_black_style"
+                android:background="@color/white"
+                android:textColorHint="@color/gray"
+                />
+            <include layout="@layout/layout_plan_show_pic_file"/>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+</LinearLayout>

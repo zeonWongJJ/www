@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">配置</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+application项目文件夹下的config目录为存放配置文件的目录，项目所有的配置文件都应该放到此目录下，必须用到的配置文件将在下面一一列出，未列出的配置文件可以不用理会
+</div>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	数据库配置文件 config_database.php
+</code>
+</div>
+<div class="desc">
+	如果有多个数据库，在数组中增加即可，'db'为系统默认使用的数据库，使用方式如：$this->db->get('表名')，'db_mysql'是自定义增加的数据库，连接数据库的时候需要先连接数据库：$this->load->database('db_mysql')，使用举例：$this->db_mysql->get_row('表名')
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 数据库1
+$a_db_config['db'] = array(
+	'server' => 'localhost',
+	'user' => '数据库用户名',
+	'password' => '数据库密码',
+	'database' => '数据库名',
+	'charset' => 'UTF8',
+	'persistent' => true, // 是否持久连接
+	'prefix' => '表前缀'
+);
+// 数据库2
+$a_db_config['db_mysql'] = array(
+	'server' => 'localhost',
+	'user' => '数据库用户名',
+	'password' => '数据库密码',
+	'database' => '数据库名',
+	'charset' => 'UTF8',
+	'persistent' => true, // 是否持久连接
+	'prefix' => ''
+);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	路由配置文件 config_router.php
+</code>
+</div>
+<div class="desc">
+	http://域名/index.html 访问的时候，会请求控制器Home_ctrl.php里面的index方法，这个文件控制所有的请求路径，这里没有配置好，是不能按期望访问的
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 首页
+'index' => [
+	'class' => 'Home',
+	'method' => 'index'
+],
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	系统配置文件 config_system.php
+</code>
+</div>
+<div class="desc">
+	主要的配置参数设置在此文件，每项配置参数都有注释，这里就不列代码了
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	系统默认已加载config_system.php文件，可以使用$this->config进行访问，或者使用get_config_item(变量名)来获取单个配置变量。
+</code>
+</div>
+<div class="desc">
+	http://域名/index.html 访问的时候，会请求控制器Home_ctrl.php里面的index方法，这个文件控制所有的请求路径，这里没有配置好，是不能按期望访问的
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 输出域名
+echo get_config_item('domain');
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->load->config(文件名<span>[字符串]</span>, 变量名<span>[字符串]</span>)
+</code>
+</div>
+<div class="desc">
+	把配置文件加载到$this->config数组中，第一个参数是要加载的变量文件名，第二个参数为加载配置文件中变量名，简单说就是加载A文件中的B变量到$this->config['B']
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->config('sso_site', 'a_sso_site');
+print_r($this->config);
+
+// 输出：
+Array
+(
+    [domain] => http://user.7du.com
+    [subclass_prefix] => MY_
+    [proxy_ips] => 
+    [is_html] => 
+    [init_db] => db
+    [cookie_prefix] => 
+    [cookie_domain] => 
+    [cookie_path] => /
+    [cookie_secure] => 
+    [short_message_prefix] => 【7度购】
+    [email_smtp_host] => smtp.qq.com
+    [email_smtp_port] => 465
+    [email_from_name] => 7度服务中心
+    [email_username] => service@7dugou.com
+    [email_password] => 
+    [email_from] => service@7dugou.com
+    [a_sso_site] => Array
+        (
+            [0] => http://7du.com
+            [1] => http://dev.7dugo.com
+        )
+
+)
+</code>
+</pre>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+ /* 聊天红包 */
+ body{ background:url(../images/yueB_01.png); background-repeat:no-repeat; background-size:100%;  }
+ .pjoTitle{ background:none; border-bottom:none; }
+ .pjoTitle>span{ color:white; }
+  /* 红包发起人 */
+ .initiator{ text-align:center; margin-top:1rem; }
+ .initiator>img{ width:1.6rem; height:1.6rem; border-radius:50%; }
+ .initiator>p{ margin-top:0.26rem; margin-bottom:0.32rem; }
+ .initiator>p>span,.initiator>p>em{ font-size:0.42rem; font-weight:bold; }
+ .initiator>p>em{ font-style:normal; }
+ .initiator>span{ font-size:0.32rem; }
+
+  /* 领取红包列表 */
+ .receiverList{ margin-top:1.4rem; }
+ .receiverList>p{ text-align:center; font-size:0.34rem; }
+ .receiverList>p>em{ width:1.86rem; height:0.02rem; display:inline-block; background:black; }
+ .receiverList>p>span>em{ font-style:normal; }
+ .receiverList>p>span{ display:inline-block; margin:0 0.1rem; }
+ .receiverList>p>em,.receiverList>p>span{ vertical-align:middle; }
+ .receiverList>ul>li{ padding:0 0.5rem; margin:0.3rem 0; }
+ .receiverList>ul>li>img, .receiverList>ul>li>em, .receiverList>ul>li>span{ vertical-align:middle; }
+ .receiverList>ul>li>img{ width:0.9rem; height:0.9rem; border-radius:50%; }
+ .receiverList>ul>li>em{ display:inline-block; margin-left:0.26rem; }
+ .receiverList>ul>li>em>p{ font-size:0.34rem; font-style:normal; }
+ .receiverList>ul>li>em>span{ font-size:0.29rem; font-style:normal; }
+ .receiverList>ul>li>span{ display:inline-block; margin-left:3.73rem; font-size:0.4rem; }
+
+
+
+
+
+
+

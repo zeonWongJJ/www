@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">路由URI</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+路由功能实现了对URL的重写，根据$a_router的键名，访问设置的class类和method方法，如果有参数，使用“-”进行分隔
+</div>
+<div class="desc">
+	比如配置一个访问路径为“a”的路由（注意“a”必须为小写），我们可以使用 http://域名/a.html 形式进行访问，有时候不加“.html”一样是可以访问的，为了保障地址的唯一性，以及稳定性，所有的链接必须统一使用“.html”后缀
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+static $a_router = [
+	// 首页
+	'a' => [
+		'class' => 'Home',
+		'method' => 'index'
+	],
+]
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->router->get_index();
+</code>
+</div>
+<div class="desc">
+	获取当前路由索引名，http://域名/a.html 此链接将返回“a”
+</div>
+<code class="language-php">
+	$this->router->get_index();
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->router->get_controller();
+</code>
+</div>
+<div class="desc">
+	获取当前控制器名，按如上举例，此函数返回 "Home"
+</div>
+<code class="language-php">
+	$this->router->get_controller();
+</code>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->router->get_method();
+</code>
+</div>
+<div class="desc">
+	获取当前方法名，按如上举例，此函数返回 "index"
+</div>
+<code class="language-php">
+	$this->router->get_method()
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->router->get(想要获取的第几个参数<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	获取URL参数，第几个参数，函数就传入几，比如要获取“http://域名/a-10.html”链接中的参数“10”，使用方法如下 
+</div>
+<code class="language-php">
+	$this->router->get(1)
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->router->get_url();
+</code>
+</div>
+<div class="desc">
+	获取当前URL
+</div>
+<code class="language-php">
+	$this->router->get_url();
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->router->url(文件名<span>(字符串)</span>，参数数组<span>[数组]</span>, 是否编码<span>[bool]</span>, 是否添加.html结尾，默认加<span>[bool]</span>);
+</code>
+</div>
+<div class="desc">
+	构建URL，第四个参数传入false时，可以作为分页类的链接参数传入，参数之间使用“-”进行分隔，如果要生成“http://user.7du.com/cate-1-2.html”链接，使用方法如下：
+</div>
+<code class="language-php">
+	$this->router->url('cate', ['cid' => 1, 'gid' => 2]);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->router->get_parse_url(URL<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	解析 URL，返回其组成部分的关联数组，对PHP自身的parse_url函数二次封装，区别在于没有传递参数时，会自动使用当前页面的URL作为参数
+</div>
+<code class="language-php">
+	$this->router->get_parse_url();
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	防止 URL 地址中出现“-”符号
+</code>
+</div>
+<div class="desc">
+	php环境中，可以使用$this->general->base64_convert()函数进行编码，javascript环境中，使用encodeURI(字符串).replace(/\-/, "+")编码，使用的时候还原即可
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+	// javascript 中编码字符
+	encodeURI(字符串).replace(/\-/, "+");
+	
+	// php 进行还原
+	urldecode(str_replace('+', '-', '字符串'));
+</code>
+</pre>
+</div>
+
+</body>
+</html>

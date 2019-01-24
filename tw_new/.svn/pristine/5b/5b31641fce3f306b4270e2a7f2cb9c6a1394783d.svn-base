@@ -1,0 +1,237 @@
+<?php
+
+class Account_model extends TW_Model {
+
+	public function __construct() {
+		parent :: __construct();
+	}
+
+/***************************************** 获取所有结算数据 *******************************************/
+
+	public function get_account_all() {
+		$s_field = 'account_id, order_count, product_count, money_count, account_time, account_state, money_update, remark_update, wf_account.store_id, store_linkman, store_contact, store_name, order_ids, is_correct';
+		$a_order = [
+			'account_id' => 'desc'
+		];
+		$a_data = $this->db->from('account')
+						   ->join('store',['wf_account.store_id'=>'wf_store.store_id'])
+					 	   ->get('', [], $s_field, $a_order, 0, 999999);
+		return $a_data;
+	}
+
+/********************************************** 门店结算 **********************************************/
+
+	public function get_account_page($state, $time) {
+		// 先设置默认从第一页开始
+		$i_page = $this->router->get(3);
+		if (empty($i_page)) {
+			$i_page = 1;
+		}
+		// 设置每页显示的数据行数
+		$i_prow = 10;
+		// 加载分页类
+		$this->load->library('pages');
+		// 获取数据总行数
+		if ($state == 9 && $time == 9) {
+			$a_where = [];
+		}
+		if ($state == 9 && $time != 9) {
+			$a_where = [
+				'account_time' => $time,
+			];
+		}
+		if ($state != 9 && $time == 9) {
+			$a_where = [
+				'account_state' => $state,
+			];
+		}
+		if ($state != 9 && $time != 9) {
+			$a_where = [
+				'account_state' => $state,
+				'account_time'  => $time,
+			];
+		}
+		$i_total = $this->db->get_total('account', $a_where);
+		// 调用分页运算函数
+		$a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+		// 开始获取产品数据
+		$this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+		$s_field = 'account_id, order_count, product_count, money_count, account_time, account_state, money_update, remark_update, wf_account.store_id, store_linkman, store_contact, store_name, order_ids, is_correct, month_score,coffee_ordercount,office_ordercount';
+		$a_order = [
+			'account_id' => 'desc'
+		];
+		$a_data['account'] = $this->db->from('account')
+						   ->join('store',['wf_account.store_id'=>'wf_store.store_id'])
+					 	   ->get('', $a_where, $s_field, $a_order);
+		$a_data['count'] = $i_total;
+		$a_data['page']  = $i_page;
+		return $a_data;
+	}
+
+/********************************************** 按月获取 **********************************************/
+
+	/**
+	 * [get_account_month 按月获取结算数据]
+	 * @param  [int]   $account_time [传入的月份信息 如201709]
+	 * @return [array]               [返回查询到的数据]
+	 */
+	public function get_account_month($account_time) {
+		$a_where = [
+			'account_time' => $account_time
+		];
+		$s_field = 'account_id, order_count, product_count, money_count, account_time, account_state, money_update, remark_update, wf_account.store_id, store_linkman, store_contact, store_name, order_ids, is_correct';
+		$a_order = [
+			'account_id' => 'desc'
+		];
+		$a_data = $this->db->from('account')
+						   ->join('store',['wf_account.store_id'=>'wf_store.store_id'])
+					 	   ->get('', $a_where, $s_field, $a_order);
+		return $a_data;
+	}
+
+/********************************************** 查看明细 **********************************************/
+
+	/**
+	 * [get_account_one 门店结算 -> 查看明细]
+	 * @param  [int]   $account_id [传入的结算id]
+	 * @return [array]             [返回查询到的数据]
+	 */
+	public function get_account_one($account_id) {
+		$a_where = [
+			'account_id' => $account_id
+		];
+		$s_field = 'account_id, order_count, product_count, money_count, account_time, account_state, money_update, remark_update, wf_account.store_id, store_linkman, store_contact, store_name, store_address, order_ids, is_correct, office_order';
+		$a_data = $this->db->from('account')
+						   ->join('store',['wf_account.store_id'=>'wf_store.store_id'])
+					 	   ->get_row('', $a_where, $s_field, $a_order);
+		return $a_data;
+	}
+
+/********************************************** 最近结算 **********************************************/
+
+	/**
+	 * [get_account_recently 获取门店的最近三个月的结算数据]
+	 * @param  [int]   $store_id [传入的门店id]
+	 * @return [array]           [返回查询到的数据]
+	 */
+	public function get_account_recently($store_id) {
+		$a_where = [
+			'store_id' => $store_id
+		];
+		$s_field = '';
+		$a_order = [
+			'account_id' => 'desc'
+		];
+		$a_data = $this->db->get('account', $a_where, $s_field, $a_order, 0, 3);
+		return $a_data;
+	}
+
+/********************************************* 获取月订单 *********************************************/
+
+	public function get_account_order($order_ids, $stye) {
+		// 先设置默认从第一页开始
+		$i_page = $this->router->get(3);
+		if (empty($i_page)) {
+			$i_page = 1;
+		}
+		// 设置每页显示的数据行数
+		$i_prow = 15;
+		// 加载分页类
+		$this->load->library('pages');
+		// 获取数据总行数
+		$i_total = count($order_ids);
+		
+		// 调用分页运算函数
+		$a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+		// 开始获取产品数据
+		$this->db->limit($a_pdata['start'], $a_pdata['last']);
+		if ($stye == 1) {
+			$s_field = 'order_id, order_number, time_create, order_time, order_count, goods_amount, score_tostore';
+			$a_order = [
+				'order_id' => 'desc'
+			];
+			$a_data['order'] = $this->db->where_in('order_id', $order_ids)->get('order', $a_where, $s_field, $a_order);
+		} else {
+			$s_field = 'appointment_id, appointment_number, appointment_time, pay_time, appointment_price, score_tostore';
+			$a_order = [
+				'appointment_id' => 'desc'
+			];
+			$a_data['order'] = $this->db->where_in('appointment_id', $order_ids)->get('appointment', $a_where, $s_field, $a_order);
+		}
+		$a_data['page'] = $i_page;
+		return $a_data;
+	}
+
+/******************************************** 修改结算金额 ********************************************/
+
+	/**
+	 * [update_account 修改结算金额]
+	 * @param  [array] $a_where [修改的条件]
+	 * @param  [array] $a_data  [修改的数据]
+	 * @return [int]            [返回修改的行数]
+	 */
+	public function update_account($a_where, $a_data) {
+		$i_result = $this->db->update('account', $a_data, $a_where);
+		return $i_result;
+	}
+
+/****************************************** 获取一条门店信息 ******************************************/
+
+	/**
+	 * [get_store_one 获取一条门店信息]
+	 * @param  [type] $store_id [description]
+	 * @return [type]           [description]
+	 */
+	public function get_store_one($store_id) {
+		$a_where = [
+			'store_id' => $store_id
+		];
+		$a_data = $this->db->get_row('store', $a_where);
+		return $a_data;
+	}
+
+/****************************************** 修改一条门店信息 ******************************************/
+
+	/**
+	 * [update_store 修改一条门店信息]
+	 * @param  [array] $a_where [修改的条件]
+	 * @param  [array] $a_data  [修改的数据]
+	 * @return [int]            [返回修改的行数]
+	 */
+	public function update_store($a_where, $a_data) {
+		$i_result = $this->db->update('store', $a_data, $a_where);
+		return $i_result;
+	}
+
+/**************************************** 插入一条资金变动信息 ****************************************/
+
+	/**
+	 * [insert_balance 插入一条资金变动信息]
+	 * @param  [array] $a_data [要插入的数据]
+	 * @return [int]           [返回新数据的id]
+	 */
+	public function insert_balance($a_data) {
+		$i_result = $this->db->insert('balance', $a_data);
+		return $i_result;
+	}
+
+/************************************* 获取不同结算状态的总条数 ***************************************/
+
+	/**
+	 * [get_account_count 获取不同结算状态的总条数]
+	 * @param  [int] $account_state [传入的结算状态]
+	 * @return [int]                [返回查询到的总条数]
+	 */
+	public function get_account_count($account_state) {
+		$a_where = [
+			'account_state' => $account_state
+		];
+		$i_result = $this->db->get_total('account', $a_where);
+		return $i_result;
+	}
+
+/******************************************************************************************************/
+}
+
+?>

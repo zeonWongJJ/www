@@ -1,0 +1,15 @@
+{
+    "name": "rusice/housekeeping",
+    "require": {
+        "hautelook/phpass": "1.0.0",
+        "phpseclib/phpseclib": "2.0.11",
+        "catfan/medoo": "^1.5",
+        "vlucas/phpdotenv": "*"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

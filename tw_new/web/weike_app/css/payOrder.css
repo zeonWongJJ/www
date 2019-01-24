@@ -1,0 +1,40 @@
+body                          { background:#efefef; }
+/* 订单支付 */
+.seriveTimes{ position:relative; padding:20px 10px; background:white; border:1px solid #dddddd;}
+.seriveTimes>em{ color:#ff6700; }
+.seriveTimes>i{ position:absolute; right:10px; }
+.seriveTimes>i>img{ width:18px; }
+/*  服务次数 */
+.seriveList{ background:#fff7dc; }
+.seriveList>ul{ padding:10px; }
+.seriveList>ul>li>span{ width:75%; display:inline-block; color:#ff6700;  white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+.seriveList>ul>li>p{ float:right; color:#8c8a84; }
+.seriveList>ul>li>p>em{ color:#ff6700; }
+/* 折扣和余额 */
+.discount{ background:white; margin-top:10px; }
+.discount>div{ padding:10px 10px; }
+.discount>div:first-child{ border-bottom:1px solid #dddddd; }
+.pointDis>i,.balaDis>i{ float:right; }
+.pointDis img,.balaDis img{ width:20px; }
+.discount>div>span{ color:black; font-size:18px; }
+.discount>div>span>b{ color:#666666; font-size:15px;}
+/* 积分、余额、支付 信息 */
+.pyzInfo{  float:right; padding:10px 5px; font-size:18px;  }
+.pyzInfo>span,.pyzInfo>em,.pyzInfo>b{ color:#ff6700; }
+/* 其他支付方式 */
+.otherPay{ clear:both; background:white; }
+.otherPay>dl{ width:100%; float:left; }
+.otherPay>dl>dt,.otherPay>dl>dd{ width:100%; float:left; padding:10px 0; background:white; border-bottom:1px solid #dddddd; }
+.otherPay dd>i{ float:left; padding-left:10px; }
+.otherPay dd>i>img{ width:35px; }
+.otherPay dd>div{ float:left; margin-left:10px;}
+.otherPay dd>div>p{ font-size:14px; color:#dddddd;}
+.otherPay dd>b{ float:right; margin-right:10px; }
+.otherPay dd>b>img{ width:25px; margin-top:6px; }
+/* 确认支付 */
+.subPay{ clear:both; padding-top:10px; }
+.subPay>a{ width:90%; height:50px; line-height:50px; display:block; border-radius:5px;  background:#ff6700; margin:0 auto; text-align:center; }
+.subPay>a>span{ color:white; font-size:18px; }
+
+
+

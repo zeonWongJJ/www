@@ -1,0 +1,24 @@
+/* ���ʲ� */
+
+/* �����ʲ� */
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+.assetContent{ background:#ffd703; }
+.assetContent>a{ display:inline-block; text-align:center; }
+.assetContent>a>p{ padding-bottom:0.29rem; font-size:0.36rem; }
+.assetContent>a>span{ font-size:0.56rem; }
+.assetContent>a.available{ display:block; padding-top:0.61rem; }
+.assetContent>.available>p{ font-size:0.4rem; }
+.assetContent>.available>span{ font-size:0.8rem; }
+.availBalance,.availPoint{ width:4.9rem; margin:0.61rem 0; }
+.availBalance{ border-right:1px solid black; }
+/* ������� */
+.moneyNav{ padding-top:0.34rem; padding-bottom:0.24rem; font-size:0; background:white;  }
+.moneyNav>a{ width:3.3rem; text-align:center; display:inline-block; }
+.moneyNav>a>img{ width:0.8rem; }
+.moneyNav>a>p{ margin-top:0.3rem; font-size:0.36rem; }
+
+
+
+
+

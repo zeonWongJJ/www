@@ -1,0 +1,78 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    /*testCompile deps.jUnit
+                            //appcompat
+                            compile deps.appcompatV7
+                            //cardview
+                            compile deps.cardviewV7
+                            //v4
+                            compile deps.supportV4
+                            //recyclerView
+                            compile deps.recyclerviewV7*/
+    //design library
+    compile deps.design
+    //butterKnife annotation
+    compile deps.butterknife
+    apt deps.butterknifeCompiler
+    //RxAndroid
+    compile deps.rxandroid
+    //RxJava
+    compile deps.rxjava
+    //retrofit
+    compile deps.retrofit
+    compile deps.converterGson
+    compile deps.adapterRxjava
+    //okHttp
+    compile deps.okhttp
+    compile deps.okhttpUrlconnection
+    compile deps.loggingInterceptor
+    //compile deps.photoView
+    compile project(':RVHelper')
+    //androidWheelView
+    compile project(':reslib')
+    //classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
+    compile project(':picture_library')
+    compile files('libs/activeandroid-3.1.0.jar')
+    compile files('libs/cordova.jar')
+    compile project(':pickerview')
+    compile project(':RecyclerViewCardGalleryLib')
+    compile files('libs/libammsdk.jar')
+    //compile files('libs/AMap_Location_V3.6.1_20171012.jar')
+    //compile files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')
+    compile files('libs/badgeview.jar')
+
+
+    // -------------------- 二维码条形码扫描识别和生成必须依赖的 ----------------------------
+
+}

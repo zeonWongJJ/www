@@ -1,0 +1,27 @@
+
+body{ background:#efefef; }
+/*  ÈÙÒ«Ã÷Ï¸ */
+.recordList>span                   { display:block; padding:0.25rem 0.3rem; font-size:0.45rem; color:#ABABAB;}
+.recordList ul                     { padding-left:0.35rem; font-size:0.4rem; background:#fff; color:#ABABAB;}
+.recordList ul>li                  { width:100%; background:#fff; padding:0.25rem 0; border-bottom:1px solid #E8E8E8; }
+.recordList>ul>li div              { width:100%;}
+.recordList>ul>li>p:first-child   { margin-bottom:0.15rem;}
+.recordList>ul>li em               { float:right; margin-right:0.35rem;}
+.recordList>ul>li em:last-child   { clear:both; }
+.addP                               { color:red;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

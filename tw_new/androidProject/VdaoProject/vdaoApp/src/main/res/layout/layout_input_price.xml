@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="@dimen/default_padding"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_title"
+        android:text="单价"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:textColor="@drawable/selector_pickerview_btn"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_title"
+                android:text="11"
+                android:maxEms="15"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="wrap_content"
+                android:textColor="@drawable/selector_pickerview_btn"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_title"
+                android:text="元"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingLeft="@dimen/default_padding"
+            android:background="@color/yellow_line_color"
+            android:layout_height="1px"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/pickerview_topbar_padding"
+            android:text="@string/pickerview_cancel"
+            android:visibility="invisible"
+            android:textColor="@drawable/selector_pickerview_btn"
+            android:textSize="@dimen/pickerview_topbar_btn_textsize" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btnSubmit"
+            android:layout_toRightOf="@+id/btnCancel"
+            android:textColor="@color/pickerview_topbar_title"
+            android:textSize="@dimen/pickerview_topbar_btn_textsize" />
+
+        <Button
+            android:id="@id/btnSubmit"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:gravity="right|center_vertical"
+            android:paddingRight="@dimen/pickerview_topbar_padding"
+            android:text="@string/pickerview_submit"
+            android:textColor="@drawable/selector_pickerview_btn"
+            android:textSize="@dimen/pickerview_topbar_btn_textsize" />
+    </RelativeLayout>
+    <include layout="@layout/line"/>
+
+    <com.qidu.chat.widget.VirtualKeyboardView
+        android:id="@+id/virtual_keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

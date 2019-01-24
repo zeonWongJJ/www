@@ -1,0 +1,184 @@
+<template>
+	<div class="subshop">
+		<div class="box">
+			<div class="types">
+				<div class="type" :class="{active: index == indexs}" @click.stop="index_num(index)" v-for="(item,index) in types">{{item.name}}<span>{{item.num}}</span></div>
+			</div>
+			<div class="eval" v-for="(items,index) in comment_list_f">
+				<div class="user">
+					<div class="img" v-if="items.user_pic  == ''">
+						<img src="../../assets/img/logo_h.png" />
+					</div>
+					<div class="img" v-else>
+						<!--<img :src="items.user_pic"/>-->
+						<img src="../../assets/img/find_server/server_4.png"/>
+					</div>
+					<div class="right">
+						<div class="name">{{items.user_name}}</div>
+						<van-rate v-model="value" :size="12" disabled-color="#ff3434" void-color="#ceefe8" disabled/>
+					</div>
+				</div>
+				<div class="other">
+					<div class="time">{{items.add_time}}</div>
+					<div class="pay">支付方式:定金</div>
+					<div class="product">产品: {{items.service_name}}</div>
+				</div>
+				<div class="info">
+					{{items.comment_content}}
+				</div>
+				<div class="imgs">
+					<!--<img v-for="imgs in items.comment_img_urls" :src="uploadFileUrl + imgs"/>-->
+					<img src="../../assets/img/find_server/server_4.png"/>
+					<img src="../../assets/img/find_server/server_4.png"/>
+					<img src="../../assets/img/find_server/server_4.png"/>
+					<img src="../../assets/img/find_server/server_4.png"/>
+					<img src="../../assets/img/find_server/server_4.png"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				indexs: 0,
+				types: [{
+						name: '全部',
+						num: 199,
+					},
+
+					{
+						name: '好评',
+						num: 110,
+					},
+					{
+						name: '中评',
+						num: 210
+					},
+					{
+						name: '差评',
+						num: 110
+					}
+
+				],
+				comment_list_f: [
+				{
+					user_name: '非艳猪',
+					add_time: '2018-11-1',
+					Pay_method:'定金',
+					service_name: '家电',
+					comment_content: '撒打发士大夫按时的发阿迪收费的发生'
+				},
+				{
+					user_name: '非艳猪',
+					add_time: '2018-11-1',
+					Pay_method:'定金',
+					service_name: '家电',
+					comment_content: '撒打发士大夫按时的发阿迪收费的发生'
+				},
+				],
+			}
+		},
+		mounted() { //生命周期 
+
+		},
+		methods: { //方法
+
+		},
+
+	}
+</script>
+
+<style scoped>
+	.box {
+		position: absolute;
+		top: 2.9rem;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 0 .12rem;
+		height: calc(100% - 3rem);
+		overflow: auto;
+	}
+	/*评论*/
+	
+	.types {
+		display: flex;
+		flex-wrap: wrap;
+		padding: .15rem 0;
+		background: #fff;
+		border-bottom: 1px solid #f5f5f5;
+	}
+	
+	.type {
+		background: rgba(255, 52, 52, .1);
+		color: #707070;
+		margin: .1rem .1rem 0 0;
+		padding: .08rem .1rem;
+		border-radius: .15rem;
+		
+	}
+	
+	.type.active {
+		color: #fff;
+		background: #ff3434;
+	}
+	
+	.type>span {
+		margin-left: .05rem;
+	}
+	
+	.eval {
+		margin-bottom: .1rem;
+		background: #fff;
+		padding: .15rem;
+		box-shadow: 2px 2px 10px rgba(224, 243, 250, 1);
+	}
+	
+	.eval .img {
+		width: .35rem;
+		height: .35rem;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	
+	.eval .user {
+		display: flex;
+	}
+	
+	.eval .user .img>img {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.eval .user .right {
+		flex: 1;
+		margin-left: .1rem;
+	}
+	
+	.eval .other {
+		display: flex;
+		font-size: .115rem;
+		color: #b2b2b2;
+		padding: .05rem 0;
+	}
+	
+	.eval .other>div {
+		margin-right: .1rem;
+	}
+	
+	.evaluate .body .eval .imgs {
+		display: flex;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+	
+	.eval .imgs>img {
+		max-width: .6rem;
+		height: auto;
+		margin-right: .1rem;
+		margin-top: .1rem;
+	}
+</style>

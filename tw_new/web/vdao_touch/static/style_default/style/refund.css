@@ -1,0 +1,20 @@
+/* ²é¿´ÍË¿î */
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.29rem; }
+
+.balance{ margin-top:0.26rem; padding:0.32rem 0.3rem; background:white; }
+.balance>p{ margin-top:0.32rem; font-size:0.4rem; }
+.balance>p:first-child{ margin-top:0; }
+.balance>p>em{ margin-left:0.34rem; font-style:normal; }
+.logInfo{ padding:0.3rem 0.2rem; margin-top:0.26rem; background:white; }
+.logInfo>p{ font-size:0.4rem; margin-bottom:0.4rem; }
+.expressList>a{ display:inline-block; vertical-align:top;  }
+.exTime{ width:1.73rem; text-align:center; }
+.exTime>p,.exTime>span{ font-size:0.24rem; color:#ff6633; }
+.line{ width:0.96rem; text-align:center; font-size:0; }
+.exCur>.line>i{ width:0.45rem; height:0.45rem; background:#ff6633; }
+.line>i{ width:0.18rem; height:0.18rem; display:inline-block; border-radius:50%; background:#cbcecc; }
+.line>hr{ width:0.03rem; height:1.4rem; display:block; margin-top:0; background:#cbcecc; border:none; }
+.exInfo{ width:6.5rem; }
+.exInfo>span{ font-size:0.32rem; color:#666666; }
+.exCur>.exInfo>span{ color:#ff6633; }

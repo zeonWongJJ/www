@@ -1,0 +1,133 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a.back{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.2rem;
+}
+.main .intBack{
+	margin-top: 0.266666rem;
+	background: white;
+}
+.intBack p{
+	text-align: center;
+}
+.intBack .p1{
+	font-size: 0.373333rem;
+	color: #000000;
+	margin-top: 0.6rem;
+}
+.intBack .p2{
+	font-size: 0.8rem;
+	color: #000000;
+	margin-top: 0.4rem;
+}
+.intBack .p3{
+	font-size: 0.346666rem;
+	color: #ffa200;
+	margin-top: 0.4rem;
+	margin-bottom: 0.6rem;
+}
+.main .detailList{
+	margin-top: 0.266666rem;
+	background: white;
+	padding: 0.2rem 0;
+}
+.detailList li{
+	padding-left: 0.333333rem;
+	padding-right: 0.466666rem;
+	margin-bottom: 0.333333rem;
+	overflow: hidden;
+}
+.detailList li:last-child{
+	margin-bottom: 0;
+}
+.detailList li span{
+	font-size: 0.4rem;
+	color: #666666;
+}
+.detailList li .span1{
+	display: inline-block;
+	width: 30%;
+}
+.detailList li .span2{
+	float: right;
+	width: 67%;
+	text-align: right;
+}
+/*---积分提现的CSS---*/
+.detailList li.progress i{
+	font-style: normal;
+	display: inline-block;
+	height: 0.8rem;
+	position: relative;
+	padding-left: 0.666666rem;
+}
+.detailList li.progress i s{
+	text-decoration: none;
+}
+.detailList li.progress i .s1{
+	display: inline-block;
+	width: 0.426666rem;
+	height: 0.426666rem;
+	background:white url(../images/du_03.png) no-repeat;
+	background-size: 100%;
+	vertical-align: middle;
+	position: absolute;
+	left: 0;
+	top: 0.106666rem;
+	z-index: 3;
+}
+.detailList li.progress i .s2{
+	font-size: 0.4rem;
+	color: #007be5;
+	display: inline-block;
+	width: 2.533333rem;
+}
+.detailList li.progress i .s3{
+	font-size: 0.32rem;
+	color: #666666;
+	display: inline-block;
+	width:2rem;
+	text-align: right;
+}
+.detailList li.progress i .s4{
+	display: inline-block;
+	width: 0.026666rem;
+	height: 0.8rem;
+	background: #007be5;
+	position: absolute;
+	left: 0.2rem;
+	top: 0.2rem;
+	z-index: 1;
+}
+.detailList li.progress i.three{
+	height: 0.6rem;
+}
+
+@media screen and (max-width: 370px) {
+	.detailList li.progress i .s4{
+		width: 1px;
+	}
+}
+

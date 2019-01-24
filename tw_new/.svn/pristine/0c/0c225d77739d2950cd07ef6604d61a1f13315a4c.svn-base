@@ -1,0 +1,22 @@
+
+/*  角色列表 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.setCenter{ margin-top:20px; margin-left:22px; }
+.setCenter>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+/* 设置列表 */
+.setList>li{ margin-top:15px; font-size:0; }
+.listPic{ height:40px; line-height:40px; }
+.listPic>img{  }
+.listBox:first-child{ margin-left:0; }
+.listBox{ width:215px; display:inline-block; text-align:center; padding:15px 0; margin-left:33px; background:white; }
+.listText{ margin-top:10px; font-size:15px; }
+.listSwitch,.listCon{ height:80px; line-height:84px; }
+.listCon{ font-size:40px; }
+.listCon>input{ width:50px; padding:5px; font-size:40px; border:1px solid #ddd; }
+.listCon>em{ font-size:18px; font-weight:bold; }
+.edit>span,.com>span{ width:125px; display:inline-block; font-size:14px; padding:5px 0; cursor: pointer;  color:#5a2e17; border:1px solid #5a2e17;  border-radius:22px; }
+.edit>span:hover,.com>span:hover{ background:#5a2e17; color:white; }
+
+
+
+

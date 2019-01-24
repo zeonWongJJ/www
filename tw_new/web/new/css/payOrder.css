@@ -1,0 +1,42 @@
+body                          { background:#efefef; }
+/* 订单支付 */
+.seriveTimes           { position:relative; padding:0.3rem 0.2rem; font-size:0.4rem; background:white; border:1px solid #dddddd;}
+.seriveTimes>em        { color:#ff6700; }
+.seriveTimes>i         { position:absolute; right:0.2rem; }
+.seriveTimes>i>img     { width:0.5rem; }
+/*  服务次数 */
+.seriveList               { background:#fff7dc; }
+.seriveList>ul            { padding:0.2rem; }
+.seriveList>ul>li         { font-size:0.4rem; }
+.seriveList>ul>li>span    { width:75%; display:inline-block; color:#ff6700;  white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+.seriveList>ul>li>p        { float:right; color:#8c8a84; }
+.seriveList>ul>li>p>em     { color:#ff6700; }
+/* 折扣和余额 */
+.discount                      { background:white; margin-top:0.2rem; }
+.discount>div                  { padding:0.2rem 0.2rem; }
+.discount>div:first-child     { border-bottom:1px solid #dddddd; }
+.pointDis>i,.balaDis>i        { float:right; }
+.pointDis img,.balaDis img    { width:0.5rem; }
+.discount>div>span            { color:black; font-size:0.45rem; }
+.discount>div>span>b          { color:#666666; font-size:0.4rem;}
+/* 积分、余额、支付 信息 */
+.pyzInfo                              {  float:right; padding:0.2rem 0.15rem; font-size:0.45rem;  }
+.pyzInfo>span,.pyzInfo>em,.pyzInfo>b{ color:#ff6700; }
+/* 其他支付方式 */
+.otherPay                            { clear:both; background:white; }
+.otherPay>dl                         { width:100%; float:left; }
+.otherPay>dl>dt>span                 { margin-left:0.2rem; font-size:0.4rem; }
+.otherPay>dl>dt,.otherPay>dl>dd     { width:100%; float:left; padding:0.2rem 0; background:white; border-bottom:1px solid #dddddd; }
+.otherPay dd>i                    { float:left; padding-left:0.2rem; }
+.otherPay dd>i>img                { width:1rem; }
+.otherPay dd>div                  { float:left; margin-left:0.2rem; font-size:0.4rem; }
+.otherPay dd>div>p                { font-size:0.3rem; color:#999;}
+.otherPay dd>b                    { float:right; margin-right:0.2rem; }
+.otherPay dd>b>img                { width:0.7rem; margin-top:0.15rem; }
+/* 确认支付 */
+.subPay                           { clear:both; padding-top:0.2rem; }
+.subPay>a                         { width:90%; height:1rem; line-height:1rem; display:block; border-radius:5px;  background:#ff6700; margin:0 auto; text-align:center; }
+.subPay>a>span                    { color:white; font-size:0.45rem; }
+
+
+

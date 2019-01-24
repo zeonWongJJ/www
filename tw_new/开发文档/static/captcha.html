@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+</head>
+<body>
+<div class="title">验证码</div>
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<code class="language-php">
+	$this->load->library('captcha');
+</code>
+</div>
+<div class="desc">
+	加载验证码类，验证码默认使用字体为框架目录下core/calibriz.ttf字体，如果不使用自定义字体，请保障此字体文件存在
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->captcha->image(验证码图片宽<span>[整数]</span>, 验证码图片高<span>[整数]</span>, 字体大小<span>[整数]</span>, 字体路径<span>[字符串]</span>, 字体颜色<span>[10进制颜色代码]</span>);
+</code>
+</div>
+<div class="desc">
+	生成验证码并输出，不需要额外的echo来输出
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+	$this->load->library('captcha');
+	$this->captcha->image();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->captcha->rand_string(字符库<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	自定义用来随机的字符库，生成的随机字符将从传入的库中随机产生
+</div>
+<code class="language-php">
+	$this->captcha->rand_string('abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ0123456789汉字');
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->captcha->code(验证码<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码字符，生成出来的验证码将是这几个字符
+</div>
+<code class="language-php">
+	$this->captcha->code('7dugo');
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->captcha->length(验证码长度<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码长度，默认4个字符
+</div>
+<code class="language-php">
+	$this->captcha->length(6);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->captcha->width(宽度<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码图片宽度，生成的验证码图片宽度，默认130像素
+</div>
+<code class="language-php">
+	$this->captcha->width(150);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->captcha->height(高度<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码图片高度，默认50像素
+</div>
+<code class="language-php">
+	$this->captcha->height(100);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->captcha->font(字体文件路径<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码字体，包含字体的路径和文件名
+</div>
+<code class="language-php">
+	$this->captcha->font('style/abc.ttf');
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->captcha->size(验证码字体大小<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码字体大小，单位“磅”，默认为20
+</div>
+<code class="language-php">
+	$this->captcha->size(50);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->captcha->color(10进制颜色代码<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	指定验证码字体颜色，10进制颜色代码
+</div>
+<code class="language-php">
+	$this->captcha->color(16711680);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">10</span>
+<code class="language-php">
+	$this->captcha->snowflake(干扰素数量<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	设置验证码背景的干扰素雪花和点的数量，增加识别的难度，默认为100
+</div>
+<code class="language-php">
+	$this->captcha->snowflake(200);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">11</span>
+<code class="language-php">
+	$this->captcha->line(干扰线数量<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	设置验证码背景的干扰素直线和椭圆弧线的数量，增加识别的难度，默认为10
+</div>
+<code class="language-php">
+	$this->captcha->line(20);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">12</span>
+<code class="language-php">
+	$this->captcha->get_code();
+</code>
+</div>
+<div class="desc">
+	获取生成的验证码字符，用来校对
+</div>
+<code class="language-php">
+	$_SESSION['captcha'] = $this->captcha->get_code();
+</code>
+</div>
+
+</body>
+</html>

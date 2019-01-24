@@ -1,0 +1,134 @@
+body,html{ overflow:inherit; }
+/* 全部产品 */
+.head{ position:relative; background:#ff6633; z-index:2; }
+.cateDown{ position:absolute; bottom:0.38rem; right:0.35rem; }
+.cateDown>img{ width:0.42rem; }
+.searchContainer{ background:white; }
+.searchBox{ position:relative; padding:0.2rem 0.26rem 0.2rem 0.26rem; background:#ff6633; z-index:2; }
+.back{ display:inline-block; vertical-align:middle; }
+.back>img{ width:0.85rem; }
+#search{ width:7.3rem; height:0.77rem; margin-left:0.2rem; padding-left:0.75rem; font-size:0.34rem; background:#f2f2f2; border-radius:3rem;  }
+.searchBox>img{ width:0.34rem; position:absolute; left:1.65rem; top:0.45rem; }
+.goSearch{ margin-left:0.15rem; font-size:0.34rem; color:white; }
+#search,.goSearch{ vertical-align:middle; }
+/* 关键字搜索 */
+.productKeyContainer>ul{ padding-left:0.29rem; background:white; }
+.keyList{ height:1.06rem; line-height:1.06rem; font-size:0.34rem; color:#999999; border-bottom:0.01rem solid #ddd; }
+
+/* 展开的分类 */
+.openCate{ width:100%; position:absolute; z-index:3; background:#f1f1f1; }
+.openCate>p{ height:0.9rem; line-height:0.9rem; padding:0 0.5rem; background:#cccccc; }
+.openCate>p>span,.openCate>p>img{ vertical-align:middle; }
+.openCate>p>span{ font-size:0.34rem; }
+.openCate>p>img{ width:0.42rem; float:right; margin-top:0.25rem; }
+.cateContainer{ font-size:0; }
+.cateContainer>div{ display:inline-block; vertical-align:top; }
+.cateL{ width:2.38rem; }
+.cateR{ width:7.61rem; }
+.cateL>ul>li{ height:1.17rem; line-height:1.17rem; padding-left:0.5rem; background:white; border-bottom:0.01rem solid #f6f6f6; }
+.cateL>ul>li:last-child{ border-bottom:none; }
+.cateL>ul>li.Lcur{ background:#f1f1f1; }
+.cateL>ul>li>a{ font-size:0.34rem; }
+.cateL>ul>li.Lcur>a{ color:#ff6633; }
+.cateR{ padding:0 0.26rem; }
+.cateR>dl>dt{ height:0.96rem; line-height:0.96rem; font-size:0.29rem; }
+.cateR>dl>dd{ height:1.33rem; line-height:1.33rem; position:relative; padding:0 0.26rem; background:white; }
+.cateR>dl>dd>a{ display:block; }
+.cateR>dl>dd>a>img,.cateR>dl>dd>a>span{ vertical-align:middle; }
+.cateR>dl>dd>a>img{ width:0.9rem; margin-right:0.24rem; }
+.cateR>dl>dd>a>span{ font-size:0.34rem; }
+.cateR>dl>dd>a>em{ height:0.4rem; line-height:0.4rem; position:absolute; top:0.45rem; right:0.4rem; padding:0 0.1rem; font-size:0.21rem; font-style:normal; border:0.02rem solid #f6f6f6; border-radius:2rem;  }
+.cateR>dl>dd.Rcur>a>span{ color:#ff6633; }
+.cateR>dl>dd.Rcur>a>em{ background:#ff6633; border:0.02rem solid #ff6633; color:white; }
+
+/* 产品 */
+.productNav{ width:100%; position:relative; background:white; z-index:2; }
+.productNav>ul{ font-size:0; border-bottom:0.01rem solid #ddd; }
+.productNav>ul>li{ width:25%; display:inline-block; text-align:center; padding:0.24rem 0; }
+.productNav>ul>li>a{ font-size:0.34rem; color:#666666; font-weight:bold; }
+.productNav>ul>li.navCur>a{ color:black; }
+/* 排序 */
+.sortContainer{ width:100%; position:absolute; z-index:2; }
+.sortContainer>ul{ background:white; }
+.sortContainer>ul>li{ height:0.93rem; line-height:0.93rem; padding-left:0.4rem; font-size:0.37rem; }
+.sortCur>a{ color:#ff6633; }
+/* 筛选 */
+.screenContainer{ width:100%; position:absolute; z-index:2; background:white; }
+.screenContainer>ul>li>p{ margin-top:0.34rem; padding-left:0.45rem; font-size:0.34rem; color:#999999; }
+.screenCate{ border-bottom:0.01rem solid #ddd; }
+.screenCate>div{ padding:0.4rem 0; }
+.screenCate>div>a{ width:2.69rem; height:0.56rem; line-height:0.56rem; display:inline-block; text-align:center; margin-left:0.4rem; font-size:0.34rem; color:#666666; border:0.02rem solid #666; border-radius:0.1rem; }
+.screenCate>div>a.scCur{ border:0.02rem solid #ff6633; color:#ff6633; }
+.priceBox{ width:9rem; text-align:center; padding:0.15rem 0; margin:0.4rem auto; background:#e5e5e5; }
+.priceBox>input,.priceBox>hr{ vertical-align:middle; }
+.priceBox>input{ width:3.12rem; height:0.64rem; text-align:center; }
+.priceBox>hr{ width:0.53rem; height:0.05rem; display:inline-block; margin:0 0.3rem; background:#aaaaaa; border:none; }
+.screenBtn{ font-size:0; }
+.screenBtn>a{ width:50%; height:1.06rem; line-height:1.06rem; display:inline-block; text-align:center; font-size:0.4rem; color:white; }
+.reset{ background:#ff9535; }
+.complete{ background:#ff6733; }
+
+/* 产品列表 */
+.productBox{ background:white; }
+.productBox>ul{ padding-left:0.45rem; }
+.productBox>ul>li{ position:relative; padding:0.26rem 0; border-bottom:0.01rem solid #ddd; }
+.productBox>ul>li:last-child{ border-bottom:none; }
+.productList>a{ display:inline-block; }
+.productList>a>img{ width:1.46rem; margin-right:0.1rem; border-radius:0.2rem; }
+.productList>a>img,.productContent{ vertical-align:middle; }
+.productContent{ width:7.41rem; display:inline-block; font-style:normal; }
+.productContent>h1{ font-size:0.4rem; font-weight:bold; }
+.productContent>span{  width:7rem; height:1.3rem; display:block; padding:0.1rem 0; overflow:hidden;  font-size:0.29rem; color:#666666; text-overflow:ellipsis; display: -webkit-box; overflow:hidden; isplay: -webkit-box; -webkit-box-orient; -webkit-line-clamp:3; -webkit-box-orient: vertical; }
+.productContent>s,.productContent>dfn{ margin-right:0.32rem; font-size:0.32rem; text-decoration:none; font-style:normal; }
+.productInfo,.productPrice{ position:absolute; }
+.productInfo>span,.productInfo>em{ display:inline-block; margin-left:0.2rem; padding:0.01rem 0.15rem; font-style:normal; font-size:0.29rem; border-radius:0.1rem; border:0.02rem solid #ff6633;  }
+.productInfo{ top:0.32rem; right:0.4rem; }
+.productInfo>span{ color:#ff6633; }
+.productInfo>em{ background:-moz-linear-gradient(left top, #ff6633, #ff9235); background: -webkit-linear-gradient(left top, #ff6633, #ff9235); background: -o-linear-gradient(left top, #ff6633, #ff9235); color:white; }
+.productPrice{ right:0.5rem; bottom:0.3rem; font-size:0.37rem; font-weight:bold; color:#ff6633; }
+.productPrice>em{ font-weight:bold; font-style:normal; color:#ff6633; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:black; opacity:0.5; z-index:1; }
+
+.wrapper01 {
+    position:relative;
+    height: 0.92rem;
+    width:8.8rem;
+    display:inline-block;
+    overflow: hidden;
+    margin:0 auto;
+}
+.wrapper01 .scroller {
+    position:absolute;
+}
+.wrapper01 .scroller li {
+    height: 0.92rem;
+    color: #000000;
+    float: left;
+    line-height: 0.92rem;
+    font-size: 0.32rem;
+    text-align: center;
+}
+.wrapper01 .scroller li a{
+    color:white;
+    display:block;
+    margin:0 .3rem;
+    height: 0.906666rem;
+    box-sizing: border-box;
+    margin-left: 0.666666rem;
+    margin-right: 0;
+}
+.wrapper01 .scroller li.cur a{
+    border-bottom: 2px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+

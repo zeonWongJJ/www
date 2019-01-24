@@ -1,0 +1,135 @@
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*{margin:0;padding:0;list-style-type:none;}
+    a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免出现奇怪的选中区域*/
+    :focus{outline:0;}
+    label{cursor:pointer;}
+    img{vertical-align:middle;}
+    table{empty-cells:show;border-collapse:collapse;border-spacing:0;}
+    h1{font-size:16px;}h2,h3,h4{font-size:14px;}h5,h6{font-size:12px;}
+body {
+  background-color: #ddd;
+  font-family: 'Source Sans Pro';
+  font-weight: 300;
+}
+
+.qdtishi_box {
+  display: table;
+  position: relative;
+  margin: 40px auto 0;
+  width: 700px;
+  height:316px;
+  background-color: #0074d9;
+  color: #fff;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.qdtishi_box.is-hidden {
+  opacity: 0;
+  height: 0;
+  font-size: 0;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+}
+
+.tishi_bj {
+  background-color: #0074d9;
+}
+
+.tishi_bj2 {
+  background-color: #C70F04;
+}
+
+.tishi_bj3 {
+  background-color: #04B918;
+}
+.tishi_bj3 {
+  background-color: #D98C00;
+}
+
+
+.qdtishi_left {
+  display: table-cell;
+  vertical-align: middle;
+  width: 60px;
+  padding: 30px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.qdtishi-right > i {
+
+  font-size: 60px;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    display: block;
+
+}
+
+.qdtishi-right {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px 20px 30px 10px;
+  font-weight: bold;
+}
+.qdtishi-right > p {
+  line-height: 1.2;
+  margin-top: 16px;
+   font-size:24px;
+   max-height:168px;
+   overflow:hidden;
+}
+
+.Message-button {
+  position: relative;
+  margin: 15px 5px -10px;
+  background-color: rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px rgba(0, 0, 0, 0.4);
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: 'Source Sans Pro';
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+.Message-button:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+.Message-button:active {
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0px rgba(0, 0, 0, 0.4);
+  top: 3px;
+}
+
+.Message-close {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  right: 5px;
+  top: 5px;
+  opacity: 0;
+  cursor: pointer;
+}
+.qdtishi_box:hover .Message-close {
+  opacity: 1;
+}
+.Message-close:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.u-italic {
+  font-style: italic;
+}

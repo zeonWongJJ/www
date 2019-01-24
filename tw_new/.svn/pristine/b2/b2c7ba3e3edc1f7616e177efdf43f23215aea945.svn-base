@@ -1,0 +1,27 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*表格模块*/
+.tableModule{width: 1190px; background: white; padding: 20px 0 0 25px; margin-top: 22px;}
+.title{height: 50px;}
+.title .titleL{ font-size: 14px; color: #000000; float: left; margin-top: 8px;}
+.title .titleR{ float: left; width: 600px; height: 40px; margin-left: 8px;}
+.titleR #test1{ width: 105px; height: 28px; background: #f5f5f5 url(../images/heisan_06.png) no-repeat 85px center; border: 1px solid #d7dadc; border-radius: 14px; padding: 0 10px; font-size: 12px; margin-top: 5px; cursor: pointer;}
+.tableBox{width: 1140px;}
+.tableBox .thead{ background: white; height: 56px; line-height: 56px; }
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: center;}
+.tableBox .thead span{font-size: 14px; color: #333333; font-weight: bold;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 2px;}
+.tableBox .row{border-bottom: 1px solid #f4f4f4; background: white;}
+.tableBox span{display: inline-block; vertical-align: middle;}
+.tableBox span:nth-child(1){ width: 150px;}
+.tableBox span:nth-child(2){ width: 180px;}
+.tableBox span:nth-child(3){ width: 180px;}
+.tableBox span img{vertical-align: middle;}
+.tableBox a.edit{ display: inline-block; width: 15px; height: 15px; background: url(../images/pro_28.png); vertical-align: middle;}
+/*分页*/
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }

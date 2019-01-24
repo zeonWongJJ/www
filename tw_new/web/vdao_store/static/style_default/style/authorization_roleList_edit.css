@@ -1,0 +1,49 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*编辑管理员*/
+.editBomb{width: 1190px; min-height: 800px; background: white; margin-top: 20px;}
+.editBomb .formBox{ padding: 50px 0 0 50px;}
+.formBox li{height: 60px;}
+.formBox li .left{width: 70px; float: left; font-size: 14px; color: #000000; text-align: right; line-height: 30px;}
+.formBox li .right{ float: left; margin-left: 10px; line-height: 30px;/*行高*/}
+.formBox li .right .input{ width: 140px; height: 30px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px;}
+.right .green,.right .red{  color: #999999; font-size: 12px; margin-left: 4px; display: none;}
+.right .green i{color: #ee2222; font-style: normal;}
+.right .green em{display: inline-block; width: 18px; height: 17px; background: url(../images/t_03.png) no-repeat left center; vertical-align: middle;}
+.right .wen{ margin-left: 10px;}
+.right .red em{display: inline-block; width: 18px; height: 18px; background: url(../images/f_03.png) no-repeat left center; vertical-align: middle;}
+.right .red{text-indent: 30px;}
+.right s{text-decoration: none;}
+.right .boy{display: inline-block; position: relative; width: 365px; height: 30px; }
+.right .boy input{opacity: 0; position: absolute; left: 0; top: 0;}
+.right .boy .pattern{ display: inline-block;  background: url(../images/pro_38.png) no-repeat left center; text-indent: 20px; position: absolute; left: 0; top: 0; font-size: 12px; color: #9e9e9e;}
+.right .boy .choose{ background: url(../images/pro_36.png) no-repeat left center;}
+.sex .right .green{ margin-left: 100px; float: left;}
+.sex .right .ding2{ left: 50px;}
+.sex .right .red{float: left; margin-left: 70px;}
+.formBox li .right .password{width: 170px;}
+.formBox .sureBox{ width: 500px; margin-top: 20px;}
+.formBox .sureBox a{width: 85px; height: 28px; font-size: 14px; display: inline-block; background: #ffce1c; color: #a33300; text-align: center; line-height: 28px; border: 1px solid #e69c14; margin-left: 80px; margin-top: 20px;}
+.formBox li .right .txt{ width:250px; height: 60px; display: inline-block; }
+.formBox li.describe{ height: 80px;}
+.formBox li.describe .txt{float: left; padding: 5px;}
+.formBox li.describe .green{ float: left; margin-left: 10px; margin-top: 15px;}
+.formBox li.describe .red{ float:left; margin-left: -17px; margin-top:15px;}
+
+.formBox li.choiceRole{ height: auto; margin-top: 5px;}
+.formBox li.choiceRole .right .roleWrap{ float: left; min-width: 330px; height: auto; padding:10px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset;}
+.right .roleBox{ min-width: 310px; }
+.roleBox .roleList{font-size: 12px; color: #9e9e9e;}
+.roleBox .roleList .rLeft{ width: 75px; float: left;}
+.roleBox .roleList .rRight{ float: left;}
+.rRight a{font-size: 12px; color: #9e9e9e; margin-right: 5px;}
+.rRight a i{ display: inline-block; width: 18px; height: 18px; background: url(../images/quanxian_05.png); vertical-align: middle; margin-right:4px;}
+.right .roleBox::-webkit-scrollbar {width: 8px; width: 6px; border-left: 2px solid #ffffff; border-right: 2px solid #ffffff; background-color: #eeeeee;}
+.right .roleBox::-webkit-scrollbar-thumb {width: 10px; height: 50px; background-color: #f3c727;}
+
+.formBox li.choiceRole .green{ float: left; margin-left: 10px; margin-top: 55px;}
+.formBox li.choiceRole .red{ float:left; margin-left: -17px; margin-top:55px;}
+
+.rRight a.gou i{display: inline-block; width: 18px; height: 18px; background: url(../images/quanxian_03.png); vertical-align: middle; margin-right:4px;}

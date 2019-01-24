@@ -1,0 +1,79 @@
+body                          { background:#efefef; }
+.serviceOrder{ margin:10px; }
+/* 待服务订单 */
+.serviceBox                   {  background:white; }
+.serviceTime                  { text-align:center; }
+.serviceTime>p:first-child   { font-size:20px; font-weight:bold; padding-top:30px; }
+.serviceTime>em               { display:block; padding:10px 0; }
+.serviceTime>em>em            { color:#fc8c4c; }
+.serviceBtn                   { margin-top:10px; padding-bottom:30px;}
+.serviceBtn>a                 { display:inline-block; padding:5px 10px; color:#000; border:1px solid #c9c9c9; border-radius:20px;  }
+.serviceBtn>a:last-child     { background:#58d178; color:white; }
+/* 虚线 */
+.dashed               { position:relative; }
+.dashed>p             { width:90%; margin:0 auto; height:10px; border-bottom:1px dashed #ddd; }
+.dashed>i             { width:15px; height:15px; display:inline-block; position:absolute;  border-radius:50%; background:#efefef; }
+.dashed>i:first-child{ top:3px; left:-8px; }
+.dashed>i:last-child { right:-8px; top:2px;}
+/* 虚线 */
+/* 用户信息 */
+.userInfo{ position:relative; }
+.userInfo>i                     { display:inline-block; position:relative; padding-top:10px; padding-left:10px; }
+.userInfo>i>img:first-child    { width:75px; }
+.userInfo>i>img:last-child     { width:22px; position:absolute; top:13px; left:60px; }
+.userInfo>span                  { position:relative; top:-50px; left:-7px; }
+.userInfo>span>em               { font-size:16px; font-weight:bold;  }
+.userInfo>span>i                { position:relative; top:2px; left:-2px; }
+.userInfo>span>i>img            { width:18px; }
+.userInfo>em                    { position:relative; display:inline-block; top:-18px; left:-125px; padding:0 8px; border:1px solid #ff5a5a;  border-radius:20px; }
+/*  右侧的图标 */
+.rightIcon            { position:absolute; top:24px; right:1%; font-size:0; }
+.rightIcon>a          { display:inline-block; padding:0 5px;}
+.rightIcon>a>img      { width:45px; }
+/* 订单的信息 */
+.detailInfo            { background:white; margin-top:10px; }
+.detailInfo>ul         { padding:15px; }
+.detailInfo>ul>li      { margin-bottom:8px; }
+.detailInfo>ul>li>i    { display:inline-block; vertical-align:middle; margin-right:10px;}
+.detailInfo>ul>li img  { width:20px; }
+.detailInfo>ul>li>em   { float:right; margin-right:20px;}
+.detailInfo>ul>li>p    { margin-left:35px; }
+/* 费用 */
+.cost                 { position:relative; padding:10px 0 0 0; }
+.cost>i               { position:absolute; display:inline-block; top:24px; padding-left:5px;}
+.cost>i>img           { width:50%; box-shadow:3px 0 3px 0#888889; }
+.costInfo             { background:#fafafa; }
+.costInfo>p           { position:relative; padding:10px 0; margin:15px 0; font-size:14px; }
+.costInfo>p>span      { width:190px; display:inline-block; margin-left:31%; font-weight:bold;}
+.costInfo>p>span>em   { font-weight:bold; }
+.costInfo>p>span>s    { text-decoration:none; padding:0 15px; border:1px solid red; border-radius:5px; font-size:12px; color:red;}
+.costInfo>p>em        { float:right; padding-right:10px; font-weight:bold;}
+.costInfo>p>em>span   { display:block; font-weight:bold;}
+.costInfo>p>em>em     { float:right; font-weight:bold; color:#dddddd;}
+.toubiao               { float:right; margin-right:10px;}
+.toubiao>a             { padding:5px 10px; border:1px solid #dddddd; border-radius:5px; color:black; }
+/*  价格 */
+.pay             { padding:10px; }
+.pay>span>span  { font-weight:bold;  }
+.pay>span>em    { color:#dddddd; }
+.pay>em         { float:right; }
+.pay>em>span    { font-size:20px; color:red; }
+.pay>em>span>b  { font-size:12px; }
+/* 订单时间信息 */
+.orderInfo         { position:relative; background:white; padding:10px 10px; margin-top:10px; font-size:14px;  }
+.orderInfo>p       { padding:5px 0; }
+.orderInfo>p>em    { margin-left:10px; }
+.orderInfo>em      { position:absolute; right:12px; top:12px; padding:3px 10px; border:1px solid #dddddd; }
+
+@media screen and (max-width: 350px) {
+    .userInfo>i>img:first-child    { width:70px; }
+    .userInfo>span                  { left:2px; }
+    .userInfo>span>em               { font-size:14px; }
+    .userInfo>em                    { top:-28px; left:-113px; font-size:14px;  }
+    .rightIcon>a>img                { width:40px; }
+    .detailInfo>ul                  { font-size:14px; }
+    .cost>i                          { top:30px; }
+    .cost>i>img                      { width:43%; }
+    .costInfo>p>span                { width:140px; margin-left:95px;}
+    .toubiao>a                       { font-size:14px;  }
+}

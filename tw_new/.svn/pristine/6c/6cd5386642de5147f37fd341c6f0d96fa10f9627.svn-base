@@ -1,0 +1,53 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/* 小导航*/
+.smallNav{ width: 1190px; height: 45px; line-height:45px; padding-left:16px; margin-top: 8px; background:white; }
+.smallNav i{ display: inline-block; width: 25px; height: 25px; background: url(../images/ding_03.png); vertical-align: middle;}
+.smallNav a{ font-size: 14px; color: #999999;}
+.smallNav a.cur{ color: #333333;}
+
+.content{ margin-top:20px; padding:40px; background:white; }
+/*订单详情弹框*/
+.detailBomb{ width:446px; display:inline-block; vertical-align:top; background: white;  }
+.detailBomb .messageBox{ width: 445px; height: 375px; margin: 30px 0 0 28px; overflow: auto; border-bottom: 1px solid #eeeeee;}
+.messageBox .numberBox{ position: relative;}
+.numberBox .dingdan{ font-size: 14px; color: #000000;}
+.numberBox .dingdan i{ display: inline-block; width: 13px; height: 13px; background: white; border-radius: 50%; border: 3px solid #009944; vertical-align: middle; margin-right: 12px;}
+.numberBox .cont{ border-left: 1px solid #F2F2F2; min-height: 50px; margin-left: 6px; margin-top: 2px;}
+.numberBox .cont p{ font-size: 14px; color: #666666; margin-left: 17px;}
+.numberBox span{ display: inline-block; width: 3px; height: 3px; background: #c2c0c1; border-radius: 50%; position: absolute;}
+.numberBox .shang{ left: 5px; top: 19px;}
+.numberBox .xia{left: 5px; bottom: 0px !important;}
+.timeBox .dingdan i{ border: 3px solid #ff9500;}
+.takeBox .dingdan i{ border: 3px solid #dc1c5d;}
+.proBox .dingdan i{ border: 3px solid #1fb5ad;}
+.takeBox .cont{ min-height: 65px;}
+.proBox .cont{ border-left: none;}
+.proBox .cont li{ margin-left: 18px; }
+.proBox .cont li i{ font-style: normal; font-size: 14px; color: #666666; display: inline-block; vertical-align: middle;}
+.proBox .cont li i.wen1{width:295px;}
+.proBox .cont li i.wen2{width: 30px; text-align: right;}
+.proBox .cont li i.wen3{width: 50px; word-break: break-all; text-align: right;}
+.proBox .cont .redPaper{ width: 388px; height: 30px; margin-top: 5px;}
+/* 物流信息 */
+.log{ width:466px; display:inline-block; vertical-align:top; margin-left:80px; margin-top:36px; }
+.point{ width:12px; display:inline-block; text-align:center; vertical-align:top; font-size:0; }
+.point>i{ width:12px; height:12px; display:inline-block; vertical-align:top; background:#ff6633; border-radius:50%; }
+.point>hr.mapHr{ height:140px; }
+.point>hr{ width:2px; height:50px; display:inline-block; margin:0; border:none; background:#ff6633; }
+.logInfo{ width:430px; display:inline-block; margin-left:10px; }
+.logInfo>dt{ font-size:14px; }
+.logInfo>dd{ position:relative; }
+.logInfo>dd>#container{ height:120px; }
+.logInfo>dt>em{ float:right; font-size:14px; color:#999999; }
+.logInfo>dt>span{ font-weight:bold; }
+.logInfo>dd>span,.logInfo>dd>em{ font-size:14px; color:#666; }
+.container{ width:430px; height:100px; border:1px solid #ddd; }
+
+
+.proBox .cont .red{float: left; display: inline-block; width: 60px; height: 20px; background: #dc1c5d; font-size: 12px; color: white; text-align: center; line-height: 20px; font-style: normal;}
+.proBox .cont .money{ float: right; font-style: normal;}
+.detailBomb .payBox{ height: 50px; margin-left: 51px; width: 390px; margin-top: 3px;}
+.payBox .payType{ width: 110px; float: left; font-size: 16px; color: #666666; padding-top: 8px;}
+.payBox .allMon{ width: 150px; float: right; font-size: 24px; color: #DC1C5D; text-align: right;}
+.closeBox a{ display: block; width: 105px; height: 35px; background: #43cb83; font-size: 12px; color: white; text-align: center; line-height: 35px; border-radius: 4px; margin-left: 132px;}
+

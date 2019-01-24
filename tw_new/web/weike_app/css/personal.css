@@ -1,0 +1,17 @@
+/* 个人资料 */
+.perList                           { background:white; padding:0 15px; margin-top:10px; color:#8c8c8c;}
+.perList>li:first-child           { height:75px; line-height:75px; border:none; }
+.perList>li                        { height:60px; line-height:60px; border-top:1px solid #dddddd; clear:both;}
+.perList>li>span:first-child      { margin:0 15px;}
+.perPic                            { width:65px; height:75px; float:right; }
+.perPic>img                        { width:100%; border-radius:50%; clear:both; }
+.choicePer                         { width:15px; height:75px; float:right; line-height:85px; margin:0 15px;}
+.choicePer>img                     { width:100%; }
+.user>em,.phone>em,.sex>b,.sex>em { float:right;}
+.user>em,.phone>em                 { margin:0 15px; }
+.sex>em                            { width:15px; height:75px; line-height:70px; margin:0 15px; }
+.sex>em>img                        { width:100%;}
+
+
+
+

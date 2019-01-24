@@ -1,0 +1,506 @@
+<?php
+
+/**
+ * 订单控制器
+ * @notice 命令行自动构建 by rusice <liruizhao970302@outlook.com>
+ *
+ * @copyright 柒度信息科技有限公司
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+class Order_ctrl extends \utils\BaseController
+{
+    public $_ignore_node = [
+        'pay',
+        'pay_return',
+        'retPayReturn',
+        'queryOrder'
+    ];
+
+    protected $repository = \repositories\OrderRepository::class;
+
+    /**
+     * 数据获取
+     * @param $method
+     * @return array
+     */
+    public function getData($method): array
+    {
+        $data = [
+            'insert' => [
+                // 'role_name' =>  $this->request->post('role_name', '', 'trim')
+            ],
+            'update' => [
+                // 'role_name' =>  $this->request->post('role_name', '', 'trim'),
+            ]
+        ];
+
+        return $data[$method] ?? [];
+    }
+
+    /**
+     * @param $method
+     * @return array
+     */
+    public function valid($method): array
+    {
+        $valid = [
+            'insert' => [
+                // 'role_name' =>  'required'
+            ],
+            'update' => [
+                // 'role_name' =>  'required'
+            ]
+        ];
+
+        return $valid[$method] ?? [];
+    }
+
+    /**
+     * 发起订单支付
+     * @router http://server.name/order.pay
+     * @throws Exception
+     */
+    public function pay()
+    {
+        $data['order_sn']   = $this->request->get('order_sn', '', 'trim');
+        $data['order_sign'] = $this->request->get('order_sign', '', 'trim');
+
+        $this->validate($data, [
+            'order_sn'   => 'required',
+            'order_sign' => 'required'
+        ]);
+
+        /** @var \model\OrderModel $order_model */
+        $order_model = \utils\Factory::getFactory('order');
+        return $order_model->payOrder(...array_values($data));
+    }
+
+    /**
+     * 异步处理支付结果
+     * @router http:://server.name/order.pay.ret
+     * @throws Exception
+     */
+    public function retPayReturn()
+    {
+        $pay_type = $this->router->get(1);
+
+        /** @var \model\OrderModel $order_model */
+        $order_model = \utils\Factory::getFactory('order');
+        try {
+            if ($pay_type == \model\PayModel::DEDCUTIBLE) {
+                $data['out_trade_no'] = $this->request->get('out_trade_no', '', 'trim');
+                $order_info           = $this->db->get_row(get_table('order'), ['order_sn' => $data['out_trade_no']]);
+                // 订单是全抵扣订单时，不验证支付结果直接进入支付后操作
+                if ($order_info['order_deductible_type'] != 0 && $order_info['order_actual_amount'] == 0) {
+                    $order_model->orderCallBack($data['out_trade_no']);
+                    header('location:http://jiajie-touch.7dugo.com/redirectOrder.php?order_sn=' . $data['out_trade_no']);
+                }
+            } else {
+                $out_trade_no = false;
+                $this->db->begin();
+                $this->db->set_error_mode();
+
+                if ($pay_type == \model\PayModel::WECHAT) {
+                    $php_input_steam_xml = file_get_contents('php://input');
+                    $jsonxml             = json_encode(simplexml_load_string($php_input_steam_xml, 'SimpleXMLElement', LIBXML_NOCDATA));
+                    $result              = json_decode($jsonxml, true);
+                    $out_trade_no        = $result['out_trade_no'];
+
+                    $this->db->insert(get_table('pay_error'), [
+                        'order_sn'  => $out_trade_no,
+                        'error_msg' => $php_input_steam_xml
+                    ]);
+
+                    if (is_weixin()) {
+                        $this->load->library('wxpay_pub_notify'); // 微信公众号打开，是公众号支付
+                        $this->wxpay_pub_notify->Handle(true);
+                        if ($result = $this->wxpay_pub_notify->get_verify_result()) {
+                            $order_model->orderCallBack($out_trade_no);
+                        } else {
+                            throw new RuntimeException('验证数据失败');
+                        }
+                    } else {
+                        $this->load->library('wxpay_h5');
+                        $data = $this->wxpay_h5->xml_to_array($php_input_steam_xml);
+                        if ($this->wxpay_h5->check($data, 'PAY')) {
+                            $order_model->orderCallBack($result['out_trade_no']);
+                            echo $this->wxpay_h5->success();
+                        }
+                    }
+                } elseif ($pay_type === \model\PayModel::ALIPAY) {
+                    $this->db->insert(get_table('pay_error'), [
+                        'order_sn'  => $out_trade_no ?: 'debug',
+                        'error_msg' => json_encode($_POST)
+                    ]);
+                    $out_trade_no = $this->request->post('out_trade_no', '', 'trim');
+                    $this->load->library('alipay_wap');
+                    if ($this->alipay_wap->verify($_POST, 'notify') && ($_POST['trade_status'] == 'TRADE_SUCCESS' || $_POST['trade_status'] == 'TRADE_FINISHED')) {
+                        $order_model->orderCallBack($out_trade_no);
+                        echo 'success';
+                    }
+                } elseif ($pay_type === \model\PayModel::BANKCARD) {
+
+                    $out_trade_no     = $data['out_trade_no'] = $this->request->get('out_trade_no', '', 'trim');
+                    $data['trade_no'] = $this->request->get('trade_no', '', 'trim');
+
+                    $this->load->library('unionpay_geteway');
+                    $a_param  = [
+                        'id_order' => $out_trade_no
+                    ];
+                    $a_result = $this->unionpay_geteway->query($a_param);
+                    if ($this->unionpay_geteway->verify($a_result)) {
+                        if ($a_result['origRespCode'] == '00') {
+                            $order_model->orderCallBack($data['out_trade_no']);
+                        } elseif (in_array($a_result['origRespCode'], ['03', '04', '05'], true)) {
+                            throw new RuntimeException('交易处理中');
+                        } else {
+                            throw new RuntimeException('交易失败');
+                        }
+                    } else {
+                        throw new RuntimeException('验证签名失败');
+                    }
+                }
+                $this->db->commit();
+            }
+        } catch (Exception $e) {
+            $this->db->roll_back(); // 回滚
+            $this->db->insert(get_table('pay_error'), [
+                'order_sn'  => $out_trade_no,
+                'error_msg' => $e->getMessage(),
+                'error_at'  => $_SERVER['REQUEST_TIME']
+            ]);
+            $this->db->update(get_table('order'), [
+                'order_state'         => 0,
+                //                    'order_is_peddling' => 0,
+                'order_pay_state_dsc' => 'PENDING_PAY'
+            ], ['order_sn' => $out_trade_no]);
+        }
+    }
+
+    /**
+     * 订单支付结果同步返回(已废弃)
+     * @router http:://server.name/order.pay.return
+     */
+    public function pay_return()
+    {
+        $data['out_trade_no'] = $this->request->get('out_trade_no', '', 'trim');
+        $data['trade_no']     = $this->request->get('trade_no', '', 'trim');
+
+        if (!$order_info = $this->db->get_row(get_table('order'), ['order_sn' => $data['out_trade_no']])) {
+            header('location:http://jiajie-touch.7dugo.com/goto.php?route=orders');
+        }
+
+        /** @var \model\OrderModel $order_model */
+        $order_model = \utils\Factory::getFactory('order');
+        try {
+            $this->db->set_error_mode();
+            $this->db->begin();
+            // 订单是全抵扣订单时，不验证支付结果直接进入支付后操作
+            if ($order_info['order_deductible_type'] != 0 && $order_info['order_actual_amount'] == 0) {
+                $order_model->orderCallBack($data['out_trade_no']);
+            } else {
+                // 如果是微信回调
+                if ('wechat' == $this->router->get(1)) {
+                    if (is_weixin()) {
+                        $this->load->library('wxpay_pub'); // 微信公众号打开，是公众号支付
+                        $result = $this->wxpay_pub->query([
+                            'out_trade_no' => $data['out_trade_no']
+                        ]);
+//                        $this->db->update(get_table('order_info'), ['order_callback_json' => serialize($result)], ['order_sn' => $data['out_trade_no']]);
+                        if ($result['return_code'] === 'SUCCESS'
+                            && $result['result_code'] === 'SUCCESS'
+                            && $result['trade_state'] === 'SUCCESS'
+                            && (isset($result['trade_state']) && $result['trade_state'] === 'SUCCESS')) {
+                            $order_model->orderCallBack($data['out_trade_no']);
+                        } else {
+                            throw new RuntimeException($result['return_msg']);
+                        }
+                    } else {
+                        $this->load->library('wxpay_h5', '', [['out_trade_no' => $data['out_trade_no']]]);
+                        $result = $this->wxpay_h5->query();
+//                        $this->db->update(get_table('order_info'), ['order_callback_json' => serialize($result)], ['order_sn' => $data['out_trade_no']]);
+                        /** @noinspection TypeUnsafeComparisonInspection PhpUnreachableStatementInspection */
+                        if ($result['return_code'] == 'SUCCESS' && $result['result_code'] == 'SUCCESS' && isset($result['trade_state']) && $result['trade_state'] == 'SUCCESS') {
+                            $order_model->orderCallBack($data['out_trade_no']);
+                        } else {
+                            throw new RuntimeException($result['return_msg']);
+                        }
+                    }
+                } elseif ('alipay' == $this->router->get(1)) {
+                    // 支付宝回调
+                    $this->load->library('alipay_wap');
+                    $result = $this->alipay_wap->query(['out_trade_no' => $data['out_trade_no']]);
+                    // $this->db->update(get_table('order_info'), ['order_callback_json' => serialize($result)], ['order_sn' => $data['out_trade_no']]);
+                    $result_decode = json_decode($result, true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        $alipay_trade_query_response = $result_decode['alipay_trade_query_response'];
+                        if ($alipay_trade_query_response['code'] == '10000' && $alipay_trade_query_response['msg'] == 'Success' && $alipay_trade_query_response['out_trade_no'] == $data['out_trade_no']) {
+                            $order_model->orderCallBack($data['out_trade_no']);
+                        } else {
+                            throw new RuntimeException($alipay_trade_query_response['sub_msg']);
+                        }
+                    } else {
+                        throw new RuntimeException('查询订单数据解析失败');
+                    }
+                } elseif ('bankcard' == $this->router->get(1)) {
+                    $this->load->library('unionpay_geteway');
+                    $a_param  = [
+                        'id_order' => $data['out_trade_no']
+                    ];
+                    $a_result = $this->unionpay_geteway->query($a_param);
+//                    $this->db->update(get_table('order_info'), ['order_callback_json' => serialize($a_result)], ['order_sn' => $data['out_trade_no']]);
+                    if ($this->unionpay_geteway->verify($a_result)) {
+                        if ($a_result['origRespCode'] == '00') {
+                            $order_model->orderCallBack($data['out_trade_no']);
+                        } elseif (in_array($a_result['origRespCode'], ['03', '04', '05'], true)) {
+                            throw new RuntimeException('交易处理中');
+                        } else {
+                            throw new RuntimeException('交易失败');
+                        }
+                    } else {
+                        throw new RuntimeException('验证签名失败');
+                    }
+                }
+            }
+            $order_info['order_type'] == 1 && $order_model->afterPayService($order_info); // 为下单服务的时候，执行支付后操作
+            /** @noinspection TypeUnsafeComparisonInspection */
+            $this->db->commit();
+            if (3 == $order_info['order_type']) {
+                // 充值订单转跳用户钱包页面
+                header('Location: http://jiajie-touch.7dugo.com/goto.php?route=balance');
+            } else {
+                header('Location: http://jiajie-touch.7dugo.com/redirectOrder.php?order_sn=' . $data['out_trade_no']);
+            }
+        } catch (Exception $e) {
+            $this->db->roll_back(); // 回滚
+            $this->db->update(get_table('order'), ['order_state' => 0], ['order_sn' => $data['out_trade_no']]);
+            header('location:http://jiajie-touch.7dugo.com/goto.php?route=orders');
+        }
+    }
+
+    /**
+     * 根据交易流水号获取订单信息
+     * @router http://server.name/order.getby.sn-{order_sn}
+     * @router http://server.name/order.get-{order_sn}
+     */
+    public function getOne()
+    {
+        $order_sn      = $this->router->get(1); // 交易流水号
+        $get_appointed = $this->request->post('get_appointed', 0, 'intval');
+        $this->validate(compact('order_sn'), [
+            'order_sn' => 'required|length:23'
+        ]);
+
+        $order_info = $this->db->get_row(get_table('order'), ['order_sn' => $order_sn]);
+        if (!$order_info) {
+            return $this->error('订单流水号无记录');
+        }
+
+        switch ((int)$order_info['order_type']) {
+            case 1:
+                $entity_table = 'jiajie_service';
+                break;
+            case 2:
+                $entity_table = 'jiajie_demand';
+                break;
+            case 3:
+                $entity_table = 'jiajie_recharge';
+                break;
+            default:
+                $entity_table = false;
+        }
+
+        if (false === $entity_table) {
+            return $this->error('订单参数不合法');
+        }
+//        $entity_table = $order_info['order_type'] == 1 ? 'jiajie_service' : 'jiajie_demand';
+        $fields = [
+            'jiajie_service'  => [
+                'id',
+                'store_id',
+                'service_name as subject_name',
+                'service_info as subject_info',
+                'service_img as subject_img',
+                'service_remuneration as subject_money',
+                'service_lal as lal'
+            ],
+            'jiajie_demand'   => [
+                'id',
+                'subject_title as subject_name',
+                'demand_info as subject_info',
+                'demand_service_at as subject_date_time',
+                'demand_img as subject_img',
+                'demand_lal as lal'
+            ],
+            'jiajie_recharge' => [
+                '*'
+            ]
+        ];
+
+
+        $entity_row = $this->db->select($fields[$entity_table], false)->get_row($entity_table, ['id' => $order_info['order_type_id']]);
+
+        if (!$entity_row) {
+            $entity_row = $this->db->get_row(get_table('order_info'), ['order_sn' => $order_sn], 'order_info');
+            $entity_row = json_decode($entity_row, true);
+        }
+
+        $store = $this->db->get_row(get_table('store'), ['id' => $entity_row['store_id']], 'store_name, id, store_pic, store_phone');
+        if ($entity_table === get_table('service')) { // 订单为服务下单时，添加店铺信息
+            $entity_row['store_name'] = $store['store_name'];
+            $entity_row['store_id']   = $store['id'];
+            unset($fields);
+        }
+
+        /** @var \model\OrderModel $order_model */
+        $order_model = \utils\Factory::getFactory('order');
+        $order_info  = $order_model->formatOrderRow($order_info, $get_appointed);
+
+        $entity_row['subject_info']      = str_replace(['&amp;', '&quot;', '&#039;', '&lt;', '&gt;'], ['&', '"', "'", '<', '>'], $entity_row['subject_info']);
+        $entity_row['subject_date_time'] = date('Y-m-d H:i:s', $entity_row['subject_date_time']); // 转换时间格式
+
+        list($lng, $lat) = explode(',', $entity_row['lal']);
+        $entity_row['lat'] = trim($lat);
+        $entity_row['lng'] = trim($lng);
+
+        unset($order_info['order_belong_store_id']);
+        $row = [
+            'order_info' => $order_info,
+            'entity_row' => filter($entity_row),
+            'store_info' => filter($store)
+        ];
+        if ($row['entity_row']['subject_img']) {
+            $row['entity_row']['subject_img'] = explode(',', $row['entity_row']['subject_img']);
+        }
+        $row['store_info']['store_pic'] = explode(',', $row['store_info']['store_pic']);
+        return $this->success($row);
+    }
+
+    /**
+     * 统计列表各种状态下的条目
+     * @router http://server.name/order.list.count
+     */
+    public function countList()
+    {
+        $map = [
+            'pending_payment' => 0, // 待付款
+            //            'pending_ordering' => 1, // 带接单,
+            'in_service'      => 3, // 服务中
+            //            'completed'       => 5, // 已完成
+            'closed'          => 4 // 已关闭
+        ];
+
+        $rows = $sql = [];
+        list($field, $sort, $offset, $limit, $condition) = $this->buildQuery();
+        foreach ($map as $key => $status) {
+            $rows[$key] = $this->db->get_total(get_table('order'), array_merge($condition, ['order_state' => $status]));
+            $sql[$key]  = $this->db->get_sql();
+        }
+        $rows['all'] = $this->db->get_total(get_table('order'), ['order_type <>' => 3]);
+        // 待接单
+        $rows['pending_ordering'] = $this->db->get_total(get_table('order'), [
+                'order_type <>'           => 3
+                , 'order_state'           => 1
+                , 'order_belong_store_id' => 0
+            ]
+        );
+        // 已完成
+        $rows['completed'] = $this->db->get_total(get_table('order'), [
+            'order_type <>' => 3
+            , 'order_rate'  => 1
+        ]);
+
+        return success($rows, 5, $sql);
+    }
+
+    /**
+     * 普通用户通过流水号删除订单，软删除
+     * @router http://server.name/order.delete-{order_sn}
+     */
+    public function delete()
+    {
+        $order_sn = $this->router->get(1);
+        $this->validate(compact('order_sn'), [
+            'order_sn' => 'required|length:23'
+        ]);
+
+        /** @var \model\OrderModel $order_model */
+        $order_model = \utils\Factory::getFactory('order');
+        $user_info   = app('user_info');
+
+        if (!$user_info || !isset($user_info->user_id)) {
+            throw new \RuntimeException('user-info-error');
+        }
+
+        // 判断订单流水号是否存在 && 判断订单是否属于当前用户
+        if ($order_info = $order_model->checkSnHas($order_sn)) {
+            $source = app('router')->get(2);
+            if ('store' === $source) {
+                $store_info = $this->db->get_row('jiajie_store', ['user_id' => $user_info->user_id]);
+
+                if ($order_info['order_belong_store_id'] != $store_info['id']) {
+                    return $this->error('该订单不属于当前店铺');
+                }
+            } elseif (false == $source) {
+
+                if ($order_info['user_id'] != $user_info->user_id) {
+                    return $this->error('该订单不属于当前用户');
+                }
+            }
+
+            if ($order_info['order_state'] == 4 || $order_info['order_state'] == 5 ||
+                $order_info['order_pay_state_dsc'] == 'REFUNDED' || $order_info['order_bis_state_dsc'] == 'CLOSED' || $order_info['order_bis_state_dsc'] == 'COMPLETED') {
+                try {
+                    $this->db->begin();
+                    // 执行删除
+                    $this->db->update(get_table('order'), ['order_user_del' => 1], compact('order_sn')); // 标记用户删除订单
+                    $this->db->insert(get_table('order_log'), [
+                        'order_sn' => $order_sn,
+                        'log_at'   => $_SERVER['REQUEST_TIME'],
+                        'log'      => '订单已被用户删除，解除与用户的关系，原属用户id:' . $order_info['user_id'],
+                        'uid'      => app('user_info')->user_id
+                    ]);
+                    $this->db->commit();
+                    return $this->success(false);
+                } catch (Exception $e) {
+                    $this->db->roll_back();
+                }
+            }
+        }
+        return $this->error('订单删除失败');
+    }
+
+    /**
+     * 获取订单签名
+     * @router http://server.name/order.sign.get
+     */
+    public function getSign()
+    {
+        $order_sn = $this->router->get(1);
+        if (!$order_sn) {
+            return $this->error('流水号不存在');
+        }
+        $order_info = $this->db->get_row('jiajie_order', ['order_sn' => $order_sn]);
+        if (!$order_info) {
+            return $this->error('流水号对应的订单不存在');
+        }
+        return $this->success([
+            'order_sign' => md5(implode('-', [$order_sn, $order_info['order_type'], $order_info['order_type_id']]))
+        ]);
+    }
+
+    /**
+     * @param $method
+     * @return mixed|string
+     */
+    public function getMethodRouterParams($method)
+    {
+        $router_params = explode('-', $this->router->get_parse_url()['path']);
+        $params        = [
+            'changeOrderStatus' => function () use ($router_params) {
+                return $router_params[1];
+            }
+        ];
+        return $params[$method] ?? '';
+    }
+}

@@ -1,0 +1,31 @@
+腾讯bugly热修复账号
+1829081637
+233693707dugo
+验证的手机号码 
+
+
+此文件夹内patch_signed_7zip名字文件为vdao.apk使用的补丁包
+
+
+记录基准包命名规范：版本名称+项目中baseApkDir  v1.0.5-vdaoApp-0126-10-53-31
+
+bugly 使用记录	（同一文件夹下附带最简洁完成配置demo参考）
+
+1 构建基准包 找到tinker-support.gradle文件 
+例如设置tinkerId = "base-v1.0.0"  v1.0.0对应app版本名称
+
+打开gradle工具 找到 :vdaoApp->build->assembleRelease  双击assembleRelease等待自动生成基准包
+
+2 构建补丁包 找到tinker-support.gradle文件 
+例如设置tinkerId = "patch-v1.0.0"  v1.0.0对应app版本名称
+
+/**
+ * 填写每次构建生成的基准包目录  并把基准包放到对应的文件夹
+ */
+例如 def baseApkDir = "vdaoApp-0125-11-41-19"
+
+
+
+打开gradle工具 找到 :vdaoApp->tinker-support->buildTinkerPatchRelease  双击buildTinkerPatchRelease等待自动生成补丁包
+
+补丁包所在project目录位置 vdaoApp->build->outputs->patch->release->patch_signed_7zip.apk

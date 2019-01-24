@@ -1,0 +1,23 @@
+include ':vdaoApp', ':commonLib', ':reslib', ':RVHelper', 'pickerview' ,':app', ':android-ddp', ':rocket-chat-android-widgets', ':persistence-realm', ':rocket-chat-core',
+':log-wrapper', ':EmoticonsKeyboardLib', ':gsyVideoPlayerLib', ':ShortcutBadger', ':ucrop', ':picture_library',':RecyclerViewCardGalleryLib',
+'scanCodeLib'
+
+project(':RVHelper').projectDir = new File('ThirdParty/RVHelper')
+project(':pickerview').projectDir = new File('ThirdParty/pickerview')
+
+
+
+project(':picture_library').projectDir = new File('RocketChatLib/picture_library')
+project(':ucrop').projectDir = new File('RocketChatLib/ucrop')
+project(':app').projectDir = new File('RocketChatLib/app')
+project(':android-ddp').projectDir = new File('RocketChatLib/android-ddp')
+project(':rocket-chat-android-widgets').projectDir = new File('RocketChatLib/rocket-chat-android-widgets')
+project(':persistence-realm').projectDir = new File('RocketChatLib/persistence-realm')
+project(':rocket-chat-core').projectDir = new File('RocketChatLib/rocket-chat-core')
+project(':log-wrapper').projectDir = new File('RocketChatLib/log-wrapper')
+project(':EmoticonsKeyboardLib').projectDir = new File('RocketChatLib/EmoticonsKeyboardLib')
+project(':gsyVideoPlayerLib').projectDir = new File('RocketChatLib/gsyVideoPlayerLib')
+project(':ShortcutBadger').projectDir = new File('RocketChatLib/ShortcutBadger')
+project(':RecyclerViewCardGalleryLib').projectDir = new File('ThirdParty/RecyclerViewCardGalleryLib')
+
+project(':scanCodeLib').projectDir = new File('ThirdParty/scanCodeLib')

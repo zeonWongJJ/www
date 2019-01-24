@@ -1,0 +1,116 @@
+<template>
+	<div class="my">
+		<div class="top_img">
+			<div class="imgs">
+				<img  src="../../assets/img/home/healthcare.png"/>
+			</div>
+			<div class="imgs">
+				<div>
+					名字
+				</div>
+				<div>
+					本月吃了50餐
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<ul>
+				<li>
+					<div>
+						<img  src="../../assets/img/home/healthcare.png"/>
+					</div>
+					<div>
+						暂停/开启用餐
+					</div>
+				</li>
+				<li @click="onStatistics">
+					<div>
+						<img  src="../../assets/img/home/healthcare.png"/>
+					</div>
+					<div>
+						菜式偏好
+					</div>
+				</li>
+				<li @click="adds">
+					<div>
+						<img  src="../../assets/img/home/healthcare.png"/>
+					</div>
+					<div>
+						添加菜式
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</template>
+
+<script>
+		export default {
+			data(){
+				return{
+					
+				}
+			},
+			mounted(){
+				
+			},
+			methods:{
+				adds(){
+					this.$router.push({
+						path:'/addcai'
+					})
+				},
+				onStatistics(){
+					this.$router.push({
+						path:'/Statistics'
+					})
+				}
+			},
+		}
+</script>
+
+<style scoped lang='less'>
+.my{
+	.top_img{
+		background: #04A220;
+		display: flex;
+		align-items: center;
+		height: 1.5rem;
+		.imgs{
+		   margin-left: .2rem;
+		   font-size: .16rem;
+		   img{
+		  		width: .6rem;
+		  		height: .6rem;
+			   }
+			div{
+				margin-bottom: .1rem;
+			}  
+			}
+			
+	}
+	.box{
+		ul{
+			li{
+				display: flex;
+				align-items: center;
+				height: .44rem;
+				padding: 0 .15rem;
+				border-bottom: .01rem solid #eee;
+				div{
+					font-size: .16rem;
+					img{
+						padding: .05rem 0 0 0;
+						width: .22rem;
+		  				height: .22rem;
+		  				margin-right: .1rem;
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+
+</style>

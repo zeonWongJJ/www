@@ -1,0 +1,111 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background:#ff6930;
+	position: relative;
+	border-bottom: 1px solid #ff6930;
+}
+.main .head i{
+	font-style: normal;
+	color:white;
+}
+.main .head a.back{
+	margin-top: 0.066666rem;
+	width: 0.8rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.2rem;
+}
+.main .head a.explain{
+	display: inline-block;
+	position: absolute;
+	right: 0.533333rem;
+	top: 0.25rem;
+	font-size: 0.35rem;	
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	text-align:end;
+	line-height: 0.48rem;
+}
+.main .currentInt{
+	/*margin-top: 0.266666rem;*/
+	background:#ff6930;
+}
+.currentInt p{
+	text-align: center;
+}
+.currentInt .p1{
+	font-size: 0.426666rem;
+	color: white;
+	margin-top: 0.4rem;
+}
+.currentInt .p2{
+	font-size: 0.64rem;
+	color: white;
+	margin:0.266666rem 0 0.4rem 0;
+}
+.main .detailList{
+	background: white;
+	margin-top: 0.266666rem;
+	padding-bottom: 2rem;
+}
+.detailList li{
+	padding-left: 0.4rem;
+}
+.detailList li a{
+	display: block;
+	padding: 0.2rem 0;
+	border-bottom: 1px solid #d7d7d7;
+	position: relative;
+}
+.detailList li a .type{
+	width: 70%;
+	font-size: 0.373333rem;
+	color: #000000;
+}
+.detailList li a .time{
+	width: 70%;
+	font-size: 0.32rem;
+	color: #666666;
+}
+.detailList li a .num{
+	font-size: 0.426666rem;
+	color: #E10030;
+	position: absolute;
+	right: 0.426666rem;
+	top: 0.426666rem;
+}
+.detailList li.title a{
+	padding: 0;
+	height: 1.28rem;
+	line-height: 1.28rem;
+	
+}
+.detailList li.title .type{
+	font-size: 0.426666rem;
+}
+.detailList li.title .yellow{
+	display: block;
+	width: 0.133333rem;
+	height: 0.6rem;
+	background: #ff6e29;
+	position: absolute;
+	left: -0.413333rem;
+	top: 0.333333rem;
+}
+.detailList li:last-child a{
+	border-bottom: none;
+}
+
+

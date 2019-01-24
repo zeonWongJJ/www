@@ -1,0 +1,37 @@
+/* 我的分享 */
+.pjoTitle{ background:#ff6633; border:none; }
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.88rem; }
+.pjoTitle>span{ color:white; }
+/* 导航 */
+.nav{ padding:0.82rem 0; background:#ff6633; }
+.nav>a{ width:2.4rem; display:inline-block; text-align:center; }
+.nav>a>img{ margin-bottom:0.34rem; }
+.nav>a>span{ display:block; font-size:0.34rem; color:white; }
+/* 数据 */
+.shareData{ position:relative; margin-top:0.26rem; padding:0.33rem 0.41rem; background:white; }
+.shareData>p>img{ width:0.8rem; margin-right:0.26rem; }
+.shareData>p>span{ font-size:0.34rem; font-weight:bold; }
+.shareData>p>img,.shareData>p>span{ vertical-align:middle; }
+.while{ position:absolute; right:0.36rem; top:0.37rem; font-size:0; border-right:0.02rem solid #3ec6b6; }
+.while>a{ height:0.77rem; line-height:0.77rem; display:inline-block; padding:0 0.29rem; font-size:0.34rem; color:#3ec6b6; font-weight:bold; border-left:0.02rem solid #3ec6b6; border-top:0.02rem solid #3ec6b6; border-bottom:0.02rem solid #3ec6b6; }
+.whileCur{ background:#e2f6f4; }
+.shareData>dl>dt,.shareData>dl>dd{ margin-top:0.58rem; }
+.shareData>dl>dt{ text-align:center; }
+.shareData>dl>dt>span,.shareData>dl>dd>span{ display:inline-block; margin-bottom:0.21rem; font-size:0.32rem; color:#666666; }
+.shareData>dl>dt>p{ font-size:0.74rem; }
+.shareData>dl>dd{ width:32%; display:inline-block; text-align:center; font-size:0; }
+.shareData>dl>dd>p{ font-size:0.64rem; }
+
+.lay{ position:absolute; width:100%; top:0; background:black; opacity:0.5; z-index:1; }
+.tips{ width:6.53rem; position:absolute; left:1.8rem; background:white; z-index:2; }
+.tips>p{ text-align:center; margin-top:0.74rem; font-size:0.42rem; }
+.tips>span{ display:block; text-align:center; margin-top:0.21rem; margin-bottom:0.69rem; font-size:0.32rem; }
+.tipsBtn{ font-size:0; border-top:0.01rem solid #ddd; }
+.tipsBtn>a{ width:49.9%; height:1.22rem; line-height:1.22rem; display:inline-block; text-align:center; font-size:0.4rem; }
+.sure{ border-right:0.01rem solid #ddd; }
+.cancel{ color:#ff6633; }
+
+
+
+

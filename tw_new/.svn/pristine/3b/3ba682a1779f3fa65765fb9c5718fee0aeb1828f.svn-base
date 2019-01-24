@@ -1,0 +1,11 @@
+/*  用户没有实名认证的页面  */
+.authNot{ background:white; }
+.authNot>i { display:block; text-align:center; padding:30px 0 20px 0; margin-bottom:20px; }
+.authNot>i>img{ width:300px; }
+.authNot>p{ text-align:center; font-size:18px; color:#8c8c8c; }
+.authNot>p:first-child{ margin-top:20px; }
+.authNot>a{ display:block; text-align:center; margin-top:100px; }
+.authNot>a>span{ width:180px; height:45px; line-height:45px; display:inline-block; color:white; border-radius:22px;  background:linear-gradient(120deg,#6671f3,#66b2ea); }
+
+
+

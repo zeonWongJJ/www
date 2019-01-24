@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">客流统计</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载客流统计接口类
+	$this->load->library('passenger_flow');
+	// 使用$this->passenger_flow>方法名进行访问操作
+</code>
+</pre>
+</div>
+<div class="desc">
+	1. 获取单个门店的客流步骤：先使用实体列表函数（get_entity_list），获取到所有的门店信息，以及门店的openId，然后根据相应的门店openId调用实体客流数据（get_entity）。
+	<br /><br />
+	2. 获取全部门店的客流：直接调用所有实体客流统计函数（get_entity_all），一步到位，所有的数据都有了。
+	<br /><br />
+	请在项目的配置目录下，新建一个config_passenger_flow.php文件(需要可写权限)，代码如下：
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+&lt;?php
+$a_config_passenger_flow = [
+	'grant_type' => 'client_credentials',
+	'client_id' => 'MRJ_0a57c4be760544b692452e72ec04cadb',
+	'client_secret' => '0f88f5f022c04ed39e4b61c1c2e529ac',
+	'access_token' => '',
+	'expires_in' => '',
+]
+?&gt;
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->passenger_flow->set_config_file(文件名<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	自定义配置文件名，如果使用自定义配置文件名，配置目录下需要有此文件存在，并保持上面说述的参数，并且在加载类之后，首先调用此函数，必须保障调用顺序。
+</div>
+<code class="language-php">
+	$this->passenger_flow->set_config_file('abcdefg')
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->passenger_flow->get_entity_all(查询开始日期<span>(字符串:2017-11-08)</span>, 查询结束日期<span>(字符串:2017-11-08)</span>);
+</code>
+</div>
+<div class="desc">
+	获取所有实体的统计数据，日期跨度不超过90天，日期格式：2017-11-08
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_entity_all('2017-11-08', '2017-11-08')
+</code>
+<div class="desc">
+	此函数返回查询到的所有实体数据，以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 例：
+$this->load->library('passenger_flow');	
+$a_result = $this->passenger_flow->get_entity_all('2017-11-08', '2017-11-08');
+print_r($a_result);
+
+// 返回结果参数说明
+instanceOpenId		实体开放Id
+instanceTitile		实体名称
+time				数据时间
+in					进客流
+out					出客流
+batchIn				进批次人数
+batchOut			出批次人数
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->passenger_flow->get_entity_list();
+</code>
+</div>
+<div class="desc">
+	获取所有实体列表
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_entity_list()
+</code>
+<div class="desc">
+	此函数返回查询到的所有实体列表数据，以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回结果参数说明
+openId		实体开放ID
+code		实体编码
+title		实体名称
+logo		实体logo
+country		实体所在国家
+province	实体所在省份
+city		实体所在城市
+address		实体详细地址
+staffs		实体员工人数
+square		实体面积
+rent		实体租金
+openTime	实体营业开门时间
+closeTime	实体营业关门时间
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->passenger_flow->get_entity_detail(openId<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	获取实体详情，参数openId使用实体列表函数获取
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_entity_detail('mrje3fa98622dee4227a252449512325640')
+</code>
+<div class="desc">
+	此函数返回查询到的实体详细数据，以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回结果参数说明
+openId			实体开放ID
+code			实体编码
+title			实体名称
+logo			实体logo
+country			实体所在国家
+province		实体所在省份
+city			实体所在城市
+address			实体详细地址
+staffs			实体员工人数
+square			实体面积
+rent			实体租金
+openTime		实体营业开门时间
+closeTime		实体营业关门时间
+passageways		实体出入口列表
+
+passagewayId	出入口ID
+name			出入口名称
+devices			出入口绑定的设备列表
+
+openId			绑定的客流设备openId
+alias			设备别名
+bindTime		绑定时间
+
+key				扩展字段名称
+value			扩展字段值
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->passenger_flow->get_entity(openId<span>(字符串)</span>, 查询开始日期<span>(字符串:2017-11-08)</span>, 查询结束日期<span>(字符串:2017-11-08)</span>);
+</code>
+</div>
+<div class="desc">
+	获取实体客流数据,参数openId使用实体列表函数获取
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_entity('mrje3fa98622dee4227a252449512325640', '2017-11-08', '2017-11-08')
+</code>
+<div class="desc">
+	此函数返回查询到的实体统计数据，以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回结果参数说明
+time		数据时间
+in			进客流
+out			出客流
+batchIn		进批次人数
+batchOut	出批次人数
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->passenger_flow->get_entity(openId<span>(字符串)</span>, 查询开始日期<span>(字符串:2017-11-08)</span>, 查询结束日期<span>(字符串:2017-11-08)</span>);
+</code>
+</div>
+<div class="desc">
+	获取实体客流数据,参数openId使用实体列表函数获取
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_entity_detail('mrje3fa98622dee4227a252449512325640', '2017-11-08', '2017-11-08')
+</code>
+<div class="desc">
+	此函数返回查询到的实体统计数据，以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回结果参数说明
+time		数据时间
+in			进客流
+out			出客流
+batchIn		进批次人数
+batchOut	出批次人数
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->passenger_flow->get_device_list();
+</code>
+</div>
+<div class="desc">
+	获取设备列表
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_device_list()
+</code>
+<div class="desc">
+	此函数返回查询到的设备列表数据，以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回结果参数说明
+openId		设备开放ID
+imei		设备序列号
+imsi		客流设备MAC
+alias		设备别名
+online		设备在线状态, (true 在线, false 离线)
+wifiMac		设备无线网卡MAC
+mode		设备型号
+version		设备版本号
+online		设备在线状态(0 离线, 1 在线)
+serviceDate	设备服务时间, 格式为(yyyy-mm-dd)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->passenger_flow->get_device(openId<span>(字符串)</span>, 查询开始日期<span>(字符串:2017-11-08)</span>, 查询结束日期<span>(字符串:2017-11-08)</span>);
+</code>
+</div>
+<div class="desc">
+	获取设备每5分钟时间段的客流数据，日期跨度不能超过3天
+</div>
+<code class="language-php">
+	$this->passenger_flow->get_device('mrj415380569f7d4bdcadcc2e8dd6860419', '2017-11-08', '2017-11-08');
+</code>
+<div class="desc">
+	此函数返回查询到的设备每5分钟统计一次的流量情况，每5分钟的数据以一个数组为单位（有流量情况才会有返回，如果5分钟内没有人流情况，就不会有这个时间段的数据），总体以多维数组形式返回。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回结果参数说明
+time		数据时间,格式为yyyy-MM-dd HH:mm:ss(示例:2016-04-20 12:05:00, 表示12:05:00~12:09:59的数据)
+in			设备统计的进人数
+out			设备统计的出人数
+batchIn		设备统计的进批次人数
+batchOut	设备统计的出批次人数
+</code>
+</pre>
+</div>
+
+</body>
+</html>

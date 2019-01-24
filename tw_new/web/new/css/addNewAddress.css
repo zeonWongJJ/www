@@ -1,0 +1,23 @@
+body{ background:#efefef; }
+/*  新增地址 */
+.addressInfo                      { background:white;  }
+.addressInfo>ul                   { margin:0.3rem 0.5rem; font-size:0.4rem; }
+.addressInfo>ul>li                { height:1.4rem; line-height:1.4rem; border-bottom:0.01rem solid #ddd; }
+.addressInfo>ul>li:last-child    { border:none; }
+.mail                              { float:right; color:#6F99F0; }
+.addressInfo>ul>li>span           { width:2rem; display:inline-block;  }
+.addressInfo>ul>li>input          { font-size:0.4rem; }
+/* 性别 */
+.sex                     { text-align:center; }
+.sex>a:first-child      { color:#6F99F0; border:0.01rem solid #3190E8; }
+.sex>a                   { height:0.9rem; line-height:0.9rem; display:inline-block; padding:0 0.5rem; border:0.01rem solid #ddd; border-radius:0.15rem; color:black; }
+
+/*  设置地址  */
+.settingAddr            { height:1rem; line-height:1rem; display:inline-block; margin-left:1rem; }
+.settingAddr>i>img      { width:0.85rem; vertical-align:middle; }
+.settingAddr>span       { font-size:0.4rem; vertical-align:middle; }
+/*  提交 */
+.sub                     { text-align:center; margin-top:0.5rem; }
+.sub>input               { width:4rem; height:1.2rem; line-height:1.2rem; font-size:0.45rem; border-radius:1rem; background:linear-gradient(120deg,#6671f3,#66b2ea); color:white; }
+
+

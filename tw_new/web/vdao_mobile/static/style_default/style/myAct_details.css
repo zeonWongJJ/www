@@ -1,0 +1,279 @@
+body{
+	background: #f1f1f1;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .content{
+	margin-top: 0.266666rem;
+	background: white;
+	padding-left: 0.533333rem;
+}
+.content .picBox{
+	font-size: 0;
+	margin-top: 0.266666rem;
+}
+.content .picBox .pic{
+	width: 1.066666rem;
+	height: 1.066666rem;
+	border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+.content .article{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 0.266666rem;
+	width: 80%;
+}
+.content .article .p1{
+	font-size: 0.4rem;
+	color: #000000;
+}
+.content .article .p2{
+	font-size: 0.293333rem;
+	color: #666666;
+}
+.content .title{
+	font-size: 0.373333rem;
+	color: #666666;
+	margin-top: 0.266666rem;
+}
+/*加*/
+.content .imgBox{
+	margin-top: 0.266666rem;
+	overflow-x: auto;
+	padding-bottom: 0.266666rem;
+}
+.imgBox ul{
+	width: 100%;
+}
+.imgBox li{
+	display: inline-block;
+	vertical-align: bottom;
+	margin-right: 0.4rem;
+	width: 6.666666rem;
+	height: 6.666666rem;
+	border: 1px solid #f2f2f2;
+	overflow: hidden;
+}
+.imgBox li img{
+	width: 100%;
+}
+/*加*/
+.content .goodBox{
+	margin-top: 0.266666rem;
+}
+.goodBox .icon{
+	display: inline-block;
+	vertical-align: top;
+	width: 0.44rem;
+	height: 0.48rem;
+	background: url(../images/dongxiang_12.png) no-repeat;
+	background-size: 100%;
+	margin-top: 0.2rem;
+}
+.shareBox .icon{
+	width: 0.506666rem;
+	height: 0.426666rem;
+	background: url(../images/dongtai_41.png) no-repeat;
+	background-size: 100%;
+	margin-top: 0.266666rem;
+}
+.goodBox .num{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0.346666rem;
+	color: #666666;
+	margin-left: 0.4rem;
+	margin-top: 0.24rem;	
+}
+.goodBox .num s{
+	text-decoration: none;
+	margin-right: 0.133333rem;
+}
+.goodBox .people{
+	display: inline-block;
+	vertical-align: middle;
+	float: right;
+	width: 4.333333rem;
+	font-size: 0;
+	text-align: right;
+	margin-right: 0.266666rem;
+	overflow-x: auto;
+	height: 1.333333rem;/*90*/
+}
+.goodBox .people ul{
+	height: 0.96rem;/*72*/
+	width: 100%;
+}
+.goodBox .people li{
+	display: inline-block;
+	width: 0.933333rem;
+	height: 0.933333rem;
+	border-radius: 50%;
+	overflow: hidden;
+	font-size: 0.346666rem;
+	color: #666666;
+	text-align: center;
+	line-height: 0.933333rem;
+	margin-right: 0.133333rem;
+	float: left;
+}
+.content .shareBox{
+	padding-bottom: 0.266666rem;
+	border-bottom: 1px solid #d4d4d4;
+}
+/*加*/
+.content .discussBox{
+	
+}
+.discussBox .ping{
+	margin-top: 0.266666rem;
+}
+.discussBox .ping .icon1{
+	display: inline-block;
+	width: 0.546666rem;
+	height: 0.506666rem;
+	background: url(../images/dongtai_39.png) no-repeat;
+	background-size:100% ;
+}
+.discussBox .ping .num1{
+	font-size: 0.346666rem;
+	color: #666666;
+	margin-left: 0.4rem;
+	vertical-align: top;
+}
+.discussBox .ping .num1 s{
+	text-decoration: none;
+	vertical-align: top;
+	margin-right: 0.133333rem;
+}
+.discussBox .disList li{
+	padding-left: 0.933333rem;
+	padding-right: 0.4rem;
+	font-size: 0;
+	margin-bottom: 0.266666rem;
+}
+.discussBox .disList .dLeft{
+	display: inline-block;
+	vertical-align: top;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-top: 0.133333rem;
+}
+.discussBox .disList .dRight{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 0.333333rem;
+}
+.discussBox .disList .dRight .name{
+	width: 6.933333rem;
+	position: relative;
+}
+.discussBox .disList .dRight .name a{
+	display: inline-block;
+	width: 5.333333rem;
+	font-size: 0.373333rem;
+	color: #000000;
+}
+.discussBox .disList .dRight .name span{
+	display: inline-block;
+	width: 1.6rem;
+	text-align: right;
+	font-size: 0.373333rem;
+	color: #666666;
+	position: absolute;
+	right: 0;
+	top: 0;	
+}
+.discussBox .disList .dRight .discuss{
+	margin-top: 0.066666rem;
+	width: 6.933333rem;
+	font-size: 0.373333rem;
+	color: #666666;
+}
+.discussBox .disList .dRight .discuss a{
+	color: #ff9da2;
+}
+/*评论输入框*/
+.main .intBox{
+	width: 100%;
+	/*height: 100px;*/
+	padding: 0.4rem 0;
+	background: white;
+	box-shadow: 0 0 20px #aaaaaa;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+.intBox .tu{
+	display: inline-block;
+	vertical-align: top;
+	width: 0.453333rem;
+	height: 0.453333rem;
+	background: url(../images/dongxiang_17.png) no-repeat;
+	background-size: 100%;
+	margin-left: 0.533333rem;
+	margin-top: 0.066666rem;
+}
+.intBox .txt{
+	display: inline-block;
+	width: 80%;
+	margin-left: 0.533333rem;
+	padding:0 0.266666rem;
+	font-size: 0.373333rem;
+	color: #000000;
+	box-sizing: border-box;
+	min-height: 0.453333rem;
+}
+/*加*/
+.transmit{
+	font-size: 0;
+	margin: 0.133333rem 0 0.266666rem 0.333333rem;
+	margin-top: 0.133333rem;
+}
+.transmit .tPic{
+	display: inline-block;
+	width: 0.933333rem;
+	height: 0.933333rem;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: top;
+}
+.transmit .tDescribe{
+	display: inline-block;
+	font-size: 0.293333rem;
+	color: #666666;
+	vertical-align: top;
+	margin-left: 0.2rem;
+	width: 7.733333rem;
+}
+.transmit .tDescribe .tMing{
+	font-size: 0.32rem;
+	color: #666666;
+}

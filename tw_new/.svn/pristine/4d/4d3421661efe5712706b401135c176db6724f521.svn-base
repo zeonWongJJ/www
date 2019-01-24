@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0;} 
+body{color:#333;/*font-size:14px;*/FONT-FAMILY: Arial, Helvetica, sans-serif, "??ì?";/*line-height:18px;*/background: #fff;}
+input,textarea,li,p,span,dd{word-wrap:break-word;word-break:break-all;} 
+a{text-decoration:none; color:#333;}
+ul li{list-style-type:none;}
+h1,h3{font-weight:inherit;}
+
+.puts{width: 100%;height: 350px;margin: 95px auto;background-color: #fff;}
+.check{/*width: 550px;*/text-align:center}
+.check a{margin: auto 15px;color:#333;}
+.check a:hover{color: #26F511;}
+.tuo{width: 550px;margin: 5px auto;}
+.tuo table tr td{width: 550px;text-align:center}
+.tuo table tr td a{margin: auto 16px;color:#333;}
+.tuo table tr td a:hover{color: #26F511;}
+.page{margin: auto 35px;}
+.redact{width: 405px;margin: 35px auto;}
+.task{width: 530px;margin: 35px auto;}
+.task ul{float: left;}
+.task ul li{float: left;width: 120px;text-align:center;}
+.tasks{width: 1220px;margin: 35px auto;}
+.tasks ul{float: left;margin: 4px auto;}
+.tasks ul li{float: left;width: 120px;text-align:center;overflow:hidden;
+text-overflow:ellipsis;/*文字溢出的部分隐藏并用省略号代替*/
+white-space:nowrap;/*文本不自动换行*/;margin: 2px auto;}
+.tasks .logi{width: 500px;margin:auto 160px;}
+.put{margin: 162px 226px;}

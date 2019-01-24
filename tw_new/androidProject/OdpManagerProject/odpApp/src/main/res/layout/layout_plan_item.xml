@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_padding"
+    android:gravity="center"
+    android:background="@color/white"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/plan_type"
+        android:layout_width="35dp"
+        android:background="@drawable/shape_blue_solid_circle"
+        android:textSize="@dimen/text_size_big"
+        android:layout_margin="@dimen/default_padding"
+        android:text="周"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_height="35dp" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/sub_plan_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_title"
+            android:text=""
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <com.app.base.widget.ZzHorizontalProgressBar
+                android:id="@+id/pb"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="8dp"
+                android:layout_marginRight="15dp"
+                app:zpb_padding="0dp"
+                app:zpb_pb_color="@color/yellow"
+                app:zpb_bg_color="@color/light_gray"
+                app:zpb_max="100"
+                app:zpb_progress="0"
+                />
+            <TextView
+                android:id="@+id/plan_process_percent"
+                android:layout_width="wrap_content"
+                android:textColor="@color/gray"
+                android:text="0%"
+                android:textSize="@dimen/text_size_small"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/plan_score"
+        android:layout_width="40dp"
+        android:textColor="@color/black"
+        android:text="10"
+        android:textSize="@dimen/text_size_normal"
+        android:gravity="center"
+        android:background="@drawable/shap_yellow_stroke"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginRight="@dimen/default_padding"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/plan_type_belong"
+        android:layout_width="wrap_content"
+        android:src="@drawable/icon_eyes_checked"
+        android:padding="8dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,37 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*编辑管理员*/
+.editBomb{width: 1190px; min-height: 800px; background: white; margin-top: 20px;}
+.editBomb .formBox{ padding: 50px 0 0 50px;}
+.formBox li{height: 60px;}
+.formBox li .left{width: 70px; float: left; font-size: 14px; color: #000000; text-align: right; line-height: 30px;}
+.formBox li .right{ float: left; margin-left: 10px; line-height: 30px;}
+.formBox li .right .input{ width: 140px; height: 30px; border: 1px solid #cfcfcf; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 5px;}
+.right .green,.right .red{  color: #999999; font-size: 12px; margin-left: 4px; display: none;}
+.right .green i{color: #ee2222; font-style: normal;}
+.right .green em{display: inline-block; width: 18px; height: 17px; background: url(../images/t_03.png) no-repeat left center; vertical-align: middle;}
+.right .wen{ margin-left: 10px;}
+.right .red em{display: inline-block; width: 18px; height: 18px; background: url(../images/f_03.png) no-repeat left center; vertical-align: middle;}
+.right .red{text-indent: 30px;}
+.right s{text-decoration: none;}
+.right .boy{display: inline-block; position: relative; width: 365px; height: 30px; float: left; }
+.right .boy input{opacity: 0; position: absolute; left: 0; top: 0;}
+.right .boy .pattern{ display: inline-block;  background: url(../images/pro_38.png) no-repeat left center; text-indent: 20px; position: absolute; left: 0; top: 0; font-size: 12px; color: #9e9e9e;}
+.sex .right .green{ margin-left: 100px; float: left;}
+.sex .right .ding2{ left: 50px;}
+.sex .right .red{float: left; margin-left: 70px;}
+.sex .boy .choose{ background: url(../images/pro_36.png) no-repeat left center;}
+.formBox li  .right .email{width: 205px;}
+.formBox li .right .password{width: 170px;}
+.role a{display: inline-block; color: #333333; font-size: 12px; background: #f2f2f2; padding: 2px 12px; position: relative; margin-right: 20px; margin-bottom: 5px;}
+.role a.gou b{font-weight: normal; width: 19px; height: 19px; display: block; background: url(../images/gou_03.png); position: absolute; right: -7px; top: -10px;}
+.formBox .sureBox{ margin-top: 30px;}
+.formBox .sureBox a{width: 85px; height: 28px; font-size: 14px; display: inline-block; background: #ffce1c; color: #a33300; text-align: center; line-height: 28px; border: 1px solid #e69c14; margin-left: 80px; }
+.formBox .roleLi{ height: auto !important;}
+.roleRight .role{float: left; width: 325px;}
+.roleRight .green{float: left; margin-left: -10px;}
+.roleRight .red{float: left; margin-left: -48px; }
+.roleRight .red .wen{margin-left: 6px;}
+

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">银联网关支付</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+	// 加载银联网关支付类
+	$this->load->library('unionpay_geteway');
+	// 使用$this->unionpay_geteway->方法名进行访问操作
+</code>
+</pre>
+</div>
+<div class="desc">
+	本方法适用于银行卡（借记卡，储蓄卡，信用卡）支付。<br />
+	在框架的libraries\pay\unionpay\geteway目录下有个config_unionpay_geteway.php的配置文件，<br />
+	里面用来配置商户的密钥和证书等信息，请复制此文件放到项目的config目录下，并且根据项目实际情况进行配置，<br />
+	如果项目的config目录下不存在config_unionpay_geteway.php文件，将会默认调用libraries\pay\unionpay\geteway\config_unionpay_geteway.php。
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->unionpay_geteway->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	交易支付功能
+</div>
+<code class="language-php">
+	$this->unionpay_geteway->pay();
+</code>
+<div class="desc">
+	此函数返回一段html代码，输出将会跳转到银联的支付页面。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+public function test() {
+	$this->load->library('unionpay_geteway');
+	$a_param = [
+		// 订单号
+		'id_order' => date('YmdHis'),
+		// 订单金额，以分为单位
+		'amount' => 1,
+		// （选填）前台返回链接， 不传此参数将默认使用配置文件中的设置url
+		'url_front' => $this->router->url('notify'),
+		// （选填）后台返回链接， 不传此参数将默认使用配置文件中的设置url
+		'url_back' => $this->router->url('qrcode')
+	];
+	$a_result = $this->unionpay_geteway->pay($a_param);
+	print_r($a_result);
+}
+	
+// 前台通知（后台通知判断方式一样）
+public function notify() {
+	$this->load->library('unionpay_geteway');
+	
+	// 安全验证，确认是不是银联返回的正确数据
+	if ($this->unionpay_geteway->verify($this->general->post())) {
+		// 验证签名成功
+		if ($a_result['respCode'] == '00') {
+			// 把订单的状态改为已经付款成功
+			// 进行交易相关的业务逻辑处理
+			echo '交易成功';
+		} elseif (in_array($a_result['respCode'], ['03', '04', '05'])) {
+			echo '交易处理中';
+		} else {
+			echo '交易失败';
+		}
+	} else {
+		// 没有通过验证，肯定数据有问题，不做任何处理
+	}
+}
+
+// 通知返回数组格式：
+Array
+(
+    [accessType] => 0
+    [bizType] => 000201
+    [currencyCode] => 156
+    [encoding] => utf-8
+    [exchangeRate] => 0
+    [merId] => 802440054990521
+    [orderId] => 20171226151413
+    [queryId] => 131712261514132207068
+    [respCode] => 00
+    [respMsg] => success
+    [settleAmt] => 1
+    [settleCurrencyCode] => 156
+    [settleDate] => 1226
+    [signMethod] => 01
+    [signPubKeyCert] => -----BEGIN CERTIFICATE-----
+MIIEIDCCAwigAwIBAgIFEDRVM3AwDQYJKoZIhvcNAQEFBQAwITELMAkGA1UEBhMC
+Q04xEjAQBgNVBAoTCUNGQ0EgT0NBMTAeFw0xNTEwMjcwOTA2MjlaFw0yMDEwMjIw
+OTU4MjJaMIGWMQswCQYDVQQGEwJjbjESMBAGA1UEChMJQ0ZDQSBPQ0ExMRYwFAYD
+VQQLEw1Mb2NhbCBSQSBPQ0ExMRQwEgYDVQQLEwtFbnRlcnByaXNlczFFMEMGA1UE
+Aww8MDQxQDgzMTAwMDAwMDAwODMwNDBA5Lit5Zu96ZO26IGU6IKh5Lu95pyJ6ZmQ
+5YWs5Y+4QDAwMDE2NDkzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+tXclo3H4pB+Wi4wSd0DGwnyZWni7+22Tkk6lbXQErMNHPk84c8DnjT8CW8jIfv3z
+d5NBpvG3O3jQ/YHFlad39DdgUvqDd0WY8/C4Lf2xyo0+gQRZckMKEAId8Fl6/rPN
+HsbPRGNIZgE6AByvCRbriiFNFtuXzP4ogG7vilqBckGWfAYaJ5zJpaGlMBOW1Ti3
+MVjKg5x8t1/oFBkpFVsBnAeSGPJYrBn0irfnXDhOz7hcIWPbNDoq2bJ9VwbkKhJq
+Vz7j7116pziUcLSFJasnWMnp8CrISj52cXzS/Y1kuaIMPP/1B0pcjVqMNJjowooD
+OxID3TZGfk5V7S++4FowVwIDAQABo4HoMIHlMB8GA1UdIwQYMBaAFNHb6YiC5d0a
+j0yqAIy+fPKrG/bZMEgGA1UdIARBMD8wPQYIYIEchu8qAQEwMTAvBggrBgEFBQcC
+ARYjaHR0cDovL3d3dy5jZmNhLmNvbS5jbi91cy91cy0xNC5odG0wNwYDVR0fBDAw
+LjAsoCqgKIYmaHR0cDovL2NybC5jZmNhLmNvbS5jbi9SU0EvY3JsMjI3Mi5jcmww
+CwYDVR0PBAQDAgPoMB0GA1UdDgQWBBTEIzenf3VR6CZRS61ARrWMto0GODATBgNV
+HSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQUFAAOCAQEAHMgTi+4Y9g0yvsUA
+p7MkdnPtWLS6XwL3IQuXoPInmBSbg2NP8jNhlq8tGL/WJXjycme/8BKu+Hht6lgN
+Zhv9STnA59UFo9vxwSQy88bbyui5fKXVliZEiTUhjKM6SOod2Pnp5oWMVjLxujkk
+WKjSakPvV6N6H66xhJSCk+Ref59HuFZY4/LqyZysiMua4qyYfEfdKk5h27+z1MWy
+nadnxA5QexHHck9Y4ZyisbUubW7wTaaWFd+cZ3P/zmIUskE/dAG0/HEvmOR6CGlM
+55BFCVmJEufHtike3shu7lZGVm2adKNFFTqLoEFkfBO6Y/N6ViraBilcXjmWBJNE
+MFF/yA==
+-----END CERTIFICATE-----
+    [signature] => idxHvbNtqPtc6p6QecMkmu9rm3dOMnljUCM2xbc8lNGNlJoCJq1+bZXlWxrLSdMMm8tydX2ZAD+a4Q026oZ/IcQwAxgywLsdVHYt3FW8p/1keFGLTw4kF0zouF3InpwSs/0VsBaS1jAKy7W5KSTqEiUAXmQVmStP+RtfuSU77n5COdJQC2iqyfgZb8QQBuQDzryPtxjNQ9K4iuscYKFvQNJZmag18DskSyh9hu60CFaMZtGGb+STmy1cjlb+c55JBO6xNCwQiBM7rHentzkKUcUysbpjNtJCzd/jv13LNn9FMT1b1a8JYoQC0bxZEBE9ut/+6t6Uw2WsUIgYakS73w==
+    [traceNo] => 220706
+    [traceTime] => 1226151413
+    [txnAmt] => 1
+    [txnSubType] => 01
+    [txnTime] => 20171226151413
+    [txnType] => 01
+    [version] => 5.1.0
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->unionpay_geteway->query(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	交易查询功能
+</div>
+<code class="language-php">
+	$this->unionpay_geteway->query();
+</code>
+<div class="desc">
+	此函数返回一个数组。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('unionpay_geteway');
+$a_param = [
+	// 订单号
+	'id_order' => '20171226151413'
+];
+$a_result = $this->unionpay_geteway->query($a_param);
+if ($this->unionpay_geteway->verify($a_result)) {
+	echo '验证签名成功<br />';
+	if ($a_result['origRespCode'] == '00') {
+		echo '交易成功';
+	} elseif (in_array($a_result['origRespCode'], ['03', '04', '05'])) {
+		echo '交易处理中';
+	} else {
+		echo '交易失败';
+	}
+} else {
+	echo '验证签名失败';
+}
+
+// 返回的数据如下：
+Array
+(
+    [accessType] => 0
+    [bizType] => 000000
+    [currencyCode] => 156
+    [encoding] => utf-8
+    [issuerIdentifyMode] => 0
+    [merId] => 802440054990521
+    [orderId] => 20171226151413
+    [origRespCode] => 00
+    [origRespMsg] => 成功[0000000]
+    [queryId] => 131712261514132207068
+    [respCode] => 00
+    [respMsg] => 成功[0000000]
+    [settleAmt] => 1
+    [settleCurrencyCode] => 156
+    [settleDate] => 1226
+    [signMethod] => 01
+    [traceNo] => 220706
+    [traceTime] => 1226151413
+    [txnAmt] => 1
+    [txnSubType] => 01
+    [txnTime] => 20171226151413
+    [txnType] => 01
+    [version] => 5.1.0
+    [signPubKeyCert] => -----BEGIN CERTIFICATE-----
+MIIEIDCCAwigAwIBAgIFEDRVM3AwDQYJKoZIhvcNAQEFBQAwITELMAkGA1UEBhMC
+Q04xEjAQBgNVBAoTCUNGQ0EgT0NBMTAeFw0xNTEwMjcwOTA2MjlaFw0yMDEwMjIw
+OTU4MjJaMIGWMQswCQYDVQQGEwJjbjESMBAGA1UEChMJQ0ZDQSBPQ0ExMRYwFAYD
+VQQLEw1Mb2NhbCBSQSBPQ0ExMRQwEgYDVQQLEwtFbnRlcnByaXNlczFFMEMGA1UE
+Aww8MDQxQDgzMTAwMDAwMDAwODMwNDBA5Lit5Zu96ZO26IGU6IKh5Lu95pyJ6ZmQ
+5YWs5Y+4QDAwMDE2NDkzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+tXclo3H4pB+Wi4wSd0DGwnyZWni7+22Tkk6lbXQErMNHPk84c8DnjT8CW8jIfv3z
+d5NBpvG3O3jQ/YHFlad39DdgUvqDd0WY8/C4Lf2xyo0+gQRZckMKEAId8Fl6/rPN
+HsbPRGNIZgE6AByvCRbriiFNFtuXzP4ogG7vilqBckGWfAYaJ5zJpaGlMBOW1Ti3
+MVjKg5x8t1/oFBkpFVsBnAeSGPJYrBn0irfnXDhOz7hcIWPbNDoq2bJ9VwbkKhJq
+Vz7j7116pziUcLSFJasnWMnp8CrISj52cXzS/Y1kuaIMPP/1B0pcjVqMNJjowooD
+OxID3TZGfk5V7S++4FowVwIDAQABo4HoMIHlMB8GA1UdIwQYMBaAFNHb6YiC5d0a
+j0yqAIy+fPKrG/bZMEgGA1UdIARBMD8wPQYIYIEchu8qAQEwMTAvBggrBgEFBQcC
+ARYjaHR0cDovL3d3dy5jZmNhLmNvbS5jbi91cy91cy0xNC5odG0wNwYDVR0fBDAw
+LjAsoCqgKIYmaHR0cDovL2NybC5jZmNhLmNvbS5jbi9SU0EvY3JsMjI3Mi5jcmww
+CwYDVR0PBAQDAgPoMB0GA1UdDgQWBBTEIzenf3VR6CZRS61ARrWMto0GODATBgNV
+HSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQUFAAOCAQEAHMgTi+4Y9g0yvsUA
+p7MkdnPtWLS6XwL3IQuXoPInmBSbg2NP8jNhlq8tGL/WJXjycme/8BKu+Hht6lgN
+Zhv9STnA59UFo9vxwSQy88bbyui5fKXVliZEiTUhjKM6SOod2Pnp5oWMVjLxujkk
+WKjSakPvV6N6H66xhJSCk+Ref59HuFZY4/LqyZysiMua4qyYfEfdKk5h27+z1MWy
+nadnxA5QexHHck9Y4ZyisbUubW7wTaaWFd+cZ3P/zmIUskE/dAG0/HEvmOR6CGlM
+55BFCVmJEufHtike3shu7lZGVm2adKNFFTqLoEFkfBO6Y/N6ViraBilcXjmWBJNE
+MFF/yA==
+-----END CERTIFICATE-----
+    [signature] => hJsA99KHs2k8BEbnPA3HtZRBsJtzyDxt1yryVFi+ZcERwijOQmr087TPviUEgcmzIuMUC3FGGITJer2G1O4Yxf1veq6GtWYrY98/qWYiD2UcEAnPoPpaK5wrxomZi9qNfCF85Zyuq6bbk2I97ZmRfd6O2f2b2rj779ZvYCHHkNH1EJT0NEekE7SerVOjfsryBcCFR1M0slfgGOI8dfPAqah4Rx8BRhGnOKZr/jXk3xhFg+EqQ4tL5ztPIwR97wl4NJX84OEAppukm/Gm4wOzDcUXo15nrhcv7el9xlGccnJ0e+yDVMErVPUcIa64g0oyD1Mi8YK1m/pzRqGrYE5r1w==
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->unionpay_geteway->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	撤消功能，可以实现全额退款，但是非退款功能。
+</div>
+<code class="language-php">
+	$this->unionpay_geteway->undo();
+</code>
+<div class="desc">
+	此函数返回一个数组，后台通知请参考支付pay函数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('unionpay_geteway');
+$a_param = [
+	// 订单号
+	'id_order' => '20171226151413',
+	// 原消费的queryId，可以从查询接口或者通知接口中获取
+	'id_query' => '131712261514132207068',
+	// （选填）交易金额，消费撤销时需和原消费一致
+	'amount' => '1',
+	// （选填）后台返回链接， 不传此参数将默认使用配置文件中的设置url
+	'url_back' => $this->router->url('notify')
+];
+$a_result = $this->unionpay_geteway->undo($a_param);
+print_r($a_result);
+if ($this->unionpay_geteway->verify($a_result)) {
+	echo '验证签名成功<br />';
+	if ($a_result['respCode'] == '00') {
+		echo '交易成功';
+	} elseif (in_array($a_result['respCode'], ['03', '04', '05'])) {
+		echo '交易处理中';
+	} else {
+		echo '交易失败';
+	}
+} else {
+	echo '验证签名失败';
+}
+
+// 返回数据格式：
+Array
+(
+    [accessType] => 0
+    [bizType] => 000201
+    [encoding] => utf-8
+    [merId] => 802440054990521
+    [orderId] => 20171226151413
+    [origQryId] => 131712261514132207068
+    [respCode] => 12
+    [respMsg] => 重复交易[2010002]
+    [signMethod] => 01
+    [txnAmt] => 1
+    [txnSubType] => 00
+    [txnTime] => 20171226162809
+    [txnType] => 31
+    [version] => 5.1.0
+    [signPubKeyCert] => -----BEGIN CERTIFICATE-----
+MIIEIDCCAwigAwIBAgIFEDRVM3AwDQYJKoZIhvcNAQEFBQAwITELMAkGA1UEBhMC
+Q04xEjAQBgNVBAoTCUNGQ0EgT0NBMTAeFw0xNTEwMjcwOTA2MjlaFw0yMDEwMjIw
+OTU4MjJaMIGWMQswCQYDVQQGEwJjbjESMBAGA1UEChMJQ0ZDQSBPQ0ExMRYwFAYD
+VQQLEw1Mb2NhbCBSQSBPQ0ExMRQwEgYDVQQLEwtFbnRlcnByaXNlczFFMEMGA1UE
+Aww8MDQxQDgzMTAwMDAwMDAwODMwNDBA5Lit5Zu96ZO26IGU6IKh5Lu95pyJ6ZmQ
+5YWs5Y+4QDAwMDE2NDkzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+tXclo3H4pB+Wi4wSd0DGwnyZWni7+22Tkk6lbXQErMNHPk84c8DnjT8CW8jIfv3z
+d5NBpvG3O3jQ/YHFlad39DdgUvqDd0WY8/C4Lf2xyo0+gQRZckMKEAId8Fl6/rPN
+HsbPRGNIZgE6AByvCRbriiFNFtuXzP4ogG7vilqBckGWfAYaJ5zJpaGlMBOW1Ti3
+MVjKg5x8t1/oFBkpFVsBnAeSGPJYrBn0irfnXDhOz7hcIWPbNDoq2bJ9VwbkKhJq
+Vz7j7116pziUcLSFJasnWMnp8CrISj52cXzS/Y1kuaIMPP/1B0pcjVqMNJjowooD
+OxID3TZGfk5V7S++4FowVwIDAQABo4HoMIHlMB8GA1UdIwQYMBaAFNHb6YiC5d0a
+j0yqAIy+fPKrG/bZMEgGA1UdIARBMD8wPQYIYIEchu8qAQEwMTAvBggrBgEFBQcC
+ARYjaHR0cDovL3d3dy5jZmNhLmNvbS5jbi91cy91cy0xNC5odG0wNwYDVR0fBDAw
+LjAsoCqgKIYmaHR0cDovL2NybC5jZmNhLmNvbS5jbi9SU0EvY3JsMjI3Mi5jcmww
+CwYDVR0PBAQDAgPoMB0GA1UdDgQWBBTEIzenf3VR6CZRS61ARrWMto0GODATBgNV
+HSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQUFAAOCAQEAHMgTi+4Y9g0yvsUA
+p7MkdnPtWLS6XwL3IQuXoPInmBSbg2NP8jNhlq8tGL/WJXjycme/8BKu+Hht6lgN
+Zhv9STnA59UFo9vxwSQy88bbyui5fKXVliZEiTUhjKM6SOod2Pnp5oWMVjLxujkk
+WKjSakPvV6N6H66xhJSCk+Ref59HuFZY4/LqyZysiMua4qyYfEfdKk5h27+z1MWy
+nadnxA5QexHHck9Y4ZyisbUubW7wTaaWFd+cZ3P/zmIUskE/dAG0/HEvmOR6CGlM
+55BFCVmJEufHtike3shu7lZGVm2adKNFFTqLoEFkfBO6Y/N6ViraBilcXjmWBJNE
+MFF/yA==
+-----END CERTIFICATE-----
+    [signature] => UN1dKZvojL3qRjCCcde9AiaqgNfvELq+zZndj+TCW4FkTNgzrpgFjOHNTxBTAsxvkojMrzc5eHdAsEDYm3UdYcx/PlI99mraFKPZQkjEEyDTdEi7aMV6KPYCAYz0iZNaSnhEUF7dAyOjC673PJxSGKuljXYLCPCqM3PEHIeMjjHPPR6SYp1oE41jGv/9eitBPSmMVBOhzcB07zhwdGIlPfT4/CrA9m6IUrTSrLQqySgaGbpTDX0vgHfD8YvLbScDEZrCoVSWgr/33stnlhtDEL64v30DyFyqQ8Cax8uRHgXSPGl0lhGdBRmaIpRUMkDpoXjc6Ex8bh9LhUUoQb0+Aw==
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->unionpay_geteway->pay(参数数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	退款，可部分退款。
+</div>
+<code class="language-php">
+	$this->unionpay_geteway->refund();
+</code>
+<div class="desc">
+	此函数返回一个数组，后台通知请参考支付pay函数。。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('unionpay_geteway');
+$a_param = [
+	// 订单号
+	'id_order' => '20171226151413',
+	// 原消费的queryId，可以从查询接口或者通知接口中获取
+	'id_query' => '131712261514132207068',
+	// （选填）交易金额，退货总金额需要小于或等于原消费
+	'amount' => '1',
+	// （选填）后台返回链接， 不传此参数将默认使用配置文件中的设置url
+	'url_back' => $this->router->url('notify')
+];
+$a_result = $this->unionpay_geteway->refund($a_param);
+print_r($a_result);
+if ($this->unionpay_geteway->verify($a_result)) {
+	echo '验证签名成功<br />';
+	if ($a_result['respCode'] == '00') {
+		echo '交易成功';
+	} elseif (in_array($a_result['respCode'], ['03', '04', '05'])) {
+		echo '交易处理中';
+	} else {
+		echo '交易失败';
+	}
+} else {
+	echo '验证签名失败';
+}
+
+// 返回数据格式：
+Array
+(
+    [accessType] => 0
+    [bizType] => 000201
+    [encoding] => utf-8
+    [merId] => 802440054990521
+    [orderId] => 20171226151413
+    [origQryId] => 131712261514132207068
+    [respCode] => 12
+    [respMsg] => 重复交易[2010002]
+    [signMethod] => 01
+    [txnAmt] => 1
+    [txnSubType] => 00
+    [txnTime] => 20171226164259
+    [txnType] => 04
+    [version] => 5.1.0
+    [signPubKeyCert] => -----BEGIN CERTIFICATE-----
+MIIEIDCCAwigAwIBAgIFEDRVM3AwDQYJKoZIhvcNAQEFBQAwITELMAkGA1UEBhMC
+Q04xEjAQBgNVBAoTCUNGQ0EgT0NBMTAeFw0xNTEwMjcwOTA2MjlaFw0yMDEwMjIw
+OTU4MjJaMIGWMQswCQYDVQQGEwJjbjESMBAGA1UEChMJQ0ZDQSBPQ0ExMRYwFAYD
+VQQLEw1Mb2NhbCBSQSBPQ0ExMRQwEgYDVQQLEwtFbnRlcnByaXNlczFFMEMGA1UE
+Aww8MDQxQDgzMTAwMDAwMDAwODMwNDBA5Lit5Zu96ZO26IGU6IKh5Lu95pyJ6ZmQ
+5YWs5Y+4QDAwMDE2NDkzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+tXclo3H4pB+Wi4wSd0DGwnyZWni7+22Tkk6lbXQErMNHPk84c8DnjT8CW8jIfv3z
+d5NBpvG3O3jQ/YHFlad39DdgUvqDd0WY8/C4Lf2xyo0+gQRZckMKEAId8Fl6/rPN
+HsbPRGNIZgE6AByvCRbriiFNFtuXzP4ogG7vilqBckGWfAYaJ5zJpaGlMBOW1Ti3
+MVjKg5x8t1/oFBkpFVsBnAeSGPJYrBn0irfnXDhOz7hcIWPbNDoq2bJ9VwbkKhJq
+Vz7j7116pziUcLSFJasnWMnp8CrISj52cXzS/Y1kuaIMPP/1B0pcjVqMNJjowooD
+OxID3TZGfk5V7S++4FowVwIDAQABo4HoMIHlMB8GA1UdIwQYMBaAFNHb6YiC5d0a
+j0yqAIy+fPKrG/bZMEgGA1UdIARBMD8wPQYIYIEchu8qAQEwMTAvBggrBgEFBQcC
+ARYjaHR0cDovL3d3dy5jZmNhLmNvbS5jbi91cy91cy0xNC5odG0wNwYDVR0fBDAw
+LjAsoCqgKIYmaHR0cDovL2NybC5jZmNhLmNvbS5jbi9SU0EvY3JsMjI3Mi5jcmww
+CwYDVR0PBAQDAgPoMB0GA1UdDgQWBBTEIzenf3VR6CZRS61ARrWMto0GODATBgNV
+HSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQUFAAOCAQEAHMgTi+4Y9g0yvsUA
+p7MkdnPtWLS6XwL3IQuXoPInmBSbg2NP8jNhlq8tGL/WJXjycme/8BKu+Hht6lgN
+Zhv9STnA59UFo9vxwSQy88bbyui5fKXVliZEiTUhjKM6SOod2Pnp5oWMVjLxujkk
+WKjSakPvV6N6H66xhJSCk+Ref59HuFZY4/LqyZysiMua4qyYfEfdKk5h27+z1MWy
+nadnxA5QexHHck9Y4ZyisbUubW7wTaaWFd+cZ3P/zmIUskE/dAG0/HEvmOR6CGlM
+55BFCVmJEufHtike3shu7lZGVm2adKNFFTqLoEFkfBO6Y/N6ViraBilcXjmWBJNE
+MFF/yA==
+-----END CERTIFICATE-----
+    [signature] => Do97M6XcynbqFu7XAzwYqy4OtW5ZizBsqBoKfYH+qj+dnl7N2i2j1DgrtH/Jm+X3ISVYIRWpZe0gRlBda5W40H1XWSFBhwT3PttL8AZSVFEwP+Rxm43oQ+Z9O7ZmAV7ABEnYb+cQS7qwaeYZeWT2iX/K975mkpOXDl7M8r37o7W8LrGpDPESl7aYuWhaL2REMeQLM85NnoebGkT29Po0PiQXuz4PpUYcf91x6A2rVEZcD04VYc0E2Iy5y2D5fSS9MEisqkvtcwDJ7hG9c8/A+fIZyGGdtab2cX/hzXJGPfpxJOQqi9PgC1xPPHCQ+4NHAne0j76OU7qsTNUCm6Qj6Q==
+)
+</code>
+</pre>
+</div>
+
+</body>
+</html>

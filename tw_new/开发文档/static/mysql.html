@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+</head>
+<body>
+<div class="title">数据库</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<code class="language-php">
+	$this->db->connect(数据库配置下标名<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	系统默认会自动连接config_system.php文件中'init_db'指定的数据库，如果此项留空，将不会初始化数据库连接，后续可以使用此函数来完成数据库的连接，必须是连接数据库之后才能使用，用"$this->数组组键名"来访问，比如下面的数据库，将使用$this->db来访问
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->connect('db');
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->load->database(数据库配置下标名<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+要使用多个数据库，先在配置文件config/config_database.php文件中添加好对应的数据库配置，然后进行连接使用，示例如下：
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// config/config_database.php文件中代码
+$a_db_config['db_mysql'] = array(
+	'server' => 'localhost',
+	'user' => 'root',
+	'password' => 'root',
+	'database' => 'mysql',
+	'charset' => 'UTF8',
+	'persistent' => true,
+	'prefix' => ''
+);
+
+// 使用代码
+$this->load->database('db_mysql');
+$this->db_mysql->get_row('user');
+echo $this->db_mysql->get_sql();
+</code>
+</pre>
+<div class="desc">
+	生成SQL语句：
+</div>
+<code class="language-sql">
+SELECT * FROM `user`
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->db->get(表名<span>[字符串|数组]</span>, 条件<span>[字符串|数组]</span>, 字段<span>[字符串|数组]</span>, 排序<span>[字符串|数组]</span>, 开始行<span>[整数]</span>, 结束行<span>[整数]</span>);
+</code>
+</div>
+<div class="desc">
+	该方法执行 SELECT 语句并返回查询结果，返回多维数组，建议获取多行数据时使用
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_where = [
+	'goods_id <' => 2
+];
+$s_field = 'goods_id, goods_name';
+$a_order = [
+	'goods_id' => 'desc'
+];
+$this->db->get('goods', $a_where, $s_field, $a_order, 1, 10);
+</code>
+</pre>
+<div class="desc">
+	生成SQL语句：
+</div>
+<code class="language-sql">
+SELECT `goods_id`,`goods_name` FROM `tw_goods` WHERE `goods_id` < '2' ORDER BY `goods_id` DESC LIMIT 1,10
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->db->get_row(表名<span>[字符串|数组]</span>, 条件<span>[字符串|数组]</span>, 字段<span>[字符串|数组]</span>, 排序<span>[字符串|数组]</span>, 开始行<span>[整数]</span>, 结束行<span>[整数]</span>);
+</code>
+</div>
+<div class="desc">
+	该方法执行 SELECT 语句并返回查询结果，返回一维数组，强力推荐获取单行数据时使用更方便
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_where = [
+	'goods_id <' => 2
+];
+$s_field = 'goods_id, goods_name';
+$a_order = [
+	'goods_id' => 'desc'
+];
+$this->db->get_row('goods', $a_where, $s_field, $a_order);
+</code>
+</pre>
+<div class="desc">
+	生成SQL语句：
+</div>
+<code class="language-sql">
+SELECT `goods_id`,`goods_name` FROM `tw_goods` WHERE `goods_id` < '2' ORDER BY `goods_id` DESC
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->db->get_total(表名<span>[字符串|数组]</span>, 条件<span>[字符串|数组]</span>, 开始行<span>[整数]</span>, 结束行<span>[整数]</span>);
+</code>
+</div>
+<div class="desc">
+	该方法执行 SELECT 语句并返回查询结果的总行数，返回整数，通常用来统计有多少条符合条件的数据，也可以用来判断数据是否存在
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_where = [
+	'goods_id <' => 2
+];
+$this->db->get_total('goods', $a_where);
+</code>
+</pre>
+<div class="desc">
+	生成SQL语句：
+</div>
+<code class="language-sql">
+SELECT COUNT(*) AS numrows FROM `tw_goods` WHERE `goods_id` < '2'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->db->get_count();
+</code>
+</div>
+<div class="desc">
+	返回受上一个 SQL 语句影响的行数
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->shop->get('error');
+// 此处返回30，因为框架默认返回30条数据
+echo $this->shop->get_count();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->db->get_prefix(表名<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	返回当前数据库连接对象设置的表前缀，如果传入表名，将返回加好前缀的表名
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 返回 "tw_"
+$this->db->get_prefix();
+
+// 返回 "tw_goods"
+$this->db->get_prefix('goods');
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->db->select(字段<span>[字符串|数组]</span>, true/false);
+</code>
+</div>
+<div class="desc">
+	生成select字段语句，第二个参数用来控制是否开启字段保护，也就是反引号，默认会自动加，传入false为不加反引号
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->select('goods_id,goods_name');
+$this->db->select(['g.goods_id','g.goods_name']);
+</code>
+</pre>
+<div class="desc">
+	分别对应生成的SQL语句：
+</div>
+<code class="language-sql">
+SELECT `goods_id`,`goods_name`
+SELECT `g`.`goods_id`,`g`.`goods_name`
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->db->from(表名<span>(字符串|数组)</span>);
+</code>
+</div>
+<div class="desc">
+	生成from表格语句
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->from(['goods' => 'g', 'order' => 'o']);
+$this->db->from('cart as c');
+</code>
+</pre>
+<div class="desc">
+	分别对应生成的SQL语句：
+</div>
+<pre  class="line-numbers">
+<code class="language-sql">
+FROM `tw_goods` AS g, `tw_order` AS o
+FROM `tw_cart` AS c
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">10</span>
+<code class="language-php">
+	$this->db->join(表名<span>(字符串|数组)</span>，条件<span>(字符串|数组)</span>，LEFT/RIGHT/INNER)
+</code>
+</div>
+<div class="desc">
+	生成联表语句，第三个参数为联表类型，默认为LEFT，需要结合from()函数使用
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 示例1，普通调用
+$this->db->from('cart');
+$this->db->join('goods_common', ['goods_id' => 'goods_id']);
+
+// 示例2，多个条件
+$this->db->from('a')->join('b', ['c' => 'd', 'e' => 'f'])->get();
+
+// 示例3，多张表联接，多个判断条件并且带操作符
+$this->db->from('a')->join('b', ['d like' => '%e%', 'f' => 'g'])->join('c', ['h >' => 'i', 'j <' => 'k'])->get();
+
+// 示例4，联接表设置别名
+$this->db->join('table as t'...
+$this->db->join(['table' => 't']...
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<pre  class="line-numbers">
+<code class="language-sql">
+// 示例1
+SELECT * FROM `tw_cart` LEFT JOIN `tw_goods_common` ON `goods_id` = `goods_id`
+
+// 示例2
+SELECT * FROM `v9_a` LEFT JOIN `v9_b` ON `c` = 'd' AND `e` = 'f' LIMIT 0, 30
+
+// 示例3
+SELECT * FROM `v9_a` LEFT JOIN `v9_b` ON `d` like '%e%' AND `f` = 'g' LEFT JOIN `v9_c` ON `h` > 'i' AND `j` < 'k' LIMIT 0, 30
+</code>
+</pre>
+<div class="desc">
+	多张连接举例
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_where = ['table1.id >' => 1];
+$s_field = 'table1.id, table1.name';
+$a_order = ['table1.id' => 'desc'];
+$this->db->join('table2', ['table1.id' => 'table2.id'])->join('table3', ['table2.id' => 'table3.id'])->get('table1', $a_where, $s_field, $a_order, 1, 10);
+echo $this->db->get_sql();
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<pre  class="line-numbers">
+<code class="language-sql">
+SELECT `table1`.`id`,`table1`.`name` FROM `table1` LEFT JOIN `table2` ON `table1`.`id` = `table2`.`id` LEFT JOIN `table3` ON `table2`.`id` = `table3`.`id` WHERE `table1`.`id` > '1' ORDER BY `table1`.`id` DESC LIMIT 1,10
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">11</span>
+<code class="language-php">
+	$this->db->where(条件<span>(字符串|数组)</span>, 是否开户保护[true/false])
+</code>
+</div>
+<div class="desc">
+	生成WHERE条件语句，多个条件之间用AND连接，第二个参数用来控制是否开启字段保护
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->where(['goods_id' => 1]);
+$this->db->where(['goods_id >' => 1]);
+$this->db->where(['goods_id LIKE' => '%模糊匹配%']);
+$this->db->where(['goods_id' => 1, 'goods_name' => '哈哈']);
+</code>
+</pre>
+<div class="desc">
+	分别对应生成的SQL语句：
+</div>
+<pre  class="line-numbers">
+<code class="language-sql">
+WHERE `goods_id` = '1'
+WHERE `goods_id` > '1'
+WHERE `goods_id` LIKE '%模糊匹配%'
+WHERE `goods_id` = '1' AND `goods_name` = '哈哈'
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">12</span>
+<code class="language-php">
+	$this->db->where_or(条件<span>(字符串|数组)</span>, 是否开户保护[true/false])
+</code>
+</div>
+<div class="desc">
+	生成WHERE条件语句，多个条件之间用OR连接，第二个参数用来控制是否开启字段保护，默认开启
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+/** 示例1 **/
+$this->db->where_or(['goods_id' => 1, 'goods_name' => '哈哈']);
+
+/** 示例2 **/
+$a_where = ['字段d' => '数据4' ];
+$a_where_or = ['字段a' => '数据1' , '字段b' => '数据2' , '字段c' => '数据3'];
+$s_field = 'id, name';
+$a_order = [
+	'id' => 'desc'
+];
+// where函数是在where_or函数之后才被调用，所以$a_where_or 和 $a_where 之间的条件是用 “AND”进行连接的
+$this->db->where_or( $a_where_or )->get('表', $a_where, $s_field , $a_order);
+
+/** 示例3 **/
+// 如果我们希望$a_where_or 和 $a_where 之间的条件是用 “OR”进行连接的，那就需要让where_or函数比where函数晚一点调用
+$this->db->where($a_where)->where_or( $a_where_or )->get('表', NULL, $s_field , $a_order);
+</code>
+</pre>
+<div class="desc">
+	分别对应生成的SQL语句：
+</div>
+<pre  class="line-numbers">
+<code class="language-sql">
+# 示例1
+WHERE `goods_id` = '1' OR `goods_name` = '哈哈'
+
+# 示例2
+SELECT `id`,`name` FROM `表` WHERE `字段a` = '数据1' OR `字段b` = '数据2' OR `字段c` = '数据3' AND `字段a` = '数据1' ORDER BY `id` DESC
+
+# 示例3
+SELECT `id`,`name` FROM `表` WHERE `字段d` = '数据4' OR `字段a` = '数据1' OR `字段b` = '数据2' OR `字段c` = '数据3' ORDER BY `id` DESC
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">13</span>
+<code class="language-php">
+	$this->db->where_in(字段名<span>(字符串)</span>，IN数据<span>(数组)</span>，多个条件之间的连接方式[AND/OR])
+</code>
+</div>
+<div class="desc">
+	生成IN条件语句，多个条件之间用第三个参数连接，默认使用AND连接
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->where_in('goods_id', [3,4,5]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+WHERE `goods_id` IN ( '3', '4', '5')
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">14</span>
+<code class="language-php">
+	$this->db->where_not_in(字段名<span>(字符串)</span>，IN数据<span>(数组)</span>，多个条件之间的连接方式[AND/OR])
+</code>
+</div>
+<div class="desc">
+	生成IN条件语句，多个条件之间用第三个参数连接，默认使用AND连接
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->where_not_in('goods_id', [3,4,5]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+WHERE `goods_id` NOT IN ( '3', '4', '5')
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">15</span>
+<code class="language-php">
+	$this->db->group_by(字段名<span>(字符串|数组)</span>, 是否开户保护[true/false])
+</code>
+</div>
+<div class="desc">
+	生成group by语句，第二个参数用来控制是否开启字段保护，默认不开启
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->group_by('goods_id');
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+GROUP BY goods_id
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">16</span>
+<code class="language-php">
+	$this->db->having(条件<span>(字符串|数组)</span>, 是否开户保护[true/false])
+</code>
+</div>
+<div class="desc">
+	生成having语句，多个条件之间用AND连接，第二个参数用来控制是否开启字段保护，默认不开启
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->having(['goods_id' => 1, 'goods_name' => 2]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+HAVING goods_id = '1' AND goods_name = '2'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">17</span>
+<code class="language-php">
+	$this->db->having_or(条件<span>(字符串|数组)</span>, 是否开户保护[true/false])
+</code>
+</div>
+<div class="desc">
+	生成having语句，多个条件之间用OR连接，第二个参数用来控制是否开启字段保护，默认不开启
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->having(['goods_id' => 1, 'goods_name' => 2]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+HAVING goods_id = '1' OR goods_name = '2'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">18</span>
+<code class="language-php">
+	$this->db->order_by(排序<span>(字符串|数组)</span>)
+</code>
+</div>
+<div class="desc">
+	生成排序语句
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->order_by(['goods_id' => 'desc', 'goods_name' => 'asc']);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+ORDER BY `goods_id` DESC,`goods_name` ASC
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">19</span>
+<code class="language-php">
+	$this->db->limit(开始行<span>(整数)</span>, 结束行<span>(整数)</span>)
+</code>
+</div>
+<div class="desc">
+	生成limit分页语句，框架自带防爆死机制，当没有设置limit语句时，将默认获取30条数据
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->limit(1, 10);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+LIMIT 1,10
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">20</span>
+<code class="language-php">
+	$this->db->update(表名<span>(字段串)</span>, 数据<span>[数组]</span>, 条件<span>[字段串|数组]</span>)
+</code>
+</div>
+<div class="desc">
+	更新数据，返回受影响的行数（删除的行数）
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->update('error', ['recode' => '哈哈'], ['eid' => 1]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+UPDATE `tw_error` SET `recode` = '哈哈' WHERE `eid` = '1'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">21</span>
+<code class="language-php">
+	$this->db->set(字段<span>(字段串)</span>, 值<span>(字段串)</span>, 是否开启保护[true/false])
+</code>
+</div>
+<div class="desc">
+	此函数对字段设置指定的值，第三个参数设置是否开户保护，默认开启
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->set('type', 'type + 1', false);
+$this->db->update('error', NULL, ['eid' => 1]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+UPDATE `tw_error` SET `type`=type + 1 WHERE `eid` = '1'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">22</span>
+<code class="language-php">
+	$this->db->insert(表名<span>(字段串)</span>, 数据<span>(数组))
+</code>
+</div>
+<div class="desc">
+	插入数据，返回最后插入行的ID或序列值
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->insert('error', ['recode' => '测试', 'type' => 1]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+INSERT INTO `tw_error` ( `recode`, `type`) VALUES ( '测试', '1' )
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">23</span>
+<code class="language-php">
+	$this->db->inserts(表名<span>(字段串)</span>, 数据<span>(数组))
+</code>
+</div>
+<div class="desc">
+	一次插入多行数据，返回受影响的行数（插入的行数）
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$a_data = array(
+	array(
+		'recode' => '测试',
+		'type' => 7,
+		'url' => 'http://test.com',
+		'ip' => '127.0.0.1',
+		'uid' => 0,
+		'time' => 1481010790
+	),
+	
+	array(
+		'recode' => '测试',
+		'type' => 8,
+		'url' => 'http://test2.com',
+		'ip' => '127.0.0.1',
+		'uid' => 0,
+		'time' => 1481010790
+	),
+);
+$this->db->inserts('error', $a_data);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+INSERT INTO `error` ( `recode`, `type`, `url`, `ip`, `uid`, `time`) VALUES ('测试','7','http://test.com','127.0.0.1','0','1481010790'),('测试','8','http://test2.com','127.0.0.1','0','1481010790')
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">24</span>
+<code class="language-php">
+	$this->db->delete(表名<span>(字段串)</span>, 条件<span>[字段串|数组]</span>)
+</code>
+</div>
+<div class="desc">
+	删除数据，返回受影响的行数（删除的行数）
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->delete('error', ['eid >' => 1000]);
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+DELETE FROM `tw_error` WHERE `eid` > '1000'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">25</span>
+<code class="language-php">
+	$this->db->group_start(AND/OR)
+</code>
+</div>
+<div class="desc">
+	查询条件组可以让你生成用括号括起来的一组条件，这能创造出非常复杂的语句，支持嵌套的条件组，简单说此函数会在SQL语句的当前位置添加一个左括号“(”，参数是在多个条件组时，使用“and”或“OR”来连接。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 示例1
+$this->db->group_start();
+
+// 示例2
+$a_where = ['字段d' => '数据4' ];
+$a_where_or = ['字段a' => '数据1' , '字段b' => '数据2' , '字段c' => '数据3'];
+$s_field = 'id, name';
+$a_order = [
+	'id' => 'desc'
+];
+$a_pd_log_data = $this->db->where($a_where)->group_start('AND')->where_or( $a_where_or )->group_end()->get('表', NULL, $s_field , $a_order);
+</code>
+</pre>
+<div class="desc">
+	分别对应生成的SQL语句：
+</div>
+<pre  class="line-numbers">
+<code class="language-sql">
+# 示例1
+(
+
+# 示例2
+SELECT `id`,`name` FROM `表` WHERE `字段d` = '数据4' AND (`字段a` = '数据1' OR `字段b` = '数据2' OR `字段c` = '数据3') ORDER BY `id` DESC
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">26</span>
+<code class="language-php">
+	$this->db->group_end(AND/OR)
+</code>
+</div>
+<div class="desc">
+	此函数针对group_start的左括号进行闭合，也就是在SQL语句的此处添加一个右括号“)”
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->group_end();
+</code>
+</pre>
+<div class="desc">
+	生成的SQL语句：
+</div>
+<code class="language-sql">
+)
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">27</span>
+<code class="language-php">
+	$this->db->begin()
+</code>
+</div>
+<div class="desc">
+	事务开始，事务使用实例：
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 检测是否触发异常
+try {
+	// 加载商城数据库
+	$this->load->database('shop');
+	// 开启事务
+	$this->shop->begin();
+	// 执行数据库操作
+	$this->shop->update('error', ['recode' => '修改'], ['eid' => 1272]);
+	$this->shop->insert('error', ['recode' => '事务测试1', 'type' => 1, 'url' => '', 'ip' => '1.1.1.1', 'uid' => 1, 'time' => 100]);
+	// 提交事务
+	$this->shop->commit();
+} catch (Exception $e) { // 捕获异常
+	// 事务回滚
+	$this->shop->roll_back();
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">28</span>
+<code class="language-php">
+	$this->db->roll_back()
+</code>
+</div>
+<div class="desc">
+	事务回滚，创建表和删除表的操作无法回滚
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->roll_back();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">29</span>
+<code class="language-php">
+	$this->db->commit()
+</code>
+</div>
+<div class="desc">
+	提交事务
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->commit();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">30</span>
+<code class="language-php">
+	$this->db->query(SQL语句)
+</code>
+</div>
+<div class="desc">
+	执行原生SQL语句，为了代码的整洁性，非特殊语句，不得使用此函数。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$o_data = $this->db->query("SELECT * FROM `table` limit 2");
+foreach ($o_data as $a_data) {
+	print_r($a_data);
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">31</span>
+<code class="language-php">
+	$this->db->get_sql(true/false)
+</code>
+</div>
+<div class="desc">
+	获取数据库类生成的模拟SQL语句，自动获取前面调用的数据库函数所生成的模拟SQL语句，以便调试使用，需要注意的是，SQL语句是模拟出来的，和实际的数据库操作有差异，请以实际执行效果为准。参数默认为false，默认返回最后一次执行的SQL语句，当设置为true时，将会对前面的语句构建SQL，但是不会实际执行数据库操作，用于不方便改变数据库数据时，先检查SQL语句用。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 默认返回上次执行的SQL语句
+$this->db->get_sql();
+// 生成当前构建的语句，但不进行数据库操作
+$this->db->get_sql(true);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">32</span>
+<code class="language-php">
+	$this->db->get_error()
+</code>
+</div>
+<div class="desc">
+	获取错误信息。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->get_error();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">33</span>
+链式操作方法
+</div>
+<div class="desc">
+	将多个方法使用"->"进行拼接
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->db->set('field', 'field + 1', false)->update('table');
+echo $this->db->get_sql();
+</code>
+</pre>
+<div class="desc">
+	输出的SQL语句如下：
+</div>
+<code class="language-php">
+UPDATE `table` SET `field`=field + 1
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">34</span>
+语法简化
+</div>
+<div class="desc">
+	使用get、get_row、get_total函数取代多个子句，以下两种方式都是推荐使用的
+</div>
+<code class="language-php">
+$this->db->select('id,name')->from('table')->where(['id' => 1])->get();
+</code>
+<div class="desc">
+	生成的SQL语句如下：
+</div>
+<code class="language-php">
+SELECT `id`,`name` FROM `tw_table` WHERE `id` = '1'
+</code>
+<div class="desc">
+	下面的语句可以达到同样的效果
+</div>
+<code class="language-php">
+$this->db->get('table', ['id' => 1], 'id,name');
+</code>
+<div class="desc">
+	生成的SQL语句如下：
+</div>
+<code class="language-php">
+SELECT `id`,`name` FROM `tw_table` WHERE `id` = '1'
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">35</span>
+<code class="language-php">
+	$this->db->set_error_mode()
+</code>
+</div>
+<div class="desc">
+	由于PHP函数本身对于某些情况不会报错，所以增加此异常抛出，以便调试；所有数据库操作失败时，都会抛出的异常，比如表名写错，字段名写错等等情况都会触发此异常
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 检测是否触发异常
+try {
+	// 默认不会报错，如果需要开启，优先调用此函数
+	$this->db->set_error_mode();
+	// 加载商城数据库
+	$this->load->database('shop');
+	$this->shop->get('aaaaa');
+} catch (Exception $e) { // 捕获异常
+	// 由于数据库没有“aaaaa”的表，这里将报错
+	echo $e->getMessage();
+}
+</code>
+</pre>
+</div>
+</body>
+</html>

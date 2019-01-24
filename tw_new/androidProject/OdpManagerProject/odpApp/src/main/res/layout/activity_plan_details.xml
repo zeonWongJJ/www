@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_title"/>
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_below="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/process_list_view"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+            <include layout="@layout/line"/>
+            <include layout="@layout/layout_plan_show_pic_file"/>
+            <include layout="@layout/line"/>
+            <LinearLayout
+                android:id="@+id/score_layout"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="评分"
+                    />
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/shap_yellow_stroke"
+                    android:gravity="center"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:textColorHint="@color/gray"
+                    android:text="0"
+                    android:layout_marginRight="@dimen/default_margin"
+                    />
+                <!--<ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_back_black"
+                    android:layout_height="wrap_content" />-->
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_line"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <include layout="@layout/line"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/release_project"
+                    />
+                <TextView
+                    android:id="@+id/project_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:text=""
+                    android:layout_marginRight="@dimen/default_margin"
+                    />
+                <!--<ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:background="@drawable/icon_back_black"
+                    android:layout_height="wrap_content" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/time_line_layout"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <include layout="@layout/line"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/time_select_layout"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/task_cycle"
+                    />
+                <TextView
+                    android:id="@+id/complete_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:background="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:text=""
+                    />
+            </LinearLayout>
+
+            <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/plan_reply"
+                    />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/task_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_normal"
+                        android:layout_marginLeft="@dimen/default_padding"
+                        android:padding="3dp"
+                        android:textColor="@color/white"
+                        android:enabled="false"
+                        android:background="@drawable/shape_look_task_record"
+                        android:text=""
+                        />
+                    <ImageView
+                        android:layout_width="2dp"
+                        android:layout_gravity="top|right"
+                        android:src="@drawable/shape_tip_red"
+                        android:layout_height="2dp" />
+                </FrameLayout>
+
+            </LinearLayout>
+            <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/left_title_width"
+                    android:layout_height="wrap_content"
+                    style="@style/publish_task_black_style"
+                    android:text="@string/task_person"
+                    android:paddingBottom="@dimen/default_padding"
+                    />
+                <com.app.base.flow.FlowTagLayout
+                    android:id="@+id/color_flow_layout"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

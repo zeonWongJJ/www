@@ -1,0 +1,40 @@
+
+.userContent{ background:#e10030; }
+.userTool{ float:right; text-align:center; padding-top:0.6rem; padding-right:0.46rem; }
+.userTool>a{ display:inline-block; }
+.userTool>a>span{ display:block; margin-top:0.1rem; font-size:0.3rem; color:white; }
+.userTool>a>img{ width:1.2rem; height:1.2rem; vertical-align:middle; }
+.userPic{ margin-top:0.4rem; margin-left:0.5rem; display:inline-block; }
+.userPic>img{ width:2rem; height:2rem; border-radius:50%; vertical-align:middle; }
+.userPic>span{ display:inline-block; margin-top:0.32rem; margin-left:0.4rem; font-size:0.5rem; color:white; vertical-align:middle; }
+.userNav{ margin-top:0.7rem; padding:0.3rem; font-size:0; background:#e5264f; }
+.userNav>a{ width:25%; display:inline-block; text-align:center; vertical-align:top; }
+.userNav>a>img{ width:0.6rem; height:0.6rem; }
+.userNav>a>p{ margin-top:0.15rem; font-size:0.36rem; color:white; }
+.userNav>a>span{ font-size:0.34rem; color:white; }
+.userOrders{ background:white; }
+.userOrders>a{ width:3.2rem; display:inline-block; text-align:center; padding:0.57rem 0; }
+.userOrders>a:last-child>span{ border-right:none;  }
+.userOrders>a>span{ display:block; font-size:0.34rem; border-right:1px solid #ddd; }
+.cur{ background:#ffc002; }
+
+/* ���� */
+.nav{ margin-top:0.253rem; padding-bottom:1.5rem; background:white; }
+.nav>ul{ margin-bottom:2rem; }
+.nav>ul>li{ display:inline-block; margin-left:0.72rem; margin-top:0.5rem; }
+.nav>ul>li>a>i{ width:1.54rem; height:1.54rem; line-height:1.54rem; display:inline-block; text-align:center; border:1px solid #d4d4d4; border-radius:8px;  }
+.nav>ul>li>a>i>img{ width:0.58rem; vertical-align:middle; }
+.nav>ul>li>a>span{ display:block; text-align:center; margin-top:0.24rem; font-size:0.37rem; }
+
+
+/* ��ʾ */
+.tips{ width:6.53rem; position:absolute; text-align:center; top:7rem; left:1.8rem; background:white; border-radius:0.2rem;  z-index:2; display:none; }
+.tips>p{ margin-top:0.48rem; font-size:0.42rem; font-weight:bold; }
+.tips>span{ display:inline-block; margin-bottom:0.48rem; font-size:0.32rem; }
+.tipsChoice{ font-size:0; }
+.tipsChoice>a{ width:3.2rem; height:1.06rem; line-height:1.06rem; display:inline-block; font-size:0.4rem; color:#005eff; border-top:0.02rem solid #ddd; }
+.tipsChoice>a:first-child{ border-right:0.02rem solid #ddd; }
+
+.tipsBox{ width:8rem; position:absolute; top:50%; left:1rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:black; opacity:0.5; z-index:1; display:none; }

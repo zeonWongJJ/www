@@ -1,0 +1,214 @@
+.pjoTitle>a {
+	position: absolute;
+	left: 0.53rem;
+}
+
+.pjoTitle>a>img {
+	width: 0.29rem;
+}
+
+
+/* 积分显示 */
+
+.pointShow {
+	padding: 0 0.56rem;
+	background: linear-gradient(to bottom, #ff8e01, #ff6830);
+}
+
+.pointShow>span,
+.pointShow>p {
+	color: white;
+}
+
+.pointShow>span {
+	display: inline-block;
+	margin-top: 0.42rem;
+	font-size: 0.4rem;
+}
+
+.pointShow>p {
+	padding: 0.5rem 0;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+
+/* 表单 */
+
+.pointForm>form>ul {
+	padding: 0 0.4rem;
+	background: white;
+	margin-bottom: 0.4rem;;
+}
+
+.pointForm>form>ul>li {
+	padding: 0.34rem 0;
+	border-bottom: 0.02rem solid #ddd;
+}
+
+.pointForm>form>ul>li:last-child {
+	border-bottom: none;
+}
+
+.pointForm>form>ul>li>span,
+.pointForm>form>ul>li>input {
+	font-size: 0.34rem;
+}
+
+.pointForm>form>ul>li>input {
+	float: right;
+	text-align: right;
+}
+
+.account {
+	float: right;
+}
+
+.account>em {
+	font-style: normal;
+}
+
+.account>em>span,
+.account>em>img {
+	vertical-align: middle;
+}
+
+.account>em>span {
+	font-size: 0.34rem;
+	color: #8e8e8e;
+}
+
+.account>em>img {
+	width: 0.21rem;
+}
+
+.account>img,
+.account>em {
+	vertical-align: middle;
+}
+
+.account>img {
+	width: 0.21rem;
+}
+
+.pointForm>form>p {
+	padding: 0.48rem 0.4rem;
+	font-size: 0.32rem;
+	color: #8e8e8e;
+}
+
+#subBtn {
+	width: 9rem;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	font-size: 0.45rem;
+	color: white;
+	background: linear-gradient(to bottom, #ff8e01, #ff6830);
+	border-radius: 0.2rem;
+}
+
+
+/* 底部弹窗 */
+
+.popbottom {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: 2;
+}
+
+.popbottom>dl>dt {
+	height: 1.4rem;
+	line-height: 1.4rem;
+	text-align: right;
+	padding-right: 0.4rem;
+	font-size: 0.4rem;
+	background: #f0f0f0;
+}
+
+.popbottom>dl>dd {
+	height: 1.4rem;
+	line-height: 1.4rem;
+	text-align: center;
+	padding-left: 0.4rem;
+	font-size: 0.4rem;
+	background: white;
+	border-bottom: 0.02rem solid #ddd;
+}
+
+.popbottom>dl>dd.popCur {
+	color: #fbb400;
+}
+
+.popbottom>dl>dd>a {
+	display: block;
+}
+
+.lay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background: black;
+	opacity: 0.5;
+	z-index: 1;
+}
+
+.cardTips{
+	display: block;
+	padding:0.4rem 0.4rem;
+	font-size:0.32rem;
+	color:#ff6633;
+}
+
+.card_boxTips{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: 2;
+	display: none;
+	background:white;
+	font-size:0.4rem;
+}
+.card_boxTips>p{
+	font-size:0.44rem;
+	text-align: center;
+	height:1.2rem;
+	line-height:1.2rem;
+	border-bottom: 1px solid #ddd;
+}
+.tipsList>a{
+	height:0.8rem;
+	line-height:0.8rem;
+	padding:0.15rem 0.3rem;
+	display: block;
+}
+.tipsList>a>span{
+	color:#666666;
+}
+.tipsList>a>em{
+	float:right;
+	font-style: normal;
+	color:#666666;
+}
+.tipsList>p{
+	height:1rem;
+	line-height:1rem;
+	padding:0.15rem 0.3rem;
+}
+.card_boxTips>a{
+	display: block;
+	width:90%;
+	height:1.2rem;
+	line-height:1.2rem;
+	margin:1.4rem auto;
+	font-size:0.44rem;
+	color:white;
+	text-align: center;
+	background:#ff6633;
+	border-radius: 0.2rem;
+	
+}

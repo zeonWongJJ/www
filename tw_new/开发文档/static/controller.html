@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">控制器</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+控制器是一个类文件，首字母大写，后面接"_ctrl"，类名和文件名需要一致，必须继承 TW_Controller 类。
+</div>
+<div class="desc">
+	如果使用构造函数，需要先调用父类的构造函数
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+class Home_ctrl extends TW_Controller {
+	public function __construct() {
+		parent :: __construct();
+		
+		$this->load->model('user_model');
+	}
+}
+</code>
+</pre>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->load->library(类名<span>(字符串)</span>, libraries下的路径<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	加载类库
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+	 $this->load->library('pages');
+	 
+	 // 加载类库的时候，可以在第三个参数传入参数
+	 $this->load->library('wxpay_h5', '', $a_data);
+	 // 上面的语句类似效果：$this->wxpay_h5 = new wxpay_h5($a_data);
+
+	$this->load->library('wxpay_h5', '', ['a', 'b', 'c']);
+	// 上面的语句实现的效果：$this->wxpay_h5 = new wxpay_h5('a', 'b', 'c');
+	
+	// wxpay_h5类的构造函数的接收参数方法有两种：
+
+	// 方法1：
+	public function __construct($a, $b, $c) {
+		// $a将接收第一个参数'a'
+		// $b将接收第一个参数'b'
+		// $c将接收第一个参数'c'
+	}
+
+	// 方法2：
+	public function __construct(...$a) {
+		// $a接收的其实就是数组 ['a', 'b', 'c']
+	}
+	// 旁注：这其实属于php的语法范畴……
+</code>
+</pre>
+<div class="desc">
+	加载类后使用方法：
+</div>
+<code class="language-php">
+$this->pages->get(100, 1, 10);
+</code>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+控制器目录下也是可以建立子目录的，但是并不建议这么操作，容易使目录结构复杂化，如果希望对控制器进行归类，我们建议使用统一的前缀来区分，例如：User_login_ctrl.php，User_logout_ctrl.php ，这里使用了统一的“User”前缀
+</div>
+<div class="desc">
+	如果在控制器目录下创建了子目录"admin"，并且配置了index这个访问路由的话，那访问方式是：http://域名/admin/index.html
+</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+.office_info {
+	width: 100%;
+	min-height: 3rem;
+	font-size: 0.14rem;
+	background: #fff;
+	position: absolute;
+	top: 1.71rem;
+}
+
+.office_info .officeBox {
+	display: flex;
+	/*overflow-x: auto;*/
+	/*overflow: hidden;*/
+	width: 100%;
+	transition: all 1s;
+	padding: .1rem;
+}
+
+.office_info .officeBox .office {
+	flex: 0 0 100%;
+	padding-right: 5%;
+}
+
+.office_info .officeBox .office img {
+	width: 100%;
+	height: auto;
+}
+
+.office_info .office .img {
+	position: relative;
+	color: #fff;
+	font-size: .18rem;
+}
+
+.office_info .office .state,
+.office_info .office .type,
+.office_info .office .star {
+	position: absolute;
+}
+
+.office_info .office .state {
+	top: .1rem;
+	right: .1rem;
+	font-size: .14rem;
+}
+
+.office_info .office .type {
+	bottom: .3rem;
+	left: .1rem;
+}
+
+.office_info .office .star {
+	bottom: .1rem;
+	left: .1rem;
+	line-height: .2rem;
+}
+
+.office_info .office .info {
+	text-indent: 2em;
+}
+
+.office_info .office .price {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.office_info .office .price .right {
+	width: .675rem;
+	height: .27rem;
+	line-height: .27rem;
+	text-align: center;
+	color: #fff;
+	background: #ff6633;
+	border-radius: .125rem;
+}
+
+.office_info .c_orange {
+	color: #ff6633;
+}
+
+.office_info .c_gray {
+	color: #999999;
+}

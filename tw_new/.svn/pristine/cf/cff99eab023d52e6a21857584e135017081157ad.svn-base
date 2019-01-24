@@ -1,0 +1,14 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:panel="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_bg"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+    <!--activity_mark_search_near_address-->
+    <com.amap.api.maps.MapView
+        android:id="@+id/bmap_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <include layout="@layout/layout_common_title_cordovaview"/>
+
+</FrameLayout>

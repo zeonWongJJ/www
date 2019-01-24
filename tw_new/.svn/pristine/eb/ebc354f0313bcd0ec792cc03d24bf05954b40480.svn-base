@@ -1,0 +1,57 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*彩色导航*/
+.colorNav{ margin-top: 20px;}
+.colorNav li{ float: left; margin-right: 25px;}
+.colorNav li:last-child{ margin: 0;}
+.colorNav li a{ display:inline-block; width: 380px; height: 150px; background: #f3ce5f;}
+.colorNav li.noCount a{ background: #6eb4e5;}
+.colorNav li.hasCount a{ background: #ff6b86;}
+.colorNav li a .number{ display: inline-block; color: white; margin: 27px 0 0 25px; width: 255px; word-break: break-all; font-family: "微软雅黑";}
+.colorNav li a .number i{ font-size: 36px; font-style: normal; display: block; }
+.colorNav li a .number s{ font-size: 24px; text-decoration: none; display: block; margin-top: 2px;}
+.colorNav li a .img{ float: right; margin: 72px 30px 0 0;}
+/*高级选项*/
+.optionBox{ font-size: 14px; color: #000000; margin-top: 20px; position: relative; height: 32px;}
+.optionBox .span1{ display: inline-block; line-height: 20px; margin-top: 12px;}
+.optionBox .opTit{ display: inline-block; width: 110px; height: 60px; line-height: 60px; position: absolute;left: 50px; top: -7px; text-align: center;}
+.optionBox .opTit s{ color: #333333; text-decoration: none;}
+.optionBox .opTit i{ display: inline-block; width: 12px; height: 6px; background: url(../images/heisan_06.png); margin-left: 2px;}
+.optionBox .stateSelect{ position: absolute; left: 50px; top: 43px; z-index: 99; background: white; box-shadow: 0 0 10px #dfdfdf; padding-bottom: 5px; display: none; }
+.optionBox .stateSelect li{ line-height: 30px; width: 110px; text-align: left; text-indent: 20px; }
+.optionBox .stateSelect a{ font-size: 14px; color: #333333; display: block; }
+.optionBox .stateSelect a:hover{ color: #5a2e17;}
+.optionBox .down { background: white; box-shadow: 0 0 10px #dfdfdf; text-align: center; }
+.optionBox .down i{ background: url(../images/heisan_03.png);}
+.optionBox .zhe{ width: 108px; height: 6px; background: white; position: absolute; left: 51px; top: 39px; z-index: 100; display: none; }
+/*表格模块*/
+.tableModule{width: 1190px; background: white; /*padding: 20px 0 0 25px;*/ margin-top: 20px;}
+.tableBox{width: 1190px;}
+.tableBox .thead{ background: #fffbfc; height: 56px; line-height: 56px; }
+.tableBox li{font-size: 0;}
+.tableBox li span{ text-align: center;}
+.tableBox .thead span{font-size: 12px; color: #7f726a; border: 1px solid #f0e9e3; border-right: none;}
+.tableBox .thead span:nth-child(8){ border-right: 1px solid #f0e9e3;}
+.tableBox .row span{ font-size: 12px; color: #333333; padding: 15px 2px;}
+.tableBox .row span:nth-child(7){ color: #5a2e17;}
+.tableBox .row span:nth-child(9) a{ display: inline-block; width: 65px; height: 26px; color: white; text-align: center; line-height: 26px; background: #5a2e17; border-radius: 10px;}
+.tableBox .row{border-bottom: 1px solid #f4f4f4; background: white;}
+.tableBox .row:nth-child(odd){ background: #f6f7f9;}
+.tableBox span{display: inline-block; vertical-align: middle;}
+.tableBox span:nth-child(1){ width: 145px;}
+.tableBox span:nth-child(2){ width: 130px;}
+.tableBox span:nth-child(3){ width: 140px;}
+.tableBox span:nth-child(4){ width: 140px;}
+.tableBox span:nth-child(5){ width: 140px;}
+.tableBox span:nth-child(6){ width: 130px;}
+.tableBox span:nth-child(7){ width: 125px;}
+.tableBox span:nth-child(8){ width: 125px;}
+.tableBox span:nth-child(9){ width: 115px;}
+
+/*分页*/
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+

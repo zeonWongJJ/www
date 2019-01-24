@@ -1,0 +1,378 @@
+<?php
+/**
+ * 用户需求数据仓库
+ * @notice 命令行自动构建 by rusice <liruizhao970302@outlook.com>
+ *
+ * @copyright 柒度信息科技有限公司
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace repositories;
+
+use model\DemandModel;
+use model\OrderModel;
+use utils\BaseRepository;
+use utils\Factory;
+use utils\ide\Db;
+
+/**
+ * Class DemandRepository
+ * @package repositories
+ */
+class DemandRepository extends BaseRepository
+{
+    /**
+     * 缓存key前缀
+     * @var string
+     */
+    protected $cache_key = 'user.demand.';
+
+    /**
+     * 指定查询数据表名，不需要带前缀
+     * @return String
+     */
+    public function getDbTable()
+    {
+        return get_table('demand');
+    }
+
+    /**
+     * @param Db $query
+     * @return Db
+     * @throws \Exception
+     */
+    public function beforeGetList($query)
+    {
+        $map = [
+            'b.order_type'              => 2
+            , 'b.order_state <>'        => 4
+            , 'b.order_is_pay'          => 1
+            , 'b.order_refund'          => 0
+            , 'b.order_belong_store_id' => 0
+            , 'a.demand_service_at <'   => $_SERVER['REQUEST_TIME']
+        ];
+        // 输出列表之前关闭过期的需求
+        $count = $this->db->join([get_table('demand') => 'a'], ['a.order_sn' => 'b.order_sn'], 'INNER')
+            ->get_total([get_table('order') => 'b'], $map);
+        if ($count) {
+            $rows = $this->db->limit(0, $count)
+                ->join([get_table('order') => 'b'], ['a.order_sn' => 'b.order_sn'], 'INNER')
+                ->select('b.*, a.id', false)
+                ->get([get_table('demand') => 'a'], [
+                    'b.order_is_pay'            => 1
+                    , 'b.order_belong_store_id' => 0
+                    , 'b.order_refund'          => 0
+                    , 'a.demand_service_at <'   => $_SERVER['REQUEST_TIME']
+                ]);
+            $this->db->set_error_mode();
+            // 循环处理回滚订单
+            /** @var DemandModel $demand_model */
+            $demand_model = Factory::getFactory('demand');
+            foreach ($rows as $row) {
+                cache('demand.release.' . $row['order_type_id'], null); // 出队列
+                $demand_model->refundOrder($row);
+            }
+        }
+
+        if ('admin' != app('router')->get(1)) {
+            $config = $this->db->get_row(get_table('config'), ['config_key' => 'open_demand_examine'], 'config_value');
+
+            if ($config && $config['config_value'] == 'true') {
+                $this->condition['a.demand_is_show'] = 1; // 开启了审核后，获取列表时只获取已审核的
+            } else {
+                $this->condition['a.demand_is_show <>'] = 2;
+            }
+        }
+
+        $result  = $this->db->query('SHOW FULL COLUMNS FROM wf_' . get_table('order'));
+        $columns = [];
+        foreach ($result as $item) {
+            if ('id' === $item['Field']) {
+                $columns[] = 'b.' . $item['Field'] . ' as order_id';
+            } elseif ('order_sn' === $item['Field']) {
+                $columns[] = 'b.' . $item['Field'] . ' as order_table_sn';
+            } else {
+                $columns[] = 'b.' . $item['Field'];
+            }
+        }
+        unset($map['b.order_refund'], $map['a.demand_service_at <']);
+        $this->condition = array_merge($this->condition, $map);
+        $_query          = $query->join([get_table('order') => 'b'], ['a.order_sn' => 'b.order_sn'], 'INNER')
+            ->order_by(['a.demand_post_at' => 'desc', 'demand_service_at' => 'asc'])
+            ->select(array_merge(['a.*'], $columns), false);
+        return $_query;
+    }
+
+    /**
+     * 查询数据后调用
+     * @param array $rows
+     * @return array
+     */
+    public function afterGetList(array $rows): array
+    {
+        $user_lat = app('request')->post('lat', '', 'trim');
+        $user_lng = app('request')->post('lng', '', 'trim');
+
+        foreach ($rows as $key => &$row) {
+            $row['demand_remuneration'] = number_format($row['demand_remuneration'] / 100, 2, '.', ',');
+            $row['demand_post_at']      = date('Y-m-d H:i:s', $row['demand_post_at']);
+            $row['demand_service']      = date('Y-m-d H:i:s', $row['demand_service_at']);
+            $row['demand_img']          = explode(',', $row['demand_img']);
+            if (mb_strlen($row['demand_info']) > 30) {
+                $row['demand_info'] = mb_substr($row['demand_info'], 0, 30) . '...';
+            }
+
+            list($lng, $lat) = explode(',', $row['demand_lal']);
+
+            if ($user_lat && $user_lng) {
+                $row['_distance'] = get_distance($lng, $lat, $user_lat, $user_lng);
+            }
+
+            $row['lat'] = trim($lat);
+            $row['lng'] = trim($lng);
+        }
+
+        if ($user_lat && $user_lng) {
+            $rows = array_sort_by_key($rows, '_distance', 'asc'); // 按照计算出来的距离排序数组
+        }
+        return $rows;
+    }
+
+    /**
+     * 查询一条后的处理
+     * @param array $row
+     * @return array
+     */
+    public function afterGetOne(array $row): array
+    {
+
+        $is_admin = 'admin' == app('router')->get(2);
+        if ($row) {
+            if ($is_admin) {
+                $category_id   = [$row['demand_level_1'], $row['demand_level_2'], $row['demand_level_3']];
+                $categories    = $this->db->limit(0, 3)->where_in('id', $category_id)->select('cat_name, id, pay_type')->get('jiajie_category');
+                $category_rows = [];
+                foreach ($categories as $category) {
+                    $category_rows[$category['id']] = $category;
+                }
+
+                $row['demand_level_1_name'] = $category_rows[$row['demand_level_1']]['cat_name'];
+                $row['demand_level_2_name'] = $category_rows[$row['demand_level_2']]['cat_name'];
+                $row['demand_level_3_name'] = $category_rows[$row['demand_level_3']]['cat_name'];
+                $row['pay_way']             = $category_rows[$row['demand_level_2']]['pay_type'];
+
+                list($lng, $lat) = explode(',', $row['demand_lal']);
+                $row['lat'] = trim($lat);
+                $row['lng'] = trim($lng);
+
+                $order_info                           = $this->db->get_row(get_table('order'), ['order_sn' => $row['order_sn']]);
+                $order_info['order_actual_amount']    = sprintf('%.2f', $order_info['order_actual_amount'] / 100); // 订单实付款
+                $order_info['order_amount']           = sprintf('%.2f', $order_info['order_amount'] / 100); // 订单应付款
+                $order_info['order_deductible_count'] = sprintf('%.2f', $order_info['order_deductible_count'] / 100); // 抵扣多少
+                $order_info['add_time']               = date('Y-m-d H:i:s', $order_info['add_time']);
+                $order_info['pay_time']               = $order_info['pay_time'] ? date('Y-m-d H:i:s', $order_info['pay_time']) : 0;
+                $order_info['receipt_at']             = $order_info['receipt_at'] ? date('Y-m-d H:i:s', $order_info['receipt_at']) : 0;
+                $row['order_info']                    = filter($order_info);
+            } else {
+                $cate_info      = $this->db->get_row(get_table('category'), ['id' => $row['demand_level_2']]);
+                $row['pay_way'] = $cate_info['pay_type'];
+            }
+
+            if ($row['service_store_id']) {
+                $store_info               = $this->db->get_row(get_table('store'), ['id' => $row['service_store_id']], 'store_name');
+                $row['demand_store_name'] = $store_info['store_name'];
+            }
+
+            $row['demand_service_at']   = date('Y-m-d H:i:s', $row['demand_service_at']);
+            $row['demand_remuneration'] = number_format($row['demand_remuneration'] / 100, 2);
+            $row['demand_img']          = explode(',', $row['demand_img']);
+
+            unset($row['demand_is_show'], $row['no_pass_reason'], $row['demand_pay_type']);
+        }
+        return $row;
+    }
+
+    /**
+     * 新增前调用
+     * @param array $insert 新增的数据
+     * @return mixed
+     */
+    public function beforeInsertHook(array $insert)
+    {
+        $user_info = app('user_info');
+
+        if (!$user_info || !isset($user_info->user_id)) {
+            throw new \RuntimeException('user-info-error');
+        }
+
+        $insert['demand_post_at']      = $_SERVER['REQUEST_TIME'];
+        $insert['demand_service_at']   = strtotime($insert['demand_service_at']);
+        $insert['demand_remuneration'] = 100 * $insert['demand_remuneration']; //需求酬金，单位分
+        $insert['demand_user_id']      = $user_info->user_id;
+
+        if ($insert['demand_remuneration'] < 1) {
+            throw new \RuntimeException('需求酬金不能小于￥1元');
+        }
+
+        // 处理图片
+        if ($insert['demand_img']) {
+            if (\is_array($insert['demand_img'])) {
+                $images_array         = $insert['demand_img'];
+                $insert['demand_img'] = implode(',', $insert['demand_img']);
+            } else {
+                $insert['demand_img'] = trim($insert['demand_img'], ',');
+                $images_array         = explode(',', $insert['demand_img']);
+            }
+
+            if (\count($images_array) > 9) {
+                throw new \RuntimeException('上传图片不能超过9张');
+            }
+        } else {
+            $insert['demand_img'] = '';
+        }
+
+        // 过滤未定义的支付途径
+        //        if (!\in_array($insert['demand_pay_type'], ['price', 'deposit', 'interview'])) {
+        //            throw new \RuntimeException('非法支付途径!');
+        //        }
+
+        if (!\in_array($insert['demand_price_type'], ['alipay', 'wechat', 'bankcard'])) {
+            throw new \RuntimeException('支付方式未被支持!');
+        }
+
+        // 处理支付途径，当支付方式为[price][deposit]必须传递demand_price_type
+        //        if ($insert['demand_pay_type'] === 'price' || $insert['demand_pay_type'] === 'deposit') {
+        //            if (!isset($insert['demand_price_type'])
+        //                || !$insert['demand_price_type']) {
+        //                throw new \RuntimeException('当前支付途径必须提交支付方式!');
+        //            }
+        //            if (!\in_array($insert['demand_price_type'], ['alipay', 'wechat', 'bankcard'])) {
+        //                throw new \RuntimeException('非法支付方式!');
+        //            }
+        //        }
+
+        //        $insert['demand_pay_type'] === 'interview' && $insert['demand_price_type'] = 'none'; // 面对面支付时不需要设定支付方式
+
+        // 判断是否经额度
+        if (!preg_match('/^.*,.*$/', $insert['demand_lal'])) {
+            throw new \RuntimeException('经纬度格式不正确');
+        }
+
+        $insert['demand_is_show'] = 0;
+//        $insert['demand_status']  = 2;
+        return $insert;
+    }
+
+    /**
+     * 自定义列表查询方法
+     * 当需要join等非单表查询时可以调用此方法
+     * @param array $build_query 查询构建数组，前端传入的排序、字段等
+     * @param string $data_set 返回数据集类型
+     */
+    //    public function customizeListGetter(array $build_query, $data_set)
+    //    {
+    //
+    //    }
+
+
+    /**
+     * 自定义单条查询方法
+     * 当需要join等非单表查询时可以调用此方法
+     * @param int $id 单条获取的id
+     * @param array $build_query 查询构建数组，前端传入的排序、字段等
+     * @param string $cache_key cache的key
+     */
+    //    public function customizeGetter($id, $build_query, $cache_key)
+    //    {
+    //
+    //    }
+    /**
+     * 新增后调用,用于写入订单
+     * @param array $insert 新增的数据
+     * @return array
+     */
+    public function afterInsertHook(array $insert): array
+    {
+        $request                         = app('request');
+        $insert['order_deductible_type'] = $request->post('order_deductible_type', false, 'intval');
+        if (false === $insert['order_deductible_type']) {
+            throw new \RuntimeException('没有传递抵扣字段');
+        }
+
+//        $insert['order_deductible_type']  = app('request')->post('order_deductible_type', 0, 'intval');
+        $insert['order_deductible_count'] = $request->post('order_deductible_count', 0, 'float');
+
+        /** @var OrderModel $order_model */
+        $order_model = Factory::getFactory('order');
+        $order_info  = $order_model->setContact(
+            $insert['demand_telephone']
+            , $insert['demand_address_name']
+            , $insert['demand_house_number']
+            , $insert['demand_contact_name']
+        )->coumpteDeductible(
+            $insert['order_deductible_type']
+        )->unifiedOrder(
+            OrderModel::ORDER_USRE_DEMAND,
+            $insert['id'],
+            $insert['demand_price_type'],
+            $insert['demand_remuneration']
+        );
+        list($lat, $lng) = explode(',', $insert['demand_lal']);
+        $this->db->update($this->table, [
+            'order_sn' => $order_info['order_sn']
+        ], ['id' => $insert['id']]); // 更新写入订单流水号
+        $this->db->update(get_table('order'), [
+            'contact_appointment_at' => $insert['demand_service_at'],
+            'order_lat'              => $lat,
+            'order_lng'              => $lng
+        ], ['order_sn' => $order_info['order_sn']]);
+
+        //        $this->db->insert('jiajie_order_entity', [
+        //            'entity_title'  =>  $insert['subject_title'],
+        //            'entity_id'     =>  $insert['id'],
+        //            'entity_type'   =>  'demand',
+        //            'order_sn'      =>  $order_info['order_sn']
+        //        ]);
+
+        return $order_info;
+    }
+
+    /**
+     * 更新前调用
+     * @param array $update 传入的更新数据
+     * @param int $id 要更新的id
+     * @return array
+     */
+    //    public function beforeUpdateHook(array $update, $id): array
+    //    {
+    //
+    //    }
+
+    /**
+     * 更新后调用
+     * @param int $id 要更新的id
+     */
+    //    public function afterUpdateHook($id)
+    //    {
+    //
+    //    }
+
+    /**
+     * 删除前调用
+     * @param int $id 删除的id
+     */
+    //    public function beforeDeleteHook($id)
+    //    {
+    //
+    //    }
+
+    /**
+     * 删除后调用
+     * @param int $id 要删除的id
+     */
+    //    public function afterDeleteHook($id)
+    //    {
+    //
+    //    }
+
+}

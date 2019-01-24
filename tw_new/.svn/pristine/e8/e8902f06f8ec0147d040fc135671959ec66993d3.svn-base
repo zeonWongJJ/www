@@ -1,0 +1,29 @@
+version: "3.6"
+
+services:
+  qiqing_jiajie_v2:
+    image: qiqing/jiajie:2.0
+    container_name: qiqing_jiajie_v2
+    restart: always
+    ports:
+    - "80:19001"
+    - "81:19002"
+    - "82:19003"
+    volumes:
+      - ../server:/www/server
+      - ../touch:/www/touch
+      - ../../../../tw:/tw
+    environment:
+      APP_DEBUG: 1
+      SERVER_DOMAIN: http://192.168.1.200:19020
+      TOUCH_DOMAIN: http://192.168.1.199:8080
+      MYSQL_HOST: 172.18.0.6:3306
+    command: ["/run.sh", "ypn"]
+    networks:
+      yiyenet:
+        ipv4_address: 172.18.0.11 # 这个是应用分配的IP，前三个网段不能变，不然会导致连接不上数据库
+
+# 下面照着抄就行了
+networks:
+  yiyenet:
+    external: true

@@ -1,0 +1,624 @@
+body{
+    background: #f7f7f7;
+}
+#orderDetails{
+
+}
+#orderDetails>header{
+    margin: 0 auto;
+}
+#orderDetails>section{
+    display: table;
+    margin: 0 auto;
+    width:1200px;
+}
+.orderDetails_info{
+    float: right;
+    width:1035px;
+    padding: 40px 0 30px 40px;
+}
+.orderDetails_info>header{
+    background: #ffffff;
+}
+.orderDetails_info>header>h2{
+    line-height:46px;
+    height:46px;
+    font-size: 14px;
+    align-items: center;
+    padding-left:20px ;
+}
+.orderDetails_info>section{
+    padding: 20px;
+    margin-top: 30px;
+    background: #ffffff;
+}
+.order_state{
+    height:120px;
+
+}
+.order_state ul{
+    padding:20px;
+    width:955px;
+    display: table;
+}
+.order_state li{
+    text-align: center;
+    width:190px;
+    float: left;
+}
+.order_state label{
+    margin-left: 78px;
+    display: block;
+    position: relative;
+    width:26px;
+    height:26px;
+}
+.order_state span{
+    left: 0;
+    top: 0;
+    position: absolute;
+    width:26px;
+    height:26px;
+    border-radius: 50%;
+    background: #dcdcdc;
+}
+.order_state em{
+    position: absolute;
+    width: 6px;
+    height: 14px;
+    left: 10px;
+    bottom: 8px;
+    background: transparent;
+    border-right: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+.order_state i{
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width:190px;
+    height:2px;
+    background: #dcdcdc;
+}
+.order_state p{
+    margin-top: 10px;
+    line-height:26px;
+    align-items: center;
+    color: #333333;
+}
+.order_state time{
+    color: #333333;
+}
+
+.order_state .state1 i{
+    background: #18773a;
+}
+.order_state .state1 span{
+    background: #18773a;
+}
+.order_state .state1 em{
+
+}
+
+.order_state .state2 i{
+    background: #dcdcdc;
+}
+.order_state .state2 span{
+    background: #18773a;
+}
+.order_state .state2 em{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 6px;
+    bottom: 6px;
+    background: #ffffff;
+    border:none;
+    border-radius: 50%;
+}
+
+.order_state .state3 i{
+    background: #dcdcdc;
+}
+.order_state .state3 span{
+    background: #dcdcdc;
+}
+.order_state .state3 em{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 6px;
+    bottom: 6px;
+    background: #ffffff;
+    border:none;
+    border-radius: 50%;
+}
+
+.order_state_info>header{
+    border: 1px solid #dddddd;
+    padding: 20px 40px 20px 20px;
+}
+.order_state_info>header>div{
+    display: table;
+    width:933px;
+}
+.order_state_info>header>div>div{
+    margin-top: 10px;
+    float: left;
+}
+.order_state_info>header>div>img{
+    float: right;
+}
+.order_state_info>section{
+    padding-top: 30px;
+    display: table;
+    width:995px;
+}
+.order_state_info>section>div{
+    float: left;
+}
+.now_state {
+
+
+}
+.now_state p{
+    color: #333333;
+}
+.now_state h3{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    align-items: center;
+}
+.now_state h3 span{
+    font-weight: 700;
+    color: #bf0000;
+}
+.now_state >div{
+    float: left;
+    padding-left: 10px;
+}
+.now_state .btn{
+    display: table;
+    padding:10px 0 ;
+}
+.now_state .btn p{
+    float: left;
+    line-height:28px;
+}
+.now_state .btn span{
+    line-height:28px;
+    float: left;
+    font-size: 14px;
+    padding: 0 10px;
+    color: #999999;
+}
+.now_state .btn button{
+    float: left;
+    padding: 0 10px;
+    background: #e23f42;
+    color: #ffffff;
+    font-size: 14px;
+    height:28px;
+}
+.now_state .btn a{
+    line-height:28px;
+    float: left;
+    padding: 0 10px;
+    color: #1fbba6;
+    font-size: 14px;
+    height:28px;
+}
+.now_state .state{
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    width:24px;
+    height:24px;
+    border: none;
+}
+.now_state i,
+.now_state em{
+    position: absolute;
+}
+.now_state .state1{
+    float: left;
+    border: 2px solid #3f8654;
+}
+.now_state .state1 em{
+    width: 5px;
+    height: 10px;
+    left: 8px;
+    bottom: 7px;
+    border: transparent;
+    border-right: 4px solid #3f8654;
+    border-bottom: 4px solid #3f8654;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+.now_state .state2{
+    float: left;
+    display: block;
+    border: 2px solid #5a77c9;
+}
+.now_state .state2 em {
+    left: 9px;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background:#5a77c9 ;
+}
+.now_state .state2 i {
+    background: #5a77c9;
+    left: 10px;
+    top: 2px;
+    width: 4px;
+    height: 10px;
+}
+.now_state .state3{
+    float: left;
+    border: 2px solid #ac0000;
+}
+.now_state .state3 em {
+    left: 5px;
+    top: 10px;
+    width: 14px;
+    height: 4px;
+    border-radius: 2px;
+    background:#ac0000 ;
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+}
+.now_state .state3 i {
+    background: #ac0000;
+    left: 5px;
+    top: 10px;
+    width: 14px;
+    height: 4px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
+
+.courier_info{
+    border-top: 1px solid #dddddd;
+    padding-left: 38px;
+}
+.courier_info ul{
+    padding-top: 10px;
+}
+.courier_info ul li{
+    height:26px;
+}
+.courier_info label{
+    margin: 0 10px;
+    width:16px;
+    height:16px;
+    position: relative;
+    background: none;
+}
+.courier_info span{
+    position: absolute;
+    width:16px;
+    height:16px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+}
+.courier_info em{
+    position: absolute;
+    left: 5px;
+    top:5px;
+    width:8px;
+    height:8px;
+    border-radius: 50%;
+    background: #f8f8f8;
+    box-shadow: inset 1px -2px 2px rgba(0,0,0,0.1);
+}
+.courier_info p{
+    color: #333333;
+}
+.courier_info i{
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    left: 8px;
+    top: 15px;
+    background: #e5e5e5;
+}
+.courier_info .active p{
+    color: #d94244;
+}
+.courier_info .active em{
+    position: absolute;
+    left: 4px;
+    top:4px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background: #d94244;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5);
+}
+.courier_info .active span{
+    border: 1px solid #dddddd;
+    background: #f7f7f7;
+}
+.address_info{
+    margin-right: 20px;
+}
+.address_info,
+.send_info,
+.order_list{
+    border: 1px solid #dddddd;
+    border-top: 2px solid #3f8654;
+    box-sizing: border-box;
+    display: table;
+}
+
+.address_info h2,
+.send_info h2{
+    line-height:30px;
+    font-size: 14px;
+    color: #333333;
+    height:30px;
+    align-items: center;
+    padding-left: 20px;
+    font-weight: 400;
+}
+.send_info ul,
+.address_info ul{
+    padding: 15px;
+    border-top: 1px solid #dddddd;
+    width:218px;
+}
+.send_info ul li,
+.address_info ul li {
+    display: table;
+    padding: 5px 0;
+}
+.send_info span,
+.address_info span{
+    float: left;
+    display: block;
+    width:60px;
+    color: #555555;
+}
+.send_info p,
+.address_info p{
+    float: left;
+    width:158px;
+    color: #555555;
+}
+.send_info{
+    margin-top: 20px;
+}
+.order_list{
+    width:725px;
+}
+.order_list header{
+}
+.order_list header h2{
+    float: left;
+    line-height:30px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333333;
+    height:30px;
+    padding-left: 20px;
+}
+.order_list header>div{
+    display: table;
+    width:723px;
+}
+.order_list header>div>div{
+    float: right;
+    padding-right:10px ;
+}
+.order_list header>div>div span{
+    float: left;
+    display: block;
+    background: #3f8654;
+    color: #ffffff;
+    padding: 0 3px;
+    margin:6px 10px;
+    border-radius: 3px;
+}
+.order_list header>div>div h2{
+    float: left;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0;
+}
+.order_list header>div>div a{
+    display: block;
+    float: left;
+    margin-top: 4px;
+}
+.order_list header>div>div i{
+    font-size: 18px;
+    margin-left: 10px;
+    color: #ffc900;
+}
+.order_list header>ul{
+    padding-left: 10px;
+    height:40px;
+    border-top: 1px solid #dddddd;
+}
+.order_list header>ul li{
+    text-align: center;
+    line-height:40px;
+    float: left;
+    width:80px;
+    border-bottom: 1px solid #dddddd;
+}
+.order_list header>ul li:first-child{
+    padding-right: 380px;
+}
+.order_list footer{
+    display: table;
+    padding: 20px 10px;
+}
+.order_list footer>p{
+    float: left;
+}
+.order_list footer>input{
+    float: left;
+}
+.order_item{
+    width:723px;
+    display: table;
+    border-bottom:1px solid #cccccc ;
+}
+.order_item a{
+    height:140px;
+    width:40px;
+}
+.order_item .img{
+    float: left;
+    position: relative;
+    width:100px;
+    height:100px;
+    margin: 10px;
+}
+.order_item .img:after{
+    opacity: 0;
+    content: "赠品";
+    position: absolute;
+    background: rgba(0,0,0,0.75);
+    height:20px;
+    width:100px;
+    text-align: center;
+    color: #ffffff;
+    left: 0;
+    bottom:0 ;
+}
+.order_item .img:hover:after{
+    opacity: 1;
+}
+.order_item .cont{
+    margin-top: 10px;
+    float: left;
+    width:350px;
+}
+.order_item .cont h2 {
+    padding: 0;
+    font-size: 14px;
+}
+.order_item .cont p {
+    color: #666666;
+}
+.order_item .cont div{
+    margin-top: 5px;
+}
+.order_item .cont div>span{
+    text-align: center;
+    float: left;
+    height:18px;
+    width:18px;
+    color: #3f8654;
+    border: 1px solid #3f8654;
+}
+.order_item .cont div ul{
+    float: left;
+    padding:0 5px;
+}
+.order_item .cont div ul li{
+    height:20px;
+}
+.order_item .cont li p{
+    float: left;
+}
+.order_item .cont div ul li span{
+    float: left;
+    margin: 0 10px;
+    color: #666666;
+}
+.order_item .price,
+.order_item .amount,
+.order_item .number{
+    margin-top: 10px;
+    text-align: center;
+    float: left;
+    width:80px;
+    color: #666666;
+    font-size: 14px;
+}
+.order_item .btn {
+    margin: 0 20px;
+    height:24px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    padding: 0;
+}
+.order_item .btn input {
+    width:50px;
+    text-align: center;
+}
+.order_item .btn button{
+    width:24px;
+    height:24px;
+    padding: 0;
+}
+.order_item .edit {
+}
+.order_item .edit i {
+    width:60px;
+    height:60px;
+    color: #666666;
+}
+
+.total{
+    padding: 20px;
+    margin: 20px 0 0 auto;
+    background: #fbf9ed;
+    width:340px;
+    height:70px;
+    border-left: 5px dotted #ffffff;
+    border-right: 5px dotted #ffffff;
+}
+.total span{
+    color: #bf0000;
+}
+.total dd span{
+    font-size: 14px;
+    font-weight:700;
+    color: #bf0000;
+}
+.total p{
+    margin-top: 30px;
+    text-align: center;
+    float: left;
+    color: #666666;
+    width:150px;
+}
+.total ul{
+    float: left;
+    width:99px;
+    border-left: 1px solid #dddddd;
+}
+.total ul li,
+.total dl dd{
+    text-align: right;
+    height:20px;
+    color: #666666;
+}
+.total dl{
+    float: left;
+    width:90px;
+}

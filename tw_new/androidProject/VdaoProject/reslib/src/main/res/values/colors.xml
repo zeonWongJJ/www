@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_bg">#FFFFFF</color>
+    <color name="blue">#2562B1</color>
+    <color name="gray">#666666</color>
+    <color name="light_gray">#BBBBBB</color>
+    <color name="black">#333333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FA4A46</color>
+    <color name="text_black">#333333</color>
+    <color name="line">#DDDDDD</color>
+    <color name="title_bg">@color/blue</color>
+
+    <color name="main_theme_color">#666DF4</color>
+    <color name="green_pressed">#6FCD78</color>
+
+    <color name="colorGray">#33000000</color>
+    <color name="yellow_line_color">#f98425</color>
+
+</resources>

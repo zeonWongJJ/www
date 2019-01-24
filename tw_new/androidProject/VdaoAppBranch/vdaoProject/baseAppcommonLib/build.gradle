@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //implementation files('libs/activeandroid-3.1.0.jar')
+    api files('libs/cordova.jar')
+    api files('libs/libammsdk.jar')
+    //api files('libs/AMap_Location_V3.6.1_20171012.jar')
+    //api files('libs/AMap_Search_V5.3.1_20170817.jar')
+    //api files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')
+    implementation deps.appcompatV7
+    implementation deps.cardviewV7
+    implementation deps.recyclerviewV7
+    implementation project(':mvpBaseLib')
+    implementation project(':commonutilLib')
+    implementation project(':ModuleLib:pickerview')
+    implementation deps.rxjava
+    implementation deps.adapterRxjava
+    implementation deps.googlegson
+    api 'com.amitshekhar.android:rx2-android-networking:1.0.0'
+
+}

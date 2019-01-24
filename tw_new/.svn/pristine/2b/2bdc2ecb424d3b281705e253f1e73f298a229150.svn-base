@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>jiajie_admin</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script id="admin_config">
+      window.config = {
+        api_prefix: 'http://192.168.1.200:19020'
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

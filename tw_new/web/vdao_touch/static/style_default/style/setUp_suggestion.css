@@ -1,0 +1,150 @@
+body{
+	background: #f1f1f1;
+}
+/*---意见与反馈的CSS---*/
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a{
+	margin-top: 0.066666rem;
+	width: 0.32rem;
+	position: absolute;
+	left: 0.533333rem;
+	top: 0.866666rem;
+}
+.main .import{
+	margin: 0.533333rem auto 0.666666rem;
+	position: relative;
+}
+.main .import .txt{
+	display: block;
+	width: 8.866666rem;
+	height: 5.333333rem;
+	background: white;
+	margin: 0 auto;
+	border-radius: 0.133333rem;
+	font-size: 0.373333rem;
+	color: #000000;
+	padding: 0.266666rem;
+	line-height:normal;
+}
+.main .import .num{
+	font-size: 0.32rem;
+	color: #000000;
+	position: absolute;
+	right: 0.866666rem;
+	bottom: 0.2rem;
+}
+.main .submitBox a,
+.main .submitBox1 a{
+	display: block;
+	width: 8.866666rem;
+	height: 1.2rem;
+	background: #e10030;
+	border-radius: 0.266666rem;
+	margin: 0 auto;
+	font-size: 0.453333rem;
+	color: white;
+	text-align: center;
+	line-height: 1.2rem;
+	box-shadow:0 0.066666rem 0.066666rem #ffb9c8;
+	margin-bottom: 0.133333rem;
+}
+/*提示成功弹框*/
+.successBomb{
+	padding: 0 0.266666rem;
+	height: 0.866666rem;
+	font-size: 0.373333rem;
+	color: white;
+	text-align: center;
+	line-height: 0.866666rem;
+	border-radius: 0.08rem;
+	position: fixed;
+	left: 50%;
+	margin-left: -1.066666rem;
+	top: 50%;
+	margin-top: -0.433333rem;
+	background: rgba(0,0,0,0.7);
+	display: none;
+}
+/*失败弹框*/
+ .failBomb{
+	height: 0.866666rem;
+	padding: 0 0.266666rem;
+	font-size: 0.373333rem;
+	color: white;
+	text-align: center;
+	line-height: 0.866666rem;
+	border-radius: 0.08rem;
+	position: fixed;
+	left: 50%;
+	margin-left: -1.866666rem;
+	top: 50%;
+	margin-top: -0.433333rem;
+	background: rgba(0,0,0,0.7);
+	display: none;
+ }
+
+/*---修改用户名的CSS---*/
+.main .intBox{
+	margin: 0.266666rem 0 0.6rem 0;
+}
+.main .intBox input{
+	display: block;
+	width: 100%;
+	height: 1.066666rem;
+	background: white;
+	padding: 0 0.2rem;
+	font-size: 0.373333rem;
+	color: #000000;
+}
+/*提示成功弹框*/
+.successBomb1{
+	padding: 0 0.266666rem;
+	height: 0.866666rem;
+	font-size: 0.373333rem;
+	color: white;
+	text-align: center;
+	line-height: 0.866666rem;
+	border-radius: 0.08rem;
+	position: fixed;
+	left: 50%;
+	margin-left: -1.066666rem;
+	top: 50%;
+	margin-top: -0.433333rem;
+	background: rgba(0,0,0,0.7);
+	display: none;
+}
+/*失败弹框*/
+ .failBomb1{
+	height: 0.866666rem;
+	padding: 0 0.266666rem;
+	font-size: 0.373333rem;
+	color: white;
+	text-align: center;
+	line-height: 0.866666rem;
+	border-radius: 0.08rem;
+	position: fixed;
+	left: 50%;
+	margin-left: -1.866666rem;
+	top: 50%;
+	margin-top: -0.433333rem;
+	background: rgba(0,0,0,0.7);
+	display: none;
+ }
+
+

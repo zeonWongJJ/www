@@ -1,0 +1,12 @@
+/*  银行卡已提交审核 等待中 */
+.waitInfo             { margin-top:1.5rem; }
+.waitInfo>p           { text-align:center; font-size:0.45rem; margin-top:0.25rem; }
+.authWait>ul          { width:78%; margin:0 auto; font-size:0.4rem; color:#333333; padding:1rem 0; }
+.authWait>ul>li       { padding:0.1rem 0; }
+/* 返回个人中心 */
+.backToCenter         { text-align:center; }
+.backToCenter>a>span  { width:5rem; height:1.2rem; line-height:1.2rem; display:inline-block; font-size:0.4rem; color:white; border-radius:1rem;  background:linear-gradient(120deg,#6671f3,#66b2ea); }
+
+
+
+

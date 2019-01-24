@@ -1,0 +1,529 @@
+<?php
+
+class Order_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+        $this->load->model('delivery_model');
+    }
+
+    public function distribution($i_order_id)
+    {
+        $a_order = $this->db->get_row('order', ['order_id' => $i_order_id]);
+        list($f_store_longitude, $f_store_latitude) = explode(',', $a_order['addres_post']);
+        $a_data = [
+            // 门店编号
+            'shop_no'             => $_SESSION['store_distribution_id'],
+            // 订单ID
+            'origin_id'           => $_SESSION['cashier']['cart_order_number'],
+            // 订单所在城市的代码，可通过city_list函数获取所有城市代码
+            'city_code'           => '020',
+            // 订单金额
+            'cargo_price'         => $_SESSION['cashier']['cart_product_money'],
+            // 是否需要垫付 1:是 0:否 (垫付订单金额，非运费)
+            'is_prepay'           => '0',
+            // 期望取货时间（1.时间戳,以秒计算时间，即unix-timestamp; 2.该字段的设定，不会影响达达正常取货; 3.订单待接单时,该时间往后推半小时后，会自动被系统取消;4.建议取值为当前时间往后推10~15分钟）
+            'expected_fetch_time' => $_SERVER['REQUEST_TIME'] + 600,
+            // 	收货人姓名
+            'receiver_name'       => $a_order['reciver_name'],
+            // 收货人地址
+            'receiver_address'    => $a_order['addres'],
+            // 收货人地址经度（高德坐标系）
+            'receiver_lng'        => $f_store_longitude,
+            // 收货人地址维度（高德坐标系）
+            'receiver_lat'        => $f_store_latitude,
+            // 回调地址
+            'callback'            => $this->router->url('notify'),
+            // 收货人手机号（手机号和座机号必填一项）
+            'receiver_phone'      => $a_order['mob_phone'],
+            // 收货人座机号（手机号和座机号必填一项）
+            'receiver_tel'        => $a_order['tel_phone'],
+        ];
+        $this->load->library('distribution_dada');
+        if ($this->distribution_dada->add_order($a_data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function point($i_order_id)
+    {
+        /*
+        |---------------------------------------------------------------------------------------------
+        | 更新的内容分七块：
+        |---------------------------------------------------------------------------------------------
+        | 订单记录[order表]：下单人的上级id、下单人给上级的积分
+        |---------------------------------------------------------------------------------------------
+        | 用户记录[user表]：用户自己的积分、用户自己的消费总额、用户自己给上级的积分总数、用户自己成单的ids、
+        | 用户自己的成单数量、用户购买的咖啡数量
+        |---------------------------------------------------------------------------------------------
+        | 用户记录[user表]：用户上级的积分、用户上级的所有下级消费总额、用户推荐人成单的ids、
+        | 用户推荐的人成单数、用户推荐的人购买的咖啡数量
+        |---------------------------------------------------------------------------------------------
+        | 结算记录[account表]：如果接单的门店本月有记录则取出修改字段
+        | 月订单总数、月销售产品总数、月销售总额、当月成交的订单id集;
+        | 如果没有数据则创建一条数据
+        |---------------------------------------------------------------------------------------------
+        | 用户消费统计[statistic表]：有则追加，无则创建
+        |---------------------------------------------------------------------------------------------
+        | 门店表[store表]：门店成单数、门店销售总额
+        |---------------------------------------------------------------------------------------------
+        | 用户积分变动表[points_log]
+        |---------------------------------------------------------------------------------------------
+         */
+        // 获取设置信息
+        $a_set = $this->delivery_model->get_set_all();
+        foreach ($a_set as $key => $value) {
+            if ($value['set_name'] == 'user_score_ratio') {
+                $user_score_ratio = $value['set_parameter'];
+            } else if ($value['set_name'] == 'user_consume_ratio') {
+                $user_consume_ratio = $value['set_parameter'];
+            } else if ($value['set_name'] == 'shopman_score_retio') {
+                $shopman_score_retio = $value['set_parameter'];
+            } else if ($value['set_name'] == 'shopman_referee_ratio') {
+                $shopman_referee_ratio = $value['set_parameter'];
+            } else if ($value['set_name'] == 'score_tostore_ratio') {
+                $score_tostore_ratio = $value['set_parameter'];
+            }
+        }
+        // 查询门店信息的条件
+        $a_store_where = [
+            'store_id' => $_SESSION['store_id'],
+        ];
+        // 循环订单id数组
+        $i_id = [$i_id];
+        for ($i = 0; $i < count($i_id); $i++) {
+            $this_order_id = $i_id[$i];
+            // 获取一条订单信息
+            $a_order_row = $this->delivery_model->get_order_one($this_order_id);
+            // 获取一条用户信息
+            $a_user_row = $this->delivery_model->get_user_one($a_order_row['user_id']);
+            // 判断用户是否有推荐人
+            if ($a_user_row['user_referee']) {
+                // 判断用户的推荐人是否是移动店主 并且移动店主状态是否开启
+                $a_referee_row = $this->delivery_model->get_user_one($a_user_row['user_referee']);
+                if ($a_referee_row['is_shopman'] == 1 && $a_referee_row['shopman_state'] == 1) {
+                    $order_commission = round(($shopman_referee_ratio / 100) * $a_order_row['goods_amount'], 2);
+                } else {
+                    $order_commission = round(($user_consume_ratio / 100) * $a_order_row['goods_amount'], 2);
+                }
+                $score_tostore  = round(($score_tostore_ratio / 100) * $a_order_row['goods_amount'], 2);
+                $a_order_where  = [
+                    'order_id' => $this_order_id,
+                ];
+                $a_order_update = [
+                    'order_referee'    => $a_user_row['user_referee'],
+                    'order_commission' => $order_commission,
+                    'score_tostore'    => $score_tostore,
+                ];
+                // 更新订单信息
+                $this->delivery_model->update_order($a_order_where, $a_order_update);
+                // 更新推荐人的积分和推荐人的推荐人消费总额
+                $a_referee_where = [
+                    'user_id' => $a_user_row['user_referee'],
+                ];
+                if (empty($a_referee_row['referee_orders'])) {
+                    $referee_orders = $this_order_id;
+                } else {
+                    $referee_orders = $a_referee_row['referee_orders'] . ',' . $this_order_id;
+                }
+                $a_referee_update = [
+                    'user_score'         => $a_referee_row['user_score'] + $order_commission,
+                    'referee_consume'    => $a_referee_row['referee_consume'] + $a_order_row['goods_amount'],
+                    'referee_orders'     => $referee_orders,
+                    'referee_ordercount' => $a_referee_row['referee_ordercount'] + 1,
+                    'referee_products'   => $a_referee_row['referee_products'] + $a_order_row['order_count'],
+                    'shopman_income'     => $a_referee_row['shopman_income'] + $order_commission,
+                ];
+                $i_result         = $this->delivery_model->update_user($a_referee_where, $a_referee_update);
+                // 若更新成功则插入一条积分变动信息到'.$this-db->get_prefix().'points_log表
+                if ($i_result && $order_commission > 0) {
+                    $a_points_log = [
+                        'user_id'        => $a_user_row['user_referee'],
+                        'user_name'      => $a_referee_row['user_name'],
+                        'pl_type'        => 1,
+                        'pl_variation'   => $order_commission,
+                        'pl_score'       => $a_referee_row['user_score'] + $order_commission,
+                        'pl_item'        => '推荐的人消费返积分',
+                        'pl_description' => '用户' . $a_user_row['user_name'] . '消费' . $a_order_row['goods_amount'] . '元',
+                        'pl_time'        => $_SERVER['REQUEST_TIME'],
+                        'pl_code'        => 6,
+                    ];
+                    $this->delivery_model->insert_points_log($a_points_log);
+                }
+            } else {
+                $score_tostore  = round(($score_tostore_ratio / 100) * $a_order_row['goods_amount'], 2);
+                $a_order_where  = [
+                    'order_id' => $this_order_id,
+                ];
+                $a_order_update = [
+                    'score_tostore' => $score_tostore,
+                ];
+                // 更新订单信息
+                $this->delivery_model->update_order($a_order_where, $a_order_update);
+            }
+
+            // 判断用户自己是否是移动店主
+            if ($a_user_row['is_shopman'] == 1 && $a_user_row['shopman_state'] == 1) {
+                $add_user_score = round(($shopman_score_retio / 100) * $a_order_row['goods_amount'], 2);
+            } else {
+                $add_user_score = round(($user_score_ratio / 100) * $a_order_row['goods_amount'], 2);
+            }
+            // 更新自己的积分及消费金额
+            $a_where_thisuser = [
+                'user_id' => $a_order_row['user_id'],
+            ];
+            if (empty($a_user_row['user_orders'])) {
+                $user_orders = $this_order_id;
+            } else {
+                $user_orders = $a_user_row['user_orders'] . ',' . $this_order_id;
+            }
+            // 如果有推荐人则顺便更新给自己的推荐人的总提成字段 没有则直接更新消费金额和积分
+            if ($a_user_row['user_referee']) {
+                $a_thisuser_update = [
+                    'user_consume'    => $a_user_row['user_consume'] + $a_order_row['goods_amount'],
+                    'user_score'      => $a_user_row['user_score'] + $add_user_score,
+                    'user_commission' => $a_user_row['user_commission'] + $order_commission,
+                    'user_orders'     => $user_orders,
+                    'user_ordercount' => $a_user_row['user_ordercount'] + 1,
+                    'user_products'   => $a_user_row['user_products'] + $a_order_row['order_count'],
+                ];
+            } else {
+                $a_thisuser_update = [
+                    'user_consume'    => $a_user_row['user_consume'] + $a_order_row['goods_amount'],
+                    'user_score'      => $a_user_row['user_score'] + $add_user_score,
+                    'user_orders'     => $user_orders,
+                    'user_ordercount' => $a_user_row['user_ordercount'] + 1,
+                    'user_products'   => $a_user_row['user_products'] + $a_order_row['order_count'],
+                ];
+            }
+            //$this->db->insert('test',['test_content'=>json_encode($a_thisuser_update)]);
+            $i_res = $this->delivery_model->update_user($a_where_thisuser, $a_thisuser_update);
+            // 如果更新成功则插入一条积分变动信息
+            if ($i_res && $add_user_score > 0) {
+                $a_points_log = [
+                    'user_id'        => $a_order_row['user_id'],
+                    'user_name'      => $a_user_row['user_name'],
+                    'pl_type'        => 1,
+                    'pl_variation'   => $add_user_score,
+                    'pl_score'       => $a_user_row['user_score'] + $add_user_score,
+                    'pl_item'        => '消费返积分',
+                    'pl_description' => '订单' . $a_order_row['order_number'] . '消费返积分',
+                    'pl_time'        => $_SERVER['REQUEST_TIME'],
+                    'pl_code'        => 5,
+                ];
+                $this->delivery_model->insert_points_log($a_points_log);
+            }
+
+            // 当前月的起始时间戳
+            $beginThismonth = mktime(0, 0, 0, date('m'), 1, date('Y'));
+            // 判断结算数据表是否有当前月份的数据 有则获取并更新 无则创建
+            $a_account_row = $this->delivery_model->get_account_one($beginThismonth, $a_order_row['store_id']);
+            if ($a_account_row) {
+                // 为真则更新结算数据
+                $a_where_account = [
+                    'account_id' => $a_account_row['account_id'],
+                ];
+                if (empty($a_account_row['order_ids'])) {
+                    $order_ids = $this_order_id;
+                } else {
+                    $order_ids = $a_account_row['order_ids'] . ',' . $this_order_id;
+                }
+                $a_data_account = [
+                    'order_count'       => $a_account_row['order_count'] + 1,
+                    'product_count'     => $a_account_row['product_count'] + $a_order_row['order_count'],
+                    'money_count'       => $a_account_row['money_count'] + $a_order_row['goods_amount'],
+                    'order_ids'         => $order_ids,
+                    'month_score'       => $a_account_row['month_score'] + $score_tostore,
+                    'coffee_money'      => $a_account_row['coffee_money'] + $a_order_row['goods_amount'],
+                    'coffee_ordercount' => $a_account_row['coffee_ordercount'] + 1,
+                ];
+                $this->delivery_model->update_account($a_where_account, $a_data_account);
+            } else {
+                // 为假则插入一条结算数据
+                $a_account_insert = [
+                    'store_id'          => $a_order_row['store_id'],
+                    'order_count'       => 1,
+                    'product_count'     => $a_order_row['order_count'],
+                    'money_count'       => $a_order_row['goods_amount'],
+                    'account_time'      => $beginThismonth,
+                    'account_state'     => 0,
+                    'order_ids'         => $this_order_id,
+                    'month_score'       => $score_tostore,
+                    'coffee_money'      => $a_order_row['goods_amount'],
+                    'coffee_ordercount' => 1,
+                ];
+                $this->delivery_model->insert_account($a_account_insert);
+            }
+
+            // 将自己的消费信息统计到用户消费统计表
+            $a_statistic_row = $this->delivery_model->get_statistic_one($a_order_row['user_id'], $beginThismonth);
+            // 有数据则修改 无数据则插入数据
+            if ($a_statistic_row) {
+                $a_where_sta = [
+                    'sta_id' => $a_statistic_row['sta_id'],
+                ];
+                // 判断字段是否为空
+                if (empty($a_statistic_row['user_selforder'])) {
+                    $user_selforder_s = $a_order_row['order_id'];
+                } else {
+                    $user_selforder_s = $a_statistic_row['user_selforder'] . ',' . $a_order_row['order_id'];
+                }
+                $a_sta_update = [
+                    'user_self'      => $a_statistic_row['user_self'] + $a_order_row['goods_amount'],
+                    'user_selfcount' => $a_statistic_row['user_selfcount'] + $a_order_row['order_count'],
+                    'user_selforder' => $user_selforder_s,
+                    'user_selfsum'   => $a_statistic_row['user_selfsum'] + 1,
+                ];
+                $this->delivery_model->update_statistic($a_where_sta, $a_sta_update);
+            } else {
+                $a_sta_insert = [
+                    'user_id'        => $a_order_row['user_id'],
+                    'sta_time'       => $beginThismonth,
+                    'user_self'      => $a_order_row['goods_amount'],
+                    'user_selfcount' => $a_order_row['order_count'],
+                    'user_selforder' => $a_order_row['order_id'],
+                    'user_selfsum'   => 1,
+                ];
+                $this->delivery_model->insert_statistic($a_sta_insert);
+            }
+
+            // 获取一条门店信息
+            $a_store_this = $this->delivery_model->get_store_one($_SESSION['store_id']);
+            // 更新门店的成单数、门店销售总额、门店积分
+            $a_store_update = [
+                'store_amount'     => $a_store_this['store_amount'] + $a_order_row['goods_amount'],
+                'store_order'      => $a_store_this['store_order'] + 1,
+                'store_salescount' => $a_store_this['store_salescount'] + $a_order_row['order_count'],
+                'store_score'      => $a_store_this['store_score'] + $score_tostore,
+                'store_allorder'   => $a_store_this['store_allorder'] + 1,
+                'accumulate_score' => $a_store_this['accumulate_score'] + $score_tostore,
+            ];
+            $i_result_s     = $this->delivery_model->update_store($a_store_where, $a_store_update);
+            if ($i_result_s && $score_tostore > 0) {
+                // 插入一条门店积分变动信息
+                $a_insert_sc = [
+                    'store_id'       => $_SESSION['store_id'],
+                    'sc_type'        => 1,
+                    'sc_score'       => $score_tostore,
+                    'sc_time'        => $_SERVER['REQUEST_TIME'],
+                    'sc_description' => '订单' . $a_order_row['order_number'] . '返积分',
+                ];
+                $this->delivery_model->insert_storescore($a_insert_sc);
+            }
+
+            // 判断用户是否有推荐人 如果有则判断推荐人本月是否有统计数据 有则更新 无则创建
+            if ($a_user_row['user_referee']) {
+                // 获取推荐人本月的消费统计表
+                $a_sta_referee = $this->delivery_model->get_statistic_one($a_user_row['user_referee'], $beginThismonth);
+                // 有统计数据则更新 没有则创建
+                if ($a_sta_referee) {
+                    $a_stareferee_where = [
+                        'sta_id' => $a_sta_referee['sta_id'],
+                    ];
+                    // 判断字段是否为空
+                    if (empty($a_sta_referee['user_otherorder'])) {
+                        $user_otherorder_s = $a_order_row['order_id'];
+                    } else {
+                        $user_otherorder_s = $a_sta_referee['user_otherorder'] . ',' . $a_order_row['order_id'];
+                    }
+                    $a_stareferee_data = [
+                        'user_other'      => $a_sta_referee['user_other'] + $a_order_row['goods_amount'],
+                        'user_othercount' => $a_sta_referee['user_othercount'] + $a_order_row['order_count'],
+                        'user_otherorder' => $user_otherorder_s,
+                        'user_othersum'   => $a_sta_referee['user_othersum'] + 1,
+                    ];
+                    $this->delivery_model->update_statistic($a_stareferee_where, $a_stareferee_data);
+                } else {
+                    $a_stareferee_insertdata = [
+                        'user_id'         => $a_user_row['user_referee'],
+                        'sta_time'        => $beginThismonth,
+                        'user_other'      => $a_order_row['goods_amount'],
+                        'user_othercount' => $a_order_row['order_count'],
+                        'user_otherorder' => $a_order_row['order_id'],
+                        'user_othersum'   => 1,
+                    ];
+                    $this->delivery_model->insert_statistic($a_stareferee_insertdata);
+                }
+            }
+        }
+
+        /***********************************************************************************************/
+    }
+
+    // 订单数据
+    public function order_list($i_number, $i_code, $i_state, $i_page, $stye)
+    {
+        // 设置每页显示的数据行数
+        $i_prow = 4;
+        // 加载分页类
+        $this->load->library('pages');
+        if ($stye == 1) {
+            $a_where = 'store_id = ' . $_SESSION['store_id'] . ' AND order_state != 40 AND order_stye = ' . $stye . ' AND user_id > 0';
+        } else {
+            $a_where = 'store_id = ' . $_SESSION['store_id'] . ' AND order_state != 40 AND order_stye = ' . $stye;
+        }
+        if (in_array($i_state, ['cancel', 20, 25, 30, 10, 80, 55])) {
+            $i_state = $i_state == 'cancel' ? 0 : $i_state;
+            if ($i_state == 10) {
+                $a_where .= ' AND order_state = 10 OR order_state = 80';
+            } else if ($i_state == 55) {
+                $a_where .= ' AND order_state = 0';
+            } else if ($i_state == 50) {
+                $a_where .= ' AND order_state= ';
+            } else {
+                $a_where .= ' AND order_state = ' . $i_state;
+            }
+            // 刚付款的需要等10分钟再显示
+            // if (in_array($i_state, [20])) {
+            // 	$a_where .= ' AND order_time <=' . ($_SERVER['REQUEST_TIME'] - 600);
+            // }
+        }
+        if (!empty($i_code)) {
+            $a_where .= ' AND payment_code = ' . "'" . $i_code . "'";
+        }
+        if (!empty($i_number)) {
+            $a_where .= ' AND order_number = ' . "'" . $i_number . "'";
+        }
+        // 获取数据总行数
+        $a_data['total'] = $this->db->get_total('order', $a_where);
+        // 调用分页运算函数
+        $a_pdata = $this->pages->get($a_data['total'], $i_page, $i_prow);
+        // 开始获取产品数据
+        $this->db->limit($a_pdata['start'], $a_pdata['last']);
+        $a_data['order'] = $this->db->get('order', $a_where, NULL, ['order_id' => 'desc']);
+
+        // 运费
+        $a_set = $this->db->get_row('set', ['set_id' => 8]);
+
+        // 产品名称
+        if (is_array($a_data['order']) && !empty($a_data['order'])) {
+            foreach ($a_data['order'] as $i_key => $a_order) {
+                $a_data['order'][$i_key]['user_order_freight'] = $a_set['user_order_freight'];
+                $a_order_good                                  = $this->db->get('order_goods', ['order_id' => $a_order['order_id']]);
+                if (is_array($a_order_good) && !empty($a_order_good)) {
+                    foreach ($a_order_good as $a_good) {
+                        $a_data['order'][$i_key]['product_info'] .= "{$a_good['product_name']}({$a_good['spec']}){$a_good['goods_num']}份/";
+                    }
+                    $a_data['order'][$i_key]['product_info'] = rtrim($a_data['order'][$i_key]['product_info'], '/');
+                }
+                // 用户头像
+                $a_user                              = $this->db->get_row('user', ['user_id' => $a_order['user_id']]);
+                $a_data['order'][$i_key]['user_pic'] = $a_user['user_pic'];
+            }
+        }
+
+        return $a_data;
+    }
+
+
+    // 订座订单数据
+    public function book_list($i_number, $i_code, $i_state, $i_page, $i_type)
+    {
+        // 设置每页显示的数据行数
+        $i_prow = 4;
+        // 加载分页类
+        $this->load->library('pages');
+
+        $a_where = 'store_id = ' . $_SESSION['store_id'];
+
+        if (in_array($i_state, ['cancel', 1, 2, 3, 4, 5, 6])) {
+            $i_state = $i_state == 'cancel' ? 0 : $i_state;
+            if ($i_state == 1) {
+                $a_where .= ' AND appointment_state = 1 OR appointment_state = ';
+            } else if ($i_state == 2) {
+                $a_where .= ' AND appointment_state = 2 OR appointment_state  = 3';
+            } else if ($i_state == 3) {
+                $a_where .= ' AND appointment_state = 2 OR appointment_state  = 3';
+            } else {
+                $a_where .= ' AND appointment_state = ' . $i_state;
+            }
+            // 刚付款的需要等10分钟再显示
+            // if (in_array($i_state, [20])) {
+            // 	$a_where .= ' AND order_time <=' . ($_SERVER['REQUEST_TIME'] - 600);
+            // }
+        }
+        if (!empty($i_code)) {
+            $a_where .= ' AND pay_type = ' . "'" . $i_code . "'";
+        }
+        if (!empty($i_number)) {
+            $a_where .= ' AND appointment_number = ' . "'" . $i_number . "'";
+        }
+        $a_where .= ' AND appointment_type = ' . $i_type;
+        // 获取数据总行数
+        $a_data['total'] = $this->db->get_total('appointment', $a_where);
+        // 调用分页运算函数
+        $a_pdata = $this->pages->get($a_data['total'], $i_page, $i_prow);
+        // 开始获取产品数据
+        $this->db->limit($a_pdata['start'], $a_pdata['last']);
+        $a_data['order'] = $this->db->get('appointment', $a_where, NULL, ['appointment_id' => 'desc']);
+
+        // 产品名称
+        if (is_array($a_data['order']) && !empty($a_data['order'])) {
+            foreach ($a_data['order'] as $i_key => $a_order) {
+
+                // 用户头像
+                $a_user                              = $this->db->get_row('user', ['user_id' => $a_order['user_id']]);
+                $a_data['order'][$i_key]['user_pic'] = $a_user['user_pic'];
+            }
+        }
+
+        return $a_data;
+    }
+
+    /**
+     * 计算两点地理坐标之间的距离
+     * @param  Decimal $longitude1 起点经度
+     * @param  Decimal $latitude1 起点纬度
+     * @param  Decimal $longitude2 终点经度
+     * @param  Decimal $latitude2 终点纬度
+     * @param  Int $unit 单位 1:米 2:公里
+     * @param  Int $decimal 精度 保留小数位数
+     * @return Decimal
+     */
+    function get_distance($longitude1, $latitude1, $longitude2, $latitude2, $unit = 2, $decimal = 2)
+    {
+        $EARTH_RADIUS = 6370.996; // 地球半径系数
+        $PI           = 3.1415926;
+
+        $radLat1 = $latitude1 * $PI / 180.0;
+        $radLat2 = $latitude2 * $PI / 180.0;
+
+        $radLng1 = $longitude1 * $PI / 180.0;
+        $radLng2 = $longitude2 * $PI / 180.0;
+
+        $a = $radLat1 - $radLat2;
+        $b = $radLng1 - $radLng2;
+
+        $distance = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
+        $distance = $distance * $EARTH_RADIUS * 1000;
+
+        if ($unit == 2) {
+            $distance = $distance / 1000;
+        }
+
+        return round($distance, $decimal);
+    }
+
+    /**
+     * 更新月结统计表
+     * )
+     *
+     */
+    public function update_meeting_accounttbls($store_id, $meeting_price = 0.00, $account_date)
+    {
+
+        //订单统计
+        $num           = 1;
+        $account_date  = $account_date ? $account_date : date('Ym');
+        $update_fields = "appointment_count = appointment_count + $num, appointment_money_count = appointment_money_count + $meeting_price ";
+        $sql           = "INSERT INTO '.$this-db->get_prefix().'accounttbl(store_id,account_date,appointment_count,appointment_money_count)
+	                    VALUES ('{$store_id}','{$account_date}',{$num},{$meeting_price})
+	                    ON DUPLICATE KEY UPDATE {$update_fields}";
+        $this->db->query($sql);
+
+    }
+}

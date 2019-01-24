@@ -1,0 +1,134 @@
+upstream jiajie_upstream  {
+    server 172.18.0.10;
+}
+
+upstream jiajie_v2_upsteam {
+    server 172.18.0.11;
+}
+
+server {
+    listen 80;
+    server_name  jiajie-server.7dugo.com jiajie-pc.7dugo.com jiajie-admin.7dugo.com jiajie-touch.7dugo.com;
+
+    error_log  /data/nginx/log/jiajie-proxy.error.log;
+
+    index index.php index.html index.htm;
+
+    location / {
+	    proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+
+        proxy_pass  http://jiajie_upstream;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    listen 19000;
+    server_name  jiajie-server.7dugo.com;
+
+    error_log  /data/nginx/log/jiajie-proxy.error.log;
+
+    index index.php index.html index.htm;
+
+    location / {
+	    proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+
+        proxy_pass  http://jiajie_upstream;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    listen 19001;
+    server_name  jiajie-pc.7dugo.com;
+
+    error_log  /data/nginx/log/jiajie-proxy.error.log;
+
+    index index.php index.html index.htm;
+
+    location / {
+	    proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+
+        proxy_pass  http://jiajie_upstream;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    listen 19002;
+    server_name  jiajie-admin.7dugo.com;
+
+    error_log  /data/nginx/log/jiajie-proxy.error.log;
+
+    index index.php index.html index.htm;
+
+    location / {
+	    proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+
+        proxy_pass  http://jiajie_upstream;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    listen 19003;
+    server_name  jiajie-touch.7dugo.com;
+
+    error_log  /data/nginx/log/jiajie-proxy.error.log;
+
+    index index.php index.html index.htm;
+
+    location / {
+	    proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+
+        proxy_pass  http://jiajie_upstream;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    listen 80;
+    server_name  jiajie-server_v2.7dugo.com jiajie-pc_v2.7dugo.com jiajie-admin_v2.7dugo.com jiajie-touch_v2.7dugo.com;
+
+    error_log  /data/nginx/log/jiajie_v2-proxy.error.log;
+
+    index index.php index.html index.htm;
+
+    location / {
+        proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+
+        proxy_pass  http://jiajie_v2_upsteam;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+

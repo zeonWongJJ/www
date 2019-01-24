@@ -1,0 +1,3 @@
+ALTER TABLE `qiqing`.`qq_jiajie_v2_order` ADD COLUMN `order_sub_sn` MEDIUMINT(8) UNSIGNED DEFAULT 0 NOT NULL COMMENT '子订单编号' AFTER `parent_order_sn`, DROP INDEX `order_sn`, ADD UNIQUE INDEX (`order_sn`, `order_sub_sn`), ADD INDEX (`order_sn`);
+ALTER TABLE `qiqing`.`qq_jiajie_v2_order_appointed` ADD COLUMN `order_sub_id` MEDIUMINT(8) DEFAULT 0 NOT NULL COMMENT '订单子订单编号' AFTER `completed`;
+ALTER TABLE `qiqing`.`qq_jiajie_v2_store_user` ADD UNIQUE INDEX (`user_id`);

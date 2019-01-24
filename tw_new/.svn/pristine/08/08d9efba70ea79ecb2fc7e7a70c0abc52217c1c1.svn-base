@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">快递接口</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<pre  class="line-numbers">
+<code class="language-php">
+// 加载快递接口类
+$this->load->library('express_kdniao');
+// 使用$this->express_kdniao->方法名进行访问操作
+</code>
+</pre>
+</div>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->express_kdniao->query(快递公司代码<span>(数组)</span>, 快递单号参数<span>(数字/字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	查询物流信息。返回一个数组，快递公司代码，可以从company_data函数获取。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('express_kdniao');
+$a_data = $this->express_kdniao->query('EMS', '9747288928152');
+print_r($a_data);
+
+// 返回的数组格式
+Array
+(
+    [LogisticCode] => 9747288928152
+    [ShipperCode] => EMS
+    [Traces] => Array
+        (
+            [0] => Array
+                (
+                    [AcceptStation] => 义乌商贸城部诚信揽投站已收件（揽投员姓名：虞桂福,联系电话:18069975613）
+                    [AcceptTime] => 2017-11-30 15:50:12
+                )
+
+            [1] => Array
+                (
+                    [AcceptStation] => 到达  义乌市 处理中心
+                    [AcceptTime] => 2017-11-30 18:17:00
+                )
+
+            [2] => Array
+                (
+                    [AcceptStation] => 离开金华市 发往中山市
+                    [AcceptTime] => 2017-12-01 03:33:58
+                )
+
+            [3] => Array
+                (
+                    [AcceptStation] => 到达中山三角处理中心处理中心（经转）
+                    [AcceptTime] => 2017-12-02 14:18:00
+                )
+
+            [4] => Array
+                (
+                    [AcceptStation] => 离开中山市 发往广州市（经转）
+                    [AcceptTime] => 2017-12-02 15:28:00
+                )
+
+            [5] => Array
+                (
+                    [AcceptStation] => 到达  广州航站 处理中心
+                    [AcceptTime] => 2017-12-02 18:43:00
+                )
+
+            [6] => Array
+                (
+                    [AcceptStation] => 离开广州航站 发往广州同城处理中心
+                    [AcceptTime] => 2017-12-03 05:26:43
+                )
+
+            [7] => Array
+                (
+                    [AcceptStation] => 到达广州同城处理中心
+                    [AcceptTime] => 2017-12-03 06:51:26
+                )
+
+            [8] => Array
+                (
+                    [AcceptStation] => 番禺大石速递经营部安排投递，预计13:00:00前投递（投递员姓名：李光恩;联系电话：13719164104）
+                    [AcceptTime] => 2017-12-03 08:48:42
+                )
+
+            [9] => Array
+                (
+                    [AcceptStation] => 未妥投，原因：人已他往
+                    [AcceptTime] => 2017-12-03 18:02:16
+                )
+
+            [10] => Array
+                (
+                    [AcceptStation] => 已离开广州同城处理中心，发往番禺大石速递经营部
+                    [AcceptTime] => 2017-12-04 06:20:31
+                )
+
+            [11] => Array
+                (
+                    [AcceptStation] => 番禺大石速递经营部安排投递，预计13:00:00前投递（投递员姓名：李光恩;联系电话：13719164104）
+                    [AcceptTime] => 2017-12-04 08:19:36
+                )
+
+            [12] => Array
+                (
+                    [AcceptStation] => 投递并签收，签收人：他人收 门内
+                    [AcceptTime] => 2017-12-04 10:34:54
+                )
+
+        )
+
+    [State] => 3
+    [EBusinessID] => 1318495
+    [Success] => 1
+)
+Success 查询是否成功
+Reason 如果查询失败，这里显示查询失败原因
+State 物流状态：2-在途中,3-签收,4-问题件
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->express_kdniao->number_recognition(快递单号参数<span>(数字/字符串)</span>);
+</code>
+</div>
+<div class="desc">
+（1）该函数仅对运单号做出识别，识别可能属于的一家或多家快递公司。<br />
+（2）接口识别会返回一家或者多家快递公司，返回的数据根据大数据分析结果排序，排名靠前的命中率更高。<br />
+（3）若识别失败，返回的匹配结果为空。<br />
+（4）此函数返回一个数组。<br />
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('express_kdniao');
+$a_data = $this->express_kdniao->number_recognition('9747288928152');
+print_r($a_data);
+
+// 返回结果格式
+Array
+(
+    [EBusinessID] => 1318495
+    [Success] => 1
+    [LogisticCode] => 9747288928152
+    [Shippers] => Array
+        (
+            [0] => Array
+                (
+                    [ShipperCode] => EMS
+                    [ShipperName] => EMS
+                )
+
+            [1] => Array
+                (
+                    [ShipperCode] => YZPY
+                    [ShipperName] => 邮政快递
+                )
+
+        )
+
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->express_kdniao->company_data();
+</code>
+</div>
+<div class="desc">
+返回一个一维数组，格式为  '快递公司代码' => '快递公司名称'
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('express_kdniao');
+$a_data = $this->express_kdniao->company_data();
+print_r($a_data);
+
+// 返回结果格式
+Array
+(
+    [SF] => 顺丰速运
+    [HTKY] => 百世快递
+    [ZTO] => 中通快递
+	..............
+)
+</code>
+</pre>
+</div>
+
+</body>
+</html>

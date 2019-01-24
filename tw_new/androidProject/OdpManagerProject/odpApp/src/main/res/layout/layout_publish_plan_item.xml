@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:gravity="center_vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/white">
+            <TextView
+                android:id="@+id/plan_order"
+                android:layout_width="@dimen/left_title_width"
+                android:layout_height="wrap_content"
+                style="@style/publish_task_black_style"
+                android:text="计划1"
+                />
+            <EditText
+                android:id="@+id/edit_plan_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/publish_task_black_style"
+                android:background="@color/white"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="@dimen/default_margin"
+                android:hint="请输入计划"
+                />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/delete_plan"
+            android:layout_width="wrap_content"
+            android:src="@drawable/icon_file_delete"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="3dp"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+    <include layout="@layout/line"/>
+</LinearLayout>

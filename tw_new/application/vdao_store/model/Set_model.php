@@ -1,0 +1,77 @@
+<?php
+
+class Set_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /************************************* 获取一条门店记录 *************************************/
+
+    /**
+     * [get_store_one 获取一条门店记录]
+     * @param  [int]   $store_id [传入的门店id]
+     * @return [array]           [返回查询到的数据]
+     */
+    public function get_store_one($store_id)
+    {
+        $a_where = [
+            'store_id' => $store_id,
+        ];
+        $a_data  = $this->db->get_row('store', $a_where);
+        return $a_data;
+    }
+
+    /***************************************** 修改门店 *****************************************/
+
+    /**
+     * [update_store description]
+     * @param  [array] $a_where [修改的条件]
+     * @param  [array] $a_data  [修改的数据]
+     * @return [int]            [返回修改的行数]
+     */
+    public function update_store($a_where, $a_data)
+    {
+        $i_result = $this->db->update('store', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /***************************************** 产品分类 *****************************************/
+    public function category($i_one = false, $s_second = false)
+    {
+        if ($i_one == false) {
+            $a_cate = $this->db->get_row('pro', ['pro_pid' => 0], 'pro_id');
+            //如果第二个参数没有值，默认将二级分类选择第一个值
+            if ($s_second == false) {
+                $a_cate    = $this->db->get_row('pro', ['pro_pid' => 0], 'pro_id');
+                $a_cate_id = $this->db->get_row('pro', ['pro_pid' => $a_cate['pro_id']], 'pro_id,pro_name');
+                $s_second  = $a_cate_id['pro_id'];
+            }
+        } else {
+            $a_cate   = $this->db->get_row('pro', ['pro_pid' => $i_one], 'pro_id');
+            $s_second = $a_cate['pro_id'];
+        }
+        //本来判断第一级分类然后获取写死第二级分类
+        $a_data['second'] = $this->db->get('pro', ['pro_pid' => $a_cate[0]], 'pro_pid,pro_name,pro_id');
+
+        //第三级分类
+        $a_data['third'] = $this->db->get('pro', ['pro_pid' => $s_second], 'pro_pid,pro_name,pro_id');
+
+        if (!empty($a_data['third'])) {
+            //类型
+            foreach ($a_data['third'] as $key => $value) {
+                $a_brand_where[$key] = $value['pro_id'];
+            }
+
+            //分类
+            $a_data['brand'] = $this->db
+                ->where_in('pro_id', $a_brand_where)
+                ->get('pro');
+        }
+        return $a_data;
+    }
+    /********************************************************************************************/
+
+}

@@ -1,0 +1,119 @@
+.main{
+	width: 1024px;
+	margin: 0 auto;
+	background:#f6f9ff;
+}
+
+
+/*右边导航*/
+.right{
+	float: right;
+	width: 90px;
+	/*min-height: 770px;*/
+	height: 740px;
+	background:white;
+}
+.right li a{
+	display: block;
+	width: 90px;
+	height: 145px;
+	box-sizing: border-box;
+	border: 1px solid #eb6877;
+	text-align: center;
+	color: #eb6877;
+	font-size: 20px;
+	line-height: 30px;
+	padding-top: 42px;
+	position: relative;
+	background: white;
+}
+.right li.new a{
+	border-bottom: none;
+}
+.right li a .sanjiao{
+	display: inline-block;
+	width: 11px;
+	height: 17px;
+	background: url(../images/sanjiao_03.png) no-repeat;
+	position: absolute;
+	left: -10px;
+	top: 62px;
+	display: none;
+}
+.right li.rCurrent a{
+	background: #eb6877;
+	color: white;
+}
+.right li.rCurrent a .sanjiao{
+	display: block;
+}
+
+/* 中间的订单 */
+.newOrder{
+	width:853px;
+	/*height:770px;*/
+	height: 740px;
+	display:inline-block;
+	margin:10px;
+	background:white;
+}
+.newOrder>dl>dt{
+	height:39px;
+	line-height:39px;
+	background:#e8f2f9;
+	font-size:0;
+}
+.newOrder>dl>dt>em{
+	display:inline-block;
+	text-align:center;
+	font-size:14px;
+}
+.o1{ width:150px; }
+.o2{ width:140px; }
+.o3{ width:136px; }
+.o4{ width:82px; }
+.o5{ width:105px; }
+.o6{ width:90px; }
+.o7{ width:150px; }
+
+.orederList:nth-child(odd){ background:#f5fafe; }
+.orederList:nth-child(even){ background:white; }
+.orederList{ height:52px; line-height:52px; font-size:0; }
+.orederList>em,.orederList>em>img{ vertical-align:middle;  }
+.orederList>em{ display:inline-block; text-align:center; font-size:12px; }
+.orederList>.o1>img{ width:34px; height:34px; border-radius:50%;  }
+.orederList>.o5>a,.orederList>.o7>a{ color:#2095f2; }
+.orederList>.o7>a{ cursor:pointer; }
+.orederList>.o7>span{ font-size:12px; }
+.orederList>.o7>span>dfn{ margin-left:15px; font-style:normal; color:#2095f2; cursor:pointer; }
+
+.hide{ display:none; }
+/*订单详情弹框*/
+.detailBomb{ width: 370px; height: 520px; background: white; box-shadow: 0 0 20px #dedede; position: fixed; left: 50%; margin-left: -185px; top: 40%; margin-top: -260px; display: none;}
+.detailBomb .messageBox{ width: 315px; height: 375px; margin: 30px 0 0 28px; overflow: auto; border-bottom: 1px solid #eeeeee;}
+.messageBox .numberBox{ position: relative;}
+.numberBox .dingdan{ font-size: 12px; color: #000000;}
+.numberBox .dingdan i{ display: inline-block; width: 13px; height: 13px; background: white; border-radius: 50%; border: 3px solid #009944; vertical-align: middle; margin-right: 12px;}
+.numberBox .cont{ border-left: 1px solid #F2F2F2; min-height: 50px; margin-left: 6px; margin-top: 2px;}
+.numberBox .cont p{ font-size: 12px; color: #666666; margin-left: 17px;}
+.numberBox span{ display: inline-block; width: 3px; height: 3px; background: #c2c0c1; border-radius: 50%; position: absolute;}
+.numberBox .shang{ left: 5px; top: 19px;}
+.numberBox .xia{left: 5px; bottom: 0px !important;}
+.timeBox .dingdan i{ border: 3px solid #ff9500;}
+.takeBox .dingdan i{ border: 3px solid #dc1c5d;}
+.proBox .dingdan i{ border: 3px solid #1fb5ad;}
+.takeBox .cont{ min-height: 65px;}
+.proBox .cont{ border-left: none;}
+.proBox .cont li{ margin-left: 18px; width: 265px;}
+.proBox .cont li i{ font-style: normal; font-size: 12px; color: #666666; display: inline-block; vertical-align: middle;}
+.proBox .cont li i.wen1{width: 172px;}
+.proBox .cont li i.wen2{width: 30px; text-align: right;}
+.proBox .cont li i.wen3{width: 50px; word-break: break-all; text-align: right;}
+.proBox .cont .redPaper{ width: 264px; height: 30px; margin-top: 5px;}
+
+.proBox .cont .red{float: left; display: inline-block; width: 60px; height: 20px; background: #dc1c5d; font-size: 12px; color: white; text-align: center; line-height: 20px; font-style: normal;}
+.proBox .cont .money{ float: right; font-style: normal;}
+.detailBomb .payBox{ height: 50px; margin-left: 51px; width: 268px; margin-top: 3px;}
+.payBox .payType{ width: 110px; float: left; font-size: 12px; color: #666666; padding-top: 8px;}
+.payBox .allMon{ width: 150px; float: right; font-size: 24px; color: #DC1C5D; text-align: right;}
+.closeBox a{ display: block; width: 105px; height: 35px; background: #43cb83; font-size: 12px; color: white; text-align: center; line-height: 35px; border-radius: 4px; margin-left: 132px;}

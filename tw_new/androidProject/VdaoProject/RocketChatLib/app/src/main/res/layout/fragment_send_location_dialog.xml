@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="afterDescendants"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_title_height"
+            android:background="#03a9f4">
+
+            <LinearLayout
+                android:id="@+id/left_title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/left_title_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_back"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:id="@+id/left_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_distance"
+                    android:text="退出"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/font_size_middle"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/center_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="TITLE"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/font_size_large" />
+
+            <LinearLayout
+                android:id="@+id/right_title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/right_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/font_size_middle"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/right_title_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_distance"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/bmap_View"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <ImageView
+            android:id="@+id/bmap_local_myself"
+            android:layout_width="@dimen/dimen_43dp"
+            android:layout_height="@dimen/dimen_43dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dimen_11dp"
+            android:layout_marginLeft="@dimen/dimen_13dp"
+            android:background="@drawable/icon_arrow_bg"
+            android:padding="@dimen/dimen_14dp" />
+
+        <ImageView
+            android:id="@+id/bmap_center_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="50dp"
+            android:src="@drawable/pin" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_3dp"
+        android:background="@drawable/icon_bmap_bg" />
+
+    <ListView
+        android:id="@+id/bmap_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_below="@id/bmap_View"
+        android:visibility="visible" />
+
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?php
+/**
+ * @copyright 广州柒度信息科技有限公司
+ * @version 2.0-dev
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace model;
+
+use utils\BaseModel;
+
+class AdminModel extends BaseModel
+{
+    /**
+     * @param string $content 日志内容
+     * @param int $admin_uid 记录的后台人员id
+     * @return bool
+     */
+    public function log($content, $admin_uid = 0): bool
+    {
+        $admin_uid || $admin_uid = app('user_info')->user_id;
+
+        $this->db->insert(get_table('admin_log'), [
+            'log_at'      => $_SERVER['REQUEST_TIME'],
+            'log_content' => trim($content),
+            'admin_uid'   => $admin_uid,
+            'log_ip'      => $this->request->ip(1)
+        ]);
+
+        return true;
+    }
+}

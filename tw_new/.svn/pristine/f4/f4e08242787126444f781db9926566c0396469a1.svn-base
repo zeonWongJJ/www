@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_bg"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/parent_title_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_tab_stucture"
+            android:layout_height="170dp" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textSize="@dimen/text_size_title"
+                android:text="各类子项目结构"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/project_name"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/text_size_title"
+                android:text=""
+                android:textColor="@color/white"
+                android:layout_gravity="left|bottom"
+                android:drawableRight="@drawable/icon_white_arrow_down"
+                android:drawablePadding="@dimen/default_padding"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="40dp"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_marginTop="-20dp"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

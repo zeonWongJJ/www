@@ -1,0 +1,10 @@
+/* 了解使用 */
+.pjoTitle{ position:relative; border-bottom:0.01rem solid #f5f5f5; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+
+.credentials>img{ width:10rem; }
+
+
+
+

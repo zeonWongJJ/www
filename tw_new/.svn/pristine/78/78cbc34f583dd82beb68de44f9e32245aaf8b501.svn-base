@@ -1,0 +1,22 @@
+<?php
+$a_db_config['db'] = [
+    'server' => 'localhost',
+    //'user' => 'homestead',
+    //'password' => 'secret',
+    'user' => 'wofei',
+    'password' => 'bbJZSw8Lxq8Th6MY',
+    'database' => 'wofei',
+    'charset' => 'UTF8',
+    'persistent' => true,
+    'prefix' => 'wf_'
+];
+
+$a_db_config['smodel_db'] = [
+    'server' => '172.18.0.4',
+    'user' => 'root',
+    'password' => '123456',
+    'database' => 'housekeeping',
+    'charset' => 'UTF8',
+    'persistent' => true,
+    'prefix' => 'hk_'
+];

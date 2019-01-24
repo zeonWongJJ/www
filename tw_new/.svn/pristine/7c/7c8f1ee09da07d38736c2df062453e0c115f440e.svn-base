@@ -1,0 +1,28 @@
+body{ background:#efefef; }
+/*  银行卡认证 */
+.bankInfo                     { padding:0.15rem 0; margin:0.2rem 0; background:#fefacf; color:#ffa218; border-top:0.01rem solid #ffa218; border-bottom:0.01rem solid #ffa218; }
+.bankInfo>marquee             { font-size:0.4rem }
+.userCard                     { padding-left:0.3rem; background:white; border-top:1px solid #dddddd; border-bottom:1px solid #dddddd;}
+.userCard>li                  { padding:0.3rem 0; font-size:0.4rem; border-bottom:1px solid #dddddd;}
+.userCard>li:last-child      { border:none;}
+.userCard>li>span             { width:2rem; display:inline-block; padding-left:0.4rem; }
+.userCard>li>em               { color:#8c8c8c;}
+/*  收到的金额 */
+.SumMoney                      { color:#8c8c8c; padding:0.25rem 0; margin-top:0.25rem; font-size:0.4rem; background:white; border-top:1px solid #dddddd; border-bottom:1px solid #dddddd; }
+.SumMoney>span                { width:2rem; display:inline-block; font-size:0.4rem; color:black; margin-left:35px; }
+.SumMoney>input               { width:1.3rem; height:0.8rem; margin-right:14px; font-size:0.4rem; border:1px solid #dddddd; border-radius:0.2rem; }
+/*  收到的金额 */
+
+.bankSub                       { text-align:center; margin-top:1rem; font-size:0.4rem; }
+.bankSub>img                   { width:5rem; }
+/*  银行卡认证 */
+
+
+
+
+
+
+
+
+
+

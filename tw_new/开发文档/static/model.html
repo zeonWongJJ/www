@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">模型类</div>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+模型是一个类文件，首字母大写，后面接"_model"，类名和文件名需要一致，且必须继承 TW_Model 类
+</div>
+<div class="desc">
+	举例：User_model.php
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+class User_model extends TW_Model {
+	public function __construct() {
+		parent :: __construct();
+	}
+}
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->load->model(模型类名<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	调用模型
+</div>
+<code class="language-php">
+$this->load->model('test_model');
+</code>
+<div class="desc">
+	使用模型，加载模型类时，传递参数给模型类的构造函数方法，请参考《控制器》加载类库的用法。
+</div>
+<code class="language-php">
+$this->test_model->tmodel();
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->load->smodel(模型类名<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	共享模型，可以供多个项目共同使用的模型文件。共享模型的文件存放位置在web/项目文件夹/index.php中的SHAREMODELPATH常量中定义，如果没有此常量，请自行增加，否则使用共享模型时，会抛出异常。为了在视觉上和项目本身的模型不造成混淆，共享模型的命名方式为：首字母大写，后面接"_smodel"，区别是多了一个“s”。另外：加载模型类时，传递参数给模型类的构造函数方法，请参考《控制器》加载类库的用法。
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 共享模型的文件存放位置默认放在框架的根目录，model文件夹中，示例：
+// 共享模型路径(为了多项目模型共享)
+define('SHAREMODELPATH', BASEPATH . 'model'); // 这句代码是放在index.php中的
+
+
+// 使用举例
+$this->load->smodel('test_smodel');
+// test表示模型中的方法名
+$this->test_smodel->test();
+
+// 共享模型文件Test_smodel.php示例
+class Test_smodel extends TW_Model {
+	public function __construct() {
+		parent :: __construct();
+	}
+
+	public function test() {
+		echo 'test';
+	}
+}
+</code>
+</pre>
+</div>
+
+</body>
+</html>

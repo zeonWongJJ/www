@@ -1,0 +1,86 @@
+@charset "utf-8";
+html,body,div,header,footer,nav,section,table,tr,th,td,ul,ol,li,dl,dt,dd,em,i,b,p,s,h1,h2,h3,h4,h5,h6,pre,img,form,fieldset,legend,input,textarea,select,span,button{margin:0; padding:0; font-weight:normal; box-sizing: border-box;}
+body{width:100% !important;  color:#333; font-family:Verdana, Microsoft YaHei, Simsun; background:white;}
+body{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+img{border:0;}
+ol, ul{list-style:none;}
+em {font-style:normal;}
+input, button, select, textarea{outline:none; border:none; border-radius:0;}
+textarea{resize:none;}
+a{text-decoration:none; /*-webkit-tap-highlight-color:rgba(0,0,0,0);*/ -webkit-transition: all 0.25s ease; -moz-transition: all 0.25s ease; -ms-transition: all 0.25s ease; -o-transition: all 0.25s ease; transition: all 0.25s ease;}
+a:hover {text-decoration:none;}
+a:active {color:#333;}
+.clearfix:before,.clearfix:after{content:""; display:table;}
+.clearfix:after{clear:both;}
+.clearfix{_zoom:1;}
+
+
+.hide{ display:none; }
+.main{
+	width: 1024px;
+	margin: 0 auto;
+}
+
+/*分页*/
+.page{ float:right;  margin-top:30px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+/*左边导航*/
+.left{
+	width: 50px;
+	background: #2d313a;
+	float: left;
+	text-align: center;
+	height: 695px;
+}
+.left .message{
+	margin-top: 20px;
+}
+.message .mPic{
+	display: block;
+	width: 50px;
+	height: 105px;
+	margin-top: 20px;
+}
+.message .mPic .sImg{
+	display: block;
+	margin-top: 30px;
+	position: relative;
+}
+.message .yuan{
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	background: #ff0000;
+	border-radius: 50%;
+	position: absolute;
+	right: 17px;
+	top: -3px;
+}
+.message .mPic .wen{
+	font-size: 12px;
+	color: white;
+	margin-top: 5px;
+	display: inline-block;
+}
+.left .current .mPic{/*点击当前的颜色*/
+	background: #f3566b;
+}
+.left .order{
+	margin-top: 175px;
+}
+.left .takeOut{
+	margin-top: -20px;
+}
+.left .takeOut .yuan{
+	right: 11px;
+	top: -2px;
+}
+.left .closeBtn a{
+	display:block;
+	width: 19px;
+	height: 19px;
+	margin:0 auto;
+	margin-top: 70px;
+}

@@ -1,0 +1,70 @@
+<?php
+/**
+ * 短信登录适配器
+ * @copyright 广州柒度信息科技有限公司
+ * @version 0.1-dev
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace model\user\login\adapter;
+
+use model\user\login\ILoginAdapter;
+use model\user\login\LoginModel;
+
+class MsnAdapter extends LoginModel implements ILoginAdapter
+{
+    public function login()
+    {
+        $data['mobile']      = $this->request->post('mobile', '', 'trim');
+        $data['verify_code'] = $this->request->post('verify_code', '', 'trim');
+
+        $this->validate($data, [
+            'mobile'      => 'required|phone',
+            'verify_code' => 'required'
+        ]);
+
+        if (!getenv('APP_DEBUG')) {
+            $code = $this->cache('user.code.' . $data['mobile']);
+            if (!$code || $code != $data['verify_code']) {
+                return $this->error('验证码未获取或已过期');
+            }
+            $this->cache('user.code.' . $data['mobile'], null); // 令验证码失效
+        }
+
+        try {
+            $this->db->set_error_mode();
+            $user_info = $this->db->get_row('user', ['user_phone' => $data['mobile']], 'user_id');
+            if (!$user_info) {
+                $user_id = self::fastInsertUser($data['mobile']);
+                return $this->afterRegisterHook($user_id);
+            }
+            return $this->afterLoginHook($user_info['user_id']);
+        } catch (\Exception $e) {
+            return $this->error('手机登录失败' . (APP_DEBUG ? '，原因：' . $e->getMessage() : ''));
+        }
+    }
+
+    /**
+     * 快速新增用户
+     * @param $user_phone
+     * @return int 新增的用户id
+     */
+    public static function fastInsertUser($user_phone): int
+    {
+        return (new static)->insertUser([
+            'user_phone' => $user_phone
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function setField(): array
+    {
+        return [
+            'mobile'      => '登录手机号',
+            'verify_code' => '验证码'
+        ];
+    }
+
+}

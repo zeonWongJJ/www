@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="static/prism.css" data-noprefix />
+	<link rel="stylesheet" href="static/style.css"/>
+	<script src="static/prism.js"></script>
+	<script src="static/jquery-3.1.1.min.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<!--div class="title">框架手册</div-->
+<div class="menu">
+	<div class="menu_title">框架手册</div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(1)">框架介绍</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(10)">第一个程序</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(2)">环境支持</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(3)">目录结构</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(4)">配置</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(5)">控制器</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(6)">模型</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(7)">视图模板</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(8)">扩展类库</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(9)">路由URI</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(26)">常用函数集合</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(27)">计划执行程序</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(11)">分页类</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(12)">错误处理</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(13)">验证码</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(14)">数据库</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(15)">搜索</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(16)">支付宝支付</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(24)">支付宝当面付</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(17)">微信h5支付</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(18)">微信公众号支付</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(21)">微信分享</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(19)">银联网关支付</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(25)">银联代付</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(20)">客流统计</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(22)">达达配送</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(23)">二维码</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(28)">快递</a></div>
+	<div class="menu_item"><a href="javascript:void(0)" onclick="show_content(29)">高德地图</a></div>
+</div>
+
+<iframe id="content" class="iframe" src="static/structure.html" scrolling="no" frameborder="0"></iframe>
+
+<script>
+$(function(){
+	var width = $(document).width();
+	$(".iframe").css("width", width - 300);
+});
+function show_content(item) {
+	var page = 'static/structure.html';
+	var height = 1000;
+	switch (item) {
+		case 1:
+			page = 'static/introduce.html';
+			height = 1200;
+			break;
+		case 2:
+			page = 'static/environment.html';
+			height = 2100;
+			break;
+		case 3:
+			page = 'static/structure.html';
+			height = 1500;
+			break;
+		case 4:
+			page = 'static/configure.html';
+			height = 3300;
+			break;
+		case 5:
+			page = 'static/controller.html';
+			height = 2000;
+			break;
+		case 6:
+			page = 'static/model.html';
+			height = 1700;
+			break;
+		case 7:
+			page = 'static/view.html';
+			height = 900;
+			break;
+		case 8:
+			page = 'static/extend.html';
+			height = 1200;
+			break;
+		case 9:
+			page = 'static/router.html';
+			height = 2700;
+			break;
+		case 10:
+			page = 'static/guide.html';
+			height = 4000;
+			break;
+		case 11:
+			page = 'static/pages.html';
+			height = 2000;
+			break;
+		case 12:
+			page = 'static/error.html';
+			height = 4500;
+			break;
+		case 13:
+			page = 'static/captcha.html';
+			height = 3100;
+			break;
+		case 14:
+			page = 'static/mysql.html';
+			height = 18000;
+			break;
+		case 15:
+			page = 'static/search.html';
+			height = 6700;
+			break;
+		case 16:
+			page = 'static/alipay_wap.html';
+			height = 8700;
+			break;
+		case 17:
+			page = 'static/wxpay_h5.html';
+			height = 12500;
+			break;
+		case 18:
+			page = 'static/wxpay_pub.html';
+			height = 13500;
+			break;
+		case 19:
+			page = 'static/union_geteway.html';
+			height = 9500;
+			break;
+		case 20:
+			page = 'static/passenger_flow.html';
+			height = 6000;
+			break;
+		case 21:
+			page = 'static/wx_share.html';
+			height = 3000;
+			break;
+		case 22:
+			page = 'static/distribution_dada.html';
+			height = 8000;
+			break;
+		case 23:
+			page = 'static/qrcode.html';
+			height = 3000;
+			break;
+		case 24:
+			page = 'static/alipay_f2f.html';
+			height = 8500;
+			break;
+		case 25:
+			page = 'static/unionpay_transfer.html';
+			height = 4500;
+			break;
+		case 26:
+			page = 'static/general.html';
+			height = 7000;
+			break;
+		case 27:
+			page = 'static/plan.html';
+			height = 3000;
+			break;
+		case 28:
+			page = 'static/express_kdniao.html';
+			height = 5000;
+			break;
+		case 29:
+			page = 'static/map_gaode.html';
+			height = 8000;
+			break;
+	}
+	$('#content').attr('src', page);
+	$(".iframe").css("height", height);
+}
+</script>
+</body>
+</html>

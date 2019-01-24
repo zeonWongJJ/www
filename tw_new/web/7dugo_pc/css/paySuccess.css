@@ -1,0 +1,218 @@
+body{
+    background: #f8f8f8;
+}
+.payS_info {
+
+}
+.payS_info>section{
+    background: #ffffff;
+    height:270px;
+    width:1120px;
+    border: 1px solid #dddddd;
+    margin: 30px auto;
+    box-sizing: border-box;
+}
+.payS_info>section>div{
+    width:49%;
+}
+.payS_info_l img{
+    float: left;
+    margin-right: 20px;
+    width:44px;
+    height:44px;
+}
+.payS_info_l{
+    float: left;
+    height:270px;
+}
+.payS_info_l .cont{
+    display: table;
+    margin: 67px auto;
+}
+.payS_info_l .cont>div{
+    float: left;
+}
+.payS_info_l .cont h1{
+    font-size: 24px;
+    color: #333333;
+}
+.payS_info_l .cont p{
+    margin-top: 15px;
+    font-size: 14px;
+    color: #989898;
+}
+.payS_info_l .btn{
+
+    padding: 40px 0 0 0;
+}
+.payS_info_l .btn button:first-child{
+    color: #7a7a7a;
+    font-size: 14px;
+    border: 1px solid #dddddd;
+    background: #f8f8f8;
+    width:100px;
+    height:30px;
+}
+.payS_info_l .btn button:last-child{
+    margin-left: 30px;
+    color: #882d7c;
+}
+.payS_info_r{
+    float: right;
+    margin: 60px 0;
+    border-left: 1px dashed #dddddd;
+}
+.payS_info_r div{
+    margin-left: 180px;
+}
+.payS_info_r div h2{
+    font-size: 18px;
+    color: #333333;
+}
+.payS_info_r div p{
+    color: #999999;
+    font-size: 14px;
+}
+.payS_info >footer{
+    margin: 0 auto;
+    position: relative;
+    width:1120px;
+}
+.payS_info >footer h3{
+    font-size: 14px;
+    color: #333333;
+    padding-left: 10px;
+    border-left: 4px solid #009944;
+    height:20px;
+}
+.payS_info >footer ul {
+    display: table;
+    width:1120px;
+    margin: 20px 0 30px 0;
+}
+.payS_info >footer ul li {
+    float: left;
+    width:260px;
+    margin:0 10px;
+}
+
+.payS_info >footer ul li a{
+    display: block;
+    width:100%;
+}
+.may_like{
+    display: table;
+    background: #ffffff;
+    width:100%;
+}
+.may_like .img{
+    width:225px;
+    height:225px;
+    margin: 20px;
+}
+.may_like p{
+    text-align: center;
+    line-height:32px;
+    font-size: 14px;
+    color: #666666;
+}
+.may_like>div {
+    display: table;
+    width:225px;
+    margin: 0 auto;
+}
+
+.may_like div div span{
+    font-weight: 700;
+    font-size: 22px;
+    color: #e43a3a;
+}
+.may_like div div span span{
+    font-size: 16px;
+}
+.may_like div div{
+    margin-bottom: 20px;
+    float: left;
+}
+.may_like div div label{
+    margin:6px 0 0 10px;
+    text-decoration: line-through;
+    color: #999999;
+}
+.may_like button{
+    margin-top: 4px;
+    float: right;
+    color: #ffffff;
+    background: #e43a3a;
+    width:60px;
+    height:20px;
+    border-radius: 5px;
+}
+.payS_info >footer>button{
+    display: block;
+    width:180px;
+    height:40px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 0;
+    margin:0 auto 30px auto;
+}
+.payS_info >footer>button a{
+    height:100%;
+}
+.payS_info >footer>button a span{
+    font-size: 18px;
+    color: #333333;
+}
+.payS_info >footer .paging{
+    position: absolute;
+    right: 0;
+    top:0;
+}
+.payS_info .paging i{
+    float: left;
+    cursor: pointer;
+    position: relative;
+    margin: 5px;
+    display: block;
+    width:24px;
+    height:24px;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    background: #ffffff;
+}
+.payS_info .paging  i:hover span{
+    border-color:#f93a3e;
+}
+.payS_info  .paging .prev span{
+    position: absolute;
+    width: 7px;
+    height:7px;
+    background: transparent;
+    top: 7px;
+    left: 9px;
+    border: 2px solid #5e5e5e;
+    border-bottom: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.payS_info .paging .next span{
+    position: absolute;
+    width: 7px;
+    height:7px;
+    background: transparent;
+    top: 7px;
+    right: 9px;
+    border: 2px solid #5e5e5e;
+    border-top: none;
+    border-left: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

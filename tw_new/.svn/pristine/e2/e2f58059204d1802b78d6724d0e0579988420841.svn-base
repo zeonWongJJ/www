@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">@android:color/transparent</color>
+  <color name="colorPrimaryDark">@android:color/transparent</color>
+  <color name="colorPrimaryTextDark">#DE000000</color>
+  <color name="colorSecondaryTextDark">#8A000000</color>
+  <color name="colorAccent">#ffffff</color>
+  <!--<color name="colorAccentLight">#FF6CB1FA</color>
+  <color name="colorAccentDark">#FF287DD7</color>-->
+  <color name="colorAccentLight">@color/transparent</color>
+  <color name="colorAccentDark">@color/transparent</color>
+  <color name="colorAccent_a40">#662D91FA</color>
+  <color name="textColorLink">#008ce3</color>
+  <color name="colorRed400">#FFEF5350</color>
+
+
+  <color name="colorDivider">#1F000000</color>
+
+
+  <!--后面添加-->
+  <color name="transparent">#00000000</color>
+  <color name="blue">#03a9f4</color>
+  <color name="blue_press">#01567c</color>
+  <color name="disable_press">#858e99</color>
+  <color name="able_press_identify">#f98425</color>
+  <color name="gray">#858e99</color>
+  <color name="white">#ffffff</color>
+  <color name="text_color">#3f3f3f</color>
+
+
+  <color name="text_blue_color">#3170cf</color>
+
+  <color name="chat_startColor">#c3dee7</color>
+  <color name="chat_endColor">#efefe3</color>
+  <color name="chat_edittext_strokeColor">#cBcBcd</color>
+  <color name="chat_edittextColor">#fafafa</color>
+
+  <color name="color_adadad">#adadad</color>
+  <color name="color_646464">#646464</color>
+</resources>

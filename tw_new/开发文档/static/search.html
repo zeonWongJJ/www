@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="prism.css" data-noprefix />
+	<link rel="stylesheet" href="style.css"/>
+	<script src="prism.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+<div class="title">搜索类</div>
+<a href="dict_wy.html" target="_blank">网医字典</a>
+<a href="dict_7du.html" target="_blank">7度购字典</a>
+
+<div class="container">
+<div class="line">
+<span class="step">1</span>
+<code class="language-php">
+	$this->load->library('search')
+</code>
+</div>
+<div class="desc">
+	搜索类需要在服务器上进行调试；加载搜索类，使用演示
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('search');
+print_r($this->search->get('7dugo', '金芷'));
+</code>
+</pre>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">2</span>
+<code class="language-php">
+	$this->search->get(搜索的项目名<span>[7dugo/wangyi120]</span>, 搜索词<span>[字符串]</span>, 获取多少条数据<span>[整数]</span>, 偏移量，也就是跳过多少条<span>[整数]</span>);
+</code>
+</div>
+<div class="desc">
+	使用此函数来获取搜索结果，数据以对象的形式返回
+</div>
+<code class="language-php">
+	$this->search->get('7dugo', '金芷', 10);
+</code>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">3</span>
+<code class="language-php">
+	$this->search->count();
+</code>
+</div>
+<div class="desc">
+	返回整数，即匹配的结果总条数
+</div>
+<code class="language-php">
+	echo $this->search->count();
+</code>
+</div>
+
+<div class="container">
+<div class="line">
+<span class="step">4</span>
+<code class="language-php">
+	$this->search->related(获取多少个相关词<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	获取相关词，返回一维数组
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+$this->load->library('search');
+$this->search->get('7dugo', '金芷');
+print_r($this->search->related());
+
+// 结果返回如下：
+Array
+(
+    [0] => 帝岐轩金芷
+    [1] => 金芷1
+    [2] => 金芷痛风茶
+    [3] => 请问金芷在那个药房有得卖
+    [4] => 帝岐轩金芷快速止痛茶
+    [5] => 帝岐轩金芷 快速止痛茶 原名九千岁劲茶
+)
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">5</span>
+<code class="language-php">
+	$this->search->total();
+</code>
+</div>
+<div class="desc">
+	获取总索引数，返回整数
+</div>
+<code class="language-php">
+$this->search->total();
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">6</span>
+<code class="language-php">
+	$this->search->project(项目名<span>(wangyi120/7dugo)</span>);
+</code>
+</div>
+<div class="desc">
+	设置要操作的对象，目前只支持网医和7度购两个项目
+</div>
+<code class="language-php">
+$this->search->project('wangyi120');
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">7</span>
+<code class="language-php">
+	$this->search->query(搜索词<span>[字符串]</span>);
+</code>
+</div>
+<div class="desc">
+	设置要搜索的关键词
+</div>
+<code class="language-php">
+$this->search->query('金芷');
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">8</span>
+<code class="language-php">
+	$this->search->fuzzy(是否开启模糊搜索<span>[true/false]</span>);
+</code>
+</div>
+<div class="desc">
+	true表示开启模糊搜索，false表示关闭模糊搜索，默认参数为true
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 开启模糊搜索
+$this->search->fuzzy();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">9</span>
+<code class="language-php">
+	$this->search->synonym(是否开启同义词搜索<span>[true/false]</span>);
+</code>
+</div>
+<div class="desc">
+	true表示开启同义词搜索，false表示关闭同义词搜索，默认参数为true
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 开启同义词搜索
+$this->search->synonym();
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">10</span>
+<code class="language-php">
+	$this->search->range(字段名<span>(字符串)</span>, 最小取值<span>(整数)</span>, 最大取值<span>(整数)</span>);
+</code>
+</div>
+<div class="desc">
+	特别注意：此语句必须在query函数之后调用才有效，如果使用get函数直接传入搜索词，将无法再调用此函数，如果要使用此函数，就必须使用query函数在先。范围搜索，匹配字段名的值在设定的区间范围内的结果，通常用来操作值为数字型的字段
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 匹配产品ID在5到10之间的产品
+$this->search->range('goods_id', 5, 10);
+
+// 匹配产品ID是 3，5，7的产品，可以调用三次来实现
+$this->search->range('goods_id', 3, 3);
+$this->search->range('goods_id', 5, 5);
+$this->search->range('goods_id', 7, 7);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">11</span>
+<code class="language-php">
+	$this->search->sort(字段名<span>(字符串)</span>, 顺序[true/false]);
+</code>
+</div>
+<div class="desc">
+	搜索结果排序，默认从字段字从小到大，false表示从大到小排序
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 按产品ID从小到大排序
+$this->search->sort('goods_id');
+// 按产品ID从大到小排序
+$this->search->sort('goods_id', false);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">12</span>
+<code class="language-php">
+	$this->search->limit(获取结果限额数量<span>(整数)</span>, 偏移量，也就是跳过多少条[整数]);
+</code>
+</div>
+<div class="desc">
+	设定需要返回多少条结果，以及是否跳过前面多少条，也就是分页的时候用
+</div>
+<code class="language-php">
+$this->search->limit(10);
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">13</span>
+<code class="language-php">
+	$this->search->update(更新数组<span>(数组)</span>);
+</code>
+</div>
+<div class="desc">
+	新增或修改索引，传入规定格式的数组
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 网医
+$a_data = array(
+	'id' => 文章ID,
+	'title' => 标题,
+	'content' => 内容
+	'keyword' => 关键词,
+	'description' => 描述,
+	'author' => 作者,
+	'catid' => 分类ID,
+	'thumb' => 图片缩略图,
+	'url' => 文章链接,
+	'timecreate' => 发表时间,
+	'timeupdate' => 更新时间
+);
+
+// 7度购，右边为对应数据库相应字段
+$a_data = array(
+	'goods_id' => $row['goods_id'],
+	'goods_commonid' => $row['goods_commonid'],
+	'goods_name' => $row['goods_name'],
+	'goods_jingle' => $row['goods_jingle'],
+	'keywords' => $row['keywords'],
+	'description' => $row['description'],
+	'store_id' => $row['store_id'],
+	'store_name' => $row['store_name'],
+	'gc_id_1' => $row['gc_id_1'],
+	'gc_id_2' => $row['gc_id_2'],
+	'gc_id_3' => $row['gc_id_3'],
+	'brand_id' => $row['brand_id'],
+	'brand_name' => $row['brand_name'],
+	'goods_price' => $row['goods_price'],
+	'goods_promotion_price' => $row['goods_promotion_price'],
+	'goods_promotion_type' => $row['goods_promotion_type'],
+	'goods_marketprice' => $row['goods_marketprice'],
+	'goods_image' => $row['goods_image'],
+	'evaluation_count' => $row['evaluation_count'],
+	'goods_addtime' => $row['goods_time_create'],
+	'goods_edittime' => $row['goods_time_edit'],
+	'is_own_shop' => $row['is_own_shop'],
+	'goods_click' => $row['goods_click'],
+	'goods_salenum' => $row['goods_salenum'],
+	'goods_collect' => $row['goods_collect'],
+	'goods_body' => $row['goods_body'],
+	'deductible_point' => $row['deductible_point'],
+	'have_gift' => $row['have_gift'],
+	'evaluation_good_star' => $row['evaluation_good_star'],
+	'goods_feng' => $row['goods_feng'],
+	'type_id' => $row['type_id']
+);
+
+// 执行插入或更新
+$this->search->update($a_data);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">14</span>
+<code class="language-php">
+	$this->search->set_charset(字符集<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	设置字符集，默认使用UTF-8
+</div>
+<code class="language-php">
+$this->search->set_charset('UTF-8');
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">15</span>
+<code class="language-php">
+	$this->search->flush();
+</code>
+</div>
+<div class="desc">
+	强制刷新索引缓存
+</div>
+<code class="language-php">
+$this->search->flush();
+</code>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">16</span>
+<code class="language-php">
+	$this->search->highlight(要进行高亮处理的字符串<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	搜索词高亮，传入要进行高亮的字符串，高亮的词将加上em标签
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 把传入字符串中的袋鼠一词加上em标签
+$a_data = $this->search->get('7dugo', '袋鼠', 1);
+$a_data['goods_body'] = $this->search->highlight('嚅魂牵袋鼠精梦萦需要鼠标只哈哈');
+print_r($a_data['goods_body']);
+</code>
+</pre>
+</div>
+
+
+<div class="container">
+<div class="line">
+<span class="step">17</span>
+<code class="language-php">
+	$this->search->delete(主键值或指定字段的索引值<span>(字符串|数组)</span>, 索引值所属的字段名，不指定默认为主键<span>(字符串)</span>);
+</code>
+</div>
+<div class="desc">
+	在第二个参数字段中，查找包含或匹配第一个参数的内容，进行删除操作
+</div>
+<pre  class="line-numbers">
+<code class="language-php">
+// 删除主键为111的索引
+$this->search->delete('111');
+// 删除主键为33，44，55的索引
+$this->search->delete(['33', '44', '55']);
+// 删除goods_name字段包含“测试”内容的索引
+$this->search->delete('测试', 'goods_name');
+// 删除goods_name字段包含“测试1”和“测试2”内容的索引
+$this->search->delete(['测试1', '测试2'], 'goods_name');
+</code>
+</pre>
+</div>
+
+</body>
+</html>

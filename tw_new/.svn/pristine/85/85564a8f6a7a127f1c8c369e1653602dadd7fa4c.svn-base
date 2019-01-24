@@ -1,0 +1,71 @@
+/* 房间订单 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.roomOrder{ margin-top:15px; margin-left:15px; margin-right:15px; }
+.roomTitle{ padding:10px; }
+.roomTitle>span{ margin-left:5px; color:#999; }
+.roomTitle>span,.roomTitle>em{ font-size:15px; }
+.roomTitle>span,.roomTitle>em,.roomTitle>img{ vertical-align:middle; }
+.roomTitle>span>a { color: #999; text-decoration: none;  }
+/* 房间订单导航 */
+.roomNav{ padding:0 20px; font-size:15px; background:white; }
+.roomNav>ul>li{ margin-left:30px; }
+.roomNav>ul>li>a{ padding:12px 0; color:#999; cursor:pointer; }
+.roomNav>ul>li:first-child{ margin-left:0; }
+.roomNav>ul>li:last-child{ margin-left:50px; }
+.roomNav>ul>li>a.roomCur{ color:#5d3719; border-bottom:2px solid #5d3719; }
+.roomNav>ul>li>a,.roomNav>ul>li>i,.roomNav>ul>li>em,.roomNav>ul,.roomNav>ul>li{ display:inline-block; vertical-align:middle; }
+.roomNav>ul>li>i{ width:6px; height:6px; border-radius:50%;  }
+.receiveOrder>i{ background:red; }
+.servranOrder>i{ background:#ffa800; }
+.servranRun>i{ background:#1dc499; }
+.roomComplete>i{ background:#b5b5b5; }
+.roomNav>ul>li>em{ padding:2px 15px; font-size:12px; border-radius:12px; background:#e1e1e1; }
+/* 用户搜索与分类选择 */
+.roomCateBox{ display:inline-block; position:relative; margin-top:25px; }
+.roomCateBox ul span{ }
+.roomCateBox ul>li{ font-size:15px; }
+#search_order,.seatNum>select{ padding:5px 10px; border-radius:22px;  }
+.userAndSeatNum>a{ margin-left:20px; }
+.orderState{ margin-top:20px; }
+.orderState>a{ display:inline-block; padding:5px 15px; margin-left:10px; font-size:14px; color:black; border-radius:22px; border:1px solid #ddd; background:white;  }
+#roomSub{ position:absolute; right:-110px; bottom:1px;  padding:5px 22px; border-radius:22px; color:white; background:#fec006; border:1px solid #fec006; }
+/* 预约数量 */
+.makeOnNum{ float:right; margin-right:20px; margin-top:20px; padding:10px 0; background:white; border:1px solid #ddd; }
+.makeOnNum,.makeOnNum>ul>li{ display:inline-block; }
+.makeOnNum>ul>li{ width:120px; text-align:center;  border-right:1px solid #ddd; }
+.makeOnNum>ul>li:last-child{ border-right:none; }
+.makeOnNum>ul>li>p{ margin-bottom:10px; font-size:16px; }
+.makeOnNum>ul>li>span{ font-size:20px; }
+/* 房间列表 */
+.roomList{ padding:0 15px; }
+.roomType{ padding:10px 20px; margin-top:15px; background:white; }
+.roomType:hover{ box-shadow:3px 5px 23px #888888; }
+.roomType>p>em,.roomType>p>span{ font-size:14px; }
+.roomType>p>em{ font-weight:bold; }
+.roomType>p>span{ float:right; color:#999; }
+.roomType>dl{ margin-top:5px; }
+.roomType>dl>dt,.roomType>dl>dd{ height:88px; display:inline-block;  vertical-align:top; }
+.roomType>dl>dd{ text-align:center; border-left:1px solid #ddd; }
+.roomType>dl>dd>div{ margin-top:20px; }
+.roomType>dl>dd>div>p,.roomType>dl>dd>div>span{ font-size:14px; }
+.roomType>dl>dt>p,.roomType>dl>dd>p,.typeState>a{ margin-bottom:10px; font-size:14px; }
+.userBox>img,.userBox>em{ vertical-align:top; }
+.userBox>img{ width:55px; border-radius:6px; }
+.userBox>em{ display:inline-block; margin-left:5px; margin-top:8px; }
+.userBox>em>p,.userBox>em>span{ font-size:13px; }
+.userBox>em>p{ margin-bottom:5px; }
+.userBox>em>span{ color:#999; }
+.roomState>div>i{ width:6px; height:6px; margin-right:10px; display:inline-block; border-radius:50%;  }
+.roomState>div>i,.roomState>div>span{vertical-align:middle; }
+.roomUser,{ width:335px; }
+.roomTime{ width:190px; }
+.roomContact{ width:158px; }
+.roomState{ width:180px; }
+.typeState{ width:210px; }
+.typeState>a{ width:140px; display:inline-block; margin-top:15px; padding:10px 0; font-size:17px; color:white; background:#b5b5b5; border-radius:6px; }
+
+/* 分页 */
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+

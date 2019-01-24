@@ -1,0 +1,23 @@
+body{
+    background: #f7f7f7;
+}
+#userEvaluate>section{
+    display: table;
+    margin: 0 auto;
+    width:1200px;
+}
+.userEvaluate_info{
+    float: right;
+    width: 1035px;
+    padding: 40px 0 30px 40px;
+}
+.userEvaluate_info>header{
+    background: #ffffff;
+}
+.userEvaluate_info>header>h2 {
+    line-height: 46px;
+    height: 46px;
+    font-size: 14px;
+    align-items: center;
+    padding-left: 20px;
+}

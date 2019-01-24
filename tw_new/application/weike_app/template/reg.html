@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/register.css"/>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <!--<script src="js/register.js"></script>-->
+    <title></title>
+</head>
+<body>
+<!-- 注册 -->
+
+    <form action="">
+        <div class="userName" >
+            <i class="iconfont">&#xe61a;</i>
+            <input  type="text" id="check_username" placeholder="手机号/用户名"/>
+        </div>
+
+        <button type="submit">注册</button>
+        <!--  登录方式 -->
+        <!--  登录方式 -->
+    </form>
+
+<!-- 注册 -->
+<script>
+    $("#check_username").blur(function(){
+        var str=$("#check_username").val();
+        var ret=/^[\d]{5,20}$/;
+        if(ret.test(str)){
+            console.log("ok");
+        }else{
+            console.log("不通过")
+        }
+    })
+
+</script>
+
+</body>
+</html>

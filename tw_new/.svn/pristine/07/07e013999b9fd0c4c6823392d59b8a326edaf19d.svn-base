@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'user.login' => [
+        'class'  => 'PC_User',
+        'method' => 'login'
+    ],
+    'member.type'   =>  [
+        'class' =>  'PC_User',
+        'method' => 'fuck_test'
+    ]
+];

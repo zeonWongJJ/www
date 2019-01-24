@@ -1,0 +1,201 @@
+<?php
+
+class Balance_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /*********************************** 分页获取门店资金变动数据 ***********************************/
+
+    public function get_balance_page($store_id, $type, $btime, $etime)
+    {
+        // 先设置默认从第一页开始
+        $i_page = $this->router->get(4);
+        if (empty($i_page)) {
+            $i_page = 1;
+        }
+        // 设置每页显示的数据行数
+        $i_prow = 10;
+        // 加载分页类
+        $this->load->library('pages');
+        // 获取数据总行数
+        if ($type == 9 && $etime == 9) {
+            $a_where = [
+                'store_id' => $store_id,
+            ];
+        }
+        if ($type == 1 && $etime == 9) {
+            $a_where = [
+                'store_id'     => $store_id,
+                'balance_type' => 1,
+            ];
+        }
+        if ($type == 2 && $etime == 9) {
+            $a_where = [
+                'store_id'     => $store_id,
+                'balance_type' => 2,
+            ];
+        }
+        if ($type == 9 && $etime == 1) {
+            $a_where = [
+                'store_id'       => $store_id,
+                'balance_time >' => time() - 3600 * 24 * 30 * 1,
+            ];
+        }
+        if ($type == 9 && $etime == 3) {
+            $a_where = [
+                'store_id'       => $store_id,
+                'balance_time >' => time() - 3600 * 24 * 30 * 3,
+            ];
+        }
+        if ($type == 9 && $etime == 6) {
+            $a_where = [
+                'store_id'       => $store_id,
+                'balance_time >' => time() - 3600 * 24 * 30 * 6,
+            ];
+        }
+        if ($type == 9 && $etime > 10) {
+            $a_where = [
+                'store_id'       => $store_id,
+                'balance_time >' => $btime,
+                'balance_time <' => $etime,
+            ];
+        }
+        $i_total = $this->db->get_total('balance', $a_where);
+        // 调用分页运算函数
+        $a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+        // 开始获取产品数据
+        $this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+        $s_field           = '';
+        $a_order           = [
+            'balance_id' => 'desc',
+        ];
+        $a_data['balance'] = $this->db->get('balance', $a_where, $s_field, $a_order);
+        $a_data['count']   = $i_total;
+        return $a_data;
+    }
+
+    /************************************* 获取所有资金变动信息 *************************************/
+
+    /**
+     * [get_balance_all 获取当前门店所有资金变动信息]
+     * @param  [int]   $store_id [传入的门店id]
+     * @return [array]           [返回查询到的数据]
+     */
+    public function get_balance_all($store_id)
+    {
+        $a_where = [
+            'store_id' => $store_id,
+        ];
+        $s_field = '';
+        $a_order = [
+            'balance_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('balance', $a_where, $s_field, $a_order, 0, 99999999);
+        return $a_data;
+    }
+
+    /************************************* 按条件获取资金变动信息 *************************************/
+
+    /**
+     * [get_balance_condition 按条件获取资金变动信息]
+     * @param  [int]   $store_id     [传入的门店id]
+     * @param  [int]   $balance_type [传入的变化类型]
+     * @return [array]               [返回查询到的数据]
+     */
+    public function get_balance_condition($store_id, $balance_type)
+    {
+        $a_where = [
+            'store_id'     => $store_id,
+            'balance_type' => $balance_type,
+        ];
+        $s_field = '';
+        $a_order = [
+            'balance_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('balance', $a_where, $s_field, $a_order);
+        return $a_data;
+    }
+
+    /*************************************** 获取一条门店信息 ***************************************/
+
+    /**
+     * [get_store_one 获取一条门店信息]
+     * @param  [int]   $store_id [传入的注店id]
+     * @return [array]           [返回查询到的数据]
+     */
+    public function get_store_one($store_id)
+    {
+        $a_where = [
+            'store_id' => $store_id,
+        ];
+        $a_data  = $this->db->get_row('store', $a_where);
+        return $a_data;
+    }
+
+    /*************************************** 更新一条门店信息 ***************************************/
+
+    /**
+     * [update_store 更新一条门店信息]
+     * @param  [array] $a_where [更新的条件]
+     * @param  [array] $a_data  [更新的数据]
+     * @return [int]            [返回更新的行数]
+     */
+    public function update_store($a_where, $a_data)
+    {
+        $i_result = $this->db->update('store', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /*************************************** 插入一条变动信息 ***************************************/
+
+    /**
+     * [insert_balance 插入一条变动信息]
+     * @param  [array] $a_data [要插入的信息]
+     * @return [int]           [返回新数据的id]
+     */
+    public function insert_balance($a_data)
+    {
+        $i_result = $this->db->insert('balance', $a_data);
+        return $i_result;
+    }
+
+    /*************************************** 插入一条变动信息 ***************************************/
+
+    /**
+     * [get_store_score 插入一条变动信息]
+     * @return [type] [description]
+     */
+    public function get_store_score($store_id)
+    {
+        $a_where = [
+            'store_id' => $store_id,
+            'sc_type'  => 1,
+        ];
+        $s_field = '';
+        $a_order = [
+            'sc_id' => 'asc',
+        ];
+        $a_data  = $this->db->get('storescore', $a_where, $s_field, $a_order, 0, 99999999);
+        return $a_data;
+    }
+
+    /**************************************** 获取设置信息 *****************************************/
+
+    /**
+     * [get_set_all 获取设置信息]
+     * @return [type] [description]
+     */
+    public function get_set_all()
+    {
+        $a_data = $this->db->get('set', [], '', [], 0, 999999999);
+        return $a_data;
+    }
+
+    /************************************************************************************************/
+
+}

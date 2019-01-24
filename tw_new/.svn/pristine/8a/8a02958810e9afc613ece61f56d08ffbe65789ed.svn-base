@@ -1,0 +1,293 @@
+.main{
+	width: 1024px;
+	margin: 0 auto;
+}
+/*中间订单详情*/
+.middle{
+	width: 240px;
+	height: 600px;
+	float: left;
+	min-height: 770px;
+}
+.middle .title{
+	font-size: 18px;
+	color: #FFFFFF;
+	text-align: center;
+	height: 55px;
+	line-height: 55px;
+	background: #25d7d5;
+}
+.middle .orderList{
+	padding: 0 4px;
+	height: 510px;
+	overflow: auto;
+}
+.orderList li{
+	font-size: 0;
+	padding: 12px 0;
+	border-bottom: 1px solid #e8e8e8;
+}
+.orderList li .oLeft{
+	width: 154PX;
+	display: inline-block;
+	vertical-align: middle;
+}
+.orderList li .oLeft .name{
+	font-size: 14px;
+	color: #333333;
+}
+.orderList li .oLeft .name i{
+	font-style: normal;
+	font-size: 10px;
+}
+.orderList li .oLeft .num{
+	font-size: 14px;
+	color: #333333;
+	margin-top: 5px;
+}
+.orderList li .oRight{
+	display: inline-block;
+	vertical-align: middle;
+}
+.orderList li .oRight .less{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.orderList li .oRight .shu{
+	display: inline-block;
+	font-size: 14px;
+	color: #333333;
+	vertical-align: middle;
+	width: 20px;
+	text-align: center;
+}
+.orderList li .oRight .more{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+	/*结算*/
+.middle .account{
+	padding: 0 8px;
+	padding: 20px 8px 0 8px;
+}
+.account p{
+	font-size: 12px;
+	color: #333333;
+	margin-top: 4px;
+}
+	/*提交*/
+.middle .submit{
+	margin-top: 25px;
+}
+.middle .submit a{
+	display: block;
+	height: 80px;
+	background: #f3566b;
+	font-size: 32px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 80px;
+}
+
+/*右边菜单列表*/
+.right{
+	width: 730px;
+	min-height: 770px;
+	/*background: yellow;*/
+	float: left;
+}
+.right .rNav{
+	padding-left: 5px;
+	height: 55px;
+	line-height: 55px;
+	font-size: 16px;
+	color: #333333;
+	background: white;
+	box-shadow: 0 2px 10px #e6e8ee;
+}
+.rNav li{
+	float: left;
+	margin-right: 40px;
+}
+.rNav li i{
+	font-size: 12px;
+	color: #F3566B;
+	font-style: normal;
+}
+.right .rDown{
+	
+}
+.rDown .rdL{
+	width: 624px;
+	/*height: 200px;
+	background: yellow;*/
+	float: left;
+}
+.rdL .lNav{
+	margin-top: 15px;
+}
+.rdL .lNav li{
+	float: left;
+	font-size: 0;
+	width: 190px;
+	height: 70px;
+	background: white;
+	box-shadow: 0 0 10px #e6e8ee;
+	margin-right: 24px;
+}
+.rdL .lNav li:last-child{
+	margin-right: 0;
+}
+.rdL .lNav li .lImg{
+	width: 75px;
+	height: 70px;
+	background: #37aae3 url(../images/diancan_12.png) no-repeat center center;
+	display: inline-block;
+	vertical-align: top;
+}
+/*加*/
+.rdL .lNav li:nth-child(2) .lImg{
+	background: #2fd07d url(../images/diancan_14.png) no-repeat center center;
+}
+.rdL .lNav li:nth-child(3) .lImg{
+	background: #f9c164 url(../images/diancan_17.png) no-repeat center center;
+}
+/*加*/
+.rdL .lNav li .lDes{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 25px;
+}
+.rdL .lNav li .lDes .p1{
+	font-size: 16px;
+	color: #666666;
+	margin-top: 18px;
+}
+.rdL .lNav li .lDes .p2{
+	font-size: 12px;
+	color: #aaaaaa;
+}
+.rdL .lList{
+	margin-top: 5px;
+}
+.rdL .lList li{
+	float: left;
+	margin: 10px 10px 0 0;
+}
+.lList a{
+	display: block;
+	width: 146px;
+	height: 220px;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 0 0 10px #b9b9b9;
+	position: relative;
+}
+.lList a .lPic{
+	width: 146px;
+	height: 145px;
+	border-radius: 10px 10px 0 0;
+	text-align: center;
+	overflow: hidden;
+}
+.lList a .lName{
+	text-align: center;
+	font-size: 16px;
+	color: #333333;
+	margin-top: 18px;
+}
+.lList a .price{
+	font-size: 14px;
+	color: #ff0041;
+	text-align: center;
+}
+.lList a .red{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	font-size: 14px;
+	color: white;
+	background: #f3566b;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: center;
+	line-height: 20px;
+}
+	/*下右*/
+.rDown .rdR{
+	width: 105px;
+	/*height: 200px;
+	background: blue;*/
+	float: right;
+	margin-top: 10px;
+}
+.rdR li{
+	float: right;
+	margin-top: 12px;
+}
+.rdR li a{
+	display: block;	
+	width: 100px;
+	background: white;
+	border: 1px solid #e8e8e8;
+	border-radius: 10px;
+	font-size: 20px;
+	color: #333333;
+	text-align: center;
+	padding: 18px 2px;
+}
+.rdR li.rCurrent a{
+	background: #f3566b;
+	color: white;
+}
+/*详情弹框*/
+.detailBomb{
+	width: 590px;
+	height: 430px;
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -215px;
+	top: 175px;
+	border-radius: 6px;
+	box-shadow: 0 0 10px #a1a1a1;
+}
+.detailBomb .dTit{
+	height: 45px;
+	background: #34c9e1;
+	border-radius: 6px 6px 0 0;
+	line-height: 45px;
+}
+.dTit .chan{
+	font-size: 16px;
+	color: white;
+	margin-left: 15px;
+}
+.dTit .dClose{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../images/tankuang_03.png);
+	float: right;
+	margin: 10px 15px 0 0;
+}
+.detailBomb .describe{
+	
+}
+.describe .imgBox{
+	width: 215px;
+	height: 162px;
+	float: left;
+	margin: 55px 0 0 20px;
+}
+.describe .imgBox img{
+	width: 100%;
+}
+.describe .chooseBox{
+	float: left;
+}

@@ -1,0 +1,21 @@
+<?php
+$a_db_config['db'] = array(
+	'server' => 'localhost',
+	'user' => 'wofei',
+	'password' => 'bbJZSw8Lxq8Th6MY',
+	'database' => 'wofei',
+	'charset' => 'UTF8',
+	'persistent' => true,
+	'prefix' => $this->db->get_prefix().''
+);
+
+$a_db_config['db_mysql'] = array(
+	'server' => 'localhost',
+	'user' => '',
+	'password' => '',
+	'database' => '',
+	'charset' => 'UTF8',
+	'persistent' => true,
+	'prefix' => ''
+);
+?>

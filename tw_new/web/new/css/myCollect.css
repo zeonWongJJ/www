@@ -1,0 +1,45 @@
+/*  我的收藏 */
+.myCollect              { margin-bottom:50px; }
+/*  头部 */
+.headTitle>p               { height:1.5rem; text-align:center; line-height:1.5rem; font-size:0.45rem; margin-left:20px; border-bottom:1px solid #ddd;  }
+.collectServe              { height:1.5rem; line-height:1.5rem; display:inline-block; font-weight:bold; border-bottom:2px solid red; }
+.collectServant            { height:1.5rem; line-height:1.5rem; margin-left:50px; display:inline-block; font-weight:bold; font-style:normal; }
+.headTitle>p>em            { float:right; margin-right:10px; color:#666666; }
+/* 收藏服务列表 */
+.collectList>ul>li                 { position:relative; border-bottom:1px solid #ddd;}
+.collectList>ul>li>i               { position:absolute; display:inline-block; top:-0.15rem; padding-left:0.2rem;}
+.collectList>ul>li>i>img           { width:2.6rem; box-shadow:3px 0 3px #888889; }
+.collectList>ul>li>i>p             { width:2.68rem; position:absolute; bottom:0.04rem; text-align:center; font-size:0.4rem; padding:2px 0; opacity:0.5; background:#000; color:#fff; font-style:normal; }
+.collectList>ul>li>i>em            { position:absolute; top:0.1rem; left:0.4rem; }
+.collectList>ul>li>i>em>img        { width:0.8rem; }
+.costInfo             { background:#fafafa; }
+.costInfo>p           { position:relative; padding:0.1rem 0; margin:0.6rem 0; font-size:0.4rem; }
+.costInfo>p>span      { width:4.5rem; height:2rem; display:inline-block; margin-left:3.2rem; font-weight:bold;}
+.costInfo>p>span>em   { line-height:0.1rem; font-weight:bold; }
+.costInfo>p>span>s    { display:inline-block; text-decoration:none; margin-top:0.1rem; padding:0 0.4rem; border:1px solid red; border-radius:5px; font-size:0.3rem; color:red;}
+.costInfo>p>em        { float:right; padding-right:10px; font-weight:bold;}
+.costInfo>p>em>span   { display:block; color:#999999; font-weight:bold;}
+.costInfo>p>em>em     { float:right; margin-top:1rem; font-weight:bold; color:#6699ed;}
+.toubiao               { float:right; margin-top:0.7rem; padding:0.1rem 0.2rem; font-weight:bold; color:#6699ed; border:1px solid #6699ed; border-radius:0.2rem;  }
+/*  服务者*/
+
+.servantCon             { position:relative; padding-left:0.4rem; }
+.servantCon>i           { position:absolute; left:0.3rem; top:0.9rem; }
+.servantCon>i>img       { width:0.8rem; }
+.servantInfo            { padding:0.4rem 0; border-bottom:1px solid #ddd; }
+.servantInfo>i          {  }
+.servantInfo>i>img      { width:1.6rem; border-radius:50%; }
+.servantInfo>i>em       { position:absolute; left:1.38rem; top:0.2rem; }
+.servantInfo>i>em>img   { width:0.75rem; }
+.servantInfo>p          { display:inline-block; margin-left:0.2rem; margin-top:0.2rem; vertical-align:top; font-size:0.45rem; }
+.servantInfo>p>span     { font-weight:bold; }
+.servantInfo>p>img      { width:0.5rem; vertical-align:top; }
+.servantInfo>p>b        { position:absolute; right:0.2rem; top:0.65rem; font-size:0.38rem; color:#999; }
+.servantInfo>p>b>dfn    { font-style:normal; }
+.servantInfo>span       { position:absolute; left:2.3rem; top:1.4rem; display:inline-block; padding:0.01rem 0.2rem; font-size:0.38rem; color:#6699ed; border:1px solid #ffd119; border-radius:20px; }
+
+    /*  底部删除栏 */
+.bottomDelete{ -webkit-transform: translateZ(0); width:100%; text-align:center; position:fixed; padding:0.3rem 0; font-size:0.45rem;  background:#ff6700; color:white; bottom:0;}
+
+
+

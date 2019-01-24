@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">IMChat</string><!--7dogoIM-->
+    <string name="fragment_sidebar_main_favorite_title">收藏</string>
+    <string name="fragment_sidebar_main_channels_title">CHANNELS(群组)</string>
+    <string name="fragment_sidebar_main_direct_messages_title">私信</string>
+    <string name="fragment_sidebar_main_livechat_title">客服liveChat</string>
+    <string name="user_status_online">在线</string>
+    <string name="user_status_away">离开</string>
+    <string name="user_status_busy">忙碌中</string>
+    <string name="user_status_invisible">隐身</string>
+    <string name="fragment_sidebar_main_logout_title">退出登录</string>
+    <string name="dialog_add_channel_name">name</string>
+    <string name="dialog_add_channel_private">private</string>
+    <string name="dialog_add_channel_read_only">read only</string>
+
+    <string name="start_of_conversation">开始会话</string>
+    <string name="users_of_room_title">群成员</string>
+    <plurals name="fmt_room_user_count">
+        <item quantity="one">( %,d )</item>
+        <item quantity="other">( %,d )</item>
+    </plurals>
+    <string name="sending">发送中…</string>
+    <string name="not_synced">未发送</string>
+    <string name="failed_to_sync">发送失败</string>
+    <string name="resend">重发</string>
+    <string name="discard">删除</string>
+
+    <plurals name="fmt_dialog_view_latest_message_title">
+        <item quantity="one">New %d message</item>
+        <item quantity="other">New %d messages</item>
+    </plurals>
+    <string name="dialog_view_latest_message_action">View</string>
+
+    <string name="file_uploading_title">正在上传…</string>
+
+    <string name="dialog_user_registration_email">邮箱</string>
+    <string name="dialog_user_registration_username">用户名</string>
+    <string name="sub_username">\@%s</string>
+    <string name="username">\@%s</string>
+    <string name="dialog_user_registration_password">密码</string>
+    <string name="fragment_home_welcome_message">欢迎进入7度IM系统</string>
+    <string name="fragment_input_hostname_hostname">Hostname</string>
+    <string name="fragment_input_hostname_server_hint">demo.rocket.chat</string>
+    <string name="fragment_input_hostname_connect">连接</string>
+    <string name="fragment_login_username_or_email">请输入用户名或邮箱</string>
+    <string name="fragment_login_password">请输入密码</string>
+    <string name="fragment_login_sign_up">注册</string>
+    <string name="fragment_login_sign_in">登录</string>
+    <string name="fragment_retry_login_retry_title">重试</string>
+    <string name="fragment_retry_login_error_title">连接错误</string>
+    <string name="server_config_activity_authenticating">连接中…</string>
+    <string name="home_fragment_title">7度IM主页</string>
+    <string name="fragment_sidebar_main_unread_rooms_title">未读房间</string>
+
+    <string name="doc_upload_message_spec_title">文件</string>
+    <string name="image_upload_message_spec_title">图片</string>
+    <string name="audio_upload_message_spec_title">音频</string>
+    <string name="video_upload_message_spec_title">视频</string>
+    <string name="red_packet_message_spec_title">红包</string>
+    <string name="location_message_spec_title">位置</string>
+
+    <string name="input_hostname_invalid_server_message">Invalid server version</string>
+    <string name="make_sure_your_server_version_is_up_to_date">Make sure your Rocket.Chat server version is up to date</string>
+    <string name="connection_error_try_later">连接错误，请稍后再试</string>
+
+    <string name="version_info_text">版本: %s</string>
+    <string name="two_factor_authentication_title">Two-factor authentication</string>
+    <string name="open_your_authentication_app_and_enter_the_code">Open your authentication app and enter the code</string>
+    <string name="two_factor_code">Two-factor code</string>
+    <string name="spotlight_search">搜索</string>
+    <string name="spotlight_load_more_results">加载更多</string>
+    <string name="edit_message">编辑消息</string>
+    <string name="message_options_no_message_info">Ooops. Something\'s up!</string>
+    <string name="message_options_no_permissions_info">You have no permissions</string>
+    <string name="add_new_team">Add new Team</string>
+
+    <string name="fragment_room_list_pinned_message_title">Pinned Messages (%s)</string>
+    <string name="fragment_room_list_favorite_message_title">Favorite Messages (%s)</string>
+    <string name="fragment_room_list_file_list_title">File list (%s)</string>
+    <string name="fragment_room_list_member_list_title">Member list (%s)</string>
+    <string name="fragment_room_list_could_not_load_your_request">Could not load your request.\n%s.</string>
+    <string name="fragment_room_list_no_pinned_message_to_show">No pinned message to show</string>
+    <string name="fragment_room_list_no_favorite_message_to_show">No favorite message to show</string>
+    <string name="fragment_room_list_no_file_list_to_show">No file list to show</string>
+    <string name="fragment_room_list_no_member_list_to_show">No member list to show</string>
+
+    <string name="menu_pinned_messages">Pinned messages</string>
+    <string name="menu_favorite_messages">Favorite messages</string>
+    <string name="menu_file_list">File list</string>
+    <string name="menu_member_list">Member list</string>
+
+
+    <string name="file_normal">常用文件</string>
+    <string name="file_all">全部文件</string>
+    <string name="empty_data">没有数据</string>
+    <string name="not_available">sd卡不可用</string>
+    <string name="already_select">已选择：%s</string>
+    <string name="file_select_res">确定%s</string>
+    <string name="file_select_max">最多选择%d个文件</string>
+</resources>

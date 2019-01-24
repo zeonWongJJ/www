@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/tag_client"
+        android:layout_width="@dimen/department_member_width"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:drawableLeft="@drawable/icon_circle_unchecked"
+        android:layout_marginRight="@dimen/default_padding"
+        android:gravity="center_vertical|left"
+        android:text=""
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/text_black" />
+    <com.app.base.flow.FlowTagLayout
+        android:id="@+id/color_flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

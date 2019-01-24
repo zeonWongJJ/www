@@ -1,0 +1,68 @@
+
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.suppliesList{ margin-top:20px; margin-left:22px; }
+.suppliesList>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+/* 添加入库 */
+.newSupplies{ margin-top:20px; }
+.suppliesTitle{ background:#fbfbfb; border-bottom:1px solid #ddd; }
+.suppliesTitle>span{ display:inline-block; padding:15px 22px; font-size:16px; border:1px solid #ddd; border-top:2px solid #ffb900; border-bottom:none; background:white; }
+.newSuppliesContent{ background:white; }
+.newSuppliesContent ul{ padding-top:33px; padding-left:32px; }
+.newSuppliesContent ul>li:first-child{ margin-top:0; }
+.newSuppliesContent ul>li{ margin-top:15px; }
+.newSuppliesContent ul>li>em{ width:90px; display:inline-block; text-align:right; vertical-align:middle; margin-right:12px; font-size:14px; font-weight:bold; }
+.newSuppliesContent ul>li>em>s{ font-size:12px; text-decoration:none; color:red; }
+.newSuppliesContent>form>ul>li>s{ text-decoration:none; }
+.newSuppliesContent>form>ul>li>s>img,.newSuppliesContent>form>ul>li>s>span{ vertical-align:middle;  }
+.newSuppliesContent>form>ul>li>s>img{ margin-left:10px; }
+.newSuppliesContent>form>ul>li>s>span{ font-size:14px; color:#999; }
+.newSuppliesContent ul>li>span{ font-size:14px; color:#bfbfbf; }
+.newSuppliesContent ul>li>input{ height:30px; vertical-align:middle; padding:0 10px; border:1px solid #ddd; }
+
+.suppliesName>input,.suppliesCate>input{ width:135px; }
+.suppliesName>span>img{ width:18px; margin-left:10px; vertical-align:middle; }
+.suppliesName>span>em{ vertical-align:middle; }
+.cateDisplay>em{ font-size:14px; }
+.sure,.deny{ vertical-align:middle; margin-left:14px; }
+.sure>img,.deny>img{ vertical-align:sub; }
+#supplies_cate_A,.supplies_cate_B,.supplies_cate_C{ vertical-align:middle; appearance:none; -moz-appearance:none; -webkit-appearance:none;  padding:5px 62px 5px 10px; border:1px solid #ddd; }
+#supplies_cate_A::-ms-expand { display: none; }
+.supplies_cate_B::-ms-expand { display: none; }
+.supplies_cate_B{ margin-left:20px; }
+.containerCate{ width:290px; top:4px; left:105px; margin-left:100px; font-size:15px; }
+.tag{ display:inline-block; margin-top:10px; padding:5px 0 5px 5px; margin-left:5px; background:#f2f2f2; }
+.tag:hover{ background:#484848; color:white; }
+.tag>img{ width:10px; padding:0 5px; }
+.suppliesCate>select{ font-size:14px; }
+.suppliesPrice>input{ width:50px; }
+.mainFigure>input{ border:none; }
+#supplies_pic{ display:inline-block; vertical-align:top; }
+.uploadImg{ float:left; }
+.uploadImg>img{ width:100%; }
+.suppliesDescribe{ position:relative; }
+.suppliesDescribe>em{ vertical-align:top; }
+.suppliesDescribe>span{ position:absolute; right:383px; bottom:7px; }
+.suppliesDescribe>textarea{ width:680px; height:100px; padding:10px 10px; border:1px solid #ddd; }
+#describe{ vertical-align:top; }
+
+#suppliesSub{ padding:5px 10px; margin-left:133px; margin-top:17px; margin-bottom:17px; color:#a33300; border:1px solid #e69c14; background:#ffce1c; cursor:pointer; }
+
+/* 图片上传 */
+.figureContent{ display:inline-block; vertical-align:top; }
+.figureContent>span{ width:480px; display:inline-block; vertical-align:top; margin-left:10px; color:#999; font-size:12px; }
+
+#picbox{ width:960px; overflow:hidden; }
+#maxbox{ margin-top:-23px; }
+.minbox{ width:150px; height:150px; float:left; margin:10px; padding:10px; cursor:pointer; position:relative;  background-image:url(../image/bg.png); }
+.minbox img{ width:150px; height:150px; border:0px; }
+#mypic{ width:0px; height:0px; color:white; background-color:rgb(95, 184, 120); }
+#choose_box{ display:inline-block; padding:8px 10px; color:white; border-radius:3px; text-align:center; font-size:14px; cursor:pointer; background-color:#6e5c58; }
+#upload_box{ display:inline-block; padding:8px 10px; margin-left:10px; color:white; border-radius:3px; text-align:center; font-size:14px; cursor:pointer; background-color:#b19e99; }
+.shade_box{ display:none; width:100%; height:30px; position:absolute; left:0; top:0; z-index:100; filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5; background-color:black; }
+.shade_box img{ max-width:15px; max-height:15px; float:right; margin-top:6px; margin-right:10px;  }
+.success_box{ width: 40px; height:40px; position:absolute; right:0px; top:0px; background-image:url(../image/up_success.png);display:none; }
+.mainpic{ color:white; line-height:30px; font-size:14px; margin-left:10px; display:none; float:left; }
+
+
+
+

@@ -1,0 +1,66 @@
+body                          { background:#efefef; }
+.serviceCompleteOrder                { margin:10px; }
+/* 服务完成 */
+.serviceCompleteBox                   { background:white; }
+.serviceCompleteTime                  { text-align:center; }
+.serviceCompleteTime>p:first-child   { font-size:0.5rem; font-weight:bold; padding-top:0.7rem; }
+.serviceCompleteTime>em               { display:block; padding:0.2rem 0; font-size:0.4rem; }
+.serviceCompleteTime>em>p>em          { color:#6C73F4; }
+.serviceCompleteBtn                   { margin-top:0.2rem; padding-bottom:0.7rem; font-size:0.4rem; }
+.serviceCompleteBtn>a                 { display:inline-block; padding:0.15rem 0.2rem; color:#000; border:1px solid #c9c9c9; border-radius:1rem;  }
+.serviceCompleteBtn>a:last-child     { background:#58d178; color:white; }
+/* 虚线 */
+.dashed               { position:relative; }
+.dashed>p             { width:90%; margin:0 auto; height:10px; border-bottom:1px dashed #ddd; }
+.dashed>i             { width:15px; height:15px; display:inline-block; position:absolute;  border-radius:50%; background:#efefef; }
+.dashed>i:first-child{ top:3px; left:-8px; }
+.dashed>i:last-child { right:-8px; top:2px;}
+/* 虚线 */
+/* 用户信息 */
+.userInfo                       { position:relative; }
+.userInfo>i                     { display:inline-block; position:relative; padding-top:0.2rem; padding-left:0.4rem; }
+.userInfo>i>img:first-child    { width:2rem; }
+.userInfo>i>img:last-child     { width:0.6rem; position:absolute; top:13px; left:1.7rem; }
+.userInfo>span                  { position:relative; top:-1.15rem; left:0.05rem; }
+.userInfo>span>em               { font-size:0.45rem; font-weight:bold;  }
+.userInfo>span>i                { position:relative; top:0.05rem; left:0.1rem; }
+.userInfo>span>i>img            { width:0.5rem; }
+.userInfo>em                    { position:relative; display:inline-block; top:-0.3rem; left:-3.35rem; padding:0 0.2rem; font-size:0.4rem; border:0.01rem solid #FFDB4D;  border-radius:1rem; }
+/*  右侧的图标 */
+.rightIcon            { position:absolute; top:0.65rem; right:0.1rem; font-size:0; }
+.rightIcon>a          { display:inline-block; padding:0 0.2rem;}
+.rightIcon>a>img      { width:1rem; }
+/* 订单的信息 */
+.detailInfo            { background:white; margin-top:0.2rem; }
+.detailInfo>ul         { padding:0.5rem; }
+.detailInfo>ul>li      { margin-bottom:0.2rem; font-size:0.4rem; }
+.detailInfo>ul>li>i    { display:inline-block; vertical-align:middle; margin-right:0.2rem;}
+.detailInfo>ul>li img  { width:0.5rem; }
+.detailInfo>ul>li>em   { float:right; margin-right:0.5rem;}
+.detailInfo>ul>li>p    { margin-left:0.85rem; }
+/* 费用 */
+.cost                 { position:relative; padding:10px 0 0 0; }
+.cost>i               { position:absolute; display:inline-block; top:0.7rem; padding-left:0.2rem;}
+.cost>i>img           { width:2.8rem; box-shadow:3px 0 3px 0#888889; }
+.costInfo             { background:#fafafa; }
+.costInfo>p           { position:relative; padding:0.1rem 0; margin:0.6rem 0; font-size:0.4rem; }
+.costInfo>p>span      { width:4.5rem; height:2.3rem; display:inline-block; margin-left:3.2rem; font-weight:bold; }
+.costInfo>p>span>em   { font-weight:bold; }
+.costInfo>p>span>s    { display:inline-block; text-decoration:none; margin-top:0.1rem; padding:0 0.4rem; border:1px solid red; border-radius:5px; font-size:0.3rem; color:red; }
+.costInfo>p>em        { float:right; padding-right:10px; font-size:0.4rem; font-weight:bold;}
+.costInfo>p>em>span   { display:block; color:#999999; }
+.costInfo>p>em>em     { float:right; margin-top:0.11rem; color:#999; }
+
+/*  价格 */
+.pay             { padding:0.4rem; font-size:0.4rem; }
+.pay>span>span  { font-weight:bold;  }
+.pay>span>em    { color:#999; }
+.pay>em         { float:right; }
+.pay>em>span    { font-size:0.55rem; color:red; }
+.pay>em>span>b  { font-size:0.3rem; }
+/* 订单时间信息 */
+.orderInfo         { position:relative; background:white; padding:0.2rem 0.2rem; margin-top:10px; font-size:14px;  }
+.orderInfo>p       { padding:0.1rem 0; font-size:0.4rem; }
+.orderInfo>p>em    { margin-left:10px; }
+.orderInfo>em      { position:absolute; right:0.2rem; top:0.2rem; padding:0.1rem 0.2rem; font-size:0.4rem; border:1px solid #dddddd; }
+

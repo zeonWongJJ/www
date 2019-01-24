@@ -1,0 +1,57 @@
+<?php
+/**
+ * 路由定义
+ * @notice 命令行自动构建 by rusice <liruizhao970302@outlook.com>
+ *
+ * @copyright 柒度信息科技有限公司
+ */
+
+return [
+    /*单条评论详情*/
+    'comment_detail' => [
+        'class' =>  'comment',
+        'method' => 'comment_detail'
+    ],
+    /*添加评论*/
+    'add_comment' => [
+        'class' =>  'comment',
+        'method' => 'add_comment'
+    ],
+    /*评论列表*/
+    'comment.list' => [
+        'class' =>  'comment',
+        'method' => 'getList'
+    ],
+    /*审核评论*/
+    'comment_update_auditing' => [
+        'class' =>  'comment',
+        'method' => 'comment_update_auditing'
+    ],
+    /*删除单条评论*/
+    'comment.delete' => [
+        'class' =>  'comment',
+        'method' => 'delete_comment'
+    ],
+    /*新增单条评论分类*/
+    'add_comment_type' => [
+        'class' =>  'comment',
+        'method' => 'add_comment_type'
+    ],
+    /*删除单条评论分类*/
+    'delete_comment_type' => [
+        'class' =>  'comment',
+        'method' => 'delete_comment_type'
+    ],
+    /*删除单条评论分类*/
+    'edit_comment_type' => [
+        'class' =>  'comment',
+        'method' => 'edit_comment_type'
+    ],
+    /*获取所有评论分类*/
+    'comment_type_list' => [
+        'class' =>  'comment',
+        'method' => 'comment_type_list'
+    ],
+
+
+];

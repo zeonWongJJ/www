@@ -1,0 +1,22 @@
+<!DOCTYPE html><html style="height: 100%;"><head><meta charset=utf-8><meta name=viewport content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width"><meta http-equiv=X-UA-Compatible content="chrome=1"><title>帮家洁</title><script src="https://webapi.amap.com/maps?v=1.4.2&key=0c4feb71c7ebae0c7f02e339f7b470ff"></script><script type=text/javascript src=https://webapi.amap.com/demos/js/liteToolbar.js></script><script src=https://webapi.amap.com/ui/1.0/main.js></script><script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js?v=1.8.3"></script><script>function wxAuthorizationLoginSuccess(result) {
+      result = JSON.parse(JSON.stringify(result))
+
+      $('#wechat_nickname').val(result.nickname)
+      $('#wechat_openid').val(result.openid)
+      sessionStorage.setItem('wechat_nickname',result.nickname)
+      sessionStorage.setItem('wechat_openid',result.openid)
+    }
+
+    $(function () {
+      $('body').on('focus', 'input', function () {
+        var __this = this;
+        setTimeout(function () {
+          __this.scrollIntoViewIfNeeded()
+        }, 200);
+      }).on('focus', 'textarea', function () {
+        var __this = this;
+        setTimeout(function () {
+          __this.scrollIntoViewIfNeeded()
+        }, 200);
+      })
+    })</script><link href=./static/css/app.95cc3ad6d09121b90dae27ee3fd73d3a.css rel=stylesheet></head><body style="height: 100%;"><div id=app></div><script type=text/javascript src=./static/js/manifest.c671b31a6294c60d458b.js></script><script type=text/javascript src=./static/js/app.bdce9e0b469adc8818e9.js></script></body></html>

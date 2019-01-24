@@ -1,0 +1,42 @@
+<?php
+/**
+ * @copyright 广州柒度信息科技有限公司
+ * @version 2.0-release
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace model\dao;
+
+use model\BaseModel;
+
+class AddressDAO extends BaseModel
+{
+    /**
+     * @param string $lat 纬度
+     * @param string $lng 经度
+     * @param int $total 浮标
+     * @param bool $is_update 是否进行加锁查询
+     * @return string
+     */
+    public static function selectAddressWithDistance($lat, $lng, $total, $is_update = false): string
+    {
+        $user_info = app('user_info');
+        $self      = new static();
+        $sql       = <<<SQL
+SELECT * ,
+  ROUND(
+    6378.138 * 2 * ASIN(
+      SQRT(
+        POW(SIN(({$lat} * PI() / 180- lat * PI() / 180) / 2), 2) + COS({$lat} * PI() / 180) * COS({$lat} * PI() / 180) * POW(SIN(({$lng} * PI() / 180- lng * PI() / 180) / 2), 2)
+      )
+    ) * 1000
+  ) AS juli 
+FROM {$self->db->get_prefix(get_table('user_address'))}
+WHERE user_id = {$user_info->user_id}
+ORDER BY juli ASC, id DESC
+LIMIT 0, {$total} 
+SQL;
+        $is_update && $sql .= ' FOR UPDATE';
+        return $sql;
+    }
+}

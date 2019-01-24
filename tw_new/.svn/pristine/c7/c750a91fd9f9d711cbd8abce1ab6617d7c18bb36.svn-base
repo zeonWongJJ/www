@@ -1,0 +1,34 @@
+/* 订单管理 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.orderManagement{ margin-top:20px; margin-left:22px; }
+.orderManagement>p{ position:relative; padding:15px 0 15px 25px; font-size:16px; background:white; }
+/* 订单列表 */
+.ordersList{ width:287px; position:relative; display:inline-block; margin-right:15px; margin-top:15px; background:white; }
+.ordersList dt>i{ position:absolute; right:0; width:75px; text-align:center; display:inline-block; padding:5px 0; color:white; background:#d8d8da; }
+/*.ordersList:nth-child(1) dt>i{ background:#f4dcb1; }
+.ordersList:nth-child(2) dt>i{ background:#f4dcb1; }
+.ordersList:nth-child(3) dt>i{ background:#f4dcb1; }*/
+.ordersList dt>i>s{ position:absolute; left:0; top:0; width:0; height:0; border-top:14px solid transparent;  border-left:12px solid white;  border-bottom:14px solid transparent; }
+.ordersList dt>i>span{ margin-left:10px; font-size:14px; font-style:normal; }
+.ordersList dt{ border-bottom:1px solid #ddd; }
+.storeInfo{ text-align:center; padding-top:60px; padding-bottom:20px;  }
+.storeInfo>img{ width:85px; border-radius:5px;  }
+.storeInfo>h1{ margin-top:10px; font-size:15px; font-weight:bold; }
+.storeInfo>span{ font-size:13px; color:#999; }
+.ordersList dd{ display:inline-block; text-align:center; padding:15px 0; font-size:14px; }
+.ordersList dd>span{ font-weight:bold; }
+.cafeOrder,.roomOrder,.seatOrder{ width:94px; }
+.cafeOrder{  border-right:1px solid #ddd; }
+.roomOrder{ border-right:1px solid #ddd; }
+.seatOrder{  }
+
+/* 分页 */
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }
+
+
+/*渲染模板时增加的*/
+.ordersList a {
+	color: #000;
+}

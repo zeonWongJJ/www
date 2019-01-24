@@ -1,0 +1,107 @@
+package com.qidu.chat.layouthelper.chatroom;
+
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.qidu.chat.helper.TextUtils;
+
+import com.qidu.chat.R;
+import com.qidu.chat.helper.DateTime;
+
+import chat.rocket.android.widget.AbsoluteUrl;
+import chat.rocket.android.widget.RocketChatAvatar;
+import chat.rocket.core.SyncState;
+
+public abstract class AbstractMessageViewHolder extends ModelViewHolder<PairedMessage> {
+  protected final RocketChatAvatar avatar;
+  protected final ImageView errorImageView;
+  protected final TextView username;
+  protected final TextView subUsername;
+  protected final TextView timestamp;
+  protected final View userAndTimeContainer;
+  protected final AbsoluteUrl absoluteUrl;
+  protected final String hostname;
+  protected final View newDayContainer;
+  protected final TextView newDayText;
+
+  /**
+   * constructor WITH hostname.
+   */
+  public AbstractMessageViewHolder(View itemView, AbsoluteUrl absoluteUrl, String hostname) {
+    super(itemView);
+    avatar = itemView.findViewById(R.id.user_avatar);
+    errorImageView = itemView.findViewById(R.id.errorImageView);
+    username = itemView.findViewById(R.id.username);
+    subUsername = itemView.findViewById(R.id.sub_username);
+    timestamp = itemView.findViewById(R.id.timestamp);
+    userAndTimeContainer = itemView.findViewById(R.id.user_and_timestamp_container);
+    newDayContainer = itemView.findViewById(R.id.newday_container);
+    newDayText = itemView.findViewById(R.id.newday_text);
+    this.absoluteUrl = absoluteUrl;
+    this.hostname = hostname;
+  }
+
+  /**
+   * bind the view model.
+   */
+
+  public final void bind(PairedMessage pairedMessage,int position, boolean autoloadImages) {
+    if (pairedMessage.target.getSyncState() == SyncState.FAILED) {
+      errorImageView.setVisibility(View.VISIBLE);
+    } else {
+      errorImageView.setVisibility(View.GONE);
+    }
+
+    bindMessage(pairedMessage,position, autoloadImages);
+    renderNewDayAndSequential(pairedMessage);
+  }
+
+  protected abstract void bindMessage(PairedMessage pairedMessage,int position, boolean autoloadImages);
+
+  private void renderNewDayAndSequential(PairedMessage pairedMessage) {
+    //see Rocket.Chat:packages/rocketchat-livechat/app/client/views/message.coffee
+    if (!pairedMessage.hasSameDate()) {
+      setNewDay(DateTime.fromEpocMs(pairedMessage.target.getTimestamp(), DateTime.Format.DATE));
+      setSequential(false);
+    } else if (!pairedMessage.target.isGroupable() || !pairedMessage.nextSibling.isGroupable()
+        || !pairedMessage.hasSameUser()) {
+      setNewDay(null);
+      setSequential(false);
+    } else {
+      setNewDay(null);
+      setSequential(true);
+    }
+  }
+
+  private void setSequential(boolean sequential) {
+    /*修改成中国人布局习惯*/
+    /*
+    if (avatar != null) {
+      if (sequential) {
+        avatar.setVisibility(View.GONE);
+      } else {
+        avatar.setVisibility(View.VISIBLE);
+      }
+    }*/
+
+    if (userAndTimeContainer != null) {
+      if (sequential)
+        userAndTimeContainer.setVisibility(View.INVISIBLE);
+      else
+        userAndTimeContainer.setVisibility(View.VISIBLE);
+    }
+  }
+
+  private void setNewDay(@Nullable String text) {
+    if (newDayContainer != null) {
+      if (TextUtils.isEmpty(text)) {
+        newDayContainer.setVisibility(View.GONE);
+      } else {
+        newDayText.setText(text);
+        newDayContainer.setVisibility(View.VISIBLE);
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+/* 发货信息 */
+input,button{ -webkit-appearance:none; }
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.29rem; }
+
+.product{ padding:0.21rem 0; background:white; }
+.product>a>img{ width:1.73rem; margin:0 0.48rem;  }
+.productInfo{ display:inline-block; }
+.product>a>img,.productInfo{ vertical-align:middle; font-style:normal; }
+.productInfo>span{ font-size:0.34rem; }
+.productInfo>p{ height:0.53rem; line-height:0.53rem; font-size:0.26rem; color:#666666; }
+.productInfo>em{ font-size:0.34rem; font-weight:bold; font-style:normal; }
+.productInfo>em>dfn{ font-style:normal; }
+/* 填写信息 */
+.fillContainer{ margin-top:0.26rem; }
+.fillContainer>ul{ padding-left:0.4rem;  background:white; }
+.fillContainer>ul>li{ padding:0.42rem 0; border-bottom:0.01rem solid #ddd; }
+.fillContainer>ul>li:last-child{ border:none; }
+.fillContainer>ul>li>span{ font-size:0.34rem; color:#333333; }
+.logOrder{ position:relative; }
+.logOrder>a{ float:right; margin-right:0.26rem; }
+#order_num,.choiceLog>span{ text-align:right; font-size:0.34rem; }
+#order_num,.logOrder>a>i{ vertical-align:middle; }
+.logOrder>a>i{ width:0.5rem; height:0.5rem; display:inline-block; margin-left:0.29rem; background:url(../images/saoma.png ); background-repeat:no-repeat; background-size:100%; }
+#order{ width:0.5rem; height:0.5rem; color:transparent; opacity:0; vertical-align:middle; }
+.choiceLog>span,.choiceLog>img{ vertical-align:middle; }
+.choiceLog{ float:right; margin-right:0.37rem; }
+.choiceLog>span{ color:#999999; }
+.choiceLog>img{ width:0.24rem; margin-left:0.45rem; }
+/* 快递 */
+.expressContainer{ width:4.73rem; position:absolute; left:2.7rem; padding-bottom:0.58rem; z-index:2; background:white; }
+.expressContainer>ul>li{ padding-left:0.5rem; margin-top:0.58rem; }
+.expressContainer>ul>li>img{ width:0.34rem; margin-right:0.34rem; }
+.expressContainer>ul>li>span{ font-size:0.34rem; }
+.expressContainer>ul>li>img,.expressContainer>ul>li>span{ vertical-align:middle;  }
+
+#logSub{ width:100%; height:1.04rem; line-height:1.04rem; position:fixed; bottom:0; font-size:0.4rem; background:#b5b5b5; color:white; }
+.lay{ position:absolute; width:100%; top:0; background:black; opacity:0.5; z-index:1;  }

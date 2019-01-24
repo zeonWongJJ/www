@@ -1,0 +1,31 @@
+/* 物流信息 */
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.29rem; }
+
+.product{ padding:0.21rem 0; background:white; }
+.product>a>img{ width:1.73rem; margin:0 0.48rem;  }
+.productInfo{ display:inline-block; }
+.product>a>img,.productInfo{ vertical-align:middle; font-style:normal; }
+.productInfo>span{ font-size:0.34rem; }
+.productInfo>p{ height:0.53rem; line-height:0.53rem; font-size:0.26rem; color:#666666; }
+.productInfo>em{ font-size:0.34rem; font-weight:bold; font-style:normal; }
+.productInfo>em>dfn{ font-style:normal; }
+
+/* 物流信息 */
+.logInfo{ padding:0.64rem 0.56rem; margin-top:0.26rem; background:white; }
+.logInfo>p>i>img{ width:0.45rem; margin-right:0.32rem; }
+.logInfo>p>span{ width:8rem; font-size:0.34rem; color:#666666; }
+.logInfo>p>i,.logInfo>p>span{ display:inline-block; vertical-align:middle; }
+
+/* 物流订单 */
+.expressContainer{ margin-top:0.93rem; }
+.expressList>a{ display:inline-block; vertical-align:top;  }
+.exTime{ width:1.73rem; text-align:center; }
+.exTime>p,.exTime>span{ font-size:0.24rem; color:#ff6633; }
+.line{ width:0.96rem; text-align:center; font-size:0; }
+.exCur>.line>i{ width:0.45rem; height:0.45rem; background:#ff6633; }
+.line>i{ width:0.18rem; height:0.18rem; display:inline-block; border-radius:50%; background:#cbcecc; }
+.line>hr{ width:0.02rem; height:1.4rem; display:block; margin-top:0; background:#cbcecc; border:none; }
+.exInfo{ width:5.5rem; }
+.exInfo>span{ font-size:0.32rem; color:#666666; }
+.exCur>.exInfo>span{ color:#ff6633; }

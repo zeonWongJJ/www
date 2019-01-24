@@ -1,0 +1,79 @@
+body{
+	background:white;
+}
+html,body{
+	overflow:inherit;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 1.733333rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	padding-top: 0.853333rem;
+	background: white;
+	position: relative;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a.back{
+	margin-top: 0.066666rem;
+	width: 0.853333rem;
+	height: 0.666666rem;
+	position: absolute;
+	text-align: center;
+	line-height: 0.666666rem;
+	left: 0.266666rem;
+	top: 0.8rem;
+}
+.main .head a.back img{
+	width: 0.853333rem;
+	height: 0.32rem;
+}
+.main .titleBox{
+	width: 87%;
+	margin-left: 13%;
+	box-shadow: 0 4px 20px #cacaca;
+	border-radius: 0.133333rem 0 0 0.133333rem;
+	margin-top: 0.266666rem;
+	padding-top: 0.6rem;
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+}
+.titleBox .h2{
+	font-size: 0.426666rem;
+	color: #000000;	
+}
+.titleBox .subhead{
+	font-size: 0;
+	margin-top: 0.333333rem;
+	margin-bottom: 0.4rem;
+	position: relative;
+}
+.titleBox .subhead span{
+	font-size: 0.266666rem;
+	color: #999999;
+	display: inline-block;
+}
+.titleBox .subhead .span1{
+	width: 5.8rem;
+}
+.titleBox .subhead .span2{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.main .describe{
+	margin-top: 0.733333rem;
+	padding: 0 0.466666rem;
+	font-size: 0.346666rem;
+	color: #999999;
+}
+.describe p{
+	text-indent: 0.8rem;
+	line-height: 0.533333rem;
+}

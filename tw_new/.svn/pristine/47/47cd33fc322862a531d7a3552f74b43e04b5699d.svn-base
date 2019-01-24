@@ -1,0 +1,17 @@
+version: "3.6"
+
+services:
+  qiqing_jiajie_v2_admin:
+    image: swoft/swoft
+    container_name: qiqing_jiajie_v2_admin
+    restart: always
+    ports:
+    - "19022:80"
+    networks:
+      yiyenet:
+        ipv4_address: 172.18.0.99 # 这个是应用分配的IP，前三个网段不能变，不然会导致连接不上数据库
+
+# 下面照着抄就行了
+networks:
+  yiyenet:
+    external: true

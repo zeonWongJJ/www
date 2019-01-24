@@ -1,0 +1,768 @@
+﻿body{
+    background: #f7f7f7;
+}
+ul,li,p,h1,h2,h3,h4{
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 12px;
+}
+a{
+    cursor: pointer;
+}
+input{
+    text-decoration: none;
+    border: none;
+}
+.orderDetails_info{
+    /*float: right;*/
+    width:1035px;
+    padding: 40px 0 30px 144px;
+    margin:0 auto;
+}
+.orderDetails_info>header{
+    background: #ffffff;
+}
+.orderDetails_info>header>h2{
+    height:46px;
+    font-size: 14px;
+    align-items: center;
+    padding-left:20px ;
+    display: flex;
+    font-weight: 400;
+}
+.orderDetails_info>section{
+    padding: 20px;
+    margin-top: 30px;
+    background: #ffffff;
+}
+.order_state{
+    height:120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order_state ul{
+    display: flex;
+    justify-content: center;
+}
+.order_state li{
+    width:190px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.order_state label{
+    position: relative;
+    width:26px;
+    height:26px;
+}
+.order_state span{
+    position: absolute;
+    width:26px;
+    height:26px;
+    border-radius: 50%;
+    background: #dcdcdc;
+}
+.order_state em{
+    position: absolute;
+    width: 6px;
+    height: 14px;
+    left: 10px;
+    bottom: 8px;
+    background: transparent;
+    border-right: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+.order_state i{
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width:190px;
+    height:2px;
+    background: #dcdcdc;
+}
+.order_state p{
+    margin-top: 10px;
+    line-height:26px;
+    align-items: center;
+    color: #333333;
+}
+.order_state time{
+    color: #333333;
+}
+
+.order_state .state1 i{
+    background: #18773a;
+}
+.order_state .state1 span{
+    background: #18773a;
+}
+.order_state .state1 em{
+
+}
+
+.order_state .state2 i{
+    background: #dcdcdc;
+}
+.order_state .state2 span{
+    background: #18773a;
+}
+.order_state .state2 em{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 6px;
+    bottom: 6px;
+    background: #ffffff;
+    border:none;
+    border-radius: 50%;
+}
+
+.order_state .state3 i{
+    background: #dcdcdc;
+}
+.order_state .state3 span{
+    background: #dcdcdc;
+}
+.order_state .state3 em{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 6px;
+    bottom: 6px;
+    background: #ffffff;
+    border:none;
+    border-radius: 50%;
+}
+
+.order_state_info>header{
+    flex-direction: column;
+    border: 1px solid #dddddd;
+    display: flex;
+    padding: 20px 40px 20px 20px;
+}
+.order_state_info>header>div{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.order_state_info>header>div>div{
+    margin-top: 10px;
+}
+.order_state_info>section{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.order_state_info>section>div:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.now_state {
+    display: flex;
+
+}
+.now_state p{
+    padding: 10px 0;
+    color: #333333;
+}
+.now_state h3{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    align-items: center;
+}
+.now_state h3 span{
+    font-weight: 700;
+    color: #bf0000;
+}
+.now_state >div{
+    padding-left: 10px;
+}
+.now_state .btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:10px 0 ;
+    justify-content: flex-start;
+}
+.now_state .btn span{
+    font-size: 14px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    color: #999999;
+}
+.now_state .btn button{
+    padding: 0 10px;
+    background: #e23f42;
+    color: #ffffff;
+    font-size: 14px;
+    height:28px;
+    align-items: center;
+}
+button{
+    cursor: pointer;
+    list-style: none;
+    border: none;
+    background: none;
+    margin: 0;
+    outline: none;
+}
+.now_state .btn a{
+    display: flex;
+    padding: 0 10px;
+    color: #1fbba6;
+    font-size: 14px;
+    height:28px;
+    align-items: center;
+}
+.now_state .state{
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    width:24px;
+    height:24px;
+    border: none;
+}
+.now_state i,
+.now_state em{
+    display: flex;
+    position: absolute;
+}
+.now_state .state1{
+    border: 2px solid #3f8654;
+}
+.now_state .state1 em{
+    width: 5px;
+    height: 10px;
+    left: 8px;
+    bottom: 7px;
+    border: transparent;
+    border-right: 4px solid #3f8654;
+    border-bottom: 4px solid #3f8654;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+.now_state .state2{
+    border: 2px solid #5a77c9;
+}
+.now_state .state2 em {
+    left: 9px;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background:#5a77c9 ;
+}
+.now_state .state2 i {
+    background: #5a77c9;
+    left: 10px;
+    top: 2px;
+    width: 4px;
+    height: 10px;
+}
+.now_state .state3{
+    border: 2px solid #ac0000;
+}
+.now_state .state3 em {
+    left: 5px;
+    top: 10px;
+    width: 14px;
+    height: 4px;
+    border-radius: 2px;
+    background:#ac0000 ;
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+}
+.now_state .state3 i {
+    background: #ac0000;
+    left: 5px;
+    top: 10px;
+    width: 14px;
+    height: 4px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
+
+.courier_info{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #dddddd;
+    padding-left: 38px;
+}
+.courier_info ul{
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+}
+.courier_info ul li{
+    display: flex;
+    height:26px;
+    align-items: center;
+}
+.courier_info label{
+    margin: 0 10px;
+    width:16px;
+    height:16px;
+    position: relative;
+    background: none;
+}
+.courier_info span{
+    position: absolute;
+    width:16px;
+    height:16px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+}
+.courier_info em{
+    position: absolute;
+    left: 5px;
+    top:5px;
+    width:8px;
+    height:8px;
+    border-radius: 50%;
+    background: #f8f8f8;
+    box-shadow: inset 1px -2px 2px rgba(0,0,0,0.1);
+}
+.courier_info p{
+    color: #333333;
+}
+.courier_info i{
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    left: 8px;
+    top: 15px;
+    background: #e5e5e5;
+}
+.courier_info .active p{
+    color: #d94244;
+}
+.courier_info .active em{
+    position: absolute;
+    left: 4px;
+    top:4px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background: #d94244;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5);
+}
+.courier_info .active span{
+    border: 1px solid #dddddd;
+    background: #f7f7f7;
+}
+
+.address_info,
+.send_info,
+.order_list{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dddddd;
+    border-top: 2px solid #3f8654;
+    box-sizing: border-box;
+}
+.address_info h2,
+.send_info h2{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333333;
+    height:30px;
+    align-items: center;
+    padding-left: 20px;
+    font-weight: 400;
+}
+.send_info ul,
+.address_info ul{
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #dddddd;
+    width:218px;
+    flex-direction: column;
+}
+.send_info ul li,
+.address_info ul li {
+    display: flex;
+    padding: 5px 0;
+}
+.send_info span,
+.address_info span{
+    width:60px;
+    color: #555555;
+}
+.send_info p,
+.address_info p{
+    width:158px;
+    color: #555555;
+}
+.send_info{
+    margin-top: 20px;
+}
+.order_list{
+    width:725px;
+}
+.order_list header{
+    display: flex;
+    flex-direction: column;
+}
+.order_list header h2{
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333333;
+    height:30px;
+    align-items: center;
+    padding-left: 20px;
+}
+.order_list header>div{
+    display: flex;
+    justify-content: space-between;
+}
+.order_list header>div>div{
+    display: flex;
+    align-items: center;
+    padding-right:10px ;
+}
+.order_list header>div>div span{
+    background: #3f8654;
+    color: #ffffff;
+    padding: 0 3px;
+    margin: 0 10px;
+    border-radius: 3px;
+}
+.order_list header>div>div h2{
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0;
+}
+.order_list header>div>div i{
+    font-size: 18px;
+    margin-left: 10px;
+    color: #ffc900;
+}
+.order_list header>ul{
+    display: flex;
+    padding-left: 10px;
+    height:40px;
+    border-top: 1px solid #dddddd;
+}
+.order_list header>ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:13%;
+    border-bottom: 1px solid #dddddd;
+}
+.order_list header>ul li:first-child{
+    padding-right: 332px;
+}
+.order_list footer{
+    display: flex;
+    padding: 20px 10px;
+}
+.order_item{
+    border-bottom:1px solid #cccccc ;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.order_item a{
+    height:140px;
+    width:40px;
+    align-items: center;
+    justify-content: center;
+}
+.order_item .img{
+    position: relative;
+    width:100px;
+    height:100px;
+    margin: 10px;
+}
+.order_item .img:after{
+    opacity: 0;
+    content: "赠品";
+    position: absolute;
+    background: rgba(0,0,0,0.75);
+    height:20px;
+    width:100px;
+    text-align: center;
+    color: #ffffff;
+    left: 0;
+    bottom:0 ;
+}
+.order_item .img:hover:after{
+    opacity: 1;
+}
+.order_item .cont{
+    width:260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.order_item .cont h2 {
+    font-weight: 400;
+    padding: 0;
+    font-size: 14px;
+}
+.order_item .cont p {
+    color: #666666;
+}
+.order_item .cont div{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.order_item .cont div>span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:18px;
+    width:18px;
+    color: #3f8654;
+    border: 1px solid #3f8654;
+}
+.order_item .cont div ul{
+    display: flex;
+    padding:0 5px;
+    flex-direction: column;
+}
+.order_item .cont div ul li{
+    display: flex;
+    height:20px;
+    align-items: center;
+}
+.order_item .cont div ul li span{
+    margin: 0 10px;
+    color: #666666;
+}
+.order_item .price,
+.order_item .amount{
+    width:120px;
+    color: #666666;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order_item .btn {
+    margin: 0 20px;
+    height:24px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+.order_item .btn input {
+    width:50px;
+    text-align: center;
+}
+.order_item .btn button{
+    width:24px;
+    height:24px;
+    padding: 0;
+}
+.order_item .edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.order_item .edit i {
+    display: flex;
+    width:60px;
+    height:60px;
+    align-items: center;
+    justify-content: center;
+    color: #666666;
+}
+
+.total{
+    padding: 20px;
+    margin-top: 20px;
+    background: #fbf9ed;
+    width:340px;
+    height:70px;
+    border-left: 5px dotted #ffffff;
+    border-right: 5px dotted #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.total span{
+    color: #bf0000;
+}
+.total dd span{
+    font-size: 14px;
+    font-weight:700;
+    color: #bf0000;
+}
+.total p{
+    display: flex;
+    color: #666666;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    width:150px;
+}
+.total ul{
+    width:99px;
+    border-left: 1px solid #dddddd;
+    align-items: flex-end;
+    flex-direction: column;
+}
+.total ul li,
+.total dl dd{
+    display: flex;
+    height:20px;
+    align-items: center;
+    color: #666666;
+}
+.total dl{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width:90px;
+}
+/*用户顶部菜单*/
+#user_top_nav{
+    padding:0 20px 0 125px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1055px;
+    height: 80px;
+    background: #1ba794;
+}
+#user_top_nav>div{
+    align-items: center;
+    display: flex;
+}
+#user_top_nav>div i{
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    color: #ffffff;
+}
+#user_top_nav>div i span,
+#user_top_nav>div i label{
+    line-height:16px;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+    background: #e52435;
+    width:16px;
+    height:16px;
+    left: 20px;
+    top:4px;
+    border-radius: 50%;
+    font-size: 10px;
+}
+#user_top_nav>div .icon-youxiang{
+    font-size: 20px;
+}
+#user_top_nav>div i label{
+    background: #f6bb42;
+}
+#user_top_nav a{
+    display: block;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.10);
+    color: #ffffff;
+}
+#user_top_nav img,
+#user_top_nav a{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.10);
+}
+
+#user_top_nav>div .img{
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+}
+#user_top_nav>div p{
+    color: #ffffff;
+    margin-left: 10px;
+}
+/*用户侧边菜单*/
+#user_sidebar{
+    height:1100px;
+    position: relative;
+    width: 125px;
+    background: #1fbba6;
+}
+#user_sidebar ul{
+    width:120px;
+    right: 0;
+    top:0;
+    padding-top: 90px;
+    flex-direction: column;
+}
+#user_sidebar a{
+    width:96%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#user_sidebar a .img{
+    display: flex;
+    background-size: auto;
+    background-position: -61px 0;
+    background-image: url(../image/icon_user_nav.png);
+    width:61px;
+    height:61px;
+}
+
+#user_sidebar a span{
+    font-size: 16px;
+    color: #ffffff;
+}
+#user_sidebar li{
+    justify-content: flex-end;
+    height:140px;
+}
+#user_sidebar .active a{
+    background: #f7f7f7;
+}
+#user_sidebar .active span{
+    color: #1fbba6;
+}
+#user_sidebar .active .img{
+    background-position-x: 0px;
+}
+.dn{
+    display: none !important;
+}
+.img{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

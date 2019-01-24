@@ -1,0 +1,15 @@
+<?php
+$index_html = '/www/touch/index.html';
+file_exists($index_html) || $index_html = '/www/touch/index.html.back';
+$index = file_get_contents($index_html);
+
+$inject = "<?php 
+    8
+    \$touchURL = getenv('TOUCH_DOMAIN') ?: 'http://jiajie-touch.7dugo.com';
+?>
+<script id=\"jiajie_config\">window.config={ baseURL: '<?=\$baseURL;?>', touchURL:'<?=\$touchURL?>', localhostData: ''}</script>";
+
+$regex = "/<script id=\"jiajie_config\"[\s\S]*?<\/script>/i";
+file_put_contents('/www/touch/index.php', preg_replace($regex, $inject, $index));
+copy('/www/touch/index.html', '/www/touch/index.html.back');
+unlink('/www/touch/index.html');

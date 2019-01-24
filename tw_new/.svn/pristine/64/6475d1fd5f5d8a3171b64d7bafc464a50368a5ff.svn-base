@@ -1,0 +1,110 @@
+<?php
+/**
+ * 基类的trait
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace utils\traits;
+
+trait BaseTrait
+{
+    /**
+     * 查询构造获取
+     * @return array
+     */
+    final public function buildQuery(): array
+    {
+        $condition = $this->request->post('condition') ?? [];
+
+        $sort  = $this->request->post('sort') ?? ['id' => 'DESC'];
+        $page  = $this->request->post('page', 0, 'intval') ?? 1;
+        $limit = $this->request->post('limit', 0, 'intval') ?? 0;
+        $limit || $limit = $this->request->post('rows') ?? 0;
+        $limit = $limit ?: 10;
+        $field = $this->request->post('field') ?? '*';
+
+        $page = $page ?: 1;
+        $limit = $limit ?: 1;
+        /** @noinspection TypeUnsafeComparisonInspection */
+        $offset = $page == 1 ? 0 : (($page - 1) * $limit) - 1;
+        return [$field, $sort, $offset, $limit, $condition];
+    }
+
+    /**
+     * 控制器快速验证数据
+     *
+     * @param $data
+     * @param $rules
+     * @return array|bool
+     */
+    final protected function validate($data, $rules)
+    {
+        if (method_exists($this, 'setField')) {
+            $field = $this->setField();
+        } else {
+            $field = [];
+        }
+        $this->message = validate($data, $rules, $field);
+        if (\is_array($this->message) && $this->message) {
+            return $this->error('ips-validate-error', 1, $this->message);
+        }
+
+        return true;
+    }
+
+    /**
+     * 操作失败输出
+     * @param string $msg
+     * @param int $code
+     * @param array $rows
+     * @param array $append
+     * @return mixed
+     */
+    final protected function error($msg = 'isp-error', $code = 1, array $rows = [], array $append = [])
+    {
+        error($msg, $code, $rows, $append);
+    }
+
+    /**
+     * 响应json
+     *
+     * @param string $msg
+     * @param int $code
+     * @param array $rows
+     * @param array $append
+     * @return mixed
+     */
+    final protected function json($msg = '暂无数据', $code = 1, array $rows = [], $count = 0, array $append = [])
+    {
+        $response = $this->response->send($msg, $code, $rows, $count, $append, 'json');
+        exit($response);
+    }
+
+    /**
+     * 操作成功输出
+     * @param array|mixed $rows
+     * @param int $count
+     * @param array $append
+     * @param string $msg
+     * @return mixed
+     */
+    final protected function success($rows = [], $count = 1, array $append = [], $msg = 'OK')
+    {
+        success($rows, $count, $append, $msg, 'json');
+    }
+
+    /**
+     * 控制器快速获取缓存操作
+     * @param $key
+     * @param $value
+     * @param string $type
+     * @param int $lifetime
+     * @param string $group
+     * @param array $config
+     * @return bool|mixed
+     */
+    final protected function cache($key, $value = '', $lifetime = 3600, $type = 'redis', $group = 'qidu_', array $config = [])
+    {
+        return cache($key, $value, $type, $lifetime, $group, $config);
+    }
+}

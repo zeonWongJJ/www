@@ -1,0 +1,15 @@
+<?php
+/**
+ * 服务端初始化处理
+ * @copyright 广州柒度信息科技有限公司
+ * @version 2.0-release
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+$upload_path = '/www/server/web/uploadfile/';
+
+if (!is_dir($upload_path)) {
+    mkdir($upload_path, 0777, true);
+}
+
+chmod($upload_path, 0777, true);

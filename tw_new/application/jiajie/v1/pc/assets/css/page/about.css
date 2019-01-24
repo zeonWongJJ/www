@@ -1,0 +1,142 @@
+.jiajie-common_banner {
+    background: url("../../img/pic_02.jpg") no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 51px;
+}
+
+.jiajie-common_banner .jiajie-about_banner_box {
+    position: relative;
+    top: -6px;
+    height: 307px;
+    width: 984px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px #ffffff solid;
+    border-top: none;
+}
+
+.jiajie-common_banner .jiajie-about_banner_box h1 {
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 80px;
+    text-align: center;
+    top: 91px;
+    width: 100%;
+}
+
+.jiajie-common_banner .jiajie-about_banner_box h2 {
+    position: absolute;
+    top: 205px;
+    color: #FFFFFF;
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+}
+
+.jiajie-common_banner .jiajie-about_banner_box_top_title {
+    margin-top: 148px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 36px;
+}
+
+.jiajie-common_banner .jiajie-about_banner_box_top_title span.txt {
+    /*position: absolute;*/
+    /*top: -10px;*/
+    width: 480px;
+    color: #FFFFFF;
+    vertical-align: middle;
+    margin: 0 60px;
+}
+
+.jiajie-common_banner .jiajie-about_banner_box_top_title span.line {
+    display: inline-block;
+    width: 259px;
+    border-top: 1px solid #FFFFFF;
+}
+
+.jiajie-common_banner p.jiajie-about_banner_box_top_remark {
+    text-indent: 2em;
+    width: 998px;
+    margin: 0 auto;
+    font-size: 20px;
+    color: #FFFFFF;
+    line-height: 36px;
+}
+
+.jiajie-section-1 img {
+    float: left;
+    width: 600px;
+}
+.jiajie-section-1 .jiajie-section-info {
+    padding-left: 660px;
+}
+.jiajie-section .jiajie-section-info h4 {
+    color: #1fc2ec;
+    font-size: 32px;
+}
+
+.jiajie-section .jiajie-section-info h5 {
+    color: #1fc2ec;
+    margin-top: 11px;
+    font-size: 16px;
+}
+
+.jiajie-section .jiajie-section-info .hx {
+    margin-top: 31px;
+    margin-bottom: 53px;
+    display: block;
+    width: 32px;
+    height: 2px;
+    background-color: #1fc2ec;
+}
+
+.jiajie-section .jiajie-section-info p {
+    /*text-indent: 2em;*/
+    margin-top: 36px;
+    font-size: 22px;
+    color: #777777;
+    line-height: 36px;
+}
+.jiajie-section .jiajie-section-info p:first-child {
+    margin-top: 0;
+}
+
+.jiajie-section-2 .jiajie-section-info {
+    padding-right: 660px;
+}
+
+.jiajie-section-2 img {
+    width: 600px;
+    float: right;
+}
+
+.jiajie-section .jiajie-section_full {
+    margin-top: 74px;
+}
+.jiajie-section .jiajie-section_full h4 {
+    font-size: 32px;
+    color: #1fc2ec;
+    text-align: center;
+    margin-bottom: 14px;
+}
+.jiajie-section .jiajie-section_full span {
+    display: block;
+    font-size: 16px;
+    color: #1fc2ec;
+    text-align: center;
+    margin-bottom: 47px;
+}
+.jiajie-section .jiajie-section_full p {
+    width: 1076px;
+    font-size: 22px;
+    line-height: 36px;
+    margin: 0 auto;
+    color: #777777;
+}
+.jiajie-section .jiajie-section_full img {
+    width: 1194px;
+    height: 362px;
+    margin-top: 45px;
+}

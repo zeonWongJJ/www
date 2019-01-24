@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="6dp"
+    app:cardMaxElevation="12dp"
+    app:cardUseCompatPadding="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/store_license"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/default_margin"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/store_name"
+                android:layout_width="wrap_content"
+                android:text="钟福广场店"
+                android:textColor="#000000"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="top"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/store_address"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="广州市番禺区"
+                    android:textColor="#000000"
+                    android:layout_marginRight="20dp"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:text=""
+                    android:drawableLeft="@drawable/icon_location"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/user_list"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="left"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:src="@drawable/user_default"
+                        android:visibility="invisible"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:src="@drawable/user_default"
+                        android:layout_marginLeft="-8dp"
+                        android:visibility="invisible"
+                        android:background="@drawable/bg_circle_user"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:src="@drawable/user_default"
+                        android:layout_marginLeft="-8dp"
+                        android:visibility="invisible"
+                        android:background="@drawable/bg_circle_user"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:src="@drawable/user_default"
+                        android:layout_marginLeft="-8dp"
+                        android:visibility="invisible"
+                        android:background="@drawable/bg_circle_user"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:src="@drawable/user_default"
+                        android:layout_marginLeft="-8dp"
+                        android:visibility="invisible"
+                        android:background="@drawable/bg_circle_user"
+                        android:layout_height="40dp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/comment_total"
+                    android:layout_width="wrap_content"
+                    android:text="55+"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="条评价"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/comment_total"
+                    android:layout_width="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="条评价"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

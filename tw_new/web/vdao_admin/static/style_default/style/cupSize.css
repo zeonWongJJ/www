@@ -1,0 +1,65 @@
+/* ���͹��� */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.cupSize{ margin-top:20px; margin-left:22px; }
+.cupSize>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.cup_content{ margin-top:20px; background:white; }
+.cup_content>form{ padding-top:20px; margin-left:24px; }
+.cup_content>form>a{ display:inline-block; vertical-align:middle; padding:8px 16px; font-size:14px; border:1px solid #e8e8e8; color:#a8a7a6; border-radius:14px; background:#f4f1ee; cursor:pointer; }
+.cup_content>form>a>img{ width:10px; vertical-align:middle; margin-right:10px; }
+.search_cup{ display:inline-block; }
+.search_cup>input{ width:134px; vertical-align:middle; margin-left:20px; padding:8px 10px; font-size:12px; border:1px solid #dfdfdf; background:#fafafa; border-bottom-left-radius:6px; border-top-left-radius:6px;  }
+.search_cup>i{ width:30px; height:32px; vertical-align:middle; display:inline-block; border:1px solid #b7b6b3; background:#f4f0ee; border-bottom-right-radius:6px; border-top-right-radius:6px; }
+.search_cup>i>img{ width:20px; margin-top:6px; margin-left:6px; }
+
+.choice_cup{ padding-top:20px; background:white; }
+.choice_cup>table{ margin-left:20px; border-collapse:collapse;  }
+.choice_cup>table tr>td>img{ width:22px; vertical-align:middle; cursor:pointer; }
+.choice_cup>table tr>td.chocie_select>img{ width:14px; cursor:pointer; }
+.choice_cup>table tr>td>span{ vertical-align:middle; font-size:14px; }
+.choice_cup>table>thead>tr{ background:#F4F7FC; }
+.choice_cup>table>thead>tr>td{ padding:10px 0; }
+.choice_cup>table>tbody>tr>td{ padding:12px 0; }
+.choice_cup>table>tbody>tr{ border-bottom:1px solid #ddd; }
+.choice_cup>table>tbody>tr:last-child{ border:none; }
+.choice_cup>table>thead>tr>td>span{ font-weight:bold; }
+
+.all_select{ width:150px; }
+.cup_name{ width:200px; }
+.cup_name,.cup_operate,.cup_size,.chocie_select{ text-align:center; }
+.cup_operate{ width:100px; }
+.all_select>img,.choice_list>img{ margin-left:10px; padding-right:10px; }
+.choice_cup{ padding-top:20px; background:white; }
+.chocie_select>img{ margin:0 10px; }
+
+/* �ײ����� */
+.tool_bottom{ width:268px; height:50px; line-height:50px; display:inline-block; margin:20px 0; background:white; }
+.tool_bottom>a{ display:inline-block; margin-left:26px; cursor:pointer; }
+.tool_bottom>a>span{ font-size:14px; }
+.tool_bottom>a>img{ vertical-align:middle; }
+.tool_bottom>a>span{ vertical-align:middle; margin-left:7px; }
+.bottomAllSelect>img{ width:22px;  }
+.bottomDelect>img{ width:16px; }
+
+/* ��ӱ��� */
+.add_cup,.revise_cup{ width:410px; position:absolute; top:20%; left:50%; font-size:15px; background:white; box-shadow:3px 5px 23px #888888; }
+.add_cup>p,.revise_cup>p{ padding:12px 10px; background:#FBFBFB; border-bottom:1px solid #ddd; }
+.add_cup>p>span,.revise_cup>p>span{ color:#3698E8; }
+.add_cup>p>img,.revise_cup>p>img{ float:right; }
+.add_cup>form,.revise_cup>form{ padding:15px; }
+.cup_info,.reviseCup_info{ margin-top:10px; padding:10px; }
+.cup_info>span,.reviseCup_info>span{ vertical-align:middle; font-size:14px; color:#999; }
+.cup_info>input,.reviseCup_info>input{ width:120px; height:15px; vertical-align:middle; padding:5px; font-size:12px; border:1px solid #ddd; }
+.info_tips>img,.cupInfo_tips>img{ width:18px; vertical-align:middle; }
+.info_tips>span,.cupInfo_tips>span{ color:#999; vertical-align:middle; font-size:14px; }
+#cup_sub,#reviseCup_sub{ padding:5px 25px; margin:20px 62px; color:#AF4605; background:#FFCE1C; border:1px solid #AF4605; cursor:pointer; }
+
+/* ��Ҫ��ʾ */
+.tips_lay{ width:320px; position:absolute; top:40%; left:50%; padding:30px; font-size:15px; background:white; box-shadow:3px 5px 23px #888888;  }
+.tips_lay>img{ width:15px; position:absolute; right:10px; top:10px; }
+.tips_lay>p,.tips_lay>span{ margin-top:6px; font-size:14px; }
+.tips_lay>span{ display:block; }
+.tips_btn{ text-align:center; margin-top:20px; }
+.tips_btn>em,.tips_btn>span{ display:inline-block; padding:2px 10px; font-size:12px; }
+.tips_btn>em{  color:#AF4605; background:#FFCE1C; border:1px solid #AF4605; }
+.tips_btn>span{ margin-left:20px; border:1px solid #ddd; }

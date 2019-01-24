@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "27.0.0"
+
+    defaultConfig {
+        applicationId "cashier.vdao.app"
+        minSdkVersion 17
+        targetSdkVersion 19
+    }
+
+    sourceSets {
+        main {
+            renderscript.srcDirs = ['src']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    signingConfigs {
+        //签名密码写在gradle中不安全，故最好在打包上线的时候将相关代码注释掉。
+        release {
+            try {
+                storeFile file("release.jks")
+                storePassword "android"
+                keyAlias "Alias"
+                keyPassword "android"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:support-v4:19.0.0'
+    //implementation files('libs/afinal_0.5_bin.jar')
+    implementation files('libs/printersdkv5.2.jar')
+    implementation files('libs/zxing.jar')
+    implementation files('libs/posprinterconnectandsendsdk.jar')
+    implementation files('libs/cordova.jar')
+}

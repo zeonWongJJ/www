@@ -1,0 +1,50 @@
+/* 添加设备 */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.addDevice{ margin-top:20px; margin-left:22px; }
+.addDeviceTitle>p,.addDevice>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+.addDeviceTitle{ margin-top:20px; }
+.addDeviceTitle{ background:#fbfbfb; border-bottom:1px solid #ddd; }
+.addDeviceTitle>span{ display:inline-block; padding:15px 22px; font-size:16px; border:1px solid #ddd; border-top:2px solid #ffb900; border-bottom:none; background:white; }
+.deviceList{ margin-left:22px; background:white; }
+.deviceList>form>ul{ padding-top:33px; padding-left:32px; }
+.deviceList>form>ul>li:first-child{ margin-top:0; }
+.deviceList>form>ul>li{ margin-top:15px; }
+.deviceList>form>ul>li>em{ width:90px; display:inline-block; text-align:right; vertical-align:middle; margin-right:12px; font-weight:bold; font-size:14px; }
+.deviceList>form>ul>li>em>s{ margin-right:5px; font-size:12px; text-decoration:none; color:red; }
+.deviceList>form>ul>li>span{ vertical-align:middle; margin-left:10px; font-size:14px; color:#bfbfbf; }
+.deviceList>form>ul>li>span>img,.deviceList>form>ul>li>span>em{ vertical-align:middle; }
+.deviceList>form>ul>li>input{ vertical-align:middle; padding:5px; border:1px solid #ddd; }
+#room_name{ width:135px; }
+#describe{ width:270px; height:110px; vertical-align:top; padding:5px; border:1px solid #ddd;  }
+#device_cate_A,.device_cate_B{ width:175px; vertical-align:middle; margin-right:10px; appearance:none; -moz-appearance:none; -webkit-appearance:none;  padding:5px 62px 5px 10px; background: url("../images/pro_13.png") no-repeat 150px 9px; border:1px solid #ddd; }
+#device_cate_A::-ms-expand { display: none;  }
+.device_cate_B::-ms-expand { display: none; }
+.sure>img,.deny>img,.sure>span,.deny>span{ vertical-align:middle; }
+.sure>span,.deny>span{ color:#999; }
+.deviceBox{ display:inline-block; vertical-align:middle; }
+.deviceBox>a{ position:relative; display:inline-block; margin-right:10px; padding:5px 10px; background:#f2f2f2; border:1px solid #ddd; border-radius:4px; cursor:pointer; }
+.deviceBox>a>span{ font-size:12px; color:#333333; }
+.deviceBox>a>img{ position:absolute; right:-8px; top:-10px; }
+
+/* 图片上传 */
+.figureContent{ display:inline-block; vertical-align:top; }
+.figureContent>span{ width:480px; display:inline-block; vertical-align:top; margin-left:10px; color:#999; font-size:14px; }
+
+#picbox{ width:960px; overflow:hidden; }
+#maxbox{ margin-top:-23px; }
+.minbox{ width:150px; height:150px; float:left; margin:10px; padding:10px; cursor:pointer; position:relative;  background-image:url(/static/style_default/image/bg.png); }
+.minbox img{ width:150px; height:150px; border:0px; }
+#mypic{ width:0px; height:0px; color:white; background-color:rgb(95, 184, 120); }
+#choose_box{ display:inline-block; padding:8px 10px; color:white; border-radius:3px; text-align:center; font-size:14px; cursor:pointer; background-color:#6e5c58; }
+#upload_box{ display:inline-block; padding:8px 10px; margin-left:10px; color:white; border-radius:3px; text-align:center; font-size:14px; cursor:pointer; background-color:#b19e99; }
+.shade_box{ display:none; width:100%; height:30px; position:absolute; left:0; top:0; z-index:100; filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5; background-color:black; }
+.shade_box img{ max-width:15px; max-height:15px; float:right; margin-top:6px; margin-right:10px;  }
+.success_box{ width: 40px; height:40px; position:absolute; right:0px; top:0px; background-image:url(/static/style_default/image/up_success.png);display:none; }
+.mainpic{ color:white; line-height:30px; font-size:14px; margin-left:10px; display:none; float:left; }
+
+
+#deviceSub{ display:inline-block; padding:6px 15px; margin-left:134px; margin-top:15px; margin-bottom:15px; font-size:14px; color:#a33300; background:#ffce1c; border:1px solid #e69c14; cursor:pointer; }
+
+
+

@@ -1,0 +1,57 @@
+   <?php
+// defined('BASEPATH') or exit('禁止访问！');
+header('Access-Control-Allow-Origin:*');
+class Login_ctrl extends TW_Controller {
+
+	public function __construct() {
+		parent :: __construct();
+		//组建模型引用
+		$this->load->smodel('member_smodel');
+	}
+
+	public function test() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// echo json_encode(array('id'=>11));
+			// exit;
+			$a_post = $this->general->post();
+			echo json_encode($a_post);exit;
+
+		}
+		$a_result = [
+		  'data' =>[
+			   'datas' => 12,
+			   'status'  =>1,
+			   'errCode' =>'业务逻辑错误',
+		  ]
+		];
+		echo json_encode($a_result);
+		die;
+
+		// $this->member_smodel->test();exit;
+		// // die(111);
+		// // test表示模型中的方法
+		// $name = '99888';
+		// $s_field = 'user_id,user_name,user_phone';
+		// //查询会员列表
+		// $a_result = $this->member_smodel->get_member_list( $s_field);
+		// // var_dump($a_result);die;
+		// //删除会员
+		// $a_result = $this->member_smodel->delete_member(array('user_id' => 2));
+		// var_dump($a_result);die;		
+		// $a_data= [
+  // 		 	'user_name' => '99888',
+		// 	'user_phone' => '1141524411',
+		// 	'user_password' => md5('1234444') 		
+		// ];
+		// //插入数据
+		// var_dump($this->member_smodel->insert_member( $a_data ));//插入一条数据
+		// // print_r($this->member_smodel->insert_member( $a_data , $s_task));
+		// die;	
+	}
+	//账号和密码登陆
+	public function loginup() {
+		
+	}
+}
+
+?>

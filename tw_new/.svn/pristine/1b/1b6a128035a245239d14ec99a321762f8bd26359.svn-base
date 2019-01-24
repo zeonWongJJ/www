@@ -1,0 +1,212 @@
+<?php
+
+class Manager_model extends TW_Model
+{
+
+    public function __construct()
+    {
+        parent:: __construct();
+    }
+
+    /************************************* 获取所有管理员 *************************************/
+
+    public function get_manager_showlist()
+    {
+        // 先设置默认从第一页开始
+        // $i_page = $this->router->get(1);
+        // if (empty($i_page)) {
+        // 	$i_page = 1;
+        // }
+        // // 设置每页显示的数据行数
+        // $i_prow = 10;
+        // // 加载分页类
+        // $this->load->library('pages');
+        // // 获取数据总行数
+        $a_where = [
+            $this->db->get_prefix() . 'manager.store_id' => $_SESSION['store_id'],
+        ];
+        $i_total = $this->db->get_total('manager', $a_where);
+        // // 调用分页运算函数
+        // $a_pdata = $this->pages->get($i_total, $i_page, $i_prow);
+        // // 开始获取产品数据
+        // $this->db->limit($a_pdata['start'], $a_pdata['last']);
+
+        $s_field = 'manager_id,manager_name,manager_password,manager_phone,manager_email,' . $this->db->get_prefix() . 'manager.group_id,' . $this->db->get_prefix() . 'manager.store_id,register_time,login_time,login_ip,manager_state,group_name,manager_realname,manager_sex';
+        $a_order = [
+            'manager_id' => 'desc',
+        ];
+        $a_data  = $this->db->from('manager')
+            ->join('group', [$this->db->get_prefix() . 'manager.group_id' => $this->db->get_prefix() . 'group.group_id'])
+            ->where_not_in('manager_id', [$_SESSION['manager_id']])
+            ->get('', $a_where, $s_field, $a_order, 0, $i_total);
+        return $a_data;
+    }
+
+    /************************************* 删除单个管理员 *************************************/
+
+    /**
+     * [delete_manager_one 删除单个管理员]
+     * @param  [int] $manager_id [传入的要删除管理员的id]
+     * @return [int]             [返回删除的行数]
+     */
+    public function delete_manager_one($manager_id)
+    {
+        $a_where  = [
+            'manager_id' => $manager_id,
+        ];
+        $i_result = $this->db->delete('manager', $a_where);
+        return $i_result;
+    }
+
+    /************************************* 批量删除管理员 *************************************/
+
+    /**
+     * [delete_manager_maony 批量删除管理员]
+     * @param  [array] $a_data     [要删除的管理员的id数组]
+     * @return [int]   $i_result   [返回删除的行数]
+     */
+    public function delete_manager_maony($a_data)
+    {
+        $i_result = $this->db->where_in('manager_id', $a_data)->delete('manager');
+        return $i_result;
+    }
+
+    /******************************* 获取所有启用状态的分组信息 *******************************/
+
+    /**
+     * [get_group_all 获取所有启用状态的分组信息]
+     * @return [array] [返回查询到的信息]
+     */
+    public function get_group_all()
+    {
+        $a_where = [
+            'group_state' => 1,
+            'store_id'    => $_SESSION['store_id'],
+        ];
+        $s_field = '';
+        $a_order = [
+            'group_id' => 'desc',
+        ];
+        $a_data  = $this->db->get('group', $a_where, $s_field, $a_order);
+        return $a_data;
+    }
+
+    /********************************* 获取相同用户名的总个数 *********************************/
+
+    /**
+     * [get_manager_total 获取相同用户名的总个数]
+     * @param  [string] $manager_name [传入的用户名]
+     * @return [int]                  [返回查询到的数条数]
+     */
+    public function get_manager_total($manager_name)
+    {
+        $a_where  = [
+            'manager_name' => $manager_name,
+        ];
+        $i_result = $this->db->get_total('manager', $a_where);
+        return $i_result;
+    }
+
+    /********************************** 插入一条管理员信息 ************************************/
+
+    /**
+     * [insert_manager 插入一条管理员信息]
+     * @param  [array] $a_data [要插入的信息]
+     * @return [int]           [返回新数据的id]
+     */
+    public function insert_manager($a_data)
+    {
+        $i_result = $this->db->insert('manager', $a_data);
+        return $i_result;
+    }
+
+    /*********************************** 获取一条管理员信息 ***********************************/
+
+    /**
+     * [get_manager_one 获取一条管理员信息]
+     * @param  [int]   $manager_id [传入的记录id]
+     * @return [array]             [返回查询到的数据]
+     */
+    public function get_manager_one($manager_id)
+    {
+        $a_where = [
+            'manager_id' => $manager_id,
+        ];
+        $a_data  = $this->db->get_row('manager', $a_where);
+        return $a_data;
+    }
+
+    /*********************************** 修改一条管理员信息 ***********************************/
+
+    /**
+     * [update_manager 修改一条管理员信息]
+     * @param  [array] $a_where [修改的条件]
+     * @param  [array] $a_data  [修改的数据]
+     * @return [int]            [返回修改的行数]
+     */
+    public function update_manager($a_where, $a_data)
+    {
+        $i_result = $this->db->update('manager', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /******************************** 获取某个分组的管理员总数 ********************************/
+
+    /**
+     * [get_manager_count 获取某个分组的管理员总数]
+     * @param  [int] $group_id [传入的分组id]
+     * @return [int]           [返回的查询到的总条数]
+     */
+    public function get_manager_count($group_id)
+    {
+        $a_where  = [
+            'group_id' => $group_id,
+        ];
+        $i_result = $this->db->get_total('manager', $a_where);
+        return $i_result;
+    }
+
+    /************************************** 更新分组信息 **************************************/
+
+    /**
+     * [update_group 更新分组信息]
+     * @param  [array] $a_where [更新的条件]
+     * @param  [array] $a_data  [更新的数据]
+     * @return [int]            [返回修改的行数]
+     */
+    public function update_group($a_where, $a_data)
+    {
+        $i_result = $this->db->update('group', $a_data, $a_where);
+        return $i_result;
+    }
+
+    /********************************** 根据关键词获取管理员 **********************************/
+
+    public function get_manager_search($keywords)
+    {
+        $a_where    = [
+            $this->db->get_prefix() . 'manager.store_id' => $_SESSION['store_id'],
+        ];
+        $a_where_or = [
+            $this->db->get_prefix() . 'manager.manager_name LIKE'     => '%' . $keywords . '%',
+            $this->db->get_prefix() . 'manager.manager_realname LIKE' => '%' . $keywords . '%',
+            $this->db->get_prefix() . 'manager.manager_phone LIKE'    => '%' . $keywords . '%',
+            $this->db->get_prefix() . 'manager.manager_email LIKE'    => '%' . $keywords . '%',
+        ];
+        $s_field    = 'manager_id,manager_name,manager_password,manager_phone,manager_email,' . $this->db->get_prefix() . 'manager.group_id,' . $this->db->get_prefix() . 'manager.store_id,register_time,login_time,login_ip,manager_state,group_name,manager_realname,manager_sex';
+        $a_order    = [
+            'manager_id' => 'desc',
+        ];
+        $a_data     = $this->db->where($a_where)
+            ->group_start('AND')
+            ->where_or($a_where_or)
+            ->group_end()
+            ->from('manager')
+            ->join('group', [$this->db->get_prefix() . 'manager.group_id' => $this->db->get_prefix() . 'group.group_id'])
+            ->get('', NULL, $s_field, $a_order);
+        return $a_data;
+    }
+
+    /******************************************************************************************/
+
+}

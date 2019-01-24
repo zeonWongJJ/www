@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+
+// 依赖插件脚本
+//apply from: 'tinker-support.gradle'
+//rocketchat
+//apply plugin: 'com.github.triplet.play'
+apply from: '../config/quality/quality.gradle'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        //applicationId "org.wfky.app"
+        applicationId "app.vdao.qidu"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        multiDexEnabled true//分包
+        vectorDrawables.useSupportLibrary = true
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+    sourceSets {
+        main {
+            renderscript.srcDirs = ['src']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    // recommend 很重要
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+
+    signingConfigs {
+        release {
+            try {
+                //storeFile file('release.jks')
+                storeFile file('./keystore/release.jks')
+                storePassword "android"
+                keyAlias "alias"
+                keyPassword "android"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true //最小化资源包
+            signingConfig signingConfigs.release
+            shrinkResources true//去掉无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        /*debug{
+            //混淆
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }*/
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile deps.jUnit
+    //butterKnife annotation
+    compile deps.butterknife
+    apt deps.butterknifeCompiler
+
+    compile project(':app')
+
+    compile project(':scanCodeLib')
+    compile 'com.android.support:multidex:1.0.1'
+    //compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+}

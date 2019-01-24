@@ -1,0 +1,2 @@
+include ':vdao', ':mvpBaseLib', ':commonutilLib', ':baseAppcommonLib', ':resLib', 'ModuleLib:network-rx-retrofit', 'ModuleLib:RVHelper',
+        'ModuleLib:pickerview', 'ModuleLib:RecyclerViewCardGalleryLib'

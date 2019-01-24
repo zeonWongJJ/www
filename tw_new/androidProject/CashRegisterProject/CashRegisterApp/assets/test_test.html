@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type='text/css'>
+		html { font-family:Helvetica; color:#222; }
+		h1 { color:steelblue; font-size:24px; margin-top:24px; }
+		button { margin:0 3px 10px; font-size:12px; }
+		.logLine { border-bottom:1px solid #ccc; padding:4px 2px; font-family:courier; font-size:11px; }
+	</style>
+
+</head><body >
+	<h1>本地 Demo</h1>
+	<script type="text/javascript" src="www/js/cordova.js"></script>
+	<script type="text/javascript" charset="utf-8" src="www/js/qiducashregisterlink.js"></script>
+	<script>
+
+        var loadViceScreenPageText=function(){
+            var txt="http://www.baidu.com";
+            var json={"url":"http://new.7dugo.com/index"}
+            loadViceScreenPageByUrl(json);
+        }
+
+        //打开钱箱
+        var openCashBox = function(){
+        	openCashBoxMachine();
+        }
+
+        //热敏干胶机打印 打印文本，直线，条码
+		var getPhoneInputEdit=function(){
+			printContextLineBarCodeByThermosensitivedDryGlueMachine();
+		}
+
+		//热敏干胶机打印纯文本
+		var printContext=function(){
+			var json={"cart":[{"product_id":"2","product_name":"冰摇C咖挝啡","pro_img":"upload/goods/20171127062337402.jpg","num":2,
+            "price_id":"690","price":"0.00","cup_name":"大袋"},{"product_id":"2","product_name":"冰摇C咖挝啡","pro_img":"upload/goods/20171127062337402.jpg",
+            "num":"1","price_id":"689","price":"0.00","cup_name":"中袋","attr":[{"attr_id":"4","attr_name":"热"}],"s_attr":"|4"}],"product_num":3,"product_money":0,"manager_id":"9527","store_name":"广州v稻店","store_address":"广州市番禺区钟村"};
+			printContextByThermosensitiveDryGlueMachine(json);
+		}
+		//热敏干胶机打印纯条码
+		var printBarcode=function(){
+			printBarcodeByThermosensitiveDryGlueMachine();
+		}
+
+		var printLabel=function(){
+			printLabelTextBySmallPaperMoneyMachine();
+		}
+		//var test=function(){
+			//var url="http://new.7dugo.com/index";
+			//var json={"url":"http://new.7dugo.com/index"}
+			//openNewWindow(json);
+
+		//}
+
+
+		function java_call(){
+			alert('android 调用js方法'+str);
+		}
+		//小票机纯文本打印
+		var paperMoneyTest=function(){
+			var json={"cart":[{"product_id":"2","product_name":"冰摇C咖挝啡","pro_img":"upload/goods/20171127062337402.jpg","num":2,
+            "price_id":"690","price":"0.00","cup_name":"大袋"},{"product_id":"2","product_name":"冰摇C咖挝啡","pro_img":"upload/goods/20171127062337402.jpg",
+            "num":"1","price_id":"689","price":"0.00","cup_name":"中袋","attr":[{"attr_id":"4","attr_name":"热"}],"s_attr":"|4"}],"product_num":3,"product_money":0,"manager_id":"9527","store_name":"广州v稻店","store_address":"广州市番禺区钟村"};
+			printTextBySmallPaperMoneyMachine(json);
+		}
+
+	</script>
+	<audio id="aud" style="background:red" src="http://www.scottandrew.com/mp3/syfy/01%20-%20Scott%20Andrew%20-%20More%20Good%20Days.mp3" controls="controls" autoplay="autoplay"></audio>
+	<div onclick="getPhoneInputEdit();">js调用热敏干胶纸打印文本，直线，条码</div>
+    <div onclick="printContext();">js调用热敏干胶纸打印纯文本</div>
+    <div onclick="printBarcode();">js调用热敏干胶纸打印纯条码</div>
+	<div onclick="paperMoneyTest();">js调用小纸票打印文本</div>
+    <div onclick="printLabel();">js调用小纸票打印小票机打印可以设置大小的字体文本标签</div>
+
+	<div onclick="loadViceScreenPageText();">加载副屏页面</div>
+
+
+	<div onclick="openCashBox();">js调用打开钱箱</div>
+
+
+
+	<h1 ><a href="http://vdao.7dugo.com/">IM地址试试</a></h1>
+</body></html>

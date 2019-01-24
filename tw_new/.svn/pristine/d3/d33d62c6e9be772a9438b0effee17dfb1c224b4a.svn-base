@@ -1,0 +1,50 @@
+/* 公用  */
+.head{ width:100%; padding:10px 0; background:#5a2e17; }
+.headBox{ width:1400px; margin:0 auto; }
+.head>.headBox>img{ width:48px; vertical-align:middle; margin-left:50px; }
+.head>.headBox>span{ display:inline-block; margin-left:30px; padding:5px 0; padding-left:15px; font-size:15px; color:white; border-left:1px solid white; }
+.contentRight{ display:inline-block; float:right; }
+.contentRight>a{ margin-top:11px; margin-right:10px; display:inline-block; }
+.contentRight>a>img{ width:20px; vertical-align:middle; }
+.contentRight>a>span{ color:white; font-size:13px; vertical-align:middle; }
+
+article{ width:1200px; margin:0 auto; }
+
+/* 导航 */
+
+.nav{ width:160px; display:inline-block; background:white; }
+.nav>ul{ margin-top:22px; }
+.nav>ul>li{ padding:8px 24px; }
+.nav>ul>li>a>img{ width:20px; vertical-align:middle; }
+.nav>ul>li>a>span{ vertical-align:middle; font-size:15px; color:black; }
+
+/* 概况 */
+.survey{ width:1024px; display:inline-block; vertical-align:top; margin-left:8px; }
+.survey>p{ margin-top:8px; padding:10px 20px; background:white; }
+
+.dataList{ margin-top:10px; }
+.dataList>a{ width:244px; display:inline-block; vertical-align:middle; margin-right:10px; font-size:0; }
+.dataList>a:last-child{ margin-right:0; }
+.dataList>a img{ width:41px; margin-top:30px; }
+.listL,.listR{ display:inline-block; text-align:center; }
+.user>.listL>img{ margin-top:24px; }
+.listL>p,.listR>p{ padding:5px; font-size:14px; color:white; }
+.listL{ width:40%; height:106px; }
+.listR{ width:60%; height:106px; vertical-align:top; }
+.listR>p{ margin-top:36px; font-size:22px; }
+
+.orders>.listL{ background:#16c6ff; }
+.orders>.listR{ background:#00c0ff; }
+.user>.listL{ background:#fb0c02; }
+.user>.listR{ background:#e61a11; }
+.store>.listL{ background:#ff7d00; }
+.store>.listR{ background:#ee7704; }
+.shopkeeper>.listL{ background:#ffb700; }
+.shopkeeper>.listR{ background:#f8b200; }
+
+/* 经营概况 */
+.operate{ display:inline-block; background:white; }
+
+
+
+

@@ -1,0 +1,68 @@
+/* ��̬�б� */
+.pjoTitle{ position:relative; z-index:2;  }
+.pjoTitle>a{ position:absolute; top:1.2rem; right:0.49rem;  cursor:pointer;}
+.pjoTitle>a>img{ width:0.53rem; }
+/* ��ǩ */
+.labelBox{ width:100%; position:absolute; padding-bottom:0.4rem; background:#f4f4f4; z-index:2; display:none; }
+.labelBox>p{ padding-top:0.33rem; padding-left:0.36rem; font-size:0.34rem; color:#666666; }
+.labelBox>ul{ padding-left:0.36rem; font-size:0; }
+.labelBox>ul>li{ display:inline-block; margin-right:0.4rem; margin-top:0.2rem; background:#e6e7e7; }
+.labelBox>ul>li>a{ width:2rem; height:0.86rem; line-height:0.86rem; text-align:center; display:inline-block; font-size:0.34rem;  color:#333333; }
+/* �б����� */
+.listContent{ margin-bottom:1.5rem; }
+.listContent>ul{ padding:0.4rem; }
+.listContent>ul>li{ margin-top:0.4rem; background:white; border-radius:0.15rem; box-shadow: 0 0 14px #888888; }
+.listContent>ul>li:first-child{ margin-top:0; }
+.listContent>ul>li>ol{ padding:0.42rem 0; }
+.listContent>ul>li>ol>li{ padding:0 0.42rem; }
+.userInfo>img,.userInfo>em{ display:inline-block; vertical-align:middle; }
+.userInfo>img{ width:1.02rem; height:1.02rem; margin-right:0.24rem; border-radius:50%; }
+.userInfo>em>p,.userInfo>em>span{ font-size:0.32rem; font-style:normal; color:#666; }
+.userInfo>a{ width:1.64rem; height:0.64rem; line-height:0.74rem; text-align:center; float:right; font-size:0.32rem; border:0.02rem solid #ff6633; color:#ff6633; border-radius:0.1rem;  }
+.userText{ margin:0.4rem 0; }
+.userText>p{ font-size:0.37rem; color:#666; }
+.userNav{ text-align:right; }
+.navBox{ width:3.5rem; height:0.8rem; line-height:0.8rem; display:inline-block; text-align:center; background:#32aaff; border-radius:0.4rem; }
+.navBox>a{ display:inline-block;  margin-right:0.4rem; }
+.navBox>a:last-child{ margin-right:0; }
+.navBox>a>img,.navBox>a>span{ vertical-align:middle; }
+.navBox>a>img{ width:0.4rem; }
+.navBox>a>span{ font-size:0.34rem; color:white; }
+.userPic{ margin-bottom:0.4rem; }
+
+/*加*/
+.transmit{
+	font-size: 0;
+	margin: 0.133333rem 0 0.266666rem 0.333333rem;
+}
+.transmit .tPic{
+	display: inline-block;
+	width: 0.933333rem;
+	height: 0.933333rem;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: top;
+}
+.transmit .tDescribe{
+	display: inline-block;
+	font-size: 0.293333rem;
+	color: #666666;
+	vertical-align: top;
+	margin-left: 0.2rem;
+	width: 6.866666rem;
+}
+.transmit .tDescribe .tMing{
+	font-size: 0.32rem;
+	color: #666666;
+}
+.swiper-slide>img{ width:100px; height:100px;  }
+
+.lay{ position:absolute; width:100%; height:100%; top:0; background:black; opacity:0.5; z-index:1; display:none; }
+
+
+
+
+
+
+
+

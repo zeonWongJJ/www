@@ -1,0 +1,51 @@
+.rightSide{width: 1190px;  float:left; margin: 15px 0 0 15px;}
+/*面包屑导航*/
+.breadNav{height: 50px; background: white;line-height: 50px; padding: 0 22px;}
+.breadNav a{color: #333333; font-size: 16px;}
+/*右下半部分*/
+.rightDown{width: 1190px; background:white; margin-top: 15px; padding: 5px 30px 30px 20px;}
+.controlBox{ border-bottom: 1px solid #cccccc; height: 60px;}
+.controlBox a{ font-size: 14px; color: #5A2E17; margin: 15px 10px 0 0;}
+.controlBox a.save{ display: inline-block; width: 100px; height: 30px; background: #ffce1c; border: 1px solid #e69c14; text-align: center; line-height: 30px; margin-left: 15px; margin-right: 20px; color: #A33300;}
+/*表格*/
+.table{ border-left:1px solid #603703; margin-top:10px;}
+.table .row{height: 110px;}
+.table .row li{float: left; width: 110px; height: 110px; list-style: none; border-top: 1px solid #603703; border-right: 1px solid #603703;}
+.table .row:last-child li{border-bottom: 1px solid #603703;}
+.row .wen{ height: 80px; text-align: center; line-height: 80px; margin-top: 5px; word-wrap: break-word; padding: 0 5px 5px 5px; font-size: 18px; color: #5A2E17;}
+.row .wen span{ display: inline-block; vertical-align: middle; line-height: 22px; word-break: break-all;}
+.row .nameList a{font-size: 12px; color: #5A2E17; margin-left:7px;}
+.row .nameList{ margin: 2px 0 0 3px; font-size: 0;}
+.row .doorCol{ background: #ffd84b;}
+.row .windowCol{ background: #967240;}
+.row .gangwayCol{ background: #4bffa8;}
+.row .seatCol{ background: #88acff;}
+.row .emptyCol{ background: #ffffff;}
+/*添加座位名称弹框*/
+.seatName{width: 440px; height: 170px; background:white; position: fixed; left: 50%; margin-left:-220px; top: 50%; margin-top: -85px; box-shadow: 0 0 20px #dedede; display: none;}
+.seatName .title{height: 50px; border-bottom: 1px solid #e8e8e8; padding: 0 15px 0 30px;}
+.seatName .title .h3{ color: #4ba6ea; font-size: 14px; display: inline-block; line-height: 50px;}
+.seatName .title .close{display: block; width: 17px; height: 17px; background: url(../images/pro_19.png); float: right; margin-top: 17px;}
+.seatName .inputBox{padding: 25px 0 0 50px; height: 70px;}
+.seatName .inputBox .biao{ float: left; font-size: 12px; color: #9c9fa5; line-height: 30px;}
+.seatName .inputBox .int{ float: left; font-size:12px; width: 140px; height: 30px; border: 1px solid #d0cfce; border-radius: 2px; box-shadow: 5px 0 10px #efefef inset; padding: 0 10px; margin-left: 8px;}
+.seatName .inputBox .red{ float:left; font-size: 12px; color: #676767; margin-left: 10px; line-height: 30px; display: none;}
+.seatName .inputBox .red i{display: inline-block; width: 18px; height: 18px; background: url(../images/f_03.png); vertical-align: middle; margin-right: 8px;}
+.seatName .sureBox a{width: 85px; height: 28px; font-size: 14px; display: inline-block; background: #ffce1c; color: #a33300; text-align: center; line-height: 28px; border: 1px solid #e69c14; margin-left: 106px;}
+/*预览弹框*/
+.previewBox{ width: 440px; height: 340px; background: white; position: fixed; left: 50%; margin-left: -220px; top:50%; margin-top: -170px; padding-top: 15px; box-shadow: 0 0 20px #dedede; display: none;}
+.previewBox .close{ display: block; width: 17px; height: 17px; background: url(../images/pro_19.png); position: absolute; right: 6px; top: 6px;}
+.previewBox .h3{ font-size: 18px; text-align: center; color: #5a2e17;}
+.previewBox .picBox{ text-align: center; margin-top: 10px;}
+.picBox .zuo i{ width: 30px; height: 23px; background: url(../images/door_06.png); display:inline-block; vertical-align: middle;}
+.picBox .men i{ width: 23px; height: 28px; background: url(../images/door_03.png); display:inline-block; vertical-align: middle;}
+.picBox .chuang i{ width: 22px; height: 22px; background: url(../images/door_09.png); display:inline-block; vertical-align: middle;}
+.picBox span{ margin-right: 25px; font-size: 12px; color: #000000;}
+.picBox span.chuang{ margin-right: 0;}
+.picBox span i{ margin-right: 5px;}
+.previewBox .tableBox{ border: 1px solid #603703; width: 298px; height: 226px; margin:10px 0 0 75px;}
+.tableBox ul{ overflow: hidden;}
+.tableBox li{ float: left; width: 37px; height: 32px; text-align: center; line-height: 32px; font-size: 12px; color: #000000; }
+.tableBox li.seatPic{ background: url(../images/door_06.png) no-repeat center center;}
+.tableBox li.doorPic{ background: url(../images/door_03.png) no-repeat center center;}
+.tableBox li.windowPic{ background: url(../images/door_09.png) no-repeat center center;}

@@ -1,0 +1,42 @@
+/* ���ǵ��� */
+.pjoTitle{ position:relative; }
+.pjoTitle>a.back{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+.pjoTitle>a.yaoqing{ position:absolute; right:0.45rem; top:0.35rem; color:#999; font-size:0.42rem; }
+/* ����ܶ� */
+.spendingContent{ background:#2fb5ff; margin:0.28rem 0; }
+.spendingContent>a{ display:inline-block; text-align:center; }
+.spendingContent>a>p{ padding-bottom:0.29rem; font-size:0.36rem; color:white; }
+.spendingContent>a>span{ font-size:0.56rem; color:white; }
+.spendingContent>a.available{ display:block; padding-top:0.61rem; }
+.spendingContent>.available>p{ font-size:0.4rem; color:white; }
+.spendingContent>.available>span{ font-size:0.8rem; color:white; }
+.availBalance,.availPoint{ width:4.9rem; margin:0.61rem 0; }
+.availBalance{ border-right:1px solid white; }
+/* �ʽ���ϸ */
+.capital{ background:white; }
+.capital>dl>dt{ position:relative; padding:0.36rem 0; margin-left:0.42rem; border-bottom:0.02rem solid #ddd;  }
+.capital>dl>dt>span{ display:inline-block; padding-left:0.37rem; margin-left:-0.44rem; font-size:0.42rem; font-weight:bold; border-left:0.13rem solid #ffd703; }
+.capital>dl>dt>a{ position:absolute; right:0.48rem;  }
+.capital>dl>dt>a>img{ width:0.2rem; margin-left:0.24rem; }
+.capital>dl>dt>a>span{ font-size:0.37rem; color:#999; }
+.capital>dl>dt>a>span,.capital>dl>dt>a>img{ vertical-align:middle; }
+.capital>dl>dd{ padding:0.33rem 0; margin-left:0.42rem; border-bottom:0.02rem solid #d7d7d7;  }
+.capital>dl>dd:last-child{ border-bottom:none; }
+.capital>dl>dd>a>img{ width:0.93rem; height:0.93rem; border-radius:50%; }
+.capital>dl>dd>a>em{ display:inline-block; margin-left:0.32rem; }
+.capital>dl>dd>a>em>span{ display:block; margin-bottom:0.2rem; font-style:normal; font-size:0.37rem; font-weight:bold;  }
+.capital>dl>dd>a>em>em{ font-style:normal; font-size:0.32rem; color:#666; }
+.capital>dl>dd>a>img,.capital>dl>dd>a>em{ vertical-align:middle; }
+.capital>dl>dd>a>dfn{ float:right; margin-right:0.5rem; }
+.capital>dl>dd>a>dfn>span{ display:block; margin-bottom:0.2rem; font-size:0.37rem; font-style:normal; font-weight:bold; }
+.capital>dl>dd>a>dfn>em{ float:right; font-style:normal; font-size:0.32rem; color:#666; }
+
+
+
+
+
+
+
+
+

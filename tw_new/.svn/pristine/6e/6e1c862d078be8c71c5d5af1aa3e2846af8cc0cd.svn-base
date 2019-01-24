@@ -1,0 +1,249 @@
+<?php
+/**
+ * 数据仓库
+ * @notice 命令行自动构建 by rusice <liruizhao970302@outlook.com>
+ *
+ * @copyright 柒度信息科技有限公司
+ * @author rusice <liruizhao970302@outlook.com>
+ */
+
+namespace repositories;
+
+use model\StaffModel;
+use model\StoreModel;
+use utils\BaseRepository;
+use utils\Factory;
+use utils\ide\Db;
+
+/**
+ * Class StoreRepository
+ * @package repositories
+ * @property $phpqrcode TW_phpqrcode
+ */
+class StoreRepository extends BaseRepository
+{
+    /**
+     * 指定查询数据表名，不需要带前缀
+     * @return String
+     */
+    public function getDbTable()
+    {
+        return get_table('store');
+    }
+
+    /**
+     * 自定义列表查询方法
+     * 当需要join等非单表查询时可以调用此方法
+     * @param array $build_query 查询构建数组，前端传入的排序、字段等
+     * @param string $data_set 返回数据集类型
+     */
+    //    public function customizeListGetter(array $build_query, $data_set)
+    //    {
+    //
+    //    }
+
+
+    /**
+     * 自定义单条查询方法
+     * 当需要join等非单表查询时可以调用此方法
+     * @param int $id 单条获取的id
+     * @param array $build_query 查询构建数组，前端传入的排序、字段等
+     * @param string $cache_key cache的key
+     */
+    //    public function customizeGetter($id, $build_query, $cache_key)
+    //    {
+    //
+    //    }
+
+
+    /**
+     * 查询列表前操作
+     * @param Db $query
+     * @return Db
+     */
+    //    public function beforeGetList($query)
+    //    {
+    //
+    //    }
+
+    /**
+     * 查询一条数据后调用
+     * @param array $row
+     * @return array
+     */
+    public function afterGetOne(array $row): array
+    {
+        $user_info = app('user_info');
+        if (!$user_info || !isset($user_info->user_id)) {
+            throw new \RuntimeException('user-info-error');
+        }
+        /** @var StoreModel $store_model */
+        $store_model = Factory::getFactory('store');
+        $row         = $store_model->formatRow($row);
+        // 店铺是否被收藏1
+        $row['store_collected'] = (boolean)$this->db->get_total(get_table('user_collect'), [
+            'collect_type' => 'STORE',
+            'item_id'      => $row['id'],
+            'user_id'      => $user_info->user_id,
+        ]);
+        return $row;
+    }
+
+    /**
+     * 查询列表前操作
+     * @param Db $query
+     * @return Db
+     */
+    public function beforeGetList($query)
+    {
+        $this->condition['store_parent_id'] = 0;
+        /** @var StoreModel $store_model */
+        $store_model = Factory::getFactory('store');
+        return $query->select($store_model->setQuerySelect());
+    }
+
+    /**
+     * 查询列表数据后调用
+     * @param array $rows
+     * @return array
+     */
+    public function afterGetList(array $rows): array
+    {
+        /** @var StoreModel $store_model */
+        $store_model = Factory::getFactory('store');
+        foreach ($rows as &$row) {
+            $row         = $store_model->formatRow($row);
+        }
+        return $rows;
+    }
+
+    /**
+     * 新增前调用
+     * @RequestMapping('user.store.add')
+     * @param array $insert 新增的数据
+     * @return array
+     */
+    public function beforeInsertHook(array $insert): array
+    {
+        $user_info = app('user_info');
+        if (!$user_info || !isset($user_info->user_id)) {
+            throw new \RuntimeException('user-info-error');
+        }
+        $map['user_id'] = $insert['user_id'] = $user_info->user_id;
+        if (0 < $this->db->get_total($this->table, $map)) {
+            throw new \RuntimeException('您已申请过店铺了，请不要重复提交!');
+        }
+        $insert['store_status'] = 0; // 审核中
+        if (\is_array($insert['store_pic'])) {
+            $insert['store_pic'] = implode(',', $insert['store_pic']);
+        } else {
+            $insert['store_pic'] = trim($insert['store_pic'], ',');
+        }
+
+        if (isset($insert['store_parent_id']) && $insert['store_parent_id']) {
+            if (!$parent_store_info = $this->db->get_row(get_table('store'), ['id' => $insert['store_parent_id']])) {
+                throw new \RuntimeException('所属上级店铺不存在');
+            }
+            $insert['store_name']    = $parent_store_info['store_name'];
+            $insert['store_range']   = $parent_store_info['store_range'];
+            $insert['store_region']  = $parent_store_info['store_region'];
+            $insert['store_address'] = $parent_store_info['store_address'];
+            $insert['store_info']    = $parent_store_info['store_info'];
+        }
+        $insert['store_wallet'] = 0; // 初始店铺钱包金额为0
+        $insert['store_add_at'] = $_SERVER['REQUEST_TIME'];
+        $insert['store_sold'] = 0;
+        return $insert;
+    }
+
+    /**
+     * 新增后调用
+     * @param array $insert 新增的数据
+     * @return array
+     */
+    public function afterInsertHook(array $insert): array
+    {
+        $store_id = $insert['store_parent_id'] ?? $insert['id'];
+        $staff_id = $this->db->insert(get_table('store_user'), [
+            'store_id'             => $store_id,
+            'user_id'              => $insert['user_id'],
+            'user_type'            => 3,
+            'user_type_key'        => StaffModel::SHOPOWNER,
+            'store_user_lat'       => app('request')->post('store_user_lat', '', 'trim'), // 店员的经度
+            'store_user_lng'       => app('request')->post('store_user_lng', '', 'trim'), // 店员的纬度
+            'staff_tel'            => $insert['store_phone'],
+            'staff_id_card_number' => $insert['store_id_card'],
+            'staff_add_at'         => $_SERVER['REQUEST_TIME'],
+            'staff_status'         => 1
+        ]);
+        $this->db->insert(get_table('store_staff_info'), [
+            'staff_id'             => $staff_id,
+            'staff_id_card_pic_zm' => $insert['store_id_card_positive'],
+            'staff_id_card_pic_bm' => $insert['store_id_card_opposite'],
+            'staff_address_info'   => app('request')->post('store_user_address_info', '', 'trim'), // 店员的详细地址信息
+        ]);
+        $this->db->insert(get_table('staff_wallet'), [
+            'total_income' => 0,
+            'balance'      => 0,
+            'locked'       => 0,
+            'staff_id'     => $staff_id,
+            'store_id'     => $insert['id'],
+            'user_id'      => $insert['user_id'],
+        ]);
+
+        // 写入店铺邀请服务员入驻的二维码
+        /** @var StoreModel $store_model */
+        $store_model = Factory::getFactory('store');
+        $store_inducted_qrcode_path = $store_model->generalInductedQrcode($insert['id']);
+        $insert['store_inducted_qrcode'] = $store_inducted_qrcode_path;
+
+        return $insert;
+    }
+
+    /**
+     * 更新前调用
+     * @param array $update 传入的更新数据
+     * @param int $id 要更新的id
+     * @return array
+     */
+    public function beforeUpdateHook(array $update, $id): array
+    {
+        if (\is_array($update['store_pic'])) {
+            $update['store_pic'] = implode(',', $update['store_pic']);
+        } else {
+            $update['store_pic'] = trim($update['store_pic'], ',');
+        }
+        $update['store_update_at'] = $_SERVER['REQUEST_TIME'];
+        return $update;
+    }
+
+    /**
+     * 更新后调用
+     * @param int $id 要更新的id
+     */
+    public function afterUpdateHook($id)
+    {
+        $this->db->update($this->table, [
+            'store_status' => 0,
+        ], compact('id'));
+    }
+
+    /**
+     * 删除前调用
+     * @param int $id 删除的id
+     */
+    //    public function beforeDeleteHook($id)
+    //    {
+    //
+    //    }
+
+    /**
+     * 删除后调用
+     * @param int $id 要删除的id
+     * @param $row
+     */
+    public function afterDeleteHook($id, $row)
+    {
+        $this->db->delete(get_table('store_user'), ['user_id' => $row['user_id']]);
+    }
+}

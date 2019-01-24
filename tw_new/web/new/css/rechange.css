@@ -1,0 +1,14 @@
+body{ background:#efefef; }
+
+/* ³äÖµ */
+.rechange>p           { padding:0.5rem 0 0.2rem 0.4rem; font-size:0.35rem; color:#999999; }
+.sum                   { position:relative; padding:0.3rem 0.4rem; font-size:0.45rem; background:white; border-top:0.01rem solid #ddd; border-bottom:0.01rem solid #ddd; }
+.sum>span             { margin-right:0.2rem; }
+.sum>input            { font-size:0.45rem; }
+.sum>img              { width:0.5rem; position:absolute; right:0.2rem; top:0.35rem; }
+#sub                  { display:block; text-align:center; margin-top:0.5rem; }
+#sub>input            { -webkit-appearance:none; width:9.5rem; padding:0.3rem 0; font-size:0.45rem; color:white; background:linear-gradient(120deg,#6671f3,#66b2ea); border-radius:0.2rem; }
+
+
+
+

@@ -1,0 +1,13 @@
+<resources>
+
+
+    <dimen name="default_padding">@dimen/kaka_10_dip</dimen>
+    <dimen name="default_padding_small">@dimen/kaka_5_dip</dimen>
+    <dimen name="default_margin">@dimen/kaka_10_dip</dimen>
+    <dimen name="line_size">1px</dimen>
+
+    <dimen name="title_height">@dimen/kaka_40_dip</dimen>
+    <dimen name="title_icon_width">@dimen/title_height</dimen>
+    <dimen name="title_left_text">@dimen/text_size_normal</dimen>
+    <dimen name="title_text">@dimen/text_size_title</dimen>
+</resources>

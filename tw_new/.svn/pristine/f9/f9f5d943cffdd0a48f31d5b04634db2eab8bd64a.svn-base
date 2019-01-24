@@ -1,0 +1,153 @@
+<template>
+	<div class="cai">
+		<van-nav-bar title="用餐统计" left-arrow @click-left="onClickLeft">
+		</van-nav-bar>
+		<div class="box">
+			<div class="onul">
+				<ul class="uls">
+					<li class="lis"  v-for="(item,index) in list">
+						<!--<span :class="{lis_id ? index : num}">-->
+							{{item}}
+						<!--</span>-->
+					</li>
+				</ul>
+				<div class="text">
+					<div class="wu">
+						<div>
+							午餐 <span>10</span>人
+						</div>
+						<div>
+							<span>
+								[我已点餐]
+							</span>
+							<!--<span>
+								[我未点餐]
+							</span>-->
+						</div>
+					</div>
+					<div class="wan">
+						<div>
+							晚餐 <span>10</span>人
+						</div>
+						<div>
+							<span>
+								[我已点餐]
+							</span>
+							<!--<span>
+								[我未点餐]
+							</span>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--喜欢菜式-->
+			<div class="box_cai">
+				<div class="box_cai_title">
+					喜好菜式排名
+				</div>
+				<ul>
+					<li class="box_cai_li">
+						<div class="box_cai_text">
+							某某菜式
+						</div>
+						<div class="box_cai_hua">
+							<van-slider v-model="value" bar-height="0.05rem" disabled />
+						</div>
+						<div class="box_cai_text">
+							{{value}}个人表示喜欢
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				list: ['周一', '周二', '周三', '周四', '周五', '周六'],
+				num: 0,
+				value:10,
+				cai_list:[
+					{
+						name:'菜式',
+					}
+				]
+			}
+		},
+		mounted() {
+
+		},
+		methods: {
+			onClickLeft() {
+				this.$router.push({
+					path: '/dishes_memder'
+				})
+			}
+		},
+	}
+</script>
+
+<style scoped lang="less">
+	.cai {
+		.box {
+			padding: 0 0.12rem;
+			margin-top: .1rem;
+			.onul {
+				border-bottom: .1rem solid #eee;
+				margin-bottom: .1rem;
+				.uls {
+					
+					display: flex;
+					.lis {
+						height: .44rem;
+						line-height: .44rem;
+						margin-bottom: .1rem;
+						flex: 0 0 16%;
+						text-align: center;
+						font-size: .18rem;
+					}
+					.lis_id {
+							color: #f00;
+						}
+				}
+				.text{
+					.wan , .wu{
+						font-size: .16rem;
+						height: .4rem;
+						display: flex;
+						align-items: center;
+						justify-content:space-around ;
+					}
+				}
+			}
+			.box_cai{
+				.box_cai_title{
+					padding-bottom: .1rem;
+					margin-bottom: .1rem;
+					border-bottom: .01rem solid #eee;
+					font-size: .18rem;
+				}
+				.box_cai_li{
+					display: flex;
+					align-items: center;
+					font-size: .12rem;
+					justify-content: space-between;
+					.box_cai_text{
+						flex: 0 0 25%;
+					}
+					.box_cai_hua{
+						margin-right: 1%;
+						flex: 0 0 48%;
+					}
+				}
+			}
+		}
+		
+	}
+</style>
+<style type="text/css">
+	
+</style>

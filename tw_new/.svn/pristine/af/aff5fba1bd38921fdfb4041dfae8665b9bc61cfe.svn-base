@@ -1,0 +1,248 @@
+<template>
+  <div class="cai">
+    <van-nav-bar title="用餐人数统计" >
+    </van-nav-bar>
+    <div class="box">
+      <div class="onul">
+        <ul class="uls">
+          <li class="lis" :class="{lis_id : index + 1 == num}"  v-for="(item,index) in list" @click="list_num(index + 1)">
+            <!--<span>-->
+            {{item}}
+            <!--</span>-->
+          </li>
+        </ul>
+        <div class="text">
+          <div class="wu">
+            <div>
+              午餐 <span>{{wu}}</span>人
+            </div>
+            <div>
+							<span v-if="show_wu" class="span_d">
+								[我已点餐]
+							</span>
+              <span v-else class="span_w">
+								[我未点餐]
+							</span>
+            </div>
+          </div>
+          <div class="wan">
+            <div>
+              晚餐 <span>{{wan}}</span>人
+            </div>
+            <div>
+							<span v-if="show_wan" class="span_d">
+								[我已点餐]
+							</span>
+              <span v-else class="span_w">
+								[我未点餐]
+							</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--喜欢菜式-->
+      <div class="box_cai">
+        <div class="box_cai_title">
+          喜好菜式排名
+        </div>
+        <ul>
+          <li class="box_cai_li" v-for="item in cai_list">
+            <div class="box_cai_text">
+              {{item.name}}
+            </div>
+            <div class="box_cai_hua">
+              <van-slider v-model="item.val" bar-height="0.05rem" disabled />
+            </div>
+            <div class="box_cai_text">
+              {{item.val}}个人表示喜欢
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        list: ['周一', '周二', '周三', '周四', '周五', '周六'],
+        num: '',
+        wu:0,
+        wan:0,
+        show_wu:false,
+        show_wan:false,
+        cai_list:[
+          {
+            name:'菜式',
+            val:70
+          },
+          {
+            name:'菜式',
+            val:50
+          },
+          {
+            name:'菜式',
+            val:30
+          },
+          {
+            name:'菜式',
+            val:29
+          },
+          {
+            name:'菜式',
+            val:22
+          },
+          {
+            name:'菜式',
+            val:18
+          },
+          {
+            name:'菜式',
+            val:11
+          },
+          {
+            name:'菜式',
+            val:9
+          },
+          {
+            name:'菜式',
+            val:9
+          },
+
+        ]
+      }
+    },
+    mounted() {
+      this.list_num()
+    },
+    methods: {
+      onClickLeft() {
+        this.$router.push({
+          path: '/dishes_memder'
+        })
+      },
+      list_num(index){
+        if(this.num == ''){
+          this.num = new Date().getDay()
+        }else{
+          this.num = index
+        }
+        if( this.num == 1){
+          this.wu = 10
+          this.wan = 10
+          this.show_wu = true
+          this.show_wan = true
+        }else if( this.num == 2){
+          this.wu = 5
+          this.wan = 2
+          this.show_wu = false
+          this.show_wan = true
+        }
+        else if( this.num == 3){
+          this.wu = 51
+          this.wan = 2
+          this.show_wu = false
+          this.show_wan = true
+        }
+        else if( this.num == 4){
+          this.wu = 5
+          this.wan = 21
+          this.show_wu = true
+          this.show_wan = false
+        }
+        else if( this.num == 5){
+          this.wu = 5
+          this.wan = 4
+          this.show_wu = false
+          this.show_wan = true
+        }
+        else if( this.num == 6){
+          this.wu = 5
+          this.wan = 11
+          this.show_wu = true
+          this.show_wan = true
+        }
+      },
+    },
+  }
+</script>
+
+<style scoped lang="less">
+  .cai {
+    .box {
+      padding: 0 0.12rem;
+      margin-top: .1rem;
+      .onul {
+        border-bottom: .1rem solid #eee;
+        margin-bottom: .1rem;
+        .uls {
+
+          display: flex;
+          .lis {
+            height: .44rem;
+            line-height: .44rem;
+            margin-bottom: .1rem;
+            flex: 0 0 16%;
+            text-align: center;
+            font-size: .18rem;
+          }
+          .lis_id {
+
+            color: #f00;
+          }
+        }
+        .text{
+          .wan , .wu{
+            font-size: .16rem;
+            height: .4rem;
+            display: flex;
+            align-items: center;
+            justify-content:space-around ;
+            .span_d{
+              color:#f00
+            }
+            .span_w{
+              color:#666
+            }
+          }
+        }
+      }
+      .box_cai{
+        position: absolute;
+        top: 2.1rem;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0 0.12rem;
+        overflow: auto;
+        .box_cai_title{
+          padding-bottom: .1rem;
+          margin-bottom: .1rem;
+          border-bottom: .01rem solid #eee;
+          font-size: .18rem;
+        }
+        .box_cai_li{
+          display: flex;
+          height: .44rem;
+          line-height: .44rem;
+          align-items: center;
+          font-size: .12rem;
+          justify-content: space-between;
+          .box_cai_text{
+            flex: 0 0 25%;
+          }
+          .box_cai_hua{
+            margin-right: 1%;
+            flex: 0 0 48%;
+          }
+        }
+      }
+    }
+
+  }
+</style>
+<style type="text/css">
+
+</style>

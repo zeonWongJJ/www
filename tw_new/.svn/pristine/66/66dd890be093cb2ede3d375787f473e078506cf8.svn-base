@@ -1,0 +1,19 @@
+/* �û�Ĭ����ʾ */
+.main{
+    height:768px;
+    /*height: 740px;*/
+    background:url(../images/bgh.png);
+    background-repeat:no-repeat;
+    background-size:100%;
+}
+
+
+
+
+
+
+
+
+
+
+

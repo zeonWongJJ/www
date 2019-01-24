@@ -1,0 +1,347 @@
+body{
+	background:white;
+}
+html,body{
+	overflow:inherit;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+}
+.main .head{
+	height: 6.56rem;
+	text-align: center;
+	font-size: 0.426666rem;
+	background: white;
+	position: relative;
+}
+.main .head i{
+	font-style: normal;
+}
+.main .head a.back{
+	margin-top: 0.066666rem;
+	width: 0.853333rem;
+	height: 0.666666rem;
+	position: absolute;
+	text-align: center;
+	line-height: 0.666666rem;
+	left: 0.266666rem;
+	top: 0.8rem;
+}
+.main .head a.back img{
+	width: 0.853333rem;
+	height: 0.32rem;
+}
+.head .control{
+	position: absolute;
+	right: 0;
+	top: 0.853333rem;
+	right: 0.8rem;
+	font-size: 0;
+}
+.head .control a{
+	display: inline-block;
+}
+.head .control a.collect{
+	width: 0.493333rem;
+	margin-right: 0.4rem;
+}
+.head .control a.share{
+	width: 0.44rem;
+}
+.head .ding{
+	width: 3.133333rem;
+	width: 3.2rem;
+	position: absolute;
+	right: 0;
+	bottom: 0.333333rem;
+}
+.head .ding .newBook{
+	font-size: 0.293333rem;
+	color: white;
+	background: rgba(0,0,0,0.5);
+	width: 3.2rem;
+	text-align: center;
+	border-radius: 0.32rem 0 0 0.32rem;
+	padding: 0.133333rem 0;
+}
+.head .ding .page{
+	font-size: 0.346666rem;
+	color: white;
+	margin-top: 0.133333rem;
+	text-indent: 0.933333rem;
+}
+.main .title{
+	padding: 0 0.466666rem;
+	margin-top: 0.266666rem;
+	position: relative;
+}
+.title .h3{
+	font-size: 0.426666rem;
+	color: #000000;
+	width: 6.666666rem;
+	font-weight: bold;
+}
+.title .start{
+	font-size: 0;
+	margin-top: 0.08rem;
+	width: 6.666666rem;
+}
+.title .start i{
+	display: inline-block;
+	width: 0.466666rem;
+	height: 0.466666rem;
+	background: url(../images/xing_03.png) no-repeat;
+	background-size: 100%;
+	vertical-align: middle;
+	margin-right: 0.133333rem;
+}
+.title .start i.harfStart{
+	background: url(../images/xing_05.png) no-repeat;
+	background-size: 100%;
+}
+.title .start span{
+	display: inline-block;
+	font-size: 0.48rem;
+	color: #fe0000;
+	vertical-align: middle;	
+}
+.title .book{
+	display: block;
+	width: 1.8rem;
+	height: 0.733333rem;
+	background: #ff6633;
+	color: white;
+	font-size: 0.32rem;
+	text-align: center;
+	line-height: 0.733333rem;
+	border-radius: 0.346666rem;
+	position: absolute;
+	right: 0.466666rem;
+	top: 0.16rem;
+}
+.main .describe{
+	padding: 0 0.466666rem;
+	margin-top: 0.266666rem;
+}
+.describe .biao{
+	font-size: 0.426666rem;
+	color: #000000;
+}
+.describe .miao{
+	font-size: 0.346666rem;
+	color: #666666;
+}
+/*设施服务*/
+.main .serve{
+	padding: 0 0.466666rem;
+	margin-top: 0.666666rem;
+}
+.main .serve .she{
+	font-size: 0.346666rem;
+	color: #000000;
+	position: relative;
+}
+.serve .she i{
+	font-style: normal;
+	color: #f5b72e;
+	font-size: 0.32rem;
+	display: inline-block;
+	position: absolute;
+	right: -0.333333rem;
+	top: -0.16rem;
+	font-weight: bold;
+}
+.serve ul{
+	margin-top: 0.4rem;
+}
+.serve li{
+	float: left;
+	width: 1.466666rem;
+	text-align: center;
+	margin-left: 0.04rem;
+}
+.serve li .pic{
+	width: 0.64rem;
+	display: inline-block;
+	
+}
+.serve li .tit{
+	font-size: 0.32rem;
+	color: #666666;
+	margin-top: 0.266666rem;
+}
+/*评价*/
+.main .appraise{
+	padding: 0 0.466666rem;
+	margin-top: 0.666666rem;
+}
+.appraise .aTit{
+	position: relative;
+}
+.appraise .aTit .ping{
+	position: relative;
+	font-size: 0.346666rem;
+	color: #000000;
+}
+.appraise .ping i{
+	font-style: normal;
+	color: #f5b72e;
+	font-size: 0.32rem;
+	display: inline-block;
+	position: absolute;
+	right: -0.333333rem;
+	top: -0.16rem;
+	font-weight: bold;
+}
+.appraise .aTit .seeMore{
+	font-size: 0.293333rem;
+	color: #888888;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.appraise ul{
+	margin-top: 0.133333rem;
+	margin-bottom: 0.266666rem;
+}
+.appraise li{
+	float: left;
+	margin-right: 0.16rem;
+	margin-top: 0.16rem;
+}
+.appraise li a{
+	display:inline-block;
+	padding: 0.16rem 0.133333rem;
+	font-size: 0.293333rem;
+	color: #FF7F00;
+	border: 1px solid #ffb642;
+	border-radius: 0.133333rem;
+	box-sizing: border-box;
+}
+.appraise li a i{
+	font-style: normal;
+	margin-left: 0.08rem;
+}
+/*遮罩层*/
+.shade{
+	display: none;
+}
+/*分享弹框*/
+.shareBomb{
+	width: 100%;
+	min-height: 5.066666rem;
+	background: white;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding: 0 0.4rem;
+	padding: 0 0.266666rem;
+	display: none;
+}
+.shareBomb .fenxiang{
+	font-size: 0.373333rem;
+	color: #666666;
+	text-align: center;
+	height: 1.066666rem;
+	line-height: 1.066666rem;
+	border-bottom: 1px solid #f5f5f5;
+}
+.shareBomb ul{
+	margin-top: 0.4rem;
+	border-bottom: 1px solid #f5f5f5;
+	padding-bottom: 0.4rem;
+}
+.shareBomb li{
+	float: left;
+	text-align: center;
+	width: 1.893333rem;
+}
+.shareBomb li .pic{
+	width: 1.2rem;
+	display: inline-block;
+	
+}
+.shareBomb li .tit{
+	font-size: 0.293333rem;
+	color: #151515;
+	margin-top: 0.133333rem;
+}
+.shareBomb .cancel a{
+	display: block;
+	font-size: 0.373333rem;
+	color: #666666;
+	text-align: center;
+	line-height: 1.333333rem;
+}
+/*图片弹框*/
+.picBomb{
+	width: 8.533333rem;/*640*/
+	height: 11.066666rem;/*830*/
+	background: white;
+	position: fixed;
+	left: 50%;
+	margin-left: -4.266666rem;
+	top: 50%;
+	margin-top: -5.533333rem;
+	display: none;
+}
+.picBomb .close2{
+	height: 1.066666rem;
+}
+.picBomb .close2 a{
+	display: block;
+	text-align: center;
+	float: right;
+	width: 0.733333rem;
+	height: 0.733333rem;
+	line-height: 0.733333rem;
+}
+.picBomb .close2 a img{
+	vertical-align: middle;
+	width: 0.4rem;
+}
+.picBomb .picWrap{
+	padding-left: 0.666666rem;
+	position: relative;
+}
+.picWrap .picShow{
+	width: 7.133333rem;/*535*/
+	height: 8.733333rem;/*655*/
+}
+.picWrap .picShow ul li{
+	float: left;
+	width: 7.133333rem;/*535*/
+	height: 8.733333rem;/*655*/
+	display: none;
+}
+.picWrap .picShow ul li.show{
+	display: block;
+}
+.picWrap .left{
+	display: block;
+	width: 0.853333rem;
+	height: 0.853333rem;
+	position: absolute;
+	left: -0.106666rem;
+	top: 40%;
+}
+.picWrap .right{
+	display: block;
+	width: 0.853333rem;
+	height: 0.853333rem;
+	position: absolute;
+	right: -0.106666rem;
+	top: 40%;
+}
+
+@media screen and (max-width: 360px) {
+	.head .ding .newBook{
+		width: 3.733333rem;
+	}
+	.head .ding{
+		width: 3.733333rem;
+	}
+}
+

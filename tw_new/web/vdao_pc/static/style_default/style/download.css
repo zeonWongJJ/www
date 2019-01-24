@@ -1,0 +1,17 @@
+/* 广告 */
+.balance{ height:600px; background:url("../images/57U58PIC5R2_1024.png") no-repeat 100% 100%;  }
+.balanceContent{ width:1200px; margin:0 auto; }
+.balanceText{ display:inline-block; text-align:center; vertical-align:middle;  margin-top:100px; }
+.balanceText>h1{ color:white; font-size:40px; }
+.balanceText>p:nth-child(2){ margin-top:28px; font-size:40px; color:white; }
+.balanceText>p:nth-child(3){ margin-top:24px; font-size:24px; color:white; }
+.codeContainer{ display:inline-block; vertical-align:middle; }
+.codeContainer>a{ width:138px; height:38px; line-height:38px; display:block; margin-top:24px; font-size:16px; background:white; color:#ff6633; }
+.code{ width:120px; margin-top:32px; padding:6px 8px; background:white; }
+.code>img{ width:120px; }
+.balanceText>span{ width:180px; display:inline-block; vertical-align:middle; color:white; font-size:20px; }
+.balanceContent>img{ vertical-align:middle; margin-left:85px; }
+
+
+
+

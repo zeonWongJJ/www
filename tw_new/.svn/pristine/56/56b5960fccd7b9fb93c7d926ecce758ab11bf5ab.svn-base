@@ -1,0 +1,92 @@
+<template>
+  <Card title="配置列表">
+    <Table :columns="columns" :data="data"></Table>
+  </Card>
+</template>
+
+<script>
+export default {
+  name: 'configList',
+  data () {
+    return {
+      columns: [
+        {
+          title: '配置项',
+          key: 'config_info'
+        },
+        {
+          title: '配置值',
+          key: 'config_value',
+          render: (h, params) => {
+            if (params.row['config_var_type'] === 'bool') {
+              return h('i-switch', {
+                props: {
+                  type: 'primary',
+                  value: params.row['config_value'] == 'true'
+                },
+                on: {
+                  'on-change': value => {
+                  }
+                }
+              })
+            } else {
+              return h('div', [
+                h('Input', {
+                  props: {
+                    value: params.row['config_value']
+                  },
+                  style: {
+                    display: 'inline-block',
+                    float: 'left',
+                    width: '60%'
+                  }
+                }),
+                h('Button', {
+                  props: {
+                    type: 'primary'
+                  },
+                  style: {
+                    marginLeft: '10px'
+                  }
+                }, '提交')
+              ])
+            }
+          }
+        },
+        {
+          title: '配置说明',
+          key: 'config_remark'
+        },
+        {
+          title: '启用',
+          key: 'config_enable',
+          width: 80,
+          render: (h, params) => {
+            return h('i-switch', {
+              props: {
+                type: 'primary',
+                value: params.row['config_enable'] == '1'
+              }
+            })
+          }
+        }
+      ],
+      data: []
+    }
+  },
+  mounted () {
+    this.getConfigListData()
+  },
+  methods: {
+    getConfigListData () {
+      this.$http('config.list').then(rs => {
+        this.data = rs.data
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

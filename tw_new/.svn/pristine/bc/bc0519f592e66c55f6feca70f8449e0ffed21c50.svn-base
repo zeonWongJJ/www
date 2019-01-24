@@ -1,0 +1,4 @@
+<resources>
+    <string name="default_http_error">数据加载失败，可能网络异常</string>
+    <string name="http_connect_error">网络连接错误</string>
+</resources>

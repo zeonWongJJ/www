@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dimen_10dp"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
+
+    <include layout="@layout/list_item_message_newday" />
+    <TextView
+        android:id="@+id/bot_tip"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bot_red_packet_tip"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="right"
+            android:orientation="vertical">
+            <!--56/2=28-->
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:gravity="center"
+                android:layout_marginLeft="28dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/color_timestamp"
+                tools:text="12:34" />
+            <LinearLayout
+                android:id="@+id/user_and_timestamp_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <!--<View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />-->
+                <!--点击重发-->
+                <ImageView
+                    android:id="@+id/errorImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:gravity="end"
+                    android:tint="@color/colorRed400"
+                    app:srcCompat="@drawable/ic_error_black_24dp" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.RocketChat.Message.Username"
+                    tools:text="John Doe" />
+
+                <Space
+                    android:layout_width="4dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/sub_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.RocketChat.Message.SubUsername"
+                    tools:text="\@John Doe"
+                    android:visibility="gone" />
+
+                <Space
+                    android:layout_width="@dimen/margin_8"
+                    android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/container"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/message_right"
+                    android:layout_height="wrap_content">
+                    <chat.rocket.android.widget.message.RocketChatMessageLayout
+                        android:id="@+id/message_body"
+                        android:padding="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <chat.rocket.android.widget.message.RocketChatMessageUrlsLayout
+                        android:id="@+id/message_urls"
+                        android:layout_width="wrap_content"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <chat.rocket.android.widget.message.RocketChatMessageAttachmentsLayout
+                    android:id="@+id/message_attachments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/avatar_container"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                tools:text=""
+                android:textColor="@color/color_timestamp"/>
+            <chat.rocket.android.widget.RocketChatAvatar
+                android:id="@+id/user_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,31 @@
+.balance{ width:100%; height:500px; background:url("../images/bgh_02.png") 100% 100%;  }
+
+/* 内容 */
+.article{ width:1200px; margin:0 auto; }
+.seriveBox{ padding:18px 0; border-bottom:1px solid #ddd; }
+.seriveBox>i{ display:inline-block; width:1px; height:86px; background:#ddd; vertical-align:middle; }
+.seriveBox>div{ width:400px; display:inline-block; }
+.seriveList{ margin-left:90px; }
+.seriveList>img{ width:64px; vertical-align:middle;  }
+.seriveList>em{ display:inline-block; vertical-align:middle; margin-left:15px; }
+.seriveList>em>p{ margin-bottom:5px; color:#666666; }
+.seriveList>em>p:nth-child(1){ font-size:16px; font-weight:bold;  }
+.seriveList>em>p:nth-child(2){ font-size:14px; }
+.seriveList>em>p:nth-child(3){ font-size:14px; }
+.seriveList>em>p:nth-child(3)>a{ display:inline-block; padding:1px 10px; border:1px solid #ddd; border-radius:14px; color:#666666;  }
+
+.desir{ padding:30px 30px 80px 30px; font-size:16px; }
+.desir>p:nth-child(1){ text-indent:32px; }
+.desir>p{ line-height:36px; letter-spacing:4px; }
+.desir>em{ display:inline-block; margin-top:15px; }
+.desir>em>i{ width:5px; height:5px; display:inline-block; border-radius:50%; background:#ff8d00; }
+.desir>em>span{ font-size:16px; font-weight:bold; }
+.desir>em>i,.desir>em>span{ vertical-align:middle; }
+
+
+
+
+
+
+
+

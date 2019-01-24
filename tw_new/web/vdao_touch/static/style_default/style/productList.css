@@ -1,0 +1,39 @@
+/* 产品列表 */
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.32rem; }
+/* 导航 */
+.nav{ background:white; }
+.nav>a{ width:1.9rem; height:0.93rem; line-height:0.936rem; text-align:center; display:inline-block; font-size:0; }
+.nav>a>span{ height:0.93rem; line-height:0.936rem; display:inline-block; font-size:0.32rem; }
+.nav>a.navCur>span{ border-bottom:0.05rem solid #ff6633; }
+/* 商品列表 */
+.shopList{ margin-top:0.28rem; background:white; }
+.shopList>a{ display:inline-block; padding:0 0.24rem; }
+.shopList>a>i{ width:2.05rem; display:inline-block; padding:0.29rem 0; }
+.shopList>a>i>img{ width:100%; }
+.shopList>a>dfn{ font-style:normal; }
+.productInfo,.shopList>a>i{ vertical-align:middle; }
+.productInfo{ width:7.06rem; display:inline-block; margin-left:0.21rem; }
+.productInfo>h1,.productInfo>span,.productInfo>p>span{ font-size:0.32rem; }
+.productInfo>span{ height:0.77rem; line-height:0.77rem; display:inline-block;  }
+.fall{ color:#ff6633; }
+.showLook{ color:#58aa00; }
+.examine{ color:#0096ff; }
+.nopass{ color:#ff6633; }
+.productInfo>p>span{ color:#666666; }
+.productInfo>p>span>em{ font-style:normal; }
+.productInfo>p>em{ float:right; font-size:0.42rem; font-style:normal; font-weight:bold; }
+.productInfo>p>em>span{ font-weight:bold; }
+.shopList>em{ display:block; text-align:right; padding:0.21rem 0; font-size:0; font-style:normal; border-top:0.01rem solid #ddd; }
+.shopList>em>a{ height:0.64rem; line-height:0.64rem; display:inline-block; margin-right:0.32rem; padding:0 0.4rem; font-size:0.37rem; color:#ff6633; border:0.02rem solid #ff6633; border-radius:0.1rem;  }
+
+.lay{ position:absolute; width:100%; top:0; background:black; opacity:0.5; z-index:1; }
+.upTips,.downTips,.deleTips{ width:6.53rem; position:absolute; left:1.8rem; background:white; z-index:2; }
+.upTips>p,.downTips>p,.deleTips>p{ text-align:center; margin-top:0.74rem; font-size:0.42rem; }
+.upTips>span,.downTips>span,.deleTips>span{ display:block; text-align:center; margin-top:0.21rem; margin-bottom:0.69rem; font-size:0.32rem; }
+.upBtn,.downBtn,.deleBtn{ font-size:0; border-top:0.01rem solid #ddd; }
+.upBtn>a,.downBtn>a,.deleBtn>a{ width:49.9%; height:1.22rem; line-height:1.22rem; display:inline-block; text-align:center; font-size:0.4rem; }
+.sure{ border-right:0.01rem solid #ddd; }
+.cancel{ color:#ff6633; }
+
+

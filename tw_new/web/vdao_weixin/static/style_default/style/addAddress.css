@@ -1,0 +1,27 @@
+/* 新增地址 */
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; }
+.pjoTitle{ position:relative; border-bottom:none; }
+.pjoTitle>a{ position:absolute; left:0.24rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.85rem; }
+.addressForm{ margin-top:0.26rem;  }
+.addressForm>form>ul{ padding:0 0.29rem; background:white; }
+.addressForm>form>ul>li{ height:1.04rem; line-height:1.04rem; border-bottom:0.01rem solid #ddd; }
+.addressForm>form>ul>li:last-child{ border-bottom:none; }
+.addressForm>form>ul>li>span{ width:2.13rem; display:inline-block; font-size:0.37rem; }
+.addressForm>form>ul>li>input{ font-size:0.37rem; }
+.addSex>a{ display:inline-block; margin-left:0.66rem; }
+.addSex>a>img,.addSex>a>span{ vertical-align:middle; }
+.addSex>a>img{ width:0.36rem; margin-right:0.34rem; }
+.addSex>a>span{ font-size:0.37rem; }
+.addSex{ padding-left:1.58rem; }
+.addAddrLocation>a{ width:7rem; display:inline-block; }
+.addAddrLocation>a>em{ font-size:0.37rem; font-style:normal; color:#666; }
+.addAddrLocation>a>img{ width:0.22rem; float:right; margin-top:0.3rem; margin-right:0.84rem; }
+#addAddrSub{ width:8.46rem; height:1.06rem; line-height:1.06rem; display:block; margin:0.4rem auto; font-size:0.42rem;
+ color:white; background:#fa4b09; border-radius:0.1rem;  }
+
+/* 提示层 */
+.tips{ width:8rem; position:absolute; top:50%; left:1rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }
+
+
+

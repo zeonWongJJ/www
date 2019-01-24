@@ -1,0 +1,12 @@
+<?php
+
+static $a_router = [
+
+];
+
+$configPath = glob(__DIR__ . '/routers/*.php'); // 读取配置目录下的所有文件
+foreach ($configPath as $path) {
+    $pathInfo = pathinfo($path);
+    $a_router = array_merge($a_router, include $path);
+}
+

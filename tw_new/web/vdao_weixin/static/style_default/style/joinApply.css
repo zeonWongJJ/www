@@ -1,0 +1,23 @@
+/* ¼ÓÃËÉêÇë */
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; }
+.pjoTitle{ position:relative; border-bottom:0.01rem solid #f5f5f5; }
+.pjoTitle>a{ position:absolute; }
+.pjoTitle>a.back{ left:0.24rem; top:1.3rem; }
+.pjoTitle>a.creat{ right:0.24rem; top:1.2rem; font-size:0.37rem; color:#ff6633; }
+.pjoTitle>a>img{ width:0.85rem; }
+
+/* ÁÐ±í */
+.joinContainer>ul>li{ margin-top:0.29rem; padding:0.2rem 0.44rem; background:white; }
+.joinStore>span{ font-size:0.42rem; }
+.joinStore>em{ float:right; padding:0.05rem; font-size:0.29rem; font-style:normal; border-radius:0.05rem;  }
+.joiner{ padding:0.2rem 0; }
+.joiner>span{ font-size:0.37rem; color:#666666; }
+.joinContact>span{ font-size:0.42rem; color:#666666; }
+.joinContact>em{ float:right; margin-top:0.05rem; font-size:0.32rem; font-style:normal; color:#999999;  }
+.successText{ margin-top:0.2rem; padding:0.2rem 0; border-top:0.01rem solid #ddd; }
+.successText>span{ font-size:0.37rem; color:#666666; }
+
+.joining{ color:#72befa; border:0.02rem solid #72befa; }
+.adopt{ color:#32b16c; border:0.02rem solid #32b16c; }
+.reject{ color:#ff6633; border:0.02rem solid #ff6633; }
+

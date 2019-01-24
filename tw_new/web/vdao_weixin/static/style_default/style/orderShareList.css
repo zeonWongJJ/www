@@ -1,0 +1,37 @@
+/* 订单列表 */
+.pjoTitle>a{ position:absolute; left:0.53rem; top:1.3rem; }
+.pjoTitle>a>img{ width:0.32rem; }
+/* 导航 */
+.nav{ background:white; }
+.nav>a{ width:1.9rem; height:0.93rem; line-height:0.936rem; text-align:center; display:inline-block; font-size:0; }
+.nav>a>span{ height:0.93rem; line-height:0.936rem; display:inline-block; font-size:0.32rem; }
+.nav>a.navCur>span{ border-bottom:0.05rem solid #ff6633; }
+/* 订单 */
+.orederList{ margin-top:0.26rem; background:white; }
+.myState{ height:0.93rem; line-height:0.93rem; padding:0 0.2rem; }
+.myState>img{ width:0.66rem; border-radius:50%;  }
+.myState>span{ font-size:0.32rem; }
+.myState>img,.myState>span{ vertical-align:middle; }
+.myState>em{ float:right; font-size:0.32rem; font-style:normal; color:#ff6633; }
+.myProduct{ padding:0.13rem 0; border-top:0.01rem solid #ddd; }
+.myProduct>a>img{ width:1.73rem; margin:0 0.26rem; border-radius:0.2rem;  }
+.productInfo{ display:inline-block; }
+.myProduct>a>img,.productInfo{ vertical-align:middle; font-style:normal; }
+.productInfo>span{ font-size:0.34rem; }
+.productInfo>p{ height:0.53rem; line-height:0.53rem; font-size:0.26rem; color:#666666; }
+.productInfo>em{ font-size:0.34rem; font-weight:bold; font-style:normal; }
+.productInfo>em>dfn{ font-style:normal; }
+.orderChoice{ text-align:right; padding:0.2rem; border-top:0.01rem solid #ddd; }
+.orderChoice>a{ height:0.64rem; line-height:0.64rem; display:inline-block; padding:0 0.2rem; font-size:0.37rem; border-radius:0.4rem;  }
+.cancelOrder,.logistics{ color:#999999; border:0.02rem solid #ddd; }
+.meet,.mail{ color:white; border:0.02rem solid #ff6633; background:#ff6633;  }
+
+.tips{ width:6.53rem; position:fixed; left:1.8rem; background:white; z-index:2; }
+.tips>p{ text-align:center; margin-top:0.74rem; font-size:0.42rem; }
+.tips>span{ display:block; text-align:center; margin-top:0.21rem; margin-bottom:0.69rem; font-size:0.32rem; }
+.tipsBtn{ font-size:0; border-top:0.01rem solid #ddd; }
+.tipsBtn>a{ width:49.5%; height:1.22rem; line-height:1.22rem; display:inline-block; text-align:center; font-size:0.4rem; }
+.sure{ border-right:0.01rem solid #ddd; }
+.cancel{ color:#ff6633; }
+.lay{ position:absolute; width:100%; top:0; background:black; opacity:0.2; z-index:1; }
+.tipsTNT{  position:absolute; left:3.4rem; text-align:center; padding:0.26rem; font-size:0.37rem; background:#303030; color:white; border-radius:0.2rem; display:none; z-index:3; }

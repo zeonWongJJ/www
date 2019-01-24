@@ -1,0 +1,58 @@
+/*  �Ĳļ�¼ */
+.productClassification{ width:1440px; margin:0 auto; font-size:0; }
+.suppliesRecord{ margin-top:20px; margin-left:22px; }
+.suppliesRecord>p{ height:53px; line-height:53px; padding-left:25px; font-size:16px; background:white; }
+
+
+/* ����б� */
+.supplies_content{ margin-top:20px; background:white; }
+.supplies_content>form{ padding-top:20px; margin-left:24px; }
+.supplies_content>form>a{ display:inline-block; vertical-align:middle; padding:8px 16px; font-size:14px; border:1px solid #e8e8e8; color:#a8a7a6; border-radius:14px; background:#f4f1ee; }
+.supplies_content>form>a>img{ width:10px; vertical-align:middle; margin-right:10px; }
+.search_supplies{ display:inline-block; }
+.search_supplies>input{ width:134px; vertical-align:middle; margin-left:20px; padding:8px 10px; font-size:12px; border:1px solid #dfdfdf; background:#fafafa; border-bottom-left-radius:6px; border-top-left-radius:6px; }
+.search_supplies>i{ width:30px; height:32px; vertical-align:middle; display:inline-block; border:1px solid #b7b6b3; background:#f4f0ee; border-bottom-right-radius:6px; border-top-right-radius:6px; }
+.search_supplies>i>img{ width:20px; margin-top:6px; margin-left:6px; }
+.storageList{ padding:15px; background:white; font-size:15px; }
+.cateHead{ height:53px; line-height:53px; background:#F4F7FC }
+.cateHead>em,.cateHead>em>span{ font-weight:bold; }
+.storageList>li>em{ display:inline-block; text-align:center; vertical-align:middle;}
+.cateHead>em{  font-size:14px;  }
+.cateBody>em{ font-size:12px;  }
+.stateBox{ position:relative; border:1px solid #f4f7fc; border-bottom:none; }
+.state{ width:130px; position:absolute; border:1px solid #ddd; border-top:none; background:white; }
+.state>a{ height:30px; line-height:30px; display:block; text-align:left; padding-left:22px; font-size:14px; color:black; cursor:pointer; }
+.state>a:hover{ color:#6e5c58; }
+.v1{ width:150px; }
+.v2{ width:120px; }
+.v3{ width:115px; }
+.v4{ width:100px; }
+.v5{ width:130px; }
+.v6{ width:205px; }
+.v7{ width:100px; }
+.cateBody>.v7{ cursor:pointer; color:#5a2e17; font-weight:bold;   }
+.v8{ width:110px; }
+.v9{ width:75px; }
+.v9>img{ cursor:pointer; }
+.cateBody{ padding:15px 0; border-bottom:1px solid #ddd; }
+.cateBody:last-child{ border:none; }
+
+/* �鿴��Ƭ */
+.lookPicture{ position:absolute; padding:0 15px; background:white; top:300px; left:850px; z-index:3; box-shadow:3px 5px 23px #888888; }
+.lookPicture>p{ text-align:center; padding:20px 0; font-size:12px; font-weight:bold; }
+.picBox{ width:278px; height:180px; margin:0 auto; }
+.picPrev,.picNext{ position:absolute; z-index:1; cursor:pointer; }
+.picPrev>img,.picNext>img{ width:22px; }
+.picPrev{ left:13px; top:75px; }
+.picNext{ right:13px; top:75px; }
+.pictureContent{ position:relative; text-align:center; }
+.pictureContainer{ position:absolute; }
+.picBox img{ width:100%; }
+.picNum{ display:block; font-size:12px; margin-top:10px; }
+.lookPicture>a{ display:block; text-align:center; margin:10px 0; font-size:12px; }
+.lookPicture>a>span{ display:inline-block; padding:5px 15px; background:#5a2e17; color:white; border-radius:4px; cursor:pointer; }
+
+/* ��ҳ */
+.page{ float:right; margin-top:30px; margin-right:20px; }
+.page>a,.page>span{ display:inline-block; vertical-align:middle; padding:5px 10px; margin-left:10px; color:#999; font-size:14px; background:white; }
+.page>a:hover{ background:#6e5c58; color:white; }

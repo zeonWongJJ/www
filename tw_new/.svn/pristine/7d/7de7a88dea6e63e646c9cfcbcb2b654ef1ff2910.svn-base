@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_pane"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <chat.rocket.android.widget.RoomToolbar
+                android:id="@+id/activity_main_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.AppBarLayout>-->
+        <!--sidebar_fragment_container-->
+        <FrameLayout
+            android:id="@+id/activity_main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+            <include layout="@layout/sidebar" />
+        </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_pane"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/activity_main_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <RadioGroup
+                android:id="@+id/group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/app_bg"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/default_padding"
+                android:paddingTop="@dimen/default_padding"
+                android:weightSum="5">
+
+                <RadioButton
+                    android:id="@+id/home"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/tab_icon_home_selector"
+                    android:gravity="center"
+                    android:text="首页"
+                    android:textColor="@drawable/tab_text_color_selector"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <RadioButton
+                    android:id="@+id/find"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/tab_icon_find_selector"
+                    android:gravity="center"
+                    android:text="客服"
+                    android:textColor="@drawable/tab_text_color_selector"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <RadioButton
+                    android:id="@+id/classify"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/tab_icon_find_selector"
+                    android:gravity="center"
+                    android:text="分类"
+                    android:textColor="@drawable/tab_text_color_selector"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <RadioButton
+                    android:id="@+id/conversation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/tab_icon_conversation_selector"
+                    android:gravity="center"
+                    android:text="会话"
+                    android:textColor="@drawable/tab_text_color_selector"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <RadioButton
+                    android:id="@+id/mine"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/tab_icon_mine_selector"
+                    android:gravity="center"
+                    android:text="我的"
+                    android:textColor="@drawable/tab_text_color_selector"
+                    android:textSize="@dimen/text_size_normal" />
+            </RadioGroup>
+
+            <com.gzqx.common.widget.APSTSViewPager
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/group" />
+
+        </RelativeLayout>
+    </LinearLayout>-->

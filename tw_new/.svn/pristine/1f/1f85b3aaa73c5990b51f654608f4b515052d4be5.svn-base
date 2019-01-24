@@ -1,0 +1,17 @@
+{
+    "name": "rusice/housekeeping",
+    "require": {
+        "hautelook/phpass": "1.0.0",
+        "phpseclib/phpseclib": "2.0.11",
+        "yansongda/pay": "^2.4"
+    },
+    "config": {
+        "vendor-dir": "server/library/vendor"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
